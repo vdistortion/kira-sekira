@@ -1,0 +1,36 @@
+{
+  "name": "kira-sekira",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "grid": "node smartgrid.js",
+    "pages": "node gh-pages.js",
+    "public": "npm run build && npm run pages",
+    "reset": "git fetch --all && git reset --hard origin/master"
+  },
+  "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.2.96",
+    "@yeger/vue-masonry-wall": "^3.4.4",
+    "pinia": "^2.0.32",
+    "vue": "^3.2.47",
+    "vue-easy-lightbox": "^1.15.0",
+    "vue-particles": "^1.0.9",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "directory-structure-json": "^1.0.0",
+    "eslint": "^8.34.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "gh-pages": "^5.0.0",
+    "smart-grid": "^2.1.2",
+    "stylus": "^0.59.0",
+    "vite": "^4.1.4"
+  }
+}

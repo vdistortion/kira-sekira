@@ -1,0 +1,28 @@
+@require './smartgrid.styl'
+@require './colors.styl'
+
+@font-face {
+  font-family: 'Openhouse';
+  src: url('Openhouse.woff2') format('woff2');
+}
+
+html
+body
+#app
+  margin 0
+  min-height 100vh
+
+body
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  font-family Roboto, sans-serif
+  background-color $bgColor
+  color $defaultColor
+
+#app
+  display flex
+  flex-direction column
+  min-width 320px
+
+.l-wrapper
+  wrapper()
