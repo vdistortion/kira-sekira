@@ -2,13 +2,13 @@
   <app-card class="footer-content">
     <ul class="footer-content__contacts">
       <li>
-        <a href="https://github.com/astrotrain55" target="_blank">GitHub</a>
+        <a href="https://t.me/kira_sekira313" target="_blank">Telegram</a>
       </li>
       <li>
-        <a href="https://www.npmjs.com/~astrotrain" target="_blank">npmjs</a>
+        <a href="https://wa.me/79104769029" target="_blank">WhatsApp</a>
       </li>
       <li>
-        <a href="https://t.me/valentin_fatherland" target="_blank">Telegram</a>
+        <a href="tel:+79104769029">+7 (910) 476-90-29</a>
       </li>
     </ul>
     <img src="@/assets/qr-code.gif" alt="Контакты">
