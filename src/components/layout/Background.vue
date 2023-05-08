@@ -6,7 +6,7 @@
 export default {
   data() {
     return {
-      color: '#99a1b3',
+      color: '#101431',
     };
   },
   name: 'the-background',

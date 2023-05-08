@@ -30,5 +30,5 @@ export default {
     cursor pointer
     min-height 200px
     &:hover
-      background-color $hoverCard
+      background-color rgba($hoverCard, .7)
 </style>
