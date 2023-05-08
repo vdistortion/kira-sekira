@@ -4,7 +4,7 @@ smartgrid('./src/assets', {
   filename: 'smartgrid',
   outputStyle: 'styl',
   columns: 24,
-  offset: '10px',
+  offset: '20px',
   mobileFirst: true,
   container: {
     maxWidth: '1600px',
