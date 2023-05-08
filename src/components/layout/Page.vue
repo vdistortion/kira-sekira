@@ -2,6 +2,14 @@
   <div class="page">
     <header class="page__header">
       <div class="l-wrapper">
+        <div class="contacts">
+          <div class="contacts__uppercase">
+            Связаться со мной <a href="tel:+79104769029">+7 (910) 476-90-29</a>
+          </div>
+          <div class="contacts__lowercase">Пн - Сб 10:00-20:00</div>
+        </div>
+      </div>
+      <div class="l-wrapper">
         <the-logo class="page__logo"></the-logo>
       </div>
       <div v-if="$route.name === 'home'" class="l-wrapper">
@@ -92,6 +100,18 @@ export default {
   &__title,
   &__tags
     margin 10px 0
+
+.contacts
+  font-family 'CenturyGothic'
+  color $titleColor
+  &__uppercase
+    text-transform uppercase
+  &__lowercase
+    text-transform lowercase
+  a
+    font-weight bold
+    color inherit
+
 .menu
   padding-left 0
   list-style-type none
