@@ -1,6 +1,6 @@
 <template>
   <div v-if="images.length">
-    <masonry-wall :items="images" :column-width="520" :gap="10">
+    <masonry-wall :items="images" :column-width="520" :gap="20">
       <template #default="{ item, index }">
         <div
           class="picture-list__item1"

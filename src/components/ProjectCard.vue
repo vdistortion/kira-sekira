@@ -4,7 +4,9 @@
       <div class="project-card__wrapper">
         <div class="project-card__name">{{ project.name }}</div>
         <div class="project-card__description" v-html="project.description"></div>
-        <img :src="getSrc(project.images)" alt="cover">
+        <div class="project-card__cover">
+          <img :src="getSrc(project.images)" alt="cover">
+        </div>
         <div class="project-card__tags">
           <div
             v-for="tag in tags"
@@ -66,8 +68,24 @@ export default {
     padding 10px 0
     color $titleColor
     font-weight 500
-    font-size 20px
+    font-size 36px
     font-family 'CenturyGothic'
+    text-align center
+    margin-bottom 20px
+
+    @media (max-width: 1400px)
+      font-size 30px
+
+    @media (max-width: 1000px)
+      font-size 24px
+  &__cover
+    max-height 650px
+    text-align center
+  img
+    width auto
+    height auto
+    max-width 100%
+    max-height 100%
   &__tags
     display flex
     flex-wrap wrap
