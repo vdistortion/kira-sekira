@@ -60,7 +60,7 @@ export default {
     },
   },
   mounted() {
-    document.title = 'Портфолио';
+    document.title = 'Kira Sekira';
   },
   data() {
     return {
