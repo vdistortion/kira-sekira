@@ -54,4 +54,5 @@ export default {
     color $titleColor
     font-size 40px
     margin 0
+    font-family 'CenturyGothic'
 </style>

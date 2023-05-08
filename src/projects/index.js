@@ -23,6 +23,7 @@ function parseProject(project, imagesList = []) {
 
   const images = imagesList.map((image) => ({
     title: imageNames[image.file] ?? '',
+    name: image.file,
     src: image.path,
   }));
 

@@ -39,7 +39,7 @@ export default {
     col()
     col-size(24)
     col-size-w500(12)
-    col-size-w1000(8)
-    col-size-w1200(6)
+    //col-size-w1000(8)
+    //col-size-w1200(6)
     margin-bottom $offset
 </style>

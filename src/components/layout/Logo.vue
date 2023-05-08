@@ -1,8 +1,5 @@
 <template>
-  <div class="logo">
-    <span>твой фотограф</span>
-    <span class="openhouse">Kira Sekira</span>
-  </div>
+  <div class="logo">Твой фотограф Kira Sekira</div>
 </template>
 
 <script>
@@ -20,8 +17,10 @@ export default {
   color $titleColor
   text-align center
   font-size 50px
-  font-family monospace
-  .openhouse
-    font-family Openhouse, sans-serif
-    font-size 70px
+  letter-spacing .2em
+  line-height 1.6
+  font-family 'CenturyGothic'
+
+  @media (max-width: 1400px)
+    font-size 30px
 </style>

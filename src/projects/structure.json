@@ -6,7 +6,7 @@
     "children": [
       {
         "type": "file",
-        "name": "0ed6db0f-f082-4841-bd67-ad90aa212b16.webp"
+        "name": "main.webp"
       },
       {
         "type": "file",
@@ -411,129 +411,14 @@
       {
         "type": "file",
         "name": "io_DSC1718.webp"
-      }
-    ]
-  },
-  {
-    "code": "Животные",
-    "name": "Животные",
-    "type": "folder",
-    "children": [
-      {
-        "type": "file",
-        "name": "io_DSC0072.webp"
       },
       {
         "type": "file",
-        "name": "io_DSC0073.webp"
+        "name": "photo_2023-05-08_17-03-10.jpg"
       },
       {
         "type": "file",
-        "name": "io_DSC0074.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0137.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0143.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0144.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0333.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0341.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0365.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0367.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0369.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0375.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0376.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0382.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0538.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0643.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0645.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0664.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0888.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0893.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0902.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0903.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0905.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0908.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0909.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0910.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0912.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0922.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0924.webp"
+        "name": "photo_2023-05-08_17-03-12.jpg"
       }
     ]
   },
@@ -724,11 +609,138 @@
       },
       {
         "type": "file",
+        "name": "main.jpg"
+      },
+      {
+        "type": "file",
         "name": "io_DSC1479.webp"
       },
       {
         "type": "file",
         "name": "io_DSC1485-2 — копия.webp"
+      }
+    ]
+  },
+  {
+    "code": "Животные",
+    "name": "Животные",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "io_DSC0072.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0073.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0074.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0137.webp"
+      },
+      {
+        "type": "file",
+        "name": "main.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0144.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0333.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0341.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0365.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0367.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0369.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0375.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0376.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0382.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0538.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0643.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0645.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0664.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0888.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0893.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0902.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0903.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0905.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0908.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0909.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0910.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0912.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0922.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0924.webp"
       }
     ]
   },
@@ -959,7 +971,7 @@
       },
       {
         "type": "file",
-        "name": "io_DSC0123.webp"
+        "name": "main.webp"
       },
       {
         "type": "file",

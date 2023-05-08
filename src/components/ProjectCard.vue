@@ -4,6 +4,7 @@
       <div class="project-card__wrapper">
         <div class="project-card__name">{{ project.name }}</div>
         <div class="project-card__description" v-html="project.description"></div>
+        <img :src="getSrc(project.images)" alt="cover">
         <div class="project-card__tags">
           <div
             v-for="tag in tags"
@@ -20,6 +21,13 @@
 import AppCard from './ui/Card.vue';
 
 export default {
+  methods: {
+    getSrc(images) {
+      const imageWebp = images.find((img) => img.name === 'main.webp');
+      const imageJpg = images.find((img) => img.name === 'main.jpg');
+      return imageWebp ? imageWebp.src : imageJpg ? imageJpg.src : images[0].src;
+    },
+  },
   computed: {
     tags() {
       return this.project.tags
@@ -59,6 +67,7 @@ export default {
     color $titleColor
     font-weight 500
     font-size 20px
+    font-family 'CenturyGothic'
   &__tags
     display flex
     flex-wrap wrap
