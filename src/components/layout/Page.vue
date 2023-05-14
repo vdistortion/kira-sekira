@@ -6,6 +6,12 @@
           <div class="contacts__uppercase">
             Связаться со мной <a href="tel:+79104769029">+7 (910) 476-90-29</a>
           </div>
+          <div>
+            <a href="https://t.me/kira_sekira313" target="_blank">Telegram</a>
+          </div>
+          <div>
+            <a href="https://wa.me/79104769029" target="_blank">WhatsApp</a>
+          </div>
           <div class="contacts__lowercase">Пн - Сб 10:00-20:00</div>
         </div>
       </div>
@@ -20,15 +26,15 @@
           <li class="menu__item">
             <a class="menu__link" href="#projects">Проекты</a>
           </li>
-          <li class="menu__item">
-            <a class="menu__link" href="#">Стоимость</a>
-          </li>
-          <li class="menu__item">
-            <a class="menu__link" href="#">Контакты</a>
-          </li>
-          <li class="menu__item">
-            <a class="menu__link" href="#">Оставить отзыв</a>
-          </li>
+<!--          <li class="menu__item">-->
+<!--            <a class="menu__link" href="#">Стоимость</a>-->
+<!--          </li>-->
+<!--          <li class="menu__item">-->
+<!--            <a class="menu__link" href="#">Контакты</a>-->
+<!--          </li>-->
+<!--          <li class="menu__item">-->
+<!--            <a class="menu__link" href="#">Оставить отзыв</a>-->
+<!--          </li>-->
         </ul>
       </div>
     </header>
