@@ -35,7 +35,7 @@
     <main>
       <div class="l-wrapper">
         <page-title
-          v-if="$route.name !== 'home'"
+          v-if="$route.name !== 'home' && title"
           class="page__title"
           :title="title"
           :link="link"
