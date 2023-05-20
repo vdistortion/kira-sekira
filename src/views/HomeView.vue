@@ -17,11 +17,11 @@
           — Создаю тонкую грань между тобой и искусством
         </div>
       </div>
-      <div class="home-page__item">
+      <div id="projects" class="home-page__item">
         <div class="home-page__title">Фотограф в Москве Kira Sekira</div>
       </div>
+      <project-list :projects="visibleProjects"></project-list>
     </div>
-    <project-list :projects="visibleProjects" id="projects"></project-list>
   </the-page>
 </template>
 
@@ -71,7 +71,7 @@ export default {
     ThePage,
     ProjectList,
   },
-  name: 'home',
+  name: 'home-view',
 };
 </script>
 

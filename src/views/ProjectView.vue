@@ -27,6 +27,6 @@ export default {
     ThePage,
     ProjectDetail,
   },
-  name: 'view',
+  name: 'project-view',
 };
 </script>

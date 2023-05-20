@@ -10,6 +10,11 @@ export default createRouter({
       component: HomeView,
     },
     {
+      path: '/prices',
+      name: 'prices',
+      component: () => import('./views/PricesView.vue'),
+    },
+    {
       path: '/:id',
       name: 'project-view',
       component: () => import('./views/ProjectView.vue'),
