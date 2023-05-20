@@ -1,5 +1,6 @@
 <template>
-  <the-page title="Стоимость съёмок">
+  <the-page>
+    <div class="prices-page-title">PRICE LIST</div>
     <div class="prices-page">
       <div class="prices-page__item">
         <div class="prices-page__title">
@@ -102,6 +103,19 @@ export default {
 <style lang="stylus">
 @require '../assets/colors.styl'
 
+.prices-page-title
+  text-align center
+  font-family 'CenturyGothic'
+  font-weight 700
+  font-size 35px
+  line-height 1.6
+  letter-spacing .2em
+  color $titleColor
+  margin-bottom 20px
+
+  @media (max-width 800px)
+    font-size 24px
+
 .prices-page
   display flex
   column-gap 40px
@@ -122,19 +136,24 @@ export default {
     flex 1
 
   &__title
+    font-family 'CenturyGothic'
     font-weight bold
     font-size 20px
+    letter-spacing .2em
     text-align center
+
+    & > *
+      margin-top 20px
 
     @media (max-width 800px)
       text-align left
 
   &__item
-  &__title
   &__text
     & > *
       margin-top 10px
 
   img
     max-width 100%
+    margin 30px 0
 </style>
