@@ -6,12 +6,6 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      redirect: {
-        name: 'home',
-      },
-    },
-    {
-      path: '/',
       name: 'home',
       component: HomeView,
     },
@@ -24,6 +18,12 @@ export default createRouter({
       path: '/:id',
       name: 'project-view',
       component: () => import('./views/ProjectView.vue'),
+    },
+    {
+      path: '/:queryParams(.*)',
+      name: 'redirect',
+      component: HomeView,
+      props: true,
     },
   ],
 });
