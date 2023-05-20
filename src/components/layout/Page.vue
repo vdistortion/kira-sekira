@@ -18,23 +18,17 @@
       <div class="l-wrapper">
         <the-logo class="page__logo"></the-logo>
       </div>
-      <div v-if="$route.name === 'home'" class="l-wrapper">
+      <div class="l-wrapper">
         <ul class="menu">
           <li class="menu__item">
-            <a class="menu__link" href="#">Главная</a>
+            <router-link class="menu__link" to="/">Главная</router-link>
           </li>
           <li class="menu__item">
-            <a class="menu__link" href="#projects">Проекты</a>
+            <router-link class="menu__link" to="/" @click="animateScroll">Проекты</router-link>
           </li>
-<!--          <li class="menu__item">-->
-<!--            <a class="menu__link" href="#">Стоимость</a>-->
-<!--          </li>-->
-<!--          <li class="menu__item">-->
-<!--            <a class="menu__link" href="#">Контакты</a>-->
-<!--          </li>-->
-<!--          <li class="menu__item">-->
-<!--            <a class="menu__link" href="#">Оставить отзыв</a>-->
-<!--          </li>-->
+          <li class="menu__item">
+            <router-link class="menu__link" to="/prices">Стоимость</router-link>
+          </li>
         </ul>
       </div>
     </header>
@@ -65,6 +59,15 @@ import PageTitle from './PageTitle.vue';
 import TagsCloud from './TagsCloud.vue';
 
 export default {
+  methods: {
+    animateScroll() {
+      setTimeout(() => {
+        const anchor = document.querySelector('#projects');
+        this.scroll.animateScroll(anchor);
+      }, 0);
+    },
+  },
+  inject: ['scroll'],
   props: {
     title: {
       type: String,
