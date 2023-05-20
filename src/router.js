@@ -6,6 +6,12 @@ export default createRouter({
   routes: [
     {
       path: '/',
+      redirect: {
+        name: 'home',
+      },
+    },
+    {
+      path: '/',
       name: 'home',
       component: HomeView,
     },
