@@ -40,13 +40,6 @@
           :title="title"
           :link="link"
         ></page-title>
-        <tags-cloud
-          v-if="tags.length"
-          class="page__tags"
-          :tags="tags"
-          :active-tag="activeTag"
-          @visible="$emit('visible', $event)"
-        ></tags-cloud>
         <slot></slot>
       </div>
     </main>
@@ -56,7 +49,6 @@
 <script>
 import TheLogo from './Logo.vue';
 import PageTitle from './PageTitle.vue';
-import TagsCloud from './TagsCloud.vue';
 
 export default {
   methods: {
@@ -90,7 +82,6 @@ export default {
   components: {
     TheLogo,
     PageTitle,
-    TagsCloud,
   },
   name: 'the-page',
 };
