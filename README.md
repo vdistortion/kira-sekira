@@ -32,4 +32,5 @@ npm run lint
 
 ## Links
 
-[Projects](https://disk.yandex.ru/d/_4myRqo1oihAGA)
+* [Projects](https://disk.yandex.ru/d/_4myRqo1oihAGA)
+* [How to Deploy a Vue.js Application with Dynamic Routing on GitHub Pages](https://huishun.medium.com/how-to-deploy-a-vue-js-application-with-dynamic-routing-on-github-pages-3d36f4644e54)
