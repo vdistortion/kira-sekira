@@ -19,7 +19,8 @@ export default {
   font-size 50px
   letter-spacing .2em
   line-height 1.6
-  font-family 'CenturyGothic'
+  font-family 'Playfair Display', serif
+  text-transform uppercase
 
   @media (max-width: 1400px)
     font-size 30px
