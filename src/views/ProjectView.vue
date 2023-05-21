@@ -21,7 +21,7 @@ export default {
     },
   },
   mounted() {
-    document.title = this.project.name;
+    document.title = `${this.project.name} — Kira Sekira`;
   },
   components: {
     ThePage,

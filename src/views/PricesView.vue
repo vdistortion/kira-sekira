@@ -1,10 +1,9 @@
 <template>
   <the-page>
-    <div class="prices-page-title">PRICE LIST</div>
     <div class="prices-page">
       <div class="prices-page__item">
         <div class="prices-page__title">
-          <div>3 000 RUB</div>
+          <div>3 000</div>
           <div>СТАНДАРТ</div>
           <img src="/images/prices-standart.jpg" alt="Стандарт">
         </div>
@@ -51,7 +50,7 @@
       </div>
       <div class="prices-page__item">
         <div class="prices-page__title">
-          <div>5 000 RUB</div>
+          <div>5 000</div>
           <div>ПРЕМИУМ</div>
           <img src="/images/prices-premium.jpg" alt="Премиум">
         </div>
@@ -93,6 +92,9 @@
 import ThePage from '../components/layout/Page.vue';
 
 export default {
+  mounted() {
+    document.title = 'Стоимость — Kira Sekira';
+  },
   components: {
     ThePage,
   },
@@ -102,19 +104,6 @@ export default {
 
 <style lang="stylus">
 @require '../assets/colors.styl'
-
-.prices-page-title
-  text-align center
-  font-family 'CenturyGothic'
-  font-weight 700
-  font-size 35px
-  line-height 1.6
-  letter-spacing .2em
-  color $titleColor
-  margin-bottom 20px
-
-  @media (max-width 800px)
-    font-size 24px
 
 .prices-page
   display flex
@@ -136,7 +125,7 @@ export default {
     flex 1
 
   &__title
-    font-family 'CenturyGothic'
+    font-family 'Playfair Display', serif
     font-weight bold
     font-size 20px
     letter-spacing .2em
