@@ -27,8 +27,8 @@ import PictureCard from './PictureCard.vue';
 export default {
   methods: {
     showImg(index) {
-      this.index = index
-      this.visible = true
+      this.index = index;
+      this.visible = true;
     },
     handleHide() {
       this.visible = false;

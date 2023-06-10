@@ -39,12 +39,12 @@ export default {
   },
   computed: {
     tags() {
-      return Object.entries(projects).reduce((list, [id, project]) => {
+      return Object.entries(projects).reduce((acc, [id, project]) => {
         project.tags.forEach((tag) => {
-          if (!list[tag]) list[tag] = [];
-          list[tag].push(id);
+          if (!acc[tag]) acc[tag] = [];
+          acc[tag].push(id);
         });
-        return list;
+        return acc;
       }, {
         all: Object.keys(projects),
       });

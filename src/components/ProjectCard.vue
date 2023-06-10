@@ -25,9 +25,11 @@ import AppCard from './ui/Card.vue';
 export default {
   methods: {
     getSrc(images) {
-      const imageWebp = images.find((img) => img.name === 'main.webp');
-      const imageJpg = images.find((img) => img.name === 'main.jpg');
-      return imageWebp ? imageWebp.src : imageJpg ? imageJpg.src : images[0].src;
+      const imageMain = images.find((img) => {
+        const [name] = img.name.split('.');
+        return name === 'main';
+      });
+      return imageMain ? imageMain.src : images[0].src;
     },
   },
   computed: {

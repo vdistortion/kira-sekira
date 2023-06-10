@@ -5,6 +5,7 @@
 <script>
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiArrowLeft, mdiLinkVariant } from '@mdi/js';
+
 export default {
   computed: {
     path() {
@@ -29,5 +30,5 @@ export default {
     SvgIcon,
   },
   name: 'app-icon',
-}
+};
 </script>
