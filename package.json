@@ -9,8 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "grid": "node smartgrid.js",
-    "pages": "node gh-pages.js",
-    "public": "npm run build && npm run pages",
+    "public": "npm run build && gh-pages -d dist",
     "reset": "git fetch --all && git reset --hard origin/master"
   },
   "dependencies": {
