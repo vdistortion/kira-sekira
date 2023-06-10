@@ -40,12 +40,7 @@ function parseProject(project, imagesList = []) {
   };
 }
 
-let projects = {};
-directories.forEach((dir) => {
-  projects = {
-    ...projects,
-    ...parseProject(dir, getImages(dir.children, dir.code)),
-  };
-})
-
-export default projects;
+export default directories.reduce((acc, dir) => ({
+  ...acc,
+  ...parseProject(dir, getImages(dir.children, dir.code)),
+}), {});

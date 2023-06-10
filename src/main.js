@@ -11,4 +11,4 @@ createApp(App)
   .use(router)
   .use(VueParticles)
   .use(MasonryWall)
-  .mount('#app')
+  .mount('#app');
