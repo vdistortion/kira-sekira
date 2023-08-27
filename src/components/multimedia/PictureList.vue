@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import MasonryWall from '@yeger/vue-masonry-wall';
 import VueEasyLightbox from 'vue-easy-lightbox';
 import PictureCard from './PictureCard.vue';
 
@@ -47,6 +48,7 @@ export default {
     },
   },
   components: {
+    MasonryWall,
     VueEasyLightbox,
     PictureCard,
   },
