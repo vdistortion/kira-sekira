@@ -1,6 +1,6 @@
 <template>
   <div v-if="images.length">
-    <masonry-wall :items="images" :column-width="520" :gap="20">
+    <masonry-wall v-if="visibleLayout" :items="images" :column-width="520" :gap="20">
       <template #default="{ item, index }">
         <div
           class="picture-list__item1"
@@ -11,7 +11,7 @@
       </template>
     </masonry-wall>
     <vue-easy-lightbox
-      :visible="visible"
+      :visible="visibleSlider"
       :imgs="images"
       :index="index"
       move-disabled
@@ -29,15 +29,21 @@ export default {
   methods: {
     showImg(index) {
       this.index = index;
-      this.visible = true;
+      this.visibleSlider = true;
     },
     handleHide() {
-      this.visible = false;
+      this.visibleSlider = false;
     },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.visibleLayout = true;
+    });
   },
   data() {
     return {
-      visible: false,
+      visibleLayout: false,
+      visibleSlider: false,
       index: 0,
     };
   },
