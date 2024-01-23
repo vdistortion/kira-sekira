@@ -3,7 +3,7 @@
     <div class="prices-page">
       <div class="prices-page__item">
         <div class="prices-page__title">
-          <div>3 000</div>
+          <div>5 000</div>
           <div>СТАНДАРТ</div>
           <img src="/images/prices-standart.jpg" alt="Стандарт">
         </div>
@@ -52,7 +52,7 @@
       </div>
       <div class="prices-page__item">
         <div class="prices-page__title">
-          <div>5 000</div>
+          <div>7 000</div>
           <div>ПРЕМИУМ</div>
           <img src="/images/prices-premium.jpg" alt="Премиум">
         </div>
