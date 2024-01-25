@@ -266,7 +266,7 @@
       },
       {
         "type": "file",
-        "name": "DSC_9473.webp"
+        "name": "main.webp"
       },
       {
         "type": "file",
@@ -1435,21 +1435,6 @@
     ]
   },
   {
-    "code": "Пары",
-    "name": "Пары",
-    "type": "folder",
-    "children": [
-      {
-        "type": "file",
-        "name": "io_DSC0059.webp"
-      },
-      {
-        "type": "file",
-        "name": "io_DSC0158.webp"
-      }
-    ]
-  },
-  {
     "code": "Репортажные фото",
     "name": "Репортажные фото",
     "type": "folder",
@@ -1633,6 +1618,21 @@
       {
         "type": "file",
         "name": "io_DSC0550.webp"
+      }
+    ]
+  },
+  {
+    "code": "Пары",
+    "name": "Пары",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "io_DSC0059.webp"
+      },
+      {
+        "type": "file",
+        "name": "io_DSC0158.webp"
       }
     ]
   }
