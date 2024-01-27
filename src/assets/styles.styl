@@ -1,10 +1,6 @@
 @require './smartgrid.styl'
 @require './colors.styl'
-
-@font-face {
-  font-family: 'CenturyGothic';
-  src: url('centurygothic.woff2') format('woff2');
-}
+@require './fonts.styl'
 
 html
 body
@@ -15,7 +11,7 @@ body
 body
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
-  font-family Roboto, sans-serif
+  font-family $fontDefault
   color $defaultColor
 
 #app

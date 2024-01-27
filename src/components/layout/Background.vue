@@ -2,7 +2,7 @@
   <vue-particles class="background" :color="color" :linesColor="color"></vue-particles>
 </template>
 
-<script>
+<script lang="ts">
 import VueParticles from 'vue-particles/src/vue-particles/vue-particles.vue';
 
 export default {

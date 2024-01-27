@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import PictureList from './multimedia/PictureList.vue';
 
 export default {

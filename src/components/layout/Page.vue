@@ -43,7 +43,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import TheLogo from './Logo.vue';
 import PageTitle from './PageTitle.vue';
 
@@ -85,8 +85,6 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../../assets/colors.styl'
-
 .page
   flex-grow 1
   &__header
@@ -99,14 +97,14 @@ export default {
     margin 10px 0
 
 .contacts
-  font-family 'CenturyGothic'
+  font-family $fontFirst
   color $titleColor
   &__uppercase
     text-transform uppercase
   &__lowercase
     text-transform lowercase
   a
-    font-weight bold
+    font-weight 700
     color inherit
 
 .menu
@@ -115,7 +113,7 @@ export default {
   display flex
   column-gap 40px
   justify-content center
-  font-family 'CenturyGothic'
+  font-family $fontFirst
 
   @media (max-width: 1000px)
     flex-direction column

@@ -3,7 +3,7 @@
   <router-view></router-view>
 </template>
 
-<script>
+<script lang="ts">
 import SmoothScroll from 'smooth-scroll';
 import TheBackground from './components/layout/Background.vue';
 

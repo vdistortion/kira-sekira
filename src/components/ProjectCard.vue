@@ -5,21 +5,17 @@
         <div class="project-card__name">{{ project.name }}</div>
         <div class="project-card__description" v-html="project.description"></div>
         <div class="project-card__cover">
-          <img :src="getSrc(project.images)" alt="cover">
+          <img :src="getSrc(project.images)" alt="cover" />
         </div>
         <div class="project-card__tags">
-          <div
-            v-for="tag in tags"
-            :key="tag"
-            class="project-card__tag"
-          >{{ tag }}</div>
+          <div v-for="tag in tags" :key="tag" class="project-card__tag">{{ tag }}</div>
         </div>
       </div>
     </app-card>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import AppCard from './ui/Card.vue';
 
 export default {
@@ -57,8 +53,6 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../assets/colors.styl'
-
 .project-card
   height 100%
   &__wrapper
@@ -71,7 +65,7 @@ export default {
     color $titleColor
     font-weight 500
     font-size 36px
-    font-family 'CenturyGothic'
+    font-family $fontFirst
     text-align center
     margin-bottom 20px
 
