@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     project: {
@@ -17,8 +17,6 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../../assets/colors.styl'
-
 .card
   box-sizing border-box
   height 100%

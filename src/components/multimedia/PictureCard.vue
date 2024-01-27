@@ -1,11 +1,11 @@
 <template>
   <div class="picture-card">
-    <img class="picture-card__image" :src="image" :alt="description">
+    <img class="picture-card__image" :src="image" :alt="description" />
     <h2 class="picture-card__description" v-html="description"></h2>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     image: {

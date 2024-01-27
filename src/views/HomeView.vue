@@ -3,17 +3,17 @@
     <div class="home-page">
       <div class="home-page__item">
         <div class="home-page__image">
-          <img src="/images/about.jpg" alt="Фотограф в Москве Kira Sekira">
+          <img src="/images/about.jpg" alt="Фотограф в Москве Kira Sekira" />
         </div>
         <div class="home-page__content">
           — Специалист визуального искусства
-          <br>
+          <br />
           — Опыт работы 3 года
-          <br>
+          <br />
           — Твой проводник в мир космической фотографии
-          <br>
+          <br />
           — Раскрываю твой внутренний стержень
-          <br>
+          <br />
           — Создаю тонкую грань между тобой и искусством
         </div>
       </div>
@@ -25,10 +25,10 @@
   </the-page>
 </template>
 
-<script>
+<script lang="ts">
 import ThePage from '../components/layout/Page.vue';
 import ProjectList from '../components/ProjectList.vue';
-import projects from '../projects';
+import projects from '../projects/index';
 import '../assets/styles.styl';
 
 export default {
@@ -39,24 +39,30 @@ export default {
   },
   computed: {
     tags() {
-      return Object.entries(projects).reduce((acc, [id, project]) => {
-        project.tags.forEach((tag) => {
-          if (!acc[tag]) acc[tag] = [];
-          acc[tag].push(id);
-        });
-        return acc;
-      }, {
-        all: Object.keys(projects),
-      });
+      return Object.entries(projects).reduce(
+        (acc, [id, project]) => {
+          project.tags.forEach((tag) => {
+            if (!acc[tag]) acc[tag] = [];
+            acc[tag].push(id);
+          });
+          return acc;
+        },
+        {
+          all: Object.keys(projects),
+        },
+      );
     },
     cloud() {
       return Object.keys(this.tags);
     },
     visibleProjects() {
-      return this.tags[this.activeTag].reduce((list, id) => ({
-        ...list,
-        [id]: projects[id],
-      }), {});
+      return this.tags[this.activeTag].reduce(
+        (list, id) => ({
+          ...list,
+          [id]: projects[id],
+        }),
+        {},
+      );
     },
   },
   mounted() {
@@ -81,8 +87,8 @@ export default {
 .home-page
   &__item
     row-flex()
-    font-family 'CenturyGothic'
-    color #101431
+    font-family $fontFirst
+    color $titleColor
     font-size 38px
     letter-spacing .1em
     line-height 1.1

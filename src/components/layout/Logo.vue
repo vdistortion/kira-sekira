@@ -2,15 +2,13 @@
   <div class="logo">Твой фотограф Kira Sekira</div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'the-logo',
 };
 </script>
 
 <style lang="stylus">
-@require '../../assets/colors.styl'
-
 .logo
   display flex
   flex-direction column
@@ -19,7 +17,7 @@ export default {
   font-size 50px
   letter-spacing .2em
   line-height 1.6
-  font-family 'Playfair Display', serif
+  font-family $fontSecond
   text-transform uppercase
 
   @media (max-width: 1400px)

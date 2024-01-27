@@ -2,10 +2,7 @@
   <div v-if="images.length">
     <masonry-wall v-if="visibleLayout" :items="images" :column-width="520" :gap="20">
       <template #default="{ item, index }">
-        <div
-          class="picture-list__item1"
-          @click="showImg(index)"
-        >
+        <div class="picture-list__item1" @click="showImg(index)">
           <picture-card :image="item.src" :description="item.title"></picture-card>
         </div>
       </template>
@@ -20,7 +17,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import MasonryWall from '@yeger/vue-masonry-wall';
 import VueEasyLightbox from 'vue-easy-lightbox';
 import PictureCard from './PictureCard.vue';

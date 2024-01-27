@@ -40,7 +40,10 @@ function parseProject(project, imagesList = []) {
   };
 }
 
-export default directories.reduce((acc, dir) => ({
-  ...acc,
-  ...parseProject(dir, getImages(dir.children, dir.code)),
-}), {});
+export default directories.reduce(
+  (acc, dir) => ({
+    ...acc,
+    ...parseProject(dir, getImages(dir.children, dir.code)),
+  }),
+  {},
+);

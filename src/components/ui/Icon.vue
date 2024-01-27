@@ -2,7 +2,7 @@
   <svg-icon type="mdi" :path="path"></svg-icon>
 </template>
 
-<script>
+<script lang="ts">
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiArrowLeft, mdiLinkVariant } from '@mdi/js';
 

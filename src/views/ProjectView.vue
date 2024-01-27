@@ -8,7 +8,7 @@
   </the-page>
 </template>
 
-<script>
+<script lang="ts">
 import ThePage from '../components/layout/Page.vue';
 import ProjectDetail from '../components/ProjectDetail.vue';
 import projects from '../projects/index';

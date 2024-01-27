@@ -5,7 +5,7 @@
         <div class="prices-page__title">
           <div>5 000</div>
           <div>СТАНДАРТ</div>
-          <img src="/images/prices-standart.jpg" alt="Стандарт">
+          <img src="/images/prices-standart.jpg" alt="Стандарт" />
         </div>
         <div class="prices-page__text">
           <ul>
@@ -13,7 +13,7 @@
               1 часовая съёмка (для студийной фотосессии фактическое время съемки 40-45 минут,
               почему - ниже*)
             </li>
-            <li>2 образа  комфортно снять за это время</li>
+            <li>2 образа комфортно снять за это время</li>
             <li>все получившиеся кадры (30+) в цветокоррекции</li>
             <li>
               детальная ретушь и художественная обработка с применением эффектов фотошопа 12 фото
@@ -26,7 +26,7 @@
             часа. Это не так, у какого фотографа вы бы ни снимались. Зал студии всегда освобождается
             за 5 минут до окончания бронирования, общие 10 минут занимают переодевания между
             сценами,
-            <br>
+            <br />
             3-5 минут - настройка/смена световых схем, а ваше привыкание к камере, из опыта,
             происходит и вовсе после 15 мин съёмки. Поэтому этот вариант съёмки я называю -
             экспресс.
@@ -42,9 +42,9 @@
           </div>
           <div>
             <strong>ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ:</strong>
-            <br>
+            <br />
             Дополнительная ретушь - 1 фото/300р.
-            <br>
+            <br />
             Повышенная срочность обработки материала (2 дня) 2000р.
           </div>
           <div>*Студия оплачивается клиентом (1800-3000 р/час)</div>
@@ -54,7 +54,7 @@
         <div class="prices-page__title">
           <div>7 000</div>
           <div>ПРЕМИУМ</div>
-          <img src="/images/prices-premium.jpg" alt="Премиум">
+          <img src="/images/prices-premium.jpg" alt="Премиум" />
         </div>
         <div class="prices-page__text">
           <ul>
@@ -69,19 +69,19 @@
           </ul>
           <div>
             <strong>ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ:</strong>
-            <br>
+            <br />
             Дополнительная ретушь - 1 фото/300р.
-            <br>
+            <br />
             Повышенная срочность обработки материала (2 дня) 2000р.
           </div>
           <div>
             В данном пакете возможно заказать видеоролик (снимается одновременно) - 1500р.*
-            <br>
+            <br />
             Студия оплачивается клиентом (1800-3000 р/час)
           </div>
           <div>
             <strong>ВАЖНО:</strong>
-            <br>
+            <br />
             Оплата производится в день съёмки.
           </div>
         </div>
@@ -90,7 +90,7 @@
   </the-page>
 </template>
 
-<script>
+<script lang="ts">
 import ThePage from '../components/layout/Page.vue';
 
 export default {
@@ -105,13 +105,11 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../assets/colors.styl'
-
 .prices-page
   display flex
   column-gap 40px
   margin-bottom 40px
-  color $color1
+  color $bgColor
 
   @media (max-width 800px)
     flex-direction column
@@ -127,8 +125,8 @@ export default {
     flex 1
 
   &__title
-    font-family 'Playfair Display', serif
-    font-weight bold
+    font-family $fontSecond
+    font-weight 700
     font-size 20px
     letter-spacing .2em
     text-align center

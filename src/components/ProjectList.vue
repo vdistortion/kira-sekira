@@ -1,19 +1,12 @@
 <template>
   <div class="project-list">
-    <div
-      v-for="(project, link) in projects"
-      :key="link"
-      class="project-list__item"
-    >
-      <project-card
-        :project="project"
-        @click="$router.push(link)"
-      ></project-card>
+    <div v-for="(project, link) in projects" :key="link" class="project-list__item">
+      <project-card :project="project" @click="$router.push(link)"></project-card>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ProjectCard from './ProjectCard.vue';
 
 export default {
@@ -31,15 +24,11 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../assets/smartgrid.styl'
-
 .project-list
   row-flex()
   &__item
     col()
     col-size(24)
     col-size-w500(12)
-    //col-size-w1000(8)
-    //col-size-w1200(6)
     margin-bottom $offset
 </style>
