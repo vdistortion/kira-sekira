@@ -1,36 +1,27 @@
-# [kira-sekira](https://kira-sekira.ru/)
+# [KiraSekira](https://disk.yandex.ru/d/_4myRqo1oihAGA)
 
-This template should help get you started developing with Vue 3 in Vite.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
 
-## Customize configuration
+## Development server
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Project Setup
+## Code scaffolding
 
-```sh
-npm install
-```
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-### Compile and Hot-Reload for Development
+## Build
 
-```sh
-npm run dev
-```
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-### Compile and Minify for Production
+## Running unit tests
 
-```sh
-npm run build
-```
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-### Lint with [ESLint](https://eslint.org/)
+## Running end-to-end tests
 
-```sh
-npm run lint
-```
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Links
+## Further help
 
-* [Projects](https://disk.yandex.ru/d/_4myRqo1oihAGA)
-* [How to Deploy a Vue.js Application with Dynamic Routing on GitHub Pages](https://huishun.medium.com/how-to-deploy-a-vue-js-application-with-dynamic-routing-on-github-pages-3d36f4644e54)
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

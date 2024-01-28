@@ -1,8 +1,8 @@
 import smartgrid from 'smart-grid';
 
-smartgrid('./src/assets', {
-  filename: 'smartgrid',
-  outputStyle: 'styl',
+smartgrid('./src/styles', {
+  filename: '_smartgrid',
+  outputStyle: 'scss',
   columns: 24,
   offset: '20px',
   mobileFirst: true,
