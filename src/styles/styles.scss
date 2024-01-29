@@ -1,23 +1,24 @@
-@require './smartgrid.styl'
-@require './colors.styl'
-@require './fonts.styl'
+@import './fonts';
+@import 'variables';
+@import './smartgrid';
 
-html
-body
-#app
-  margin 0
-  min-height 100vh
-
-body
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  font-family $fontDefault
-  color $defaultColor
-
-#app
-  display flex
-  flex-direction column
-  min-width 320px
-
-.l-wrapper
-  wrapper()
+html,
+body,
+#app {
+  margin: 0;
+  min-height: 100vh;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $fontDefault;
+  color: $defaultColor;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+}
+.l-wrapper {
+  @include wrapper();
+}

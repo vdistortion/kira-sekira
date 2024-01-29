@@ -1,0 +1,12 @@
+@import '../../../../styles/smartgrid';
+
+.project-list {
+  @include row-flex();
+
+  &__item {
+    @include col();
+    @include col-size(24);
+    @include col-size-w500(12);
+    margin-bottom: $offset;
+  }
+}
