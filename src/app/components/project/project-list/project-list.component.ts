@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ProjectCardComponent } from '../project-card/project-card.component';
-import { IOutputProjects } from '../../../../projects';
 import { RouterLink } from '@angular/router';
+import { ProjectCardComponent } from '../project-card/project-card.component';
+import { TypeProjects } from '../../../../projects';
 
 @Component({
   selector: 'app-project-list',
@@ -11,9 +11,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './project-list.component.scss',
 })
 export class ProjectListComponent {
-  @Input() public projects: IOutputProjects;
+  @Input() public projects: TypeProjects;
 
   get visibleProjects() {
-    return Object.entries(this.projects);
+    return Object.values(this.projects);
   }
 }

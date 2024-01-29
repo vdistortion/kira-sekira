@@ -1,17 +1,10 @@
-<app-page
-  title="Проекты"
-  [tags]="cloud"
-  [activeTag]="activeTag"
-  (visible)="onVisible($event)"
->
+<app-page title="Проекты" [isHomePage]="true">
   <div class="home-page">
     <div class="home-page__item">
       <div class="home-page__image">
         <img
-          ngSrc="/assets/images/about.jpg"
+          src="/assets/images/about.jpg"
           alt="Фотограф в Москве Kira Sekira"
-          height="682"
-          width="1030"
         />
       </div>
       <div class="home-page__content">
@@ -29,6 +22,6 @@
     <div id="projects" class="home-page__item">
       <div class="home-page__title">Фотограф в Москве Kira Sekira</div>
     </div>
-    <app-project-list [projects]="visibleProjects"></app-project-list>
+    <app-project-list [projects]="projects"></app-project-list>
   </div>
 </app-page>

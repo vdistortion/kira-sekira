@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { mdiArrowLeft, mdiLinkVariant } from '@mdi/js';
+import { mdiArrowLeft } from '@mdi/js';
 
 @Component({
   selector: 'app-ui-icon',
@@ -12,6 +12,5 @@ export class UiIconComponent {
 
   public icons: any = {
     mdiArrowLeft,
-    mdiLinkVariant,
   };
 }

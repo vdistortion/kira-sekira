@@ -1,10 +1,17 @@
+@use "@material/image-list/mdc-image-list";
+@use "@material/image-list";
+@import 'lightgallery/css/lightgallery';
 @import './fonts';
-@import 'variables';
+@import './variables';
 @import './smartgrid';
+
+.picture-list-masonry {
+  @include image-list.masonry-columns(3, 20);
+}
 
 html,
 body,
-#app {
+app-root {
   margin: 0;
   min-height: 100vh;
 }
@@ -14,7 +21,7 @@ body {
   font-family: $fontDefault;
   color: $defaultColor;
 }
-#app {
+app-root {
   display: flex;
   flex-direction: column;
   min-width: 320px;
