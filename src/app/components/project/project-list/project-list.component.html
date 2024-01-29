@@ -1,9 +1,9 @@
 <div class="project-list">
-  @for (project of visibleProjects; track project[0]) {
+  @for (project of visibleProjects; track project.name) {
     <div class="project-list__item">
       <app-project-card
-        [project]="project[1]"
-        [routerLink]="project[0]"
+        [project]="project"
+        [routerLink]="project.name"
       ></app-project-card>
     </div>
   }

@@ -1,6 +1,7 @@
 @import '../../../../styles/variables';
 
 .page {
+  position: relative;
   flex-grow: 1;
 
   &__header {

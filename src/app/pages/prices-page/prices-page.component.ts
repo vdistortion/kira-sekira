@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { PageComponent } from '../../components/page/page/page.component';
 
 @Component({
   selector: 'app-prices-page',
   standalone: true,
-  imports: [PageComponent, NgOptimizedImage],
+  imports: [PageComponent],
   templateUrl: './prices-page.component.html',
   styleUrl: './prices-page.component.scss',
 })

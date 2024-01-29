@@ -6,14 +6,17 @@ import { ProjectPageComponent } from './pages/project-page/project-page.componen
 export const routes: Routes = [
   {
     path: '',
+    title: 'home',
     component: HomePageComponent,
   },
   {
     path: 'prices',
+    title: 'prices',
     component: PricesPageComponent,
   },
   {
     path: ':id',
+    title: 'project',
     component: ProjectPageComponent,
   },
   {

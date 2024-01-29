@@ -11,5 +11,4 @@ import { RouterLink } from '@angular/router';
 })
 export class PageTitleComponent {
   @Input() public title: string = '';
-  @Input() public link: string = '';
 }

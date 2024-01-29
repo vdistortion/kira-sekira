@@ -1,85 +1,49 @@
 import directories from './structure.json';
 
-interface IFile {
-  name: string;
+type TypeFile = {
   type: string;
-}
+  name: string;
+};
 
-interface IFolder {
+type TypeFolder = {
+  type: string;
   code: string;
   name: string;
-  type: string;
-  children: IFile[];
-}
+  children: TypeFile[];
+};
 
-interface ILink {
-  name: string;
-  url: string;
-}
-
-interface IVideo {
-  src: string;
-  title?: string;
-}
-
-interface IImageList {
+type TypeImageRaw = {
   file: string;
   path: string;
-}
+};
 
-export interface IProject {
-  code: string;
+export type TypeImage = {
   name: string;
-  description?: string;
-  detail?: string;
-  tags?: string[];
-  link?: ILink;
-  videos?: IVideo[];
-  imageNames?: {
-    [index: string]: string;
-  };
-}
+  src: string;
+};
 
-export interface IOutputProject {
-  code: string;
+export type TypeProject = {
   name: string;
-  description: string;
-  detail: string;
-  tags: string[];
-  link: ILink;
-  videos: IVideo[];
-  images: {
-    [index: string]: string;
-  };
-}
+  images: TypeImage[];
+};
 
-export interface IOutputProjects {
-  [index: string]: IOutputProject;
-}
+export type TypeProjects = {
+  [index: string]: TypeProject;
+};
 
-function getImages(children: IFile[], folderName: string) {
+function getImages(children: TypeFile[], folderName: string) {
   return children.map((file) => ({
     file: file.name,
-    path: `./images/projects/${folderName}/${file.name}`,
+    path: `/assets/images/projects/${folderName}/${file.name}`,
   }));
 }
 
-function parseProject(project: IProject, imagesList: IImageList[] = []) {
-  const {
-    code,
-    name,
-    description = '',
-    detail = '',
-    link = null,
-    tags = [],
-    imageNames = {},
-    videos = [],
-  } = project;
+function parseProject(project: TypeFolder, imagesList: TypeImageRaw[] = []) {
+  const { code, name } = project;
 
   if (!code || !name) return {};
 
-  const images = imagesList.map((image) => ({
-    title: imageNames[image.file] ?? '',
+  const images: TypeImage[] = imagesList.map((image) => ({
     name: image.file,
     src: image.path,
   }));
@@ -87,18 +51,13 @@ function parseProject(project: IProject, imagesList: IImageList[] = []) {
   return {
     [code]: {
       name,
-      description,
-      detail,
-      link,
-      tags,
       images,
-      videos,
     },
   };
 }
 
-const projects: IOutputProjects = directories.reduce(
-  (acc, dir: IFolder) => ({
+const projects: TypeProjects = directories.reduce(
+  (acc, dir: TypeFolder) => ({
     ...acc,
     ...parseProject(dir, getImages(dir.children, dir.code)),
   }),
