@@ -1,0 +1,11 @@
+.project-detail {
+  margin: 40px 0;
+
+  &__item + &__item {
+    margin-top: 20px;
+  }
+
+  &__description {
+    font-size: 20px;
+  }
+}
