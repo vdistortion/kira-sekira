@@ -1,0 +1,27 @@
+<app-page title="Проекты" [isHomePage]="true">
+  <div class="home-page">
+    <div class="home-page__item">
+      <div class="home-page__image">
+        <img
+          src="/assets/images/about.jpg"
+          alt="Фотограф в Москве Kira Sekira"
+        />
+      </div>
+      <div class="home-page__content">
+        — Специалист визуального искусства
+        <br />
+        — Опыт работы 3 года
+        <br />
+        — Твой проводник в мир космической фотографии
+        <br />
+        — Раскрываю твой внутренний стержень
+        <br />
+        — Создаю тонкую грань между тобой и искусством
+      </div>
+    </div>
+    <div id="projects" class="home-page__item">
+      <div class="home-page__title">Фотограф в Москве Kira Sekira</div>
+    </div>
+    <app-project-list [projects]="projects"></app-project-list>
+  </div>
+</app-page>

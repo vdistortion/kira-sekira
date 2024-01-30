@@ -1,0 +1,426 @@
+$columns: 24;
+$atom: (100% / $columns);
+
+$break_w500: 500px;
+$break_w1000: 1000px;
+$break_w1200: 1200px;
+
+$offset: 20px;
+$offset_w500: $offset;
+$offset_w1000: $offset;
+$offset_w1200: $offset;
+
+$offset_one_side: ($offset / 2);
+$offset_w500_one_side: ($offset_w500 / 2);
+$offset_w1000_one_side: ($offset_w1000 / 2);
+$offset_w1200_one_side: ($offset_w1200 / 2);
+
+$fields: 20px;
+
+@mixin wrapper-full() {
+  padding-left: $fields;
+  padding-right: $fields;
+}
+
+@mixin row-offsets() {
+  margin-left: ($offset_one_side * -1);
+  margin-right: ($offset_one_side * -1);
+}
+
+@mixin col-offsets($type) {
+  #{$type}-left: $offset_one_side;
+  #{$type}-right: $offset_one_side;
+}
+
+@mixin wrapper() {
+  max-width: 1600px;
+  margin: 0 auto;
+  @include wrapper-full();
+}
+
+@mixin row-flex() {
+  display: flex;
+  flex-wrap: wrap;
+  @include row-offsets();
+}
+
+@mixin row-float() {
+  @include row-offsets();
+  @include clearfix();
+}
+
+@mixin row-ib() {
+  @include row-offsets();
+}
+
+@mixin col() {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  @include col-offsets(margin);
+}
+
+@mixin col-float() {
+  float: left;
+}
+
+@mixin col-ib() {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@mixin col-padding() {
+  word-wrap: break-word;
+  @include col-offsets(padding);
+}
+
+@mixin col-size($n) {
+  $val: 100% / $columns * $n;
+  width: #{calc(#{$val} - #{$offset})};
+}
+
+@mixin col-size-w500($n) {
+  $val: 100% / $columns * $n;
+  @include w500(width, #{calc(#{$val} - #{$offset_w500})});
+}
+
+@mixin col-size-w1000($n) {
+  $val: 100% / $columns * $n;
+  @include w1000(width, #{calc(#{$val} - #{$offset_w1000})});
+}
+
+@mixin col-size-w1200($n) {
+  $val: 100% / $columns * $n;
+  @include w1200(width, #{calc(#{$val} - #{$offset_w1200})});
+}
+
+@mixin shift($n) {
+  $val: 100% / $columns * $n;
+  margin-left: #{calc(#{$val} + #{$offset_one_side})};
+  margin-right: #{calc(#{$val} + #{$offset_one_side})};
+}
+
+@mixin shift-left($n) {
+  $val: 100% / $columns * $n;
+  margin-left: #{calc(#{$val} + #{$offset_one_side})};
+}
+
+@mixin shift-right($n) {
+  $val: 100% / $columns * $n;
+  margin-right: #{calc(#{$val} + #{$offset_one_side})};
+}
+
+@mixin shift-padding($n) {
+  $val: 100% / $columns * $n;
+  padding-left: #{calc(#{$val} + #{$offset_one_side})};
+  padding-right: #{calc(#{$val} + #{$offset_one_side})};
+}
+
+@mixin shift-padding-left($n) {
+  $val: 100% / $columns * $n;
+  padding-left: #{calc(#{$val} + #{$offset_one_side})};
+}
+
+@mixin shift-padding-right($n) {
+  $val: 100% / $columns * $n;
+  padding-right: #{calc(#{$val} + #{$offset_one_side})};
+}
+
+@mixin shift-w500($n) {
+  $val: 100% / $columns * $n;
+  @include w500(margin-left, #{calc(#{$val} + #{$offset_w500_one_side})});
+  @include w500(margin-right, #{calc(#{$val} + #{$offset_w500_one_side})});
+}
+
+@mixin shift-w500-left($n) {
+  $val: 100% / $columns * $n;
+  @include w500(margin-left, #{calc(#{$val} + #{$offset_w500_one_side})});
+}
+
+@mixin shift-w500-right($n) {
+  $val: 100% / $columns * $n;
+  @include w500(margin-right, #{calc(#{$val} + #{$offset_w500_one_side})});
+}
+
+@mixin shift-w500-padding($n) {
+  $val: 100% / $columns * $n;
+  @include w500(padding-left, #{calc(#{$val} + #{$offset_w500_one_side})});
+  @include w500(padding-right, #{calc(#{$val} + #{$offset_w500_one_side})});
+}
+
+@mixin shift-w500-padding-left($n) {
+  $val: 100% / $columns * $n;
+  @include w500(padding-left, #{calc(#{$val} + #{$offset_w500_one_side})});
+}
+
+@mixin shift-w500-padding-right($n) {
+  $val: 100% / $columns * $n;
+  @include w500(padding-right, #{calc(#{$val} + #{$offset_w500_one_side})});
+}
+
+@mixin shift-w1000($n) {
+  $val: 100% / $columns * $n;
+  @include w1000(margin-left, #{calc(#{$val} + #{$offset_w1000_one_side})});
+  @include w1000(margin-right, #{calc(#{$val} + #{$offset_w1000_one_side})});
+}
+
+@mixin shift-w1000-left($n) {
+  $val: 100% / $columns * $n;
+  @include w1000(margin-left, #{calc(#{$val} + #{$offset_w1000_one_side})});
+}
+
+@mixin shift-w1000-right($n) {
+  $val: 100% / $columns * $n;
+  @include w1000(margin-right, #{calc(#{$val} + #{$offset_w1000_one_side})});
+}
+
+@mixin shift-w1000-padding($n) {
+  $val: 100% / $columns * $n;
+  @include w1000(padding-left, #{calc(#{$val} + #{$offset_w1000_one_side})});
+  @include w1000(padding-right, #{calc(#{$val} + #{$offset_w1000_one_side})});
+}
+
+@mixin shift-w1000-padding-left($n) {
+  $val: 100% / $columns * $n;
+  @include w1000(padding-left, #{calc(#{$val} + #{$offset_w1000_one_side})});
+}
+
+@mixin shift-w1000-padding-right($n) {
+  $val: 100% / $columns * $n;
+  @include w1000(padding-right, #{calc(#{$val} + #{$offset_w1000_one_side})});
+}
+
+@mixin shift-w1200($n) {
+  $val: 100% / $columns * $n;
+  @include w1200(margin-left, #{calc(#{$val} + #{$offset_w1200_one_side})});
+  @include w1200(margin-right, #{calc(#{$val} + #{$offset_w1200_one_side})});
+}
+
+@mixin shift-w1200-left($n) {
+  $val: 100% / $columns * $n;
+  @include w1200(margin-left, #{calc(#{$val} + #{$offset_w1200_one_side})});
+}
+
+@mixin shift-w1200-right($n) {
+  $val: 100% / $columns * $n;
+  @include w1200(margin-right, #{calc(#{$val} + #{$offset_w1200_one_side})});
+}
+
+@mixin shift-w1200-padding($n) {
+  $val: 100% / $columns * $n;
+  @include w1200(padding-left, #{calc(#{$val} + #{$offset_w1200_one_side})});
+  @include w1200(padding-right, #{calc(#{$val} + #{$offset_w1200_one_side})});
+}
+
+@mixin shift-w1200-padding-left($n) {
+  $val: 100% / $columns * $n;
+  @include w1200(padding-left, #{calc(#{$val} + #{$offset_w1200_one_side})});
+}
+
+@mixin shift-w1200-padding-right($n) {
+  $val: 100% / $columns * $n;
+  @include w1200(padding-right, #{calc(#{$val} + #{$offset_w1200_one_side})});
+}
+
+@mixin w500($name, $value) {
+  @media screen and (min-width: $break_w500) {
+    #{$name}: $value;
+  }
+}
+
+@mixin w500-block() {
+  @media screen and (min-width: $break_w500) {
+    @content;
+  }
+}
+
+@mixin w1000($name, $value) {
+  @media screen and (min-width: $break_w1000) {
+    #{$name}: $value;
+  }
+}
+
+@mixin w1000-block() {
+  @media screen and (min-width: $break_w1000) {
+    @content;
+  }
+}
+
+@mixin w1200($name, $value) {
+  @media screen and (min-width: $break_w1200) {
+    #{$name}: $value;
+  }
+}
+
+@mixin w1200-block() {
+  @media screen and (min-width: $break_w1200) {
+    @content;
+  }
+}
+
+@mixin from($min_width) {
+  @media screen and (min-width: $min_width) {
+    @content;
+  }
+}
+
+@mixin to($max_width) {
+  @media screen and (max-width: $max_width) {
+    @content;
+  }
+}
+
+@mixin from-to($min_width, $max_width) {
+  @media screen and (min-width: $min_width) and (max-width: $max_width) {
+    @content;
+  }
+}
+
+@mixin u-row-flex($offset) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: ($offset / -2);
+  margin-right: ($offset / -2);
+}
+
+@mixin u-col($offset) {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  margin-left: ($offset / 2);
+  margin-right: ($offset / 2);
+}
+
+@mixin u-size($n, $columns, $offset) {
+  width: #{calc(100% / #{$columns} * #{$n} - #{$offset})};
+}
+
+@mixin reset() {
+  body,
+  div,
+  dl,
+  dt,
+  dd,
+  ul,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  pre,
+  code,
+  form,
+  fieldset,
+  input,
+  textarea,
+  p,
+  blockquote,
+  th,
+  td {
+    margin: 0;
+    padding: 0;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  fieldset,
+  img,
+  abbr {
+    border: 0;
+  }
+  address,
+  caption,
+  cite,
+  code,
+  dfn,
+  em,
+  strong,
+  th,
+  var {
+    font-style: normal;
+    font-weight: normal;
+  }
+  ul li {
+    list-style: none;
+  }
+  caption,
+  th {
+    text-align: left;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 100%;
+    font-weight: normal;
+  }
+  sup {
+    vertical-align: text-top;
+  }
+  sub {
+    vertical-align: text-bottom;
+  }
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  legend {
+    color: #000;
+  }
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  section,
+  main {
+    display: block;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@mixin debug($background, $outline) {
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+
+  > div {
+    height: inherit;
+    @include wrapper();
+
+    > div {
+      height: inherit;
+      @include row-flex();
+
+      > div {
+        @include col();
+        @include col-size(1);
+        height: inherit;
+        outline: $outline;
+        background: $background;
+      }
+    }
+  }
+}
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}

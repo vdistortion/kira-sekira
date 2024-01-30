@@ -1,0 +1,12 @@
+<div class="project-card">
+  <app-ui-card [project]="true">
+    <div class="project-card__wrapper">
+      <div class="project-card__name">{{ project.name }}</div>
+      @if (project.images) {
+        <div class="project-card__cover">
+          <img [src]="getSrc(project.images)" alt="cover" />
+        </div>
+      }
+    </div>
+  </app-ui-card>
+</div>
