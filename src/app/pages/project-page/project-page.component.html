@@ -1,0 +1,5 @@
+@if (pageId) {
+  <app-page [title]="projects[pageId].name">
+    <app-project-detail [images]="projects[pageId].images"></app-project-detail>
+  </app-page>
+}

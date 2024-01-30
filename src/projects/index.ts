@@ -1,28 +1,49 @@
 import directories from './structure.json';
 
-function getImages(children, folderName) {
-  return children.map((file) => ({
+type TypeFile = {
+  type: string;
+  name: string;
+};
+
+type TypeFolder = {
+  type: string;
+  code: string;
+  name: string;
+  children: TypeFile[];
+};
+
+type TypeImageRaw = {
+  file: string;
+  path: string;
+};
+
+export type TypeImage = {
+  name: string;
+  src: string;
+};
+
+export type TypeProject = {
+  name: string;
+  images: TypeImage[];
+};
+
+export type TypeProjects = {
+  [index: string]: TypeProject;
+};
+
+function getImages(children: TypeFile[], folderName: string) {
+  return children.map((file: TypeFile) => ({
     file: file.name,
-    path: `./images/projects/${folderName}/${file.name}`,
+    path: `/assets/images/projects/${folderName}/${file.name}`,
   }));
 }
 
-function parseProject(project, imagesList = []) {
-  const {
-    code,
-    name,
-    description = '',
-    detail = '',
-    link = null,
-    tags = [],
-    imageNames = {},
-    videos = [],
-  } = project;
+function parseProject(project: TypeFolder, imagesList: TypeImageRaw[] = []) {
+  const { code, name } = project;
 
   if (!code || !name) return {};
 
-  const images = imagesList.map((image) => ({
-    title: imageNames[image.file] ?? '',
+  const images: TypeImage[] = imagesList.map((image: TypeImageRaw) => ({
     name: image.file,
     src: image.path,
   }));
@@ -30,20 +51,17 @@ function parseProject(project, imagesList = []) {
   return {
     [code]: {
       name,
-      description,
-      detail,
-      link,
-      tags,
       images,
-      videos,
     },
   };
 }
 
-export default directories.reduce(
-  (acc, dir) => ({
+const projects: TypeProjects = directories.reduce(
+  (acc, dir: TypeFolder) => ({
     ...acc,
     ...parseProject(dir, getImages(dir.children, dir.code)),
   }),
   {},
 );
+
+export default projects;

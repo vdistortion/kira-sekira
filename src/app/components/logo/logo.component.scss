@@ -1,0 +1,17 @@
+@import '../../../styles/variables';
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  color: $titleColor;
+  text-align: center;
+  font-size: 50px;
+  letter-spacing: 0.2em;
+  line-height: 1.6;
+  font-family: $fontSecond;
+  text-transform: uppercase;
+
+  @media (max-width: 1400px) {
+    font-size: 30px;
+  }
+}

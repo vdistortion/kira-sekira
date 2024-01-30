@@ -1,7 +1,5 @@
-import { createApp } from 'vue';
-import { createPinia } from 'pinia';
-import router from './router';
-import App from './App.vue';
-import './assets/styles.styl';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { AppComponent } from './app/app.component';
 
-createApp(App).use(createPinia()).use(router).mount('#app');
+bootstrapApplication(AppComponent, appConfig).catch(console.error);

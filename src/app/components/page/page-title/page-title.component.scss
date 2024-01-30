@@ -1,0 +1,22 @@
+@import '../../../../styles/variables';
+
+.page-title {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+
+  &__back {
+    cursor: pointer;
+  }
+
+  &__name {
+    color: $titleColor;
+    font-size: 40px;
+    margin: 0;
+    font-family: $fontFirst;
+
+    @media (max-width: 600px) {
+      font-size: 30px;
+    }
+  }
+}
