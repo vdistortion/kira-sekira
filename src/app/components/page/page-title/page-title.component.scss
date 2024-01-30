@@ -14,5 +14,9 @@
     font-size: 40px;
     margin: 0;
     font-family: $fontFirst;
+
+    @media (max-width: 600px) {
+      font-size: 30px;
+    }
   }
 }

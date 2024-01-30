@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import SmoothScroll from 'smooth-scroll';
 import { LogoComponent } from '../../logo/logo.component';
 import { PageTitleComponent } from '../page-title/page-title.component';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-page',
   standalone: true,
-  imports: [LogoComponent, PageTitleComponent, RouterLink],
+  imports: [RouterLink, LogoComponent, PageTitleComponent],
   templateUrl: './page.component.html',
   styleUrl: './page.component.scss',
 })
@@ -22,8 +22,8 @@ export class PageComponent {
 
   animateScroll() {
     setTimeout(() => {
-      const anchor = document.querySelector('#projects');
-      this.scroll.animateScroll(anchor);
+      const anchor: HTMLDivElement | null = document.querySelector('#projects');
+      if (anchor) this.scroll.animateScroll(anchor);
     }, 0);
   }
 }

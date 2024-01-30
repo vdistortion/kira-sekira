@@ -1,0 +1,13 @@
+@use '@material/image-list';
+
+.picture-list-masonry {
+  @include image-list.masonry-columns(3, 20);
+
+  @media (max-width: 1100px) {
+    @include image-list.masonry-columns(2, 20);
+  }
+
+  @media (max-width: 600px) {
+    @include image-list.masonry-columns(1, 20);
+  }
+}

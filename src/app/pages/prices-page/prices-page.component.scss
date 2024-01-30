@@ -14,14 +14,14 @@
     margin: 0;
   }
 
+  &__item {
+    flex: 1;
+  }
+
   &__item + &__item {
     @media (max-width: 800px) {
       margin-top: 20px;
     }
-  }
-
-  &__item {
-    flex: 1;
   }
 
   &__title {

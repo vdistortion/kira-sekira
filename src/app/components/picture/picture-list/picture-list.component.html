@@ -1,13 +1,15 @@
 <div class="mdc-image-list mdc-image-list--masonry picture-list-masonry">
-  <lightgallery [settings]="options">
-    @for (image of images; track image.src) {
-      <a class="mdc-image-list__item" [href]="image.src">
-        <app-picture-card
-          class="masonry-item"
-          [image]="image.src"
-          [description]="image.name"
-        ></app-picture-card>
-      </a>
-    }
-  </lightgallery>
+  @if (isInit) {
+    <lightgallery [settings]="options">
+      @for (image of images; track image.src) {
+        <a class="mdc-image-list__item" [href]="image.src">
+          <app-picture-card
+            class="masonry-item"
+            [image]="image.src"
+            [description]="image.name"
+          ></app-picture-card>
+        </a>
+      }
+    </lightgallery>
+  }
 </div>

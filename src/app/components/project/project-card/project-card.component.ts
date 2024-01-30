@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { TypeProject, TypeImage } from '../../../../projects';
 import { UiCardComponent } from '../../ui/ui-card/ui-card.component';
+import { TypeProject, TypeImage } from '../../../../projects';
 
 @Component({
   selector: 'app-project-card',
