@@ -32,7 +32,7 @@ export type TypeProjects = {
 };
 
 function getImages(children: TypeFile[], folderName: string) {
-  return children.map((file) => ({
+  return children.map((file: TypeFile) => ({
     file: file.name,
     path: `/assets/images/projects/${folderName}/${file.name}`,
   }));
@@ -43,7 +43,7 @@ function parseProject(project: TypeFolder, imagesList: TypeImageRaw[] = []) {
 
   if (!code || !name) return {};
 
-  const images: TypeImage[] = imagesList.map((image) => ({
+  const images: TypeImage[] = imagesList.map((image: TypeImageRaw) => ({
     name: image.file,
     src: image.path,
   }));
