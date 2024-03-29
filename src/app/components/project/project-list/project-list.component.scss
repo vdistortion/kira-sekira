@@ -7,6 +7,7 @@
     @include col();
     @include col-size(24);
     @include col-size-w500(12);
+    @include col-size-w1200(6);
     margin-bottom: $offset;
   }
 }
