@@ -1867,6 +1867,365 @@
     ]
   },
   {
+    "code": "Концерты",
+    "name": "Концерты",
+    "type": "folder",
+    "children": [
+      {
+        "type": "file",
+        "name": "DSC_8243.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_4297.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_4406.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_4723.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_4729.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_4751.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_4869.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_4958.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_4984.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_4961.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5020.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5055.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5092.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5148.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5128.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5153.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5239.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5273.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5284.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5287.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5304.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5357.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5443.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5390.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5339.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_5478.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_6348.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_6349.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_6351.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_6473.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_6480.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_6510.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_6526.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_6565.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7083.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7116.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7175.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7176.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7272.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7276.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7284.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7299.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7323.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7335.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7339.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7373.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7421.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7391.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7446.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7450.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7454.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7462.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7460.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7465.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7488.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7481.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7496.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7513.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7530.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7557.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7561.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7566.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7567.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7573.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7574.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7658.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7681.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7694.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7698.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7703.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7716.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7717.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7723.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7725.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7727.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7742.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7749.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7737.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7777.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7838.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7841.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7842.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_7853.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_8129.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_8038.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_8178.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_8234.webp"
+      },
+      {
+        "type": "file",
+        "name": "DSC_8184.webp"
+      }
+    ]
+  },
+  {
     "code": "Репортажные фото",
     "name": "Репортажные фото",
     "type": "folder",
