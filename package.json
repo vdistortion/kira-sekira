@@ -12,6 +12,7 @@
     "format": "prettier --write src",
     "grid": "node smartgrid.js",
     "public": "npm run build && gh-pages -d dist/kira-sekira/browser -t --nojekyll --cname kira-sekira.ru",
+    "to-webp": "to-webp-json json=source width=1000 height=1000",
     "reset": "git fetch --all && git reset --hard origin/master"
   },
   "dependencies": {
@@ -48,6 +49,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "3.2.4",
     "smart-grid": "^2.1.2",
+    "to-webp-json": "^0.1.0",
     "typescript": "~5.3.2"
   }
 }
