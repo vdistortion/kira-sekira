@@ -1,18 +1,18 @@
-// fonts
-$fontDefault: 'Roboto', sans-serif;
-$fontFirst: 'CenturyGothic', sans-serif;
-$fontSecond: 'Playfair Display', serif;
-
-// colors
-$color1: #000000;
-$color3: #b9b6e5;
-$color4: #101431;
-$color6: #ffffff;
-$color7: #99a1b3;
-
-$defaultColor: $color7; // цвет сетки
-$bgColor: $color1; // цвет фона
-$tagColor: $color6; // заголовок тегов и теги в карточке
-$titleColor: $color4; // цвет лого и заголовки
-$hoverCard: $color3; // активный проект
-$projectCard: $color6; // проект
+:root {
+  // fonts
+  --font-default: 'Roboto', sans-serif;
+  --font-first: 'CenturyGothic', sans-serif;
+  --font-second: 'Playfair Display', sans-serif;
+  // colors
+  --color1: #000000;
+  --color3: #b9b6e5;
+  --color4: #101431;
+  --color6: #ffffff;
+  --color7: #99a1b3;
+  --default-сolor: var(--color7); // цвет сетки
+  --bg-color: var(--color1); // цвет фона
+  --tag-color: var(--color6); // заголовок тегов и теги в карточке
+  --title-color: var(--color4); // цвет лого и заголовки
+  --hover-card: var(--color3); // активный проект
+  --project-card: var(--color6); // проект
+}

@@ -3,12 +3,12 @@
 .logo {
   display: flex;
   flex-direction: column;
-  color: $titleColor;
+  color: var(--title-color);
   text-align: center;
   font-size: 50px;
   letter-spacing: 0.2em;
   line-height: 1.6;
-  font-family: $fontSecond;
+  font-family: var(--font-second);
   text-transform: uppercase;
 
   @media (max-width: 1400px) {

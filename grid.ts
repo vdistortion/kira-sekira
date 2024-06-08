@@ -1,6 +1,6 @@
-import smartgrid from 'smart-grid';
+import grid from 'smart-grid';
 
-smartgrid('./src/styles', {
+grid('./src/styles', {
   filename: '_smartgrid',
   outputStyle: 'scss',
   columns: 24,

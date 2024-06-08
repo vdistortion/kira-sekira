@@ -19,8 +19,8 @@
 }
 
 .contacts {
-  font-family: $fontFirst;
-  color: $titleColor;
+  font-family: var(--font-first);
+  color: var(--title-color);
 
   &__uppercase {
     text-transform: uppercase;
@@ -42,7 +42,7 @@
   display: flex;
   column-gap: 40px;
   justify-content: center;
-  font-family: $fontFirst;
+  font-family: var(--font-first);
 
   @media (max-width: 1000px) {
     flex-direction: column;
@@ -53,7 +53,7 @@
     font-size: 20px;
     letter-spacing: 0.2em;
     line-height: 3;
-    color: $titleColor;
+    color: var(--title-color);
     text-transform: lowercase;
 
     @media (max-width: 1400px) {
