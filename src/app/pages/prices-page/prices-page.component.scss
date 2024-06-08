@@ -4,7 +4,7 @@
   display: flex;
   column-gap: 40px;
   margin-bottom: 40px;
-  color: $bgColor;
+  color: var(--bg-color);
 
   @media (max-width: 800px) {
     flex-direction: column;
@@ -25,7 +25,7 @@
   }
 
   &__title {
-    font-family: $fontSecond;
+    font-family: var(--font-second);
     font-weight: 700;
     font-size: 20px;
     letter-spacing: 0.2em;

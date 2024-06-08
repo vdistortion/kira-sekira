@@ -12,10 +12,10 @@
 
   &__name {
     padding: 10px 0;
-    color: $titleColor;
+    color: var(--title-color);
     font-weight: 500;
     font-size: 36px;
-    font-family: $fontFirst;
+    font-family: var(--font-first);
     text-align: center;
     margin-bottom: 20px;
 

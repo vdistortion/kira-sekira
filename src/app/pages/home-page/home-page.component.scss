@@ -4,8 +4,8 @@
 .home-page {
   &__item {
     @include row-flex();
-    font-family: $fontFirst;
-    color: $titleColor;
+    font-family: var(--font-first);
+    color: var(--title-color);
     font-size: 38px;
     letter-spacing: 0.1em;
     line-height: 1.1;

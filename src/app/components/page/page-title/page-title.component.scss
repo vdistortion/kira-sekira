@@ -10,10 +10,10 @@
   }
 
   &__name {
-    color: $titleColor;
+    color: var(--title-color);
     font-size: 40px;
     margin: 0;
-    font-family: $fontFirst;
+    font-family: var(--font-first);
 
     @media (max-width: 600px) {
       font-size: 30px;
