@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { PictureListComponent } from '../../picture/picture-list/picture-list.component';
-import { TypeImage } from '../../../../projects';
+import { PictureListComponent } from '../picture-list/picture-list.component';
+import { TypeImage } from '../../../projects';
 
 @Component({
   selector: 'app-project-detail',
