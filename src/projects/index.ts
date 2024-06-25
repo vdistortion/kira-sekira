@@ -34,7 +34,7 @@ export type TypeProjects = {
 function getImages(children: TypeFile[], folderName: string) {
   return children.map((file: TypeFile) => ({
     file: file.name,
-    path: `/assets/images/projects/${folderName}/${file.name}`,
+    path: `/images/projects/${folderName}/${file.name}`,
   }));
 }
 
