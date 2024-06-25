@@ -6,13 +6,17 @@
   // colors
   --color1: #000000;
   --color3: #b9b6e5;
+  --color3-opacity: rgba(185, 182, 229, 0.7);
   --color4: #101431;
   --color6: #ffffff;
+  --color6-opacity: rgba(255, 255, 255, 0.7);
   --color7: #99a1b3;
   --default-сolor: var(--color7); // цвет сетки
   --bg-color: var(--color1); // цвет фона
   --tag-color: var(--color6); // заголовок тегов и теги в карточке
   --title-color: var(--color4); // цвет лого и заголовки
   --hover-card: var(--color3); // активный проект
+  --hover-card-opacity: var(--color3-opacity); // активный проект полупрозрачный
   --project-card: var(--color6); // проект
+  --project-card-opacity: var(--color6-opacity); // проект полупрозрачный
 }
