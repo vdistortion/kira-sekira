@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { mdiArrowLeft } from '@mdi/js';
 
 @Component({
-  selector: 'app-ui-icon',
+  selector: 'ui-icon',
   standalone: true,
   imports: [],
   templateUrl: './ui-icon.component.html',

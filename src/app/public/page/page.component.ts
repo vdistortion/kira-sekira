@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import SmoothScroll from 'smooth-scroll';
-import { LogoComponent } from '../../logo/logo.component';
+import { LogoComponent } from '../logo/logo.component';
 import { PageTitleComponent } from '../page-title/page-title.component';
 
 @Component({

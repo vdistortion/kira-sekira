@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PageComponent } from '../../components/page/page/page.component';
+import { PageComponent } from '../../public/page/page.component';
 
 @Component({
   selector: 'app-prices-page',
