@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { PictureCardComponent } from '../picture-card/picture-card.component';
-import { TypeImage } from '../../../../projects';
+import { TypeImage } from '../../../projects';
 
 @Component({
   selector: 'app-picture-list',
