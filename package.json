@@ -26,6 +26,7 @@
     "@angular/router": "^18.0.0",
     "@material/image-list": "^14.0.0",
     "@mdi/js": "^7.4.47",
+    "@supabase/supabase-js": "^2.43.5",
     "@tsparticles/angular": "^3.0.0",
     "@tsparticles/preset-links": "^3.0.2",
     "lightgallery": "^2.7.2",

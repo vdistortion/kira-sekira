@@ -41,5 +41,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
+environment.development.ts
 img-src
 img-dist
