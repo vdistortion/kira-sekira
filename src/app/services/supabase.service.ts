@@ -54,9 +54,9 @@ export class SupabaseService {
   }
 
   getSession() {
-    this.db.auth.getSession().then(({ data: { session }, error }) => {
-      if (error) this.getUser();
-      if (session?.user) this.user$.next(session.user);
+    this.db.auth.getSession().then(({ data: { session } }) => {
+      if (!session) this.getUser();
+      else if (session?.user) this.user$.next(session.user);
     });
   }
 }
