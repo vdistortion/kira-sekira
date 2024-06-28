@@ -15,6 +15,11 @@
     "to-webp": "npx to-webp-json json=source width=1000 height=1000",
     "reset": "git fetch --all && git reset --hard origin/master"
   },
+  "overrides": {
+    "@supabase/supabase-js": {
+      "@supabase/auth-js": "2.61.0"
+    }
+  },
   "dependencies": {
     "@angular/animations": "^18.0.0",
     "@angular/common": "^18.0.0",

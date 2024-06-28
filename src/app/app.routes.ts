@@ -4,6 +4,7 @@ import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { PricesPageComponent } from './pages/prices-page/prices-page.component';
 import { ProjectPageComponent } from './pages/project-page/project-page.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -15,11 +16,13 @@ export const routes: Routes = [
     path: 'auth',
     title: 'auth',
     component: AuthPageComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'admin',
     title: 'admin',
     component: AdminPageComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'prices',
