@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/public/project-detail/project-detail.component.scss"],
-  "sourcesContent": [".project-detail {\n  margin: 40px 0;\n\n  &__item + &__item {\n    margin-top: 20px;\n  }\n}\n"],
-  "mappings": ";AAAA,CAAA;AACE,UAAA,KAAA;;AAEA,CAAA,qBAAA,EAAA,CAAA;AACE,cAAA;;",
-  "names": []
-}

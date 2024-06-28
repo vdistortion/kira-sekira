@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/public/picture-card/picture-card.component.scss"],
-  "sourcesContent": [".picture-card {\n  &__image {\n    width: 100%;\n    max-width: 100%;\n  }\n\n  &__description {\n    text-align: center;\n    font-size: inherit;\n    margin: 5px 0 0;\n    min-height: 10px;\n  }\n}\n"],
-  "mappings": ";AACE,CAAA;AACE,SAAA;AACA,aAAA;;AAGF,CAAA;AACE,cAAA;AACA,aAAA;AACA,UAAA,IAAA,EAAA;AACA,cAAA;;",
-  "names": []
-}
