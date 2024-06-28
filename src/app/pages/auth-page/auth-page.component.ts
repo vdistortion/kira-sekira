@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
@@ -9,10 +10,17 @@ import { SupabaseService } from '../../services/supabase.service';
   styleUrl: './auth-page.component.scss',
 })
 export class AuthPageComponent {
-  constructor(private base: SupabaseService) {}
+  constructor(
+    private router: Router,
+    private base: SupabaseService,
+  ) {}
 
   auth(e: Event) {
     e.preventDefault();
     this.base.auth();
+  }
+
+  toHome() {
+    this.router.navigateByUrl('');
   }
 }

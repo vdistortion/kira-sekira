@@ -27,6 +27,16 @@
         <li class="menu__item">
           <a class="menu__link" routerLink="/prices">Стоимость</a>
         </li>
+        @if (isAuth) {
+          @if (isAdmin) {
+            <li class="menu__item">
+              <a class="menu__link" routerLink="/admin">Админ-панель</a>
+            </li>
+          }
+          <li class="menu__item">
+            <a class="menu__link" href="#logout" (click)="logOut()">Выход</a>
+          </li>
+        }
       </ul>
     </div>
   </header>
