@@ -283,7 +283,6 @@
     "name": "Детки",
     "type": "folder",
     "children": [
-
       {
         "type": "file",
         "name": "DSC_0110.webp"
@@ -3809,5 +3808,6 @@
         "type": "file",
         "name": "DSC_6772 копия.webp"
       }
-    ]}
+    ]
+  }
 ]

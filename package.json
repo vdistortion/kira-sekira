@@ -9,7 +9,7 @@
     "build": "ng build && cd dist/kira-sekira/browser && cp index.html 404.html",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format": "prettier --write src",
+    "format": "prettier . --write",
     "grid": "tsx grid.ts && npx sass-migrator division src/styles/_smartgrid.scss && prettier --write src/styles/_smartgrid.scss",
     "public": "npm run build && gh-pages -d dist/kira-sekira/browser -t --nojekyll --cname kira-sekira.ru",
     "to-webp": "npx to-webp-json json=source width=1000 height=1000",
