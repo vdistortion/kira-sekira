@@ -5,13 +5,12 @@ import { TypeProjects } from '../../../projects';
 
 @Component({
   selector: 'app-project-list',
-  standalone: true,
   imports: [ProjectCardComponent, RouterLink],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.scss',
 })
 export class ProjectListComponent {
-  @Input() public projects: TypeProjects;
+  @Input() public projects!: TypeProjects;
 
   get visibleProjects() {
     return Object.values(this.projects);

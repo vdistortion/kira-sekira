@@ -4,8 +4,7 @@ import { BackgroundComponent } from './public/background/background.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet, BackgroundComponent],
-  templateUrl: './app.component.html',
+  templateUrl: './app.html',
 })
-export class AppComponent {}
+export class App {}

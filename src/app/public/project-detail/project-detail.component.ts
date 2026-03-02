@@ -4,7 +4,6 @@ import { TypeImage } from '../../../projects';
 
 @Component({
   selector: 'app-project-detail',
-  standalone: true,
   imports: [PictureListComponent],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.scss',

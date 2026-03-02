@@ -1,9 +1,9 @@
-@import '../../../styles/variables';
-@import '../../../styles/smartgrid';
+@use '../../../styles/variables';
+@use '../../../styles/smartgrid';
 
 .home-page {
   &__item {
-    @include row-flex();
+    @include smartgrid.row-flex();
     font-family: var(--font-first);
     color: var(--title-color);
     font-size: 38px;
@@ -23,15 +23,15 @@
   }
 
   &__image {
-    @include col();
-    @include col-size(14.4);
+    @include smartgrid.col();
+    @include smartgrid.col-size(14.4);
 
     @media (max-width: 1400px) {
-      @include col-size(12);
+      @include smartgrid.col-size(12);
     }
 
     @media (max-width: 1000px) {
-      @include col-size(24);
+      @include smartgrid.col-size(24);
     }
   }
 
@@ -41,20 +41,20 @@
   }
 
   &__content {
-    @include col();
-    @include col-size(9.6);
+    @include smartgrid.col();
+    @include smartgrid.col-size(9.6);
     padding-left: 20px;
     font-size: 30px;
     letter-spacing: 0.1em;
     line-height: 2;
 
     @media (max-width: 1400px) {
-      @include col-size(12);
+      @include smartgrid.col-size(12);
       line-height: 1.5;
     }
 
     @media (max-width: 1000px) {
-      @include col-size(24);
+      @include smartgrid.col-size(24);
       padding-left: 0;
       font-size: 24px;
     }

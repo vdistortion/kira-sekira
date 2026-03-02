@@ -1,4 +1,6 @@
-@import 'fonts', 'variables', 'smartgrid';
+@use 'fonts';
+@use 'variables';
+@use 'smartgrid';
 
 html,
 body {
@@ -15,5 +17,5 @@ body {
 }
 
 .l-wrapper {
-  @include wrapper();
+  @include smartgrid.wrapper();
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { PageComponent } from '../../public/page/page.component';
 import { ProjectDetailComponent } from '../../public/project-detail/project-detail.component';
@@ -6,11 +7,11 @@ import projects, { TypeProjects } from '../../../projects';
 
 @Component({
   selector: 'app-project-page',
-  standalone: true,
   imports: [PageComponent, ProjectDetailComponent],
   templateUrl: './project-page.component.html',
 })
 export class ProjectPageComponent implements OnInit {
+  private titleService = inject(Title);
   public projects: TypeProjects = projects;
   public pageId: string | null;
 
@@ -19,6 +20,6 @@ export class ProjectPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.title = `${this.pageId} — Kira Sekira`;
+    this.titleService.setTitle(`${this.pageId} — Kira Sekira`);
   }
 }
