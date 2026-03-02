@@ -1,13 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { afterNextRender, Component, ContentChild, ElementRef, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import SmoothScroll from 'smooth-scroll';
 import { LogoComponent } from '../logo/logo.component';
 import { PageTitleComponent } from '../page-title/page-title.component';
 import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-page',
-  standalone: true,
   imports: [RouterLink, LogoComponent, PageTitleComponent],
   templateUrl: './page.component.html',
   styleUrl: './page.component.scss',
@@ -15,14 +13,21 @@ import { SupabaseService } from '../../services/supabase.service';
 export class PageComponent {
   @Input() public title: string = '';
   @Input() public isHomePage: boolean = false;
+  @ContentChild('#projects') projectsElement!: ElementRef;
   public isAuth: boolean = false;
   public isAdmin: boolean = false;
-  public scroll: any = new SmoothScroll('a[href*="#"]', {
-    speed: 500,
-    speedAsDuration: true,
-  });
+  public scroll: any;
 
   constructor(private base: SupabaseService) {
+    afterNextRender(() => {
+      import('smooth-scroll').then((SmoothScroll) => {
+        this.scroll = new SmoothScroll.default('a[href*="#"]', {
+          speed: 500,
+          speedAsDuration: true,
+        });
+      });
+    });
+
     this.base.user$.subscribe(() => {
       this.isAuth = this.base.isAuth();
       this.isAdmin = this.base.isAdmin();
@@ -30,10 +35,9 @@ export class PageComponent {
   }
 
   animateScroll() {
-    setTimeout(() => {
-      const anchor: HTMLDivElement | null = document.querySelector('#projects');
-      if (anchor) this.scroll.animateScroll(anchor);
-    }, 0);
+    if (this.projectsElement) {
+      this.scroll.animateScroll(this.projectsElement.nativeElement);
+    }
   }
 
   logOut() {

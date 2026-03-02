@@ -1,18 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  NgxParticlesModule,
-  NgParticlesService,
-  IParticlesProps,
-} from '@tsparticles/angular';
+import { afterNextRender, Component } from '@angular/core';
+import { NgxParticlesModule, NgParticlesService, IParticlesProps } from '@tsparticles/angular';
 import { loadLinksPreset } from '@tsparticles/preset-links';
 
 @Component({
   selector: 'app-background',
-  standalone: true,
   imports: [NgxParticlesModule],
   templateUrl: './background.component.html',
 })
-export class BackgroundComponent implements OnInit {
+export class BackgroundComponent {
   private color = '#101431';
 
   public options: IParticlesProps = {
@@ -41,13 +36,13 @@ export class BackgroundComponent implements OnInit {
     },
   };
 
-  constructor(private readonly ngParticlesService: NgParticlesService) {}
-
-  ngOnInit(): void {
-    this.ngParticlesService
-      .init(async (engine) => {
-        await loadLinksPreset(engine);
-      })
-      .catch(console.error);
+  constructor(private readonly ngParticlesService: NgParticlesService) {
+    afterNextRender(() => {
+      this.ngParticlesService
+        .init(async (engine) => {
+          await loadLinksPreset(engine);
+        })
+        .catch(console.error);
+    });
   }
 }

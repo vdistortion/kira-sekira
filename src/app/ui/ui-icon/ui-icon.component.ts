@@ -3,12 +3,11 @@ import { mdiArrowLeft } from '@mdi/js';
 
 @Component({
   selector: 'ui-icon',
-  standalone: true,
   imports: [],
   templateUrl: './ui-icon.component.html',
 })
 export class UiIconComponent {
-  @Input({ required: true }) public icon: string;
+  @Input({ required: true }) public icon!: string;
 
   public icons: any = {
     mdiArrowLeft,

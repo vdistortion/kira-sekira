@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { PageComponent } from '../../public/page/page.component';
 import { ProjectListComponent } from '../../public/project-list/project-list.component';
 import projects, { TypeProjects } from '../../../projects';
 
 @Component({
   selector: 'app-home-page',
-  standalone: true,
   imports: [PageComponent, ProjectListComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent implements OnInit {
+  private titleService = inject(Title);
   public projects: TypeProjects = projects;
 
   ngOnInit() {
-    document.title = 'Kira Sekira';
+    this.titleService.setTitle('Kira Sekira');
   }
 
   get yearsCount() {
@@ -34,9 +35,7 @@ export class HomePageComponent implements OnInit {
   declensionOfNouns(number: number, titles: string[]) {
     const cases = [2, 0, 1, 1, 1, 2];
     return titles[
-      number % 100 > 4 && number % 100 < 20
-        ? 2
-        : cases[number % 10 < 5 ? number % 10 : 5]
+      number % 100 > 4 && number % 100 < 20 ? 2 : cases[number % 10 < 5 ? number % 10 : 5]
     ];
   }
 }

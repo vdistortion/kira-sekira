@@ -1,5 +1,5 @@
 export const environment = {
-  supabaseUrl: '',
-  supabaseKey: '',
+  supabaseUrl: 'https://placeholder.supabase.co',
+  supabaseKey: 'placeholder-key',
   adminList: [] as string[],
 };

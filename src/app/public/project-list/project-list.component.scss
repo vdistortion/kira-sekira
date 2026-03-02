@@ -1,13 +1,13 @@
-@import '../../../styles/smartgrid';
+@use '../../../styles/smartgrid';
 
 .project-list {
-  @include row-flex();
+  @include smartgrid.row-flex();
 
   &__item {
-    @include col();
-    @include col-size(24);
-    @include col-size-w500(12);
-    @include col-size-w1200(6);
-    margin-bottom: $offset;
+    @include smartgrid.col();
+    @include smartgrid.col-size(24);
+    @include smartgrid.col-size-w500(12);
+    @include smartgrid.col-size-w1200(6);
+    margin-bottom: smartgrid.$offset;
   }
 }

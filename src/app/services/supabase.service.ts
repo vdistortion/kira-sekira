@@ -7,12 +7,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class SupabaseService {
-  private readonly db = createClient(
-    environment.supabaseUrl,
-    environment.supabaseKey,
-  );
-  public readonly user$: BehaviorSubject<User | null> =
-    new BehaviorSubject<User | null>(null);
+  private readonly db = createClient(environment.supabaseUrl, environment.supabaseKey);
+  public readonly user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
 
   constructor() {
     this.getSession();

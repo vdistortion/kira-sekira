@@ -3,7 +3,6 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'ui-card',
-  standalone: true,
   imports: [NgClass],
   templateUrl: './ui-card.component.html',
   styleUrl: './ui-card.component.scss',
