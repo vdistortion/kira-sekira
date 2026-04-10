@@ -1,0 +1,10 @@
+@for (gallery of galleries(); track gallery.title) {
+  <div>
+    <h2>{{ gallery.title }}</h2>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap">
+      @for (url of gallery.imageUrls; track url) {
+        <img [src]="url" style="height: 200px; object-fit: cover" />
+      }
+    </div>
+  </div>
+}

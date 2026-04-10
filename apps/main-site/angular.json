@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kira-sekira": {
+    "main-site": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -84,10 +84,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "kira-sekira:build:production"
+              "buildTarget": "main-site:build:production"
             },
             "development": {
-              "buildTarget": "kira-sekira:build:development"
+              "buildTarget": "main-site:build:development"
             }
           },
           "options": {

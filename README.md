@@ -1,59 +1,57 @@
-# KiraSekira
+## 🚀 Установка и запуск проекта
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Этот проект организован как монорепозиторий с использованием **NPM Workspaces** и **Git Submodules**.
 
-## Development server
+### 1. Клонирование репозитория
 
-To start a local development server, run:
+Так как проект использует субмодули (пакет `to-static-images`), клонируйте его следующей командой:
 
-```bash
-ng serve
+```shell
+git clone --recursive git@github.com:vdistortion/kira-sekira.git
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Если вы уже склонировали проект без флага --recursive, выполните:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```shell
+git submodule update --init --recursive
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 2. Установка зависимостей
 
-```bash
-ng generate --help
+Выполните команду в корневой папке. Она автоматически установит зависимости для всех приложений (`/apps/`) и пакетов (`/packages/`):
+
+```shell
+npm ci
 ```
 
-## Building
+### 3. Настройка локальных доменов (Hosts)
 
-To build the project run:
+Для корректной работы поддоменов и админки на локальной машине добавьте в ваш системный файл `/etc/hosts` (Windows: `C:\Windows\System32\drivers\etc\hosts`):
 
-```bash
-ng build
+```text
+127.0.0.1   model1.localhost
+127.0.0.1   model2.localhost
+127.0.0.1   admin.localhost
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 4. Запуск в режиме разработки
 
-## Running unit tests
+Для одновременного запуска основного сайта, шаблона поддомена и админки `Sanity`:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+```shell
+npm run start:all
 ```
 
-## Running end-to-end tests
+Адреса после запуска:
 
-For end-to-end (e2e) testing, run:
+- Основной сайт: http://localhost:4200
+- Поддомен: http://model1.localhost:4201
+- Админка: http://admin.localhost:3333
 
-```bash
-ng e2e
+### 5. Форматирование кода
+
+Для поддержания единого стиля кода во всем проекте используйте общую команду:
+
+```shell
+npm run format
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
