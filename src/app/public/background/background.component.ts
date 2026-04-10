@@ -1,13 +1,19 @@
-import { afterNextRender, Component } from '@angular/core';
+import { afterNextRender, Component, inject, PLATFORM_ID, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { NgxParticlesModule, NgParticlesService, IParticlesProps } from '@tsparticles/angular';
 import { loadLinksPreset } from '@tsparticles/preset-links';
 
 @Component({
   selector: 'app-background',
   imports: [NgxParticlesModule],
-  templateUrl: './background.component.html',
+  template: `
+    @if (isBrowser()) {
+      <ngx-particles [options]="options"></ngx-particles>
+    }
+  `,
 })
 export class BackgroundComponent {
+  protected isBrowser = signal(false);
   private color = '#101431';
 
   public options: IParticlesProps = {
@@ -37,6 +43,9 @@ export class BackgroundComponent {
   };
 
   constructor(private readonly ngParticlesService: NgParticlesService) {
+    const platformId = inject(PLATFORM_ID);
+    this.isBrowser.set(isPlatformBrowser(platformId));
+
     afterNextRender(() => {
       this.ngParticlesService
         .init(async (engine) => {
