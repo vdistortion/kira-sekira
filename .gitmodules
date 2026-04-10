@@ -1,0 +1,3 @@
+[submodule "packages/to-static-images"]
+	path = packages/to-static-images
+	url = https://github.com/vdistortion/to-static-images.git
