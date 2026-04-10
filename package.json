@@ -1,24 +1,18 @@
 {
   "name": "kira-sekira",
-  "version": "1.0.0",
-  "private": true,
-  "packageManager": "npm@11.10.0",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
-    "build": "ng build && cd dist/kira-sekira/browser && cp index.html 404.html",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:kira-sekira": "node dist/kira-sekira/server/server.mjs",
     "format": "prettier . --write",
-    "public": "npm run build && gh-pages -d dist/kira-sekira/browser -t --nojekyll --cname kira-sekira.ru",
     "to-webp": "npx to-webp-json json=source width=1000 height=1000"
   },
-  "overrides": {
-    "@supabase/supabase-js": {
-      "@supabase/auth-js": "2.98.0"
-    }
-  },
+  "private": true,
+  "packageManager": "npm@11.11.1",
   "dependencies": {
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",
@@ -27,9 +21,8 @@
     "@angular/platform-browser": "^21.2.0",
     "@angular/platform-server": "^21.2.0",
     "@angular/router": "^21.2.0",
-    "@angular/ssr": "^21.2.0",
+    "@angular/ssr": "^21.2.7",
     "@mdi/js": "^7.4.47",
-    "@supabase/supabase-js": "^2.98.0",
     "@tsparticles/angular": "^3.0.0",
     "@tsparticles/preset-links": "^3.2.0",
     "@twogate/ngx-photo-gallery": "^1.8.1",
@@ -39,13 +32,12 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.2.0",
-    "@angular/cli": "^21.2.0",
+    "@angular/build": "^21.2.7",
+    "@angular/cli": "^21.2.7",
     "@angular/compiler-cli": "^21.2.0",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
     "@types/smooth-scroll": "^16.1.4",
-    "gh-pages": "^6.3.0",
     "prettier": "3.8.1",
     "typescript": "~5.9.2"
   }
