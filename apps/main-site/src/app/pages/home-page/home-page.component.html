@@ -2,7 +2,7 @@
   <div class="home-page">
     <div class="home-page__item">
       <div class="home-page__image">
-        <img src="/images/about.jpg" alt="Фотограф в Москве Kira Sekira" />
+        <img [src]="aboutImage()" [alt]="projectsName()" />
       </div>
       <div class="home-page__content">
         — Специалист визуального искусства
@@ -17,8 +17,8 @@
       </div>
     </div>
     <div #projectsTarget class="home-page__item">
-      <div class="home-page__title">Фотограф в Москве Kira Sekira</div>
+      <div class="home-page__title">{{ projectsName() }}</div>
     </div>
-    <app-project-list [projects]="projects"></app-project-list>
+    <app-project-list></app-project-list>
   </div>
 </app-page>

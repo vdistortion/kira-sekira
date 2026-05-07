@@ -1,9 +1,7 @@
-@if (images.length) {
-  <div class="picture-list" [photoGalleryGroup]="{ history: true }">
-    @for (image of images; track image.src) {
-      <div class="picture-list__item" [photoGallery]="image.src">
-        <app-picture-card [image]="image.src" [description]="image.name"></app-picture-card>
-      </div>
-    }
-  </div>
-}
+<div class="picture-list" [photoGalleryGroup]="{ history: true }">
+  @for (image of images; track image.url) {
+    <div class="picture-list__item" [photoGallery]="image.url">
+      <app-picture-card [image]="image.url"></app-picture-card>
+    </div>
+  }
+</div>

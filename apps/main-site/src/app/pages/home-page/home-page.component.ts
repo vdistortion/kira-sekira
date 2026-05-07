@@ -1,8 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { PageComponent } from '../../public/page/page.component';
 import { ProjectListComponent } from '../../public/project-list/project-list.component';
-import projects, { TypeProjects } from '../../../projects';
+import { SanityService } from '../../sanity.service';
 
 @Component({
   selector: 'app-home-page',
@@ -12,10 +12,16 @@ import projects, { TypeProjects } from '../../../projects';
 })
 export class HomePageComponent implements OnInit {
   private titleService = inject(Title);
-  public projects: TypeProjects = projects;
+  sanityService = inject(SanityService);
+  aboutImage = signal('');
+  projectsName = signal('');
 
-  ngOnInit() {
+  async ngOnInit() {
     this.titleService.setTitle('Kira Sekira');
+    const [aboutImage] = await this.sanityService.getAboutImage();
+    const [projectsName] = await this.sanityService.getProjectsName();
+    this.aboutImage.set(aboutImage);
+    this.projectsName.set(projectsName);
   }
 
   get yearsCount() {

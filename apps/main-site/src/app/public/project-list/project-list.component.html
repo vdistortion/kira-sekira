@@ -1,7 +1,11 @@
 <div class="project-list">
-  @for (project of visibleProjects; track project.name) {
+  @for (project of galleries(); track project.name) {
     <div class="project-list__item">
-      <app-project-card [project]="project" [routerLink]="project.name"></app-project-card>
+      <app-project-card
+        [title]="project.title"
+        [image]="project.mainImage"
+        [routerLink]="project.slug"
+      ></app-project-card>
     </div>
   }
 </div>

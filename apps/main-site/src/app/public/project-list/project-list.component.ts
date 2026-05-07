@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProjectCardComponent } from '../project-card/project-card.component';
-import { TypeProjects } from '../../../projects';
+import { SanityService } from '../../sanity.service';
 
 @Component({
   selector: 'app-project-list',
@@ -9,10 +9,12 @@ import { TypeProjects } from '../../../projects';
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.scss',
 })
-export class ProjectListComponent {
-  @Input() public projects!: TypeProjects;
+export class ProjectListComponent implements OnInit {
+  sanityService = inject(SanityService);
+  galleries = signal<any[]>([]);
 
-  get visibleProjects() {
-    return Object.values(this.projects);
+  async ngOnInit() {
+    const data = await this.sanityService.getGalleriesList();
+    this.galleries.set(data);
   }
 }

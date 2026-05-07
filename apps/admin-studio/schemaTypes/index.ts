@@ -1,3 +1,4 @@
-import gallery from './gallery';
+import mainSite from './mainSite';
+import priceBlock from './priceBlock';
 
-export const schemaTypes = [gallery];
+export const schemaTypes = [mainSite, priceBlock];

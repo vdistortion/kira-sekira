@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PhotoGalleryModule } from '@twogate/ngx-photo-gallery';
 import { PictureCardComponent } from '../picture-card/picture-card.component';
-import { TypeImage } from '../../../projects';
+import { TypeImage } from '../../../types';
 
 @Component({
   selector: 'app-picture-list',

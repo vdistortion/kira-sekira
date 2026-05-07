@@ -1,7 +1,5 @@
-@if (pageId(); as id) {
-  @if (projects[id]) {
-    <app-page [title]="projects[id].name">
-      <app-project-detail [images]="projects[id].images"></app-project-detail>
-    </app-page>
-  }
+@if (gallery(); as gallery) {
+  <app-page [title]="gallery.title">
+    <app-project-detail [images]="gallery.images"></app-project-detail>
+  </app-page>
 }
