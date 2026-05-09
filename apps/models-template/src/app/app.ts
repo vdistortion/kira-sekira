@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Sidebar } from './components/sidebar/sidebar';
 import { Content } from './components/content/content';
+import { HostService } from './host.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,8 @@ import { Content } from './components/content/content';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  private hostService = inject(HostService);
+  // Сигнал с поддоменом, доступный всем дочерним компонентам
+  subdomain = signal<string>(this.hostService.getSubdomain());
+}

@@ -5,7 +5,7 @@
 ### 1. Клонирование репозитория
 
 ```shell
-git clone --recursive git@github.com:vdistortion/kira-sekira.git
+git clone git@github.com:vdistortion/kira-sekira.git
 ```
 
 ### 2. Установка зависимостей
@@ -23,7 +23,7 @@ npm ci
 ```text
 127.0.0.1   model1.localhost
 127.0.0.1   model2.localhost
-127.0.0.1   admin.localhost
+127.0.0.1   studio.localhost
 ```
 
 ### 4. Запуск в режиме разработки
@@ -38,7 +38,7 @@ npm run start:all
 
 - Основной сайт: http://localhost:4200
 - Поддомен: http://model1.localhost:4201
-- Админка: http://admin.localhost:3333
+- Админка: http://studio.localhost:3000
 
 ### 5. Форматирование кода
 

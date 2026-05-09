@@ -5,7 +5,7 @@
     "apps/*"
   ],
   "scripts": {
-    "start:all": "concurrently \"npm run start -w main-site\" \"npm run start -w models-template\" \"npm run dev -w studio\"",
+    "start:all": "concurrently \"npm run start -w main-site\" \"npm run start -w models-template\" \"npm run dev -w kira-sekira-studio\"",
     "format": "prettier . --write"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { SanityService } from '../../sanity.service';
+import { PayloadService } from '../../payload.service';
 
 @Component({
   selector: 'app-logo',
@@ -8,11 +8,12 @@ import { SanityService } from '../../sanity.service';
   styleUrl: './logo.component.scss',
 })
 export class LogoComponent implements OnInit {
-  sanityService = inject(SanityService);
-  title = signal('');
+  private payload = inject(PayloadService);
+  title = signal('Kira Sekira');
 
   async ngOnInit() {
-    const [title] = await this.sanityService.getTitle();
-    this.title.set(title);
+    const global = await this.payload.getGlobal();
+    // если добавишь поле siteTitle в MainSite, используй его
+    // this.title.set(global.siteTitle || 'Kira Sekira');
   }
 }

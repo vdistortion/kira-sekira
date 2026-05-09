@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { PageComponent } from '../../public/page/page.component';
 import { ProjectDetailComponent } from '../../public/project-detail/project-detail.component';
-import { SanityService } from '../../sanity.service';
+import { PayloadService } from '../../payload.service';
 import { TypeImage } from '../../../types';
 
 @Component({
@@ -16,7 +16,7 @@ import { TypeImage } from '../../../types';
 export class ProjectPageComponent implements OnInit {
   private titleService = inject(Title);
   private route = inject(ActivatedRoute);
-  sanityService = inject(SanityService);
+  private payload = inject(PayloadService);
   gallery = signal<{
     title: string;
     images: TypeImage[];
@@ -25,12 +25,13 @@ export class ProjectPageComponent implements OnInit {
   public pageId = toSignal(this.pageId$);
 
   async ngOnInit() {
-    const slugs = await this.sanityService.getAllSlugs();
-
-    if (slugs.includes(`${this.pageId()}`)) {
-      this.titleService.setTitle(`${this.pageId()} — Kira Sekira`);
-      const [data] = await this.sanityService.getGalleryBySlug(`${this.pageId()}`);
-      this.gallery.set(data);
+    const slug = this.pageId();
+    if (slug) {
+      const data = await this.payload.getGalleryBySlug(slug);
+      if (data) {
+        this.titleService.setTitle(`${data.title} — Kira Sekira`);
+        this.gallery.set(data);
+      }
     }
   }
 }

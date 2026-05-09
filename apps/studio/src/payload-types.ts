@@ -176,6 +176,7 @@ export interface Media {
 export interface Gallery {
   id: number;
   title: string;
+  slug: string;
   description?: string | null;
   images?:
     | {
@@ -362,6 +363,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface GalleriesSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   description?: T;
   images?:
     | T

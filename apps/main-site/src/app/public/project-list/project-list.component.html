@@ -1,5 +1,5 @@
 <div class="project-list">
-  @for (project of galleries(); track project.name) {
+  @for (project of galleries(); track project.slug) {
     <div class="project-list__item">
       <app-project-card
         [title]="project.title"

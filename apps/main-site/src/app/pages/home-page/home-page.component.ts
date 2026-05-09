@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { PageComponent } from '../../public/page/page.component';
 import { ProjectListComponent } from '../../public/project-list/project-list.component';
-import { SanityService } from '../../sanity.service';
+import { PayloadService } from '../../payload.service';
 
 @Component({
   selector: 'app-home-page',
@@ -12,16 +12,17 @@ import { SanityService } from '../../sanity.service';
 })
 export class HomePageComponent implements OnInit {
   private titleService = inject(Title);
-  sanityService = inject(SanityService);
+  private payload = inject(PayloadService);
   aboutImage = signal('');
-  projectsName = signal('');
+  projectsName = signal('Проекты'); // можно взять из mainSite.aboutText или другого поля
 
   async ngOnInit() {
     this.titleService.setTitle('Kira Sekira');
-    const [aboutImage] = await this.sanityService.getAboutImage();
-    const [projectsName] = await this.sanityService.getProjectsName();
-    this.aboutImage.set(aboutImage);
-    this.projectsName.set(projectsName);
+    const global = await this.payload.getGlobal();
+    if (global.aboutPhoto?.url) {
+      this.aboutImage.set(global.aboutPhoto.url);
+    }
+    // Можно добавить отдельное поле для заголовка проектов в global, пока используем статику
   }
 
   get yearsCount() {
