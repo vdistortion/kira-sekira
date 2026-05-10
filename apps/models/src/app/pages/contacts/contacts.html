@@ -1,1 +1,6 @@
-<p>contacts works!</p>
+<div class="contacts-page">
+  @if (model(); as m) {
+    <h1 class="contacts-page__name">{{ m.fullName }}</h1>
+    <app-model-info [contacts]="m.contacts"></app-model-info>
+  }
+</div>

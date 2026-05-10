@@ -1,6 +1,16 @@
-@for (gallery of galleries(); track gallery.slug) {
-  <div>
-    <h2>{{ gallery.title }}</h2>
-    <img [src]="gallery.mainImage" alt="{{ gallery.title }}" />
-  </div>
-}
+<div class="portfolio-page">
+  <h2 class="portfolio-page__title">Портфолио</h2>
+  @if (model(); as m) {
+    <div class="portfolio-page__grid">
+      @for (gallery of galleries(); track gallery.slug) {
+        <a class="gallery-card" [routerLink]="['/portfolio', gallery.slug]">
+          <img [src]="gallery.mainImage" [alt]="gallery.title" />
+          <span class="gallery-card__title">{{ gallery.title }}</span>
+        </a>
+      }
+    </div>
+    <div class="portfolio-page__info">
+      <app-model-info [parameters]="m.parameters" [contacts]="m.contacts"></app-model-info>
+    </div>
+  }
+</div>

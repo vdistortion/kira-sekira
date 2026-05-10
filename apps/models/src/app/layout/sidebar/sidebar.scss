@@ -1,5 +1,42 @@
 aside {
+  width: 250px;
+  max-width: 250px;
   padding: 40px;
-  max-width: 320px;
-  width: 25%;
+  background: #f8f8f8;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    a {
+      font-size: 0.95rem;
+      text-transform: lowercase;
+      letter-spacing: 0.05em;
+      color: #555;
+      transition: color 0.2s;
+      &:hover,
+      &.active {
+        color: #000;
+      }
+    }
+  }
+
+  .sidebar__footer {
+    font-size: 0.75rem;
+    color: #999;
+    a {
+      color: #999;
+      text-decoration: underline;
+    }
+  }
 }

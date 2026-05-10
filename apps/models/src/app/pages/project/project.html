@@ -1,1 +1,12 @@
-<p>project works!</p>
+@if (gallery(); as g) {
+  <div class="project-page">
+    <h2 class="project-page__title">{{ g.title }}</h2>
+    <div class="project-page__images">
+      @for (img of g.images; track img.url) {
+        <img [src]="img.url" [alt]="g.title" loading="lazy" />
+      }
+    </div>
+  </div>
+} @else {
+  <p class="loading">Загрузка...</p>
+}

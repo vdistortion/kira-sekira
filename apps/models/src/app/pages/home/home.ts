@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ModelInfo } from '../../features/model-info/model-info';
 import { PayloadService } from '../../payload.service';
 import { HostService } from '../../host.service';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [ModelInfo],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -15,15 +15,14 @@ export class HostService {
         hostname.startsWith('127.') ||
         hostname.startsWith('192.168.')
       ) {
-        return 'yana-katunova'; // замени на любой для проверки
+        return 'model1';
       }
-      // Иначе берём первую часть домена (например, "model1" из "model1.kira-sekira.ru")
+      // Иначе берём первую часть домена
       const parts = hostname.split('.');
       if (parts.length >= 2) {
         return parts[0];
       }
     }
-    // По умолчанию, если не браузер или не определили
-    return 'yana-katunova';
+    return 'model1';
   }
 }

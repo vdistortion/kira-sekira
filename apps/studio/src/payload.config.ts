@@ -25,6 +25,7 @@ export default buildConfig({
   routes: {
     admin: '/',
   },
+  serverURL: process.env.SERVER_URL || 'http://studio.localhost:3000',
   collections: [Users, Media, Galleries, Models],
   globals: [MainSite],
   editor: lexicalEditor(),
@@ -46,7 +47,8 @@ export default buildConfig({
   cors: {
     origins: [
       'http://localhost:4200',
-      'http://*.localhost:*',
+      'http://model1.localhost:4201',
+      'http://model2.localhost:4201',
       'https://kira-sekira.ru',
       'https://*.kira-sekira.ru',
     ],

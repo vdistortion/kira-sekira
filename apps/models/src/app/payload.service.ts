@@ -31,6 +31,12 @@ export interface GalleryItem {
   mainImage: string;
 }
 
+export interface GalleryDetail {
+  id: number;
+  title: string;
+  images: Array<{ url: string; width: number; height: number }>;
+}
+
 @Injectable({ providedIn: 'root' })
 export class PayloadService {
   private baseUrl = environment.apiUrl;
@@ -76,5 +82,29 @@ export class PayloadService {
       slug: doc.slug,
       mainImage: doc.images?.[0]?.image?.url || '',
     }));
+  }
+
+  // Получить одну галерею по slug (для страницы проекта)
+  async getGalleryBySlug(slug: string): Promise<GalleryDetail | null> {
+    const res: any = await firstValueFrom(
+      this.http.get(`${this.baseUrl}/galleries`, {
+        params: {
+          'where[slug][equals]': slug,
+          depth: '2',
+        },
+      }),
+    );
+    const doc = res.docs[0];
+    if (!doc) return null;
+    return {
+      id: doc.id,
+      title: doc.title,
+      images:
+        doc.images?.map((img: any) => ({
+          url: img.image.url,
+          width: img.image.width || 0,
+          height: img.image.height || 0,
+        })) || [],
+    };
   }
 }

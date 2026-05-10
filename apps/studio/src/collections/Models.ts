@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import slugify from 'slugify';
 
 export const Models: CollectionConfig = {
   slug: 'models',
@@ -18,7 +19,21 @@ export const Models: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
-      label: 'Поддомен (например, yana-katunova)',
+      label: 'Поддомен',
+      hooks: {
+        beforeValidate: [
+          ({ value, data }) => {
+            if (!value && data?.fullName) {
+              return slugify(data.fullName, {
+                lower: true,
+                strict: true,
+                locale: 'ru',
+              });
+            }
+            return value;
+          },
+        ],
+      },
     },
     {
       name: 'mainPhoto',

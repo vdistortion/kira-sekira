@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "../../node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -100,12 +100,7 @@
             }
           },
           "options": {
-            "allowedHosts": [
-              "localhost",
-              "model1.localhost",
-              "model2.localhost",
-              "studio.localhost"
-            ]
+            "allowedHosts": ["model1.localhost", "model2.localhost"]
           },
           "defaultConfiguration": "development"
         }

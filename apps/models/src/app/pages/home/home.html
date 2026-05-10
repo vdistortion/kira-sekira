@@ -1,27 +1,21 @@
 @if (model(); as m) {
-  <h1>{{ m.fullName }}</h1>
-  @if (m.mainPhoto) {
-    <img [src]="m.mainPhoto.url" style="max-width: 300px" />
-  }
-  @if (m.parameters) {
-    <ul>
-      <li>Рост: {{ m.parameters.height }}</li>
-      <li>Вес: {{ m.parameters.weight }}</li>
-      <li>Грудь: {{ m.parameters.chest }}</li>
-      <li>Талия: {{ m.parameters.waist }}</li>
-      <li>Бёдра: {{ m.parameters.hips }}</li>
-    </ul>
-  }
-  @if (m.videos?.length) {
-    <h3>Видео</h3>
-    <ul>
-      @for (v of m.videos; track $index) {
-        <li>
-          <a [href]="v.url" target="_blank">Видео {{ $index + 1 }}</a>
-        </li>
+  <div class="main-page">
+    <div class="main-page__header">
+      <h1 class="main-page__name">{{ m.fullName }}</h1>
+      @if (m.mainPhoto) {
+        <img class="main-page__photo" [src]="m.mainPhoto.url" [alt]="m.fullName" />
       }
-    </ul>
-  }
+    </div>
+    <div class="main-page__content">
+      <app-model-info [parameters]="m.parameters" [contacts]="m.contacts"></app-model-info>
+      @if (m.about) {
+        <div class="main-page__about">
+          <h3>О себе</h3>
+          <p>{{ m.about }}</p>
+        </div>
+      }
+    </div>
+  </div>
 } @else {
-  <p>Загрузка...</p>
+  <p class="loading">Загрузка...</p>
 }
