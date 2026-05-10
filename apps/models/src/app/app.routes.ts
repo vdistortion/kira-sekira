@@ -1,29 +1,29 @@
 import { Routes } from '@angular/router';
-import { MainPage } from './pages/main-page/main-page';
-import { PortfolioPage } from './pages/portfolio-page/portfolio-page';
-import { ProjectPage } from './pages/project-page/project-page';
-import { VideoPage } from './pages/video-page/video-page';
-import { ContactsPage } from './pages/contacts-page/contacts-page';
+import { Home } from './pages/home/home';
+import { Portfolio } from './pages/portfolio/portfolio';
+import { Project } from './pages/project/project';
+import { Video } from './pages/video/video';
+import { Contacts } from './pages/contacts/contacts';
 
 export const routes: Routes = [
   {
     path: '',
-    component: MainPage,
+    component: Home,
   },
   {
     path: 'portfolio',
-    component: PortfolioPage,
+    component: Portfolio,
   },
   {
     path: 'portfolio/:id',
-    component: ProjectPage,
+    component: Project,
   },
   {
     path: 'video',
-    component: VideoPage,
+    component: Video,
   },
   {
     path: 'contacts',
-    component: ContactsPage,
+    component: Contacts,
   },
 ];

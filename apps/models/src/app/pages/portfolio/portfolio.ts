@@ -1,13 +1,14 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { PayloadService } from '../../payload.service';
 
 @Component({
-  selector: 'app-portfolio-page',
+  selector: 'app-portfolio',
   imports: [],
-  templateUrl: './portfolio-page.html',
-  styleUrl: './portfolio-page.scss',
+  templateUrl: './portfolio.html',
+  styleUrl: './portfolio.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PortfolioPage implements OnInit {
+export class Portfolio implements OnInit {
   private payload = inject(PayloadService);
   galleries = signal<any[]>([]);
   subdomain = 'yana-katunova';

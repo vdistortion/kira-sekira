@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Sidebar } from './components/sidebar/sidebar';
-import { Content } from './components/content/content';
+import { Sidebar } from './layout/sidebar/sidebar';
+import { Content } from './layout/content/content';
 import { HostService } from './host.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { HostService } from './host.service';
   imports: [RouterOutlet, Sidebar, Content],
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
   private hostService = inject(HostService);

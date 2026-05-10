@@ -1,14 +1,15 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { PayloadService } from '../../payload.service';
 import { HostService } from '../../host.service';
 
 @Component({
-  selector: 'app-main-page',
+  selector: 'app-home',
   imports: [],
-  templateUrl: './main-page.html',
-  styleUrl: './main-page.scss',
+  templateUrl: './home.html',
+  styleUrl: './home.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainPage implements OnInit {
+export class Home implements OnInit {
   private payload = inject(PayloadService);
   private hostService = inject(HostService);
   model = signal<any>(null);
