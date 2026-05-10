@@ -22,6 +22,9 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  routes: {
+    admin: '/',
+  },
   collections: [Users, Media, Galleries, Models],
   globals: [MainSite],
   editor: lexicalEditor(),
