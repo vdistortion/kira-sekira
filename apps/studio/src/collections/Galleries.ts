@@ -7,35 +7,6 @@ export const Galleries: CollectionConfig = {
     read: () => true,
   },
   labels: { singular: 'Галерея', plural: 'Галереи' },
-  hooks: {
-    beforeValidate: [
-      async ({ data, req }) => {
-        if (data?.images) {
-          for (const img of data.images) {
-            // Если alt не задан, берём имя файла из медиа
-            if (img.image && !img.alt) {
-              // Случай, когда image – это ID (число)
-              if (typeof img.image === 'number') {
-                const media = await req.payload.findByID({
-                  collection: 'media',
-                  id: img.image,
-                });
-                if (media?.filename) {
-                  // Удаляем расширение файла
-                  console.log(media.filename);
-                  img.alt = media.filename.replace(/\.[^/.]+$/, '');
-                }
-              }
-              // Случай, когда image уже развёрнут в объект (например, при дублировании)
-              else if (typeof img.image === 'object' && img.image.filename) {
-                img.alt = img.image.filename.replace(/\.[^/.]+$/, '');
-              }
-            }
-          }
-        }
-      },
-    ],
-  },
   fields: [
     {
       name: 'title',
@@ -81,12 +52,6 @@ export const Galleries: CollectionConfig = {
           type: 'upload',
           relationTo: 'media',
           required: true,
-          hasMany: true,
-        },
-        {
-          name: 'alt',
-          type: 'text',
-          label: 'Альтернативный текст',
         },
       ],
     },

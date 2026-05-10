@@ -156,7 +156,7 @@ export interface User {
  */
 export interface Media {
   id: number;
-  alt: string;
+  alt?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -198,8 +198,7 @@ export interface Gallery {
   description?: string | null;
   images?:
     | {
-        image: (number | Media)[];
-        alt?: string | null;
+        image: number | Media;
         id?: string | null;
       }[]
     | null;
@@ -411,7 +410,6 @@ export interface GalleriesSelect<T extends boolean = true> {
     | T
     | {
         image?: T;
-        alt?: T;
         id?: T;
       };
   model?: T;
