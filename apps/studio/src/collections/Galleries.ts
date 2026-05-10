@@ -1,8 +1,41 @@
 import type { CollectionConfig } from 'payload';
+import slugify from 'slugify';
 
 export const Galleries: CollectionConfig = {
   slug: 'galleries',
+  access: {
+    read: () => true,
+  },
   labels: { singular: 'Галерея', plural: 'Галереи' },
+  hooks: {
+    beforeValidate: [
+      async ({ data, req }) => {
+        if (data?.images) {
+          for (const img of data.images) {
+            // Если alt не задан, берём имя файла из медиа
+            if (img.image && !img.alt) {
+              // Случай, когда image – это ID (число)
+              if (typeof img.image === 'number') {
+                const media = await req.payload.findByID({
+                  collection: 'media',
+                  id: img.image,
+                });
+                if (media?.filename) {
+                  // Удаляем расширение файла
+                  console.log(media.filename);
+                  img.alt = media.filename.replace(/\.[^/.]+$/, '');
+                }
+              }
+              // Случай, когда image уже развёрнут в объект (например, при дублировании)
+              else if (typeof img.image === 'object' && img.image.filename) {
+                img.alt = img.image.filename.replace(/\.[^/.]+$/, '');
+              }
+            }
+          }
+        }
+      },
+    ],
+  },
   fields: [
     {
       name: 'title',
@@ -15,19 +48,17 @@ export const Galleries: CollectionConfig = {
       type: 'text',
       unique: true,
       required: true,
-      admin: {
-        position: 'sidebar',
-      },
+      admin: { position: 'sidebar' },
       label: 'Slug (URL)',
       hooks: {
         beforeValidate: [
           ({ value, data }) => {
-            // Автогенерация из title, если slug пустой
             if (!value && data?.title) {
-              return data.title
-                .toLowerCase()
-                .replace(/\s+/g, '-')
-                .replace(/[^a-zа-я0-9-]/g, '');
+              return slugify(data.title, {
+                lower: true,
+                strict: true,
+                locale: 'ru',
+              });
             }
             return value;
           },
@@ -50,6 +81,7 @@ export const Galleries: CollectionConfig = {
           type: 'upload',
           relationTo: 'media',
           required: true,
+          hasMany: true,
         },
         {
           name: 'alt',

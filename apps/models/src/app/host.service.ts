@@ -10,7 +10,11 @@ export class HostService {
     if (isPlatformBrowser(this.platformId)) {
       const hostname = window.location.hostname;
       // Если localhost или IP, возвращаем тестовый поддомен
-      if (hostname === 'localhost' || hostname.startsWith('127.') || hostname.startsWith('192.168.')) {
+      if (
+        hostname === 'localhost' ||
+        hostname.startsWith('127.') ||
+        hostname.startsWith('192.168.')
+      ) {
         return 'yana-katunova'; // замени на любой для проверки
       }
       // Иначе берём первую часть домена (например, "model1" из "model1.kira-sekira.ru")

@@ -12,5 +12,21 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
+  upload: {
+    adminThumbnail: 'thumbnail',
+    imageSizes: [
+      {
+        name: 'thumbnail',
+        width: 300,
+        height: 200,
+        fit: 'cover',
+      },
+      {
+        name: 'medium',
+        width: 600,
+        height: 400,
+        fit: 'inside',
+      },
+    ],
+  },
 };

@@ -1,11 +1,11 @@
 {
-  "name": "kira-sekira-monorepo",
+  "name": "kira-sekira",
   "private": true,
   "workspaces": [
     "apps/*"
   ],
   "scripts": {
-    "start:all": "concurrently \"npm run start -w main-site\" \"npm run start -w models-template\" \"npm run dev -w kira-sekira-studio\"",
+    "start:all": "concurrently \"npm run start -w main\" \"npm run start -w models\" \"npm run dev -w studio\"",
     "format": "prettier . --write"
   },
   "devDependencies": {

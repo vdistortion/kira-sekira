@@ -1,6 +1,8 @@
 @if (model(); as m) {
   <h1>{{ m.fullName }}</h1>
-  @if (m.mainPhoto) { <img [src]="m.mainPhoto.url" style="max-width:300px;"/> }
+  @if (m.mainPhoto) {
+    <img [src]="m.mainPhoto.url" style="max-width: 300px" />
+  }
   @if (m.parameters) {
     <ul>
       <li>Рост: {{ m.parameters.height }}</li>
@@ -14,7 +16,9 @@
     <h3>Видео</h3>
     <ul>
       @for (v of m.videos; track $index) {
-        <li><a [href]="v.url" target="_blank">Видео {{ $index + 1 }}</a></li>
+        <li>
+          <a [href]="v.url" target="_blank">Видео {{ $index + 1 }}</a>
+        </li>
       }
     </ul>
   }

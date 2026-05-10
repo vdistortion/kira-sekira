@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "main-site": {
+    "models": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -51,7 +51,9 @@
             "styles": ["src/styles.scss"],
             "server": "src/main.server.ts",
             "outputMode": "server",
-            "allowedCommonJsDependencies": ["smooth-scroll", "photoswipe"],
+            "security": {
+              "allowedHosts": []
+            },
             "ssr": {
               "entry": "src/server.ts"
             }
@@ -90,14 +92,19 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "main-site:build:production"
+              "buildTarget": "models:build:production"
             },
             "development": {
-              "buildTarget": "main-site:build:development"
+              "buildTarget": "models:build:development"
             }
           },
           "options": {
-            "allowedHosts": ["localhost", "0.0.0.0"]
+            "allowedHosts": [
+              "localhost",
+              "model1.localhost",
+              "model2.localhost",
+              "studio.localhost"
+            ]
           },
           "defaultConfiguration": "development"
         }

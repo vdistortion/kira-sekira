@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { ru } from '@payloadcms/translations/languages/ru';
 import path from 'path';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
@@ -35,10 +36,14 @@ export default buildConfig({
   }),
   sharp,
   plugins: [],
+  i18n: {
+    supportedLanguages: { ru },
+    fallbackLanguage: 'en',
+  },
   cors: {
     origins: [
       'http://localhost:4200',
-      'http://localhost:4201',
+      'http://*.localhost:*',
       'https://kira-sekira.ru',
       'https://*.kira-sekira.ru',
     ],

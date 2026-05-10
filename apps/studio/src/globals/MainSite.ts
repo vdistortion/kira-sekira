@@ -2,6 +2,9 @@ import type { GlobalConfig } from 'payload';
 
 export const MainSite: GlobalConfig = {
   slug: 'mainSite',
+  access: {
+    read: () => true,
+  },
   label: 'Настройки главного сайта',
   fields: [
     {

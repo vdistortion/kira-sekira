@@ -1,5 +1,5 @@
 {
-  "name": "main-site",
+  "name": "main",
   "version": "2.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:main-site": "node dist/main-site/server/server.mjs"
+    "serve:ssr:main": "node dist/main/server/server.mjs"
   },
   "private": true,
   "packageManager": "npm@11.11.1",
