@@ -1,0 +1,7 @@
+@if (gallery(); as gallery) {
+  <app-page [title]="gallery.title">
+    <div class="project-detail">
+      <app-picture-list class="project-detail__item" [images]="gallery.images"></app-picture-list>
+    </div>
+  </app-page>
+}

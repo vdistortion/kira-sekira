@@ -10,7 +10,7 @@
     "serve:ssr:main": "node dist/main/server/server.mjs"
   },
   "private": true,
-  "packageManager": "npm@11.11.1",
+  "packageManager": "npm@11.13.0",
   "dependencies": {
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",
@@ -19,7 +19,7 @@
     "@angular/platform-browser": "^21.2.0",
     "@angular/platform-server": "^21.2.0",
     "@angular/router": "^21.2.0",
-    "@angular/ssr": "^21.2.7",
+    "@angular/ssr": "^21.2.10",
     "@mdi/js": "^7.4.47",
     "@tsparticles/angular": "^3.0.0",
     "@tsparticles/preset-links": "^3.2.0",
@@ -30,8 +30,8 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.2.7",
-    "@angular/cli": "^21.2.7",
+    "@angular/build": "^21.2.10",
+    "@angular/cli": "^21.2.10",
     "@angular/compiler-cli": "^21.2.0",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",

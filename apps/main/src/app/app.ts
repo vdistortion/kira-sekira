@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BackgroundComponent } from './public/background/background.component';
+import { Background } from './ui/background/background';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BackgroundComponent],
+  imports: [RouterOutlet, Background],
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {}
