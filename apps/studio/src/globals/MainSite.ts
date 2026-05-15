@@ -23,10 +23,24 @@ export const MainSite: GlobalConfig = {
       type: 'array',
       label: 'Услуги и цены',
       fields: [
-        { name: 'title', type: 'text', label: 'Название' },
-        { name: 'price', type: 'text', label: 'Цена' },
-        { name: 'description', type: 'richText', label: 'Описание' },
-        { name: 'photo', type: 'upload', relationTo: 'media', label: 'Фото' },
+        { name: 'title', type: 'text', label: 'Название', required: true },
+        { name: 'price', type: 'text', label: 'Цена', required: true },
+        {
+          name: 'description',
+          type: 'richText',
+          label: 'Описание услуги',
+        },
+        {
+          name: 'details',
+          type: 'textarea',
+          label: 'Дополнительные детали (markdown или текст)',
+        },
+        {
+          name: 'photo',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Фото',
+        },
       ],
     },
     {
@@ -34,9 +48,9 @@ export const MainSite: GlobalConfig = {
       type: 'group',
       label: 'Контакты',
       fields: [
-        { name: 'phone', type: 'text' },
-        { name: 'telegram', type: 'text' },
-        { name: 'whatsapp', type: 'text' },
+        { name: 'phone', type: 'text', label: 'Телефон' },
+        { name: 'telegram', type: 'text', label: 'Telegram' },
+        { name: 'whatsapp', type: 'text', label: 'WhatsApp' },
       ],
     },
   ],

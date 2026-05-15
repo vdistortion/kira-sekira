@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+// Стили для richText контента
+[innerHTML] {
+  p {
+    margin: 10px 0;
+    line-height: 1.6;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  u {
+    text-decoration: underline;
+  }
+
+  ul,
+  ol {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+
+  li {
+    margin: 5px 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 15px 0 10px;
+    font-weight: 600;
+  }
+}

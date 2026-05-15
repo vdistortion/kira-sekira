@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { Page } from '../../layout/page/page';
 import { ProjectList } from '../../features/projects/project-list/project-list';
 import { PayloadService } from '../../payload.service';
+import { lexicalToHtml } from '../../utils/lexical.util';
 
 @Component({
   selector: 'app-home',
-  imports: [Page, ProjectList],
+  imports: [Page, ProjectList, CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,15 +17,32 @@ export class Home implements OnInit {
   private titleService = inject(Title);
   private payload = inject(PayloadService);
   aboutImage = signal('');
-  projectsName = signal('Проекты'); // можно взять из mainSite.aboutText или другого поля
+  aboutText = signal('');
+  projectsName = signal('Проекты');
 
   async ngOnInit() {
     this.titleService.setTitle('Kira Sekira');
-    const global = await this.payload.getGlobal();
-    if (global.aboutPhoto?.url) {
-      this.aboutImage.set(global.aboutPhoto.url);
+
+    try {
+      const global = await this.payload.getGlobal();
+
+      // Фото
+      if (global.aboutPhoto) {
+        const media = global.aboutPhoto;
+        const url = media.sizes?.gallery?.url || media.url;
+        if (url) {
+          this.aboutImage.set(url);
+        }
+      }
+
+      // Текст о фотографе (richText → HTML)
+      if (global.aboutText) {
+        const html = lexicalToHtml(global.aboutText);
+        this.aboutText.set(html);
+      }
+    } catch (err) {
+      console.error('Error loading home data:', err);
     }
-    // Можно добавить отдельное поле для заголовка проектов в global, пока используем статику
   }
 
   get yearsCount() {

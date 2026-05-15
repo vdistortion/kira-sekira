@@ -5,10 +5,20 @@ import {
   ContentChild,
   ElementRef,
   Input,
+  inject,
+  OnInit,
+  signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Logo } from '../logo/logo';
 import { Header } from '../header/header';
+import { PayloadService } from '../../payload.service';
+
+interface Contacts {
+  phone?: string | null;
+  telegram?: string | null;
+  whatsapp?: string | null;
+}
 
 @Component({
   selector: 'app-page',
@@ -17,11 +27,14 @@ import { Header } from '../header/header';
   styleUrl: './page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Page {
+export class Page implements OnInit {
   @Input() public title: string = '';
   @Input() public isHomePage: boolean = false;
   @ContentChild('projectsTarget') projectsElement!: ElementRef;
+
+  private payload = inject(PayloadService);
   public scroll: any;
+  contacts = signal<Contacts>({});
 
   constructor() {
     afterNextRender(() => {
@@ -32,6 +45,17 @@ export class Page {
         });
       });
     });
+  }
+
+  async ngOnInit() {
+    try {
+      const global = await this.payload.getGlobal();
+      if (global.contacts) {
+        this.contacts.set(global.contacts);
+      }
+    } catch (err) {
+      console.error('Error loading contacts:', err);
+    }
   }
 
   animateScroll() {

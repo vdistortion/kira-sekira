@@ -13,9 +13,21 @@ import { PayloadService } from '../../../payload.service';
 export class ProjectList implements OnInit {
   private payload = inject(PayloadService);
   galleries = signal<any[]>([]);
+  loading = signal(true);
+  error = signal<string | null>(null);
 
   async ngOnInit() {
-    const data = await this.payload.getGalleriesList();
-    this.galleries.set(data);
+    this.loading.set(true);
+    this.error.set(null);
+
+    try {
+      const data = await this.payload.getGalleriesList();
+      this.galleries.set(data);
+    } catch (err) {
+      console.error('Error loading galleries:', err);
+      this.error.set('Ошибка загрузки проектов');
+    } finally {
+      this.loading.set(false);
+    }
   }
 }

@@ -535,8 +535,8 @@ export interface MainSite {
   } | null;
   prices?:
     | {
-        title?: string | null;
-        price?: string | null;
+        title: string;
+        price: string;
         description?: {
           root: {
             type: string;
@@ -552,6 +552,7 @@ export interface MainSite {
           };
           [k: string]: unknown;
         } | null;
+        details?: string | null;
         photo?: (number | null) | Media;
         id?: string | null;
       }[]
@@ -577,6 +578,7 @@ export interface MainSiteSelect<T extends boolean = true> {
         title?: T;
         price?: T;
         description?: T;
+        details?: T;
         photo?: T;
         id?: T;
       };
