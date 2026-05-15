@@ -83,9 +83,7 @@ export interface Config {
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     models: ModelsSelect<false> | ModelsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
-    'payload-locked-documents':
-      | PayloadLockedDocumentsSelect<false>
-      | PayloadLockedDocumentsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
@@ -159,6 +157,7 @@ export interface User {
 export interface Media {
   id: number;
   alt?: string | null;
+  category?: ('gallery' | 'main' | 'models' | 'other') | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -180,6 +179,14 @@ export interface Media {
       filename?: string | null;
     };
     medium?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    gallery?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -364,6 +371,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -389,6 +397,16 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
         medium?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        gallery?:
           | T
           | {
               url?: T;
@@ -590,6 +608,7 @@ export interface CollectionsWidget {
 export interface Auth {
   [k: string]: unknown;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}
