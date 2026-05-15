@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl: 'http://studio.localhost:3000/api',
+  apiUrl: 'https://studio.kira-sekira.ru/api',
   production: false,
 };

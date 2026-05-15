@@ -1,0 +1,15 @@
+kira-sekira.ru, www.kira-sekira.ru {
+    reverse_proxy localhost:4000
+}
+
+studio.kira-sekira.ru {
+    reverse_proxy localhost:3000
+
+    request_body {
+        max_size 50MB
+    }
+}
+
+yana.kira-sekira.ru {
+    reverse_proxy localhost:4201
+}
