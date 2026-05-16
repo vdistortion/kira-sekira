@@ -2,6 +2,7 @@ name: kira-sekira-release
 
 services:
   postgres:
+    container_name: kira-postgres-release
     image: postgres:16-alpine
     env_file: .env.release
     volumes:

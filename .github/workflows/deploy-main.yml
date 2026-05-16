@@ -1,9 +1,6 @@
 name: Deploy Main
 
 on:
-#  push:
-#    branches:
-#      - main
   workflow_dispatch:
 
 jobs:
@@ -16,6 +13,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          timeout: 30m
           script: |
             REPO_PATH=~/projects/kira-sekira_main
             if [ ! -d "$REPO_PATH" ]; then
@@ -33,7 +31,8 @@ jobs:
             echo "SERVER_URL=${{ secrets.SERVER_URL_MAIN }}" >> .env.main
 
             git pull origin main
-            docker compose -f docker-compose.main.yml up -d --build
+            docker compose -f docker-compose.main.yml build --parallel=false
+            docker compose -f docker-compose.main.yml up -d
 
             # Уведомление в Telegram
             curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \

@@ -16,6 +16,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          timeout: 30m
           script: |
             REPO_PATH=~/projects/kira-sekira
             if [ ! -d "$REPO_PATH" ]; then
@@ -33,7 +34,8 @@ jobs:
             echo "SERVER_URL=${{ secrets.SERVER_URL }}" >> .env.release
 
             git pull origin release
-            docker compose -f docker-compose.release.yml up -d --build
+            docker compose -f docker-compose.release.yml build --parallel=false
+            docker compose -f docker-compose.release.yml up -d
 
             # Уведомление в Telegram
             curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
