@@ -1,0 +1,41 @@
+name: Deploy Release
+
+on:
+  push:
+    branches:
+      - release
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Деплой на VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            REPO_PATH=~/projects/kira-sekira
+            if [ ! -d "$REPO_PATH" ]; then
+              mkdir -p ~/projects
+              git clone -b release git@github.com:${{ github.repository }}.git "$REPO_PATH"
+            fi
+            cd "$REPO_PATH"
+
+            # Генерация .env.release
+            echo "POSTGRES_USER=postgres" > .env.release
+            echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env.release
+            echo "POSTGRES_DB=studio" >> .env.release
+            echo "DATABASE_URL=postgres://postgres:${{ secrets.POSTGRES_PASSWORD }}@postgres:5432/studio" >> .env.release
+            echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env.release
+            echo "SERVER_URL=${{ secrets.SERVER_URL }}" >> .env.release
+
+            git pull origin release
+            docker compose -f docker-compose.release.yml up -d --build
+
+            # Уведомление в Telegram
+            curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+              -d chat_id="${{ secrets.TELEGRAM_ADMIN_ID }}" \
+              -d text="🚀 kira-sekira updated"

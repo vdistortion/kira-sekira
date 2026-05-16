@@ -12,7 +12,7 @@
     "db:logs": "docker compose logs -f postgres",
     "types": "npm run generate:types -w studio",
     "start:all": "concurrently \"npm run start -w main\" \"npm run start -w models\" \"npm run dev -w studio\"",
-    "deploy": "sh scripts/deploy.sh",
+    "deploy": "docker compose -f docker-compose.release.yml up -d --build",
     "backup": "sh scripts/backup.sh",
     "restore": "sh scripts/restore.sh",
     "format": "prettier . --write"
