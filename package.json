@@ -6,13 +6,11 @@
     "apps/*"
   ],
   "scripts": {
-    "postinstall": "npm run generate:types -w studio",
-    "db:up": "docker compose up -d postgres",
-    "db:down": "docker compose down",
-    "db:logs": "docker compose logs -f postgres",
+    "db:up": "docker compose -f docker-compose.dev.yml up -d",
+    "db:down": "docker compose -f docker-compose.dev.yml down",
+    "db:logs": "docker compose -f docker-compose.dev.yml logs -f postgres",
     "types": "npm run generate:types -w studio",
     "start:all": "concurrently \"npm run start -w main\" \"npm run start -w models\" \"npm run dev -w studio\"",
-    "deploy": "docker compose -f docker-compose.release.yml up -d --build",
     "backup": "sh scripts/backup.sh",
     "restore": "sh scripts/restore.sh",
     "format": "prettier . --write"

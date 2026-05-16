@@ -10,14 +10,13 @@ DB_BACKUP="$1"
 MEDIA_BACKUP="$2"
 
 echo "♻️  Восстановление БД из $DB_BACKUP..."
-docker exec -i postgres-kira psql -U postgres -c "DROP DATABASE IF EXISTS studio;"
-docker exec -i postgres-kira psql -U postgres -c "CREATE DATABASE studio;"
-docker exec -i postgres-kira psql -U postgres studio < "$DB_BACKUP"
+docker exec -i kira-postgres-release psql -U postgres -c "DROP DATABASE IF EXISTS studio;"
+docker exec -i kira-postgres-release psql -U postgres -c "CREATE DATABASE studio;"
+docker exec -i kira-postgres-release psql -U postgres studio < "$DB_BACKUP"
 echo "✅ БД восстановлена"
 
-echo "♻️  Восстановление медиафайлов из $MEDIA_BACKUP..."
-rm -rf ./apps/studio/media/
-tar -xzf "$MEDIA_BACKUP" -C ./apps/studio/
+echo "♻️  Восстановление медиафайлов..."
+docker run --rm -v kira-sekira-release_studio_media_release:/data -v "$(pwd)":/backup alpine sh -c "rm -rf /data/* && tar xzf /backup/$(basename "$MEDIA_BACKUP") -C /data"
 echo "✅ Медиа восстановлены"
 
 echo "🎉 Готово!"
