@@ -16,8 +16,12 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          command_timeout: '30m'
+          timeout: '120s'
+          command_timeout: '60m'
+          debug: true
           script: |
+            echo "✅ SSH подключение успешно"
+            echo "Текущая директория: $(pwd)"
             REPO_PATH=~/projects/kira-sekira
             if [ ! -d "$REPO_PATH" ]; then
               mkdir -p ~/projects
