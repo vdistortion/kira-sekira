@@ -16,7 +16,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          command_timeout: '1800'
+          command_timeout: '30m'
           script: |
             REPO_PATH=~/projects/kira-sekira
             if [ ! -d "$REPO_PATH" ]; then
