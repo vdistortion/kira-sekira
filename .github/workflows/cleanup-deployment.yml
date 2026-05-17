@@ -29,7 +29,7 @@ jobs:
               echo "ℹ️ Project folder not found, nothing to clean"
             fi
 
-      - name: Delete GitHub Packages versions (tagged 'release')
+      - name: Delete GitHub Packages
         env:
           GH_TOKEN: ${{ secrets.GHCR_PAT }}
           REPO_OWNER: ${{ github.repository_owner }}
@@ -37,26 +37,7 @@ jobs:
           set -e
           PACKAGES=("kira-sekira-main" "kira-sekira-models" "kira-sekira-studio")
           for pkg in "${PACKAGES[@]}"; do
-            echo "🔍 Processing package: $pkg"
-            # Получаем ID версии с тегом 'release'
-            version_id=$(gh api -H "Accept: application/vnd.github+json" \
-              "/users/${REPO_OWNER}/packages/container/${pkg}/versions" \
-              --jq '.[] | select(.metadata.container.tags[]? == "release") | .id' | head -1)
-            if [ -n "$version_id" ]; then
-              echo "🗑 Deleting version $version_id with tag 'release'"
-              gh api -X DELETE "/users/${REPO_OWNER}/packages/container/${pkg}/versions/$version_id"
-            else
-              echo "ℹ️ No version with tag 'release' found for $pkg"
-            fi
-            # Также удаляем все untagged версии (остатки предыдущих сборок)
-            untagged_ids=$(gh api -H "Accept: application/vnd.github+json" \
-              "/users/${REPO_OWNER}/packages/container/${pkg}/versions" \
-              --jq '.[] | select(.metadata.container.tags == []) | .id')
-            if [ -n "$untagged_ids" ]; then
-              echo "🗑 Deleting untagged versions..."
-              for id in $untagged_ids; do
-                gh api -X DELETE "/users/${REPO_OWNER}/packages/container/${pkg}/versions/$id"
-              done
-            fi
+            echo "🗑 Deleting entire package: $pkg"
+            gh api -X DELETE "/users/${REPO_OWNER}/packages/container/${pkg}" || echo "ℹ️ Package $pkg not found or already deleted"
           done
           echo "✅ GitHub Packages cleaned"
