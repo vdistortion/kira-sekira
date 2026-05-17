@@ -1,4 +1,4 @@
-kira-sekira.ru, www.kira-sekira.ru, test.kira-sekira.ru {
+test.kira-sekira.ru {
     reverse_proxy main:4000
 }
 
