@@ -12,9 +12,7 @@ services:
       - internal
 
   main:
-    build:
-      context: .
-      dockerfile: apps/main/Dockerfile
+    image: ghcr.io/vdistortion/kira-sekira-main:release
     env_file: .env.release
     restart: unless-stopped
     networks:
@@ -23,9 +21,7 @@ services:
       - postgres
 
   models:
-    build:
-      context: .
-      dockerfile: apps/models/Dockerfile
+    image: ghcr.io/vdistortion/kira-sekira-models:release
     env_file: .env.release
     restart: unless-stopped
     networks:
@@ -34,9 +30,7 @@ services:
       - postgres
 
   studio:
-    build:
-      context: .
-      dockerfile: apps/studio/Dockerfile
+    image: ghcr.io/vdistortion/kira-sekira-studio:release
     env_file: .env.release
     restart: unless-stopped
     networks:
