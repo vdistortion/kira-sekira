@@ -6,28 +6,63 @@ on:
       - release
   workflow_dispatch:
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ghcr.io/${{ github.repository_owner }}/kira-sekira
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Деплой на VPS
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_PAT }}
+
+      # Собираем и пушим каждый образ последовательно
+      - name: Build and push main
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: apps/main/Dockerfile
+          push: true
+          tags: ${{ env.IMAGE_PREFIX }}-main:release
+
+      - name: Build and push models
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: apps/models/Dockerfile
+          push: true
+          tags: ${{ env.IMAGE_PREFIX }}-models:release
+
+      - name: Build and push studio
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: apps/studio/Dockerfile
+          push: true
+          tags: ${{ env.IMAGE_PREFIX }}-studio:release
+
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          timeout: '120s'
-          command_timeout: '60m'
-          debug: true
           script: |
-            echo "✅ SSH подключение успешно"
-            echo "Текущая директория: $(pwd)"
             REPO_PATH=~/projects/kira-sekira
             if [ ! -d "$REPO_PATH" ]; then
               mkdir -p ~/projects
-              git clone -b release git@github.com:${{ github.repository }}.git "$REPO_PATH"
+              git clone -b release https://github.com/${{ github.repository }}.git "$REPO_PATH"
             fi
             cd "$REPO_PATH"
+            git pull origin release
 
             # Генерация .env.release
             echo "POSTGRES_USER=postgres" > .env.release
@@ -37,8 +72,10 @@ jobs:
             echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env.release
             echo "SERVER_URL=${{ secrets.SERVER_URL }}" >> .env.release
 
-            git pull origin release
-            docker compose -f docker-compose.release.yml build --parallel=false
+            # Авторизация в GHCR на сервере
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            docker compose -f docker-compose.release.yml pull
             docker compose -f docker-compose.release.yml up -d
 
             # Уведомление в Telegram
