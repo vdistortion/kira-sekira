@@ -23,9 +23,12 @@ const nextConfig: NextConfig = {
 
     return webpackConfig;
   },
-  turbopack: {
-    root: path.resolve(dirname, '..', '..'),
-  },
+  turbopack:
+    process.env.NODE_ENV === 'production'
+      ? undefined
+      : {
+          root: path.resolve(dirname, '..', '..'),
+        },
 };
 
 export default withPayload(nextConfig, { devBundleServerPackages: false });
