@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./apps/studio/src/*"],
+      "@payload-config": ["./apps/studio/src/payload.config.ts"]
+    }
+  },
+  "include": ["apps/studio/src/**/*"]
+}
