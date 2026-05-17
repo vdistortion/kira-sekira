@@ -16,6 +16,7 @@ RUN npm ci --workspace=studio --omit=dev --ignore-scripts
 COPY --from=build /app/apps/studio/.next ./.next
 COPY --from=build /app/apps/studio/public ./public
 COPY --from=build /app/apps/studio/next.config.ts ./
+COPY --from=build /app/apps/studio/src ./src
 COPY --from=build /app/apps/studio/tsconfig.json ./
 RUN mkdir -p /app/media
 ENV PORT=3000
