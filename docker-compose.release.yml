@@ -12,6 +12,7 @@ services:
       - internal
 
   main:
+    container_name: kira-main-release
     image: ghcr.io/vdistortion/kira-sekira-main:release
     env_file: .env.release
     restart: unless-stopped
@@ -21,6 +22,7 @@ services:
       - postgres
 
   models:
+    container_name: kira-models-release
     image: ghcr.io/vdistortion/kira-sekira-models:release
     env_file: .env.release
     restart: unless-stopped
@@ -30,6 +32,7 @@ services:
       - postgres
 
   studio:
+    container_name: kira-studio-release
     image: ghcr.io/vdistortion/kira-sekira-studio:release
     env_file: .env.release
     restart: unless-stopped
@@ -41,6 +44,7 @@ services:
       - studio_media_release:/app/media
 
   caddy:
+    container_name: kira-caddy-release
     image: caddy:2-alpine
     ports:
       - '80:80'
