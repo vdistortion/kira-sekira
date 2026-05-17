@@ -35,6 +35,8 @@ COPY --from=builder /app/apps/studio/src ./apps/studio/src
 COPY --from=builder /app/apps/studio/tsconfig.json ./apps/studio/tsconfig.json
 COPY --from=builder /app/tsconfig.root.json ./tsconfig.json
 
+COPY --from=deps /app/node_modules ./node_modules
+
 RUN mkdir -p /app/media && \
     chown -R nextjs:nodejs /app
 
@@ -43,4 +45,4 @@ USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 
-CMD ["node", "apps/studio/server.js"]
+CMD ["node", "server.js"]
