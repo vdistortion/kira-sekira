@@ -16,6 +16,8 @@ COPY --from=build /app/apps/studio/.next/standalone ./
 COPY --from=build /app/apps/studio/.next/static ./apps/studio/.next/static
 COPY --from=build /app/apps/studio/public ./apps/studio/public
 COPY --from=build /app/apps/studio/src ./apps/studio/src
+COPY --from=build /app/apps/studio/tsconfig.json ./
+COPY --from=build /app/apps/studio/src ./src
 RUN mkdir -p /app/media
 ENV PORT=3000
 EXPOSE 3000
