@@ -14,16 +14,18 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+RUN mkdir -p apps/studio/public
+
 RUN npm run generate:types -w studio
 RUN npm run build -w studio
 
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/apps/studio/.next/standalone ./
 COPY --from=builder /app/apps/studio/.next/static ./apps/studio/.next/static
@@ -32,12 +34,12 @@ COPY --from=builder /app/apps/studio/public ./apps/studio/public
 COPY --from=builder /app/apps/studio/src ./apps/studio/src
 COPY --from=builder /app/apps/studio/tsconfig.json ./apps/studio/tsconfig.json
 
-RUN mkdir -p /app/media
-RUN chown -R nextjs:nodejs /app
+RUN mkdir -p /app/media && \
+    chown -R nextjs:nodejs /app
 
 USER nextjs
 
 EXPOSE 3000
-ENV PORT 3000
+ENV PORT=3000
 
 CMD ["node", "apps/studio/server.js"]
