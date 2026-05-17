@@ -84,6 +84,27 @@ export class PayloadService {
     }));
   }
 
+  /**
+   * Все slugs галерей (для prerender).
+   */
+  async getAllSlugs(): Promise<string[]> {
+    try {
+      const res: any = await firstValueFrom(
+        this.http.get(`${this.baseUrl}/galleries`, {
+          params: {
+            'where[model][exists]': 'false',
+            select: 'slug',
+            limit: '1000',
+          },
+        }),
+      );
+      return res.docs.map((doc: any) => doc.slug);
+    } catch (err) {
+      console.error('Failed to fetch slugs:', err);
+      return [];
+    }
+  }
+
   // Получить одну галерею по slug (для страницы проекта)
   async getGalleryBySlug(slug: string): Promise<GalleryDetail | null> {
     const res: any = await firstValueFrom(
