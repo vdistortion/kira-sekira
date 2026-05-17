@@ -1,7 +1,7 @@
 name: kira-sekira-release
 
 services:
-  postgres:
+  db:
     container_name: kira-postgres-release
     image: postgres:16-alpine
     env_file: .env.release
@@ -19,7 +19,7 @@ services:
     networks:
       - internal
     depends_on:
-      - postgres
+      - db
 
   models:
     container_name: kira-models-release
@@ -29,7 +29,7 @@ services:
     networks:
       - internal
     depends_on:
-      - postgres
+      - db
 
   studio:
     container_name: kira-studio-release
@@ -39,7 +39,7 @@ services:
     networks:
       - internal
     depends_on:
-      - postgres
+      - db
     volumes:
       - studio_media_release:/app/media
 

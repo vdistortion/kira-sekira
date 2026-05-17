@@ -1,10 +1,10 @@
 services:
-  postgres:
+  db:
     image: postgres:16-alpine
     container_name: postgres-kira-dev
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-devpassword}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       POSTGRES_DB: studio
     ports:
       - '5433:5432'

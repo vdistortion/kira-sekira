@@ -16,11 +16,10 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 const PG_PASSWORD = encodeURIComponent(process.env.POSTGRES_PASSWORD || '');
-const PG_HOST = process.env.POSTGRES_HOST || 'postgres';
+const PG_HOST = process.env.POSTGRES_HOST || 'db';
 const PG_PORT = process.env.POSTGRES_PORT || '5432';
 
 const connectionString = `postgres://postgres:${PG_PASSWORD}@${PG_HOST}:${PG_PORT}/studio`;
-
 
 export default buildConfig({
   admin: {
