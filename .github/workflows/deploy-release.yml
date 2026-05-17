@@ -69,7 +69,6 @@ jobs:
             echo "POSTGRES_USER=postgres" > .env.release
             echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env.release
             echo "POSTGRES_DB=studio" >> .env.release
-            echo "DATABASE_URL=postgres://postgres:${{ secrets.POSTGRES_PASSWORD }}@postgres:5432/studio" >> .env.release
             echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env.release
             echo "SERVER_URL=${{ secrets.SERVER_URL }}" >> .env.release
 
