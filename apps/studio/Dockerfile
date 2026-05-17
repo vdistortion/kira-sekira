@@ -1,27 +1,43 @@
-FROM node:22-alpine AS build
+FROM node:22-alpine AS base
+
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
-ENV NODE_ENV=production
-COPY package*.json ./
-COPY apps/studio/package*.json ./apps/studio/
-RUN npm ci --workspace=studio --include-workspace-root
+
+COPY package.json package-lock.json* ./
+COPY apps/studio/package.json ./apps/studio/
+
+RUN npm ci --workspaces --include-workspace-root
+
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN mkdir -p apps/studio/public
+
 RUN npm run generate:types -w studio
 RUN npm run build -w studio
 
-FROM node:22-alpine
+FROM base AS runner
 WORKDIR /app
-ENV NODE_ENV=production
-COPY package*.json ./
-COPY apps/studio/package*.json ./apps/studio/
-RUN npm ci --workspace=studio --omit=dev --ignore-scripts
-COPY --from=build /app/apps/studio/.next/standalone ./
-COPY --from=build /app/apps/studio/.next/static ./apps/studio/.next/static
-COPY --from=build /app/apps/studio/public ./apps/studio/public
-COPY --from=build /app/apps/studio/src ./apps/studio/src
-COPY --from=build /app/apps/studio/tsconfig.json ./
-COPY --from=build /app/apps/studio/src ./src
+
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/apps/studio/.next/standalone ./
+COPY --from=builder /app/apps/studio/.next/static ./apps/studio/.next/static
+COPY --from=builder /app/apps/studio/public ./apps/studio/public
+
+COPY --from=builder /app/apps/studio/src ./apps/studio/src
+COPY --from=builder /app/apps/studio/tsconfig.json ./apps/studio/tsconfig.json
+
 RUN mkdir -p /app/media
-ENV PORT=3000
+RUN chown -R nextjs:nodejs /app
+
+USER nextjs
+
 EXPOSE 3000
+ENV PORT 3000
+
 CMD ["node", "apps/studio/server.js"]
