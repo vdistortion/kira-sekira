@@ -79,6 +79,7 @@ jobs:
             docker compose -f docker-compose.release.yml pull
             docker compose -f docker-compose.release.yml up -d
             docker exec $(docker ps --filter "name=studio" --format "{{.Names}}") npx payload migrate
+            docker system prune --force
 
             # Уведомление в Telegram
             curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
