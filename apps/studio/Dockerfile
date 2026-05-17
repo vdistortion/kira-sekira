@@ -12,14 +12,11 @@ RUN npm run build -w studio
 FROM node:22-alpine
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/apps/studio/node_modules ./apps/studio/node_modules
-COPY --from=build /app/apps/studio/.next ./.next
-COPY --from=build /app/apps/studio/public ./public
-COPY --from=build /app/apps/studio/next.config.ts ./
-COPY --from=build /app/apps/studio/src ./src
-COPY --from=build /app/apps/studio/tsconfig.json ./
+COPY --from=build /app/apps/studio/.next/standalone ./
+COPY --from=build /app/apps/studio/.next/static ./apps/studio/.next/static
+COPY --from=build /app/apps/studio/public ./apps/studio/public
+COPY --from=build /app/apps/studio/src ./apps/studio/src
 RUN mkdir -p /app/media
 ENV PORT=3000
 EXPOSE 3000
-CMD ["npx", "next", "start"]
+CMD ["node", "apps/studio/server.js"]

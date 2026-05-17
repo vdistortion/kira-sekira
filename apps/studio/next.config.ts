@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
 
     return webpackConfig;
   },
+  output: 'standalone',
   turbopack:
     process.env.NODE_ENV !== 'production' ? { root: path.resolve(dirname, '..', '..') } : undefined,
 };
