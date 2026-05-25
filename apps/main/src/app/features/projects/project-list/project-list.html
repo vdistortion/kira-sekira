@@ -1,6 +1,6 @@
 <div class="project-list">
   @if (loading()) {
-    <p style="text-align: center; color: var(--default-сolor)">Загрузка проектов...</p>
+    <p style="text-align: center; color: var(--default-color)">Загрузка проектов...</p>
   } @else if (error()) {
     <p style="text-align: center; color: red">{{ error() }}</p>
   } @else if (galleries().length) {
@@ -14,6 +14,6 @@
       </div>
     }
   } @else {
-    <p style="text-align: center; color: var(--default-сolor)">Проектов не найдено</p>
+    <p style="text-align: center; color: var(--default-color)">Проектов не найдено</p>
   }
 </div>

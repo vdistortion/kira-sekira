@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
 import { Page } from '../../layout/page/page';
 import { ProjectList } from '../../features/projects/project-list/project-list';
 import { PayloadService } from '../../payload.service';
@@ -8,7 +7,7 @@ import { lexicalToHtml } from '../../utils/lexical.util';
 
 @Component({
   selector: 'app-home',
-  imports: [Page, ProjectList, CommonModule],
+  imports: [Page, ProjectList],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

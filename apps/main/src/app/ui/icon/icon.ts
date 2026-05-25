@@ -10,7 +10,5 @@ import { mdiArrowLeft } from '@mdi/js';
 export class Icon {
   @Input({ required: true }) public icon!: string;
 
-  public icons: any = {
-    mdiArrowLeft,
-  };
+  public icons: Record<string, string> = { mdiArrowLeft };
 }

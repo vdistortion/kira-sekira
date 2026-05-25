@@ -92,7 +92,7 @@ export class PayloadService {
       const res: any = await firstValueFrom(
         this.http.get(`${this.baseUrl}/galleries`, {
           params: {
-            'where[model][exists]': 'false',
+            'where[model][exists]': 'true',
             select: 'slug',
             limit: '1000',
           },

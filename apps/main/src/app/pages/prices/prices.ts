@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
 import { Page } from '../../layout/page/page';
 import { PayloadService } from '../../payload.service';
 import { lexicalToHtml } from '../../utils/lexical.util';
@@ -16,7 +15,7 @@ interface PriceItem {
 
 @Component({
   selector: 'app-prices',
-  imports: [Page, CommonModule],
+  imports: [Page],
   templateUrl: './prices.html',
   styleUrl: './prices.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
