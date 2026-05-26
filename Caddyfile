@@ -1,5 +1,5 @@
 test.kira-sekira.ru {
-    reverse_proxy main:4000
+    reverse_proxy site:4000
 }
 
 studio.kira-sekira.ru {

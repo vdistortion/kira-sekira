@@ -2,22 +2,22 @@ FROM node:22-alpine AS build
 WORKDIR /app
 # Копируем файлы монорепозитория, чтобы npm ci сработал
 COPY package*.json ./
-COPY apps/main/package*.json ./apps/main/
+COPY apps/site/package*.json ./apps/site/
 # Установка всех зависимостей (включая dev, т.к. Angular build требует devDependencies)
 RUN npm ci --workspaces --include-workspace-root
 # Копируем исходники
 COPY . .
 # Собираем только main с production-конфигурацией
-RUN npm run build -w main -- --configuration production
+RUN npm run build -w site -- --configuration production
 
 FROM node:22-alpine
 WORKDIR /app
-# Копируем production-зависимости только для main
+# Копируем production-зависимости только для site
 COPY package*.json ./
-COPY apps/main/package*.json ./apps/main/
-RUN npm ci --workspace=main --omit=dev --ignore-scripts
+COPY apps/site/package*.json ./apps/site/
+RUN npm ci --workspace=site --omit=dev --ignore-scripts
 # Копируем собранный сервер
-COPY --from=build /app/apps/main/dist ./dist
+COPY --from=build /app/apps/site/dist ./dist
 ENV PORT=4000
 EXPOSE 4000
-CMD ["node", "dist/main/server/server.mjs"]
+CMD ["node", "dist/site/server/server.mjs"]

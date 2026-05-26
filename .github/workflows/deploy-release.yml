@@ -27,13 +27,13 @@ jobs:
           password: ${{ secrets.GHCR_PAT }}
 
       # Собираем и пушим каждый образ последовательно
-      - name: Build and push main
+      - name: Build and push site
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: apps/main/Dockerfile
+          file: apps/site/Dockerfile
           push: true
-          tags: ${{ env.IMAGE_PREFIX }}-main:release
+          tags: ${{ env.IMAGE_PREFIX }}-site:release
 
       - name: Build and push models
         uses: docker/build-push-action@v6
@@ -92,7 +92,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: ['kira-sekira-main', 'kira-sekira-models', 'kira-sekira-studio']
+        package: ['kira-sekira-site', 'kira-sekira-models', 'kira-sekira-studio']
     steps:
       - name: Delete old untagged images
         uses: actions/delete-package-versions@v5

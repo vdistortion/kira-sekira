@@ -35,7 +35,7 @@ jobs:
           REPO_OWNER: ${{ github.repository_owner }}
         run: |
           set -e
-          PACKAGES=("kira-sekira-main" "kira-sekira-models" "kira-sekira-studio")
+          PACKAGES=("kira-sekira-site" "kira-sekira-models" "kira-sekira-studio")
           for pkg in "${PACKAGES[@]}"; do
             echo "🗑 Deleting entire package: $pkg"
             gh api -X DELETE "/users/${REPO_OWNER}/packages/container/${pkg}" || echo "ℹ️ Package $pkg not found or already deleted"
