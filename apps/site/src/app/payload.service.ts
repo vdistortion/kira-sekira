@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../environments/environment';
-import type { PayloadMedia, GalleryItem, GalleryDetail } from '@kira-sekira/shared'
+import type { PayloadMedia, GalleryItem, GalleryDetail } from '@kira-sekira/shared';
 
 export interface MainSiteGlobal {
   id: number;

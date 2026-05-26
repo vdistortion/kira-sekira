@@ -8,10 +8,10 @@
     </div>
     <div class="main-page__content">
       <app-model-info [parameters]="m.parameters" [contacts]="m.contacts"></app-model-info>
-      @if (m.about) {
+      @if (aboutHtml()) {
         <div class="main-page__about">
           <h3>О себе</h3>
-          <p>{{ m.about }}</p>
+          <div [innerHTML]="aboutHtml()"></div>
         </div>
       }
     </div>
