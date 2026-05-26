@@ -1,12 +1,20 @@
+@if (loading()) {
+  <div class="loading">Загрузка...</div>
+}
+
 @if (gallery(); as g) {
   <div class="project-page">
-    <h2 class="project-page__title">{{ g.title }}</h2>
-    <div class="project-page__images">
+    <div class="project-page__header">
+      <a routerLink="/" class="project-page__back">← Назад в портфолио</a>
+      <h1 class="project-page__title">{{ g.title }}</h1>
+    </div>
+
+    <div class="project-page__gallery">
       @for (img of g.images; track img.url) {
-        <img [src]="img.url" [alt]="g.title" loading="lazy" />
+        <figure class="project-page__figure">
+          <img [src]="img.url" [alt]="g.title" loading="lazy" />
+        </figure>
       }
     </div>
   </div>
-} @else {
-  <p class="loading">Загрузка...</p>
 }

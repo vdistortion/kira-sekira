@@ -1,3 +1,157 @@
+:root {
+  /* Fonts */
+  --font-serif: 'Merriweather', serif;
+  --font-sans: 'Open Sans', sans-serif;
+
+  /* Colors */
+  --color-dark: #222;
+  --color-light: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-500: #999;
+  --color-gray-600: #666;
+  --color-border: #ddd;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+
+  /* Radius */
+  --radius: 4px;
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
 body {
-  font-family: Ubuntu, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
+  background: var(--color-light);
+  color: var(--color-dark);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-lg);
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-sm);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+[innerHTML] p {
+  margin: var(--spacing-md) 0;
+  line-height: 1.8;
+}
+
+[innerHTML] strong {
+  font-weight: 700;
+}
+
+[innerHTML] em {
+  font-style: italic;
+}
+
+[innerHTML] u {
+  text-decoration: underline;
+}
+
+[innerHTML] ul,
+[innerHTML] ol {
+  margin: var(--spacing-md) 0;
+  padding-left: 2rem;
+}
+
+[innerHTML] li {
+  margin: 0.5rem 0;
+}
+
+[innerHTML] h1,
+[innerHTML] h2,
+[innerHTML] h3 {
+  margin: var(--spacing-lg) 0 var(--spacing-md);
+  font-weight: 600;
 }

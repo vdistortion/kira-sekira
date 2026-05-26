@@ -1,31 +1,85 @@
 .project-page {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: var(--spacing-2xl);
 
-  &__title {
-    font-size: 1.8rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
-    text-align: center;
-    font-family: 'Merriweather', serif;
+  @media (max-width: 768px) {
+    padding: var(--spacing-lg) var(--spacing-md);
   }
 
-  &__images {
+  &__header {
+    margin-bottom: var(--spacing-2xl);
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  &__back {
+    display: inline-block;
+    color: var(--color-gray-500);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-md);
+    transition: color var(--transition);
+
+    &:hover {
+      color: var(--color-dark);
+    }
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+  }
+
+  &__figure {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition);
+    animation: fadeIn 0.6s ease-out;
+
+    &:hover {
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+
     img {
       width: 100%;
       height: auto;
-      border-radius: 4px;
+      display: block;
+      transition: transform var(--transition);
+    }
+
+    &:hover img {
+      transform: scale(1.02);
     }
   }
 }
 
 .loading {
   text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--color-gray-500);
   font-style: italic;
-  color: #888;
-  margin-top: 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,21 +1,191 @@
 @if (model(); as m) {
-  <div class="main-page">
-    <div class="main-page__header">
-      <h1 class="main-page__name">{{ m.fullName }}</h1>
-      @if (m.mainPhoto) {
-        <img class="main-page__photo" [src]="m.mainPhoto.url" [alt]="m.fullName" />
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero">
+    <div class="hero__image">
+      @if (m.mainPhoto?.url) {
+        <img [src]="m.mainPhoto.url" [alt]="m.fullName" />
       }
     </div>
-    <div class="main-page__content">
-      <app-model-info [parameters]="m.parameters" [contacts]="m.contacts"></app-model-info>
+
+    <div class="hero__content">
+      <h1 class="hero__name">{{ m.fullName }}</h1>
+
       @if (aboutHtml()) {
-        <div class="main-page__about">
-          <h3>О себе</h3>
-          <div [innerHTML]="aboutHtml()"></div>
+        <div class="hero__about" [innerHTML]="aboutHtml()"></div>
+      }
+
+      @if (m.parameters) {
+        <div class="hero__params">
+          <h3>Параметры</h3>
+          <div class="params-grid">
+            @if (m.parameters.height) {
+              <div class="param">
+                <span class="param__label">Рост</span>
+                <span class="param__value">{{ m.parameters.height }} см</span>
+              </div>
+            }
+            @if (m.parameters.weight) {
+              <div class="param">
+                <span class="param__label">Вес</span>
+                <span class="param__value">{{ m.parameters.weight }} кг</span>
+              </div>
+            }
+            @if (m.parameters.chest) {
+              <div class="param">
+                <span class="param__label">Грудь</span>
+                <span class="param__value">{{ m.parameters.chest }}</span>
+              </div>
+            }
+            @if (m.parameters.waist) {
+              <div class="param">
+                <span class="param__label">Талия</span>
+                <span class="param__value">{{ m.parameters.waist }}</span>
+              </div>
+            }
+            @if (m.parameters.hips) {
+              <div class="param">
+                <span class="param__label">Бёдра</span>
+                <span class="param__value">{{ m.parameters.hips }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (m.contacts) {
+        <div class="hero__contacts">
+          <h3>Связь</h3>
+          <div class="contacts-buttons">
+            @if (m.contacts.phone) {
+              <a [href]="'tel:' + m.contacts.phone" class="btn btn--primary"> ☎ Позвонить </a>
+            }
+            @if (m.contacts.telegram) {
+              <a
+                [href]="'https://t.me/' + m.contacts.telegram"
+                target="_blank"
+                class="btn btn--secondary"
+              >
+                Telegram
+              </a>
+            }
+            @if (m.contacts.whatsapp) {
+              <a
+                [href]="'https://wa.me/' + m.contacts.whatsapp"
+                target="_blank"
+                class="btn btn--secondary"
+              >
+                WhatsApp
+              </a>
+            }
+          </div>
         </div>
       }
     </div>
-  </div>
+  </section>
+
+  <div class="separator"></div>
+
+  <!-- PORTFOLIO SECTION -->
+  <section id="portfolio" class="portfolio">
+    <h2 class="section-title">Портфолио</h2>
+
+    @if (galleries().length) {
+      <div class="gallery-grid">
+        @for (gallery of galleries(); track gallery.slug) {
+          <a [routerLink]="['/portfolio', gallery.slug]" class="gallery-card">
+            <img
+              class="gallery-card__image"
+              [src]="gallery.mainImage"
+              [alt]="gallery.title"
+              loading="lazy"
+            />
+            <div class="gallery-card__overlay">
+              <span class="gallery-card__title">{{ gallery.title }}</span>
+            </div>
+          </a>
+        }
+      </div>
+    } @else {
+      <p class="empty-state">Галереи пока не добавлены</p>
+    }
+  </section>
+
+  <div class="separator"></div>
+
+  <!-- VIDEOS SECTION -->
+  @if (m.videos && m.videos.length) {
+    <section id="videos" class="videos">
+      <h2 class="section-title">Видео проходки</h2>
+
+      <div class="videos-grid">
+        @for (video of m.videos; track $index) {
+          <div class="video-card">
+            <iframe
+              class="video-card__iframe"
+              [src]="buildYoutubeUrl(video.url) | safeResource"
+              title="YouTube video player"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share;
+              "
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        }
+      </div>
+    </section>
+
+    <div class="separator"></div>
+  }
+
+  <!-- CONTACTS SECTION -->
+  <section id="contacts" class="contacts">
+    <h2 class="section-title">Связаться</h2>
+    <p class="contacts__subtitle">Пн—Сб, 10:00—20:00</p>
+
+    @if (m.contacts) {
+      <div class="contact-methods">
+        @if (m.contacts.phone) {
+          <div class="contact-item">
+            <h3>Телефон</h3>
+            <a [href]="'tel:' + m.contacts.phone" class="contact-link">
+              {{ m.contacts.phone }}
+            </a>
+          </div>
+        }
+        @if (m.contacts.telegram) {
+          <div class="contact-item">
+            <h3>Telegram</h3>
+            <a [href]="'https://t.me/' + m.contacts.telegram" target="_blank" class="contact-link">
+              Написать
+            </a>
+          </div>
+        }
+        @if (m.contacts.whatsapp) {
+          <div class="contact-item">
+            <h3>WhatsApp</h3>
+            <a [href]="'https://wa.me/' + m.contacts.whatsapp" target="_blank" class="contact-link">
+              Написать
+            </a>
+          </div>
+        }
+        @if (m.contacts.email) {
+          <div class="contact-item">
+            <h3>Email</h3>
+            <a [href]="'mailto:' + m.contacts.email" class="contact-link">
+              {{ m.contacts.email }}
+            </a>
+          </div>
+        }
+      </div>
+    }
+  </section>
 } @else {
-  <p class="loading">Загрузка...</p>
+  <div class="loading">Загрузка...</div>
 }
