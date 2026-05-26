@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Page } from '../../layout/page/page';
 import { ProjectList } from '../../features/projects/project-list/project-list';
 import { PayloadService } from '../../payload.service';
-import { lexicalToHtml } from '../../utils/lexical.util';
+import { lexicalToHtml } from '@kira-sekira/shared';
 
 @Component({
   selector: 'app-home',

@@ -2,20 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../environments/environment';
-
-// DTO типы, точно под Payload ответ
-export interface PayloadMedia {
-  id: number;
-  url?: string;
-  filename?: string;
-  width?: number;
-  height?: number;
-  sizes?: {
-    thumbnail?: { url?: string };
-    medium?: { url?: string };
-    gallery?: { url?: string };
-  };
-}
+import type { PayloadMedia, GalleryItem, GalleryDetail } from '@kira-sekira/shared'
 
 export interface MainSiteGlobal {
   id: number;
@@ -34,18 +21,6 @@ export interface MainSiteGlobal {
     telegram?: string | null;
     whatsapp?: string | null;
   };
-}
-
-export interface GalleryItem {
-  id: number;
-  title: string;
-  slug: string;
-  mainImage: string;
-}
-
-export interface GalleryDetail {
-  title: string;
-  images: Array<{ url: string; metadata: { width: number; height: number } }>;
 }
 
 @Injectable({ providedIn: 'root' })

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@ang
 import { Title } from '@angular/platform-browser';
 import { Page } from '../../layout/page/page';
 import { PayloadService } from '../../payload.service';
-import { lexicalToHtml } from '../../utils/lexical.util';
+import { lexicalToHtml } from '@kira-sekira/shared';
 
 interface PriceItem {
   id: string;

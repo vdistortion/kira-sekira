@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 import { Page } from '../../layout/page/page';
 import { PictureList } from '../../features/gallery/picture-list/picture-list';
 import { PayloadService } from '../../payload.service';
-import { TypeImage } from '../../../types';
+import type { TypeImage } from '@kira-sekira/shared';
 
 @Component({
   selector: 'app-project',

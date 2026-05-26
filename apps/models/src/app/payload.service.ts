@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import type { GalleryItem, GalleryDetail } from '@kira-sekira/shared';
 import { environment } from '../environments/environment';
 
 export interface ModelData {
@@ -22,19 +23,6 @@ export interface ModelData {
     email?: string;
   };
   videos?: Array<{ url: string }>;
-}
-
-export interface GalleryItem {
-  id: number;
-  title: string;
-  slug: string;
-  mainImage: string;
-}
-
-export interface GalleryDetail {
-  id: number;
-  title: string;
-  images: Array<{ url: string; width: number; height: number }>;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -123,8 +111,10 @@ export class PayloadService {
       images:
         doc.images?.map((img: any) => ({
           url: img.image.url,
-          width: img.image.width || 0,
-          height: img.image.height || 0,
+          metadata: {
+            width: img.image.width || 0,
+            height: img.image.height || 0,
+          },
         })) || [],
     };
   }
