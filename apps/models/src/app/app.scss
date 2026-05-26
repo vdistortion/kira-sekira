@@ -1,9 +1,18 @@
-body {
-  font-family: 'Open Sans', sans-serif;
+* {
   margin: 0;
-  background: #fff;
-  color: #222;
-  line-height: 1.5;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -16,15 +25,38 @@ img {
   height: auto;
 }
 
-.app-layout {
-  display: flex;
-  min-height: 100vh;
+main {
+  min-height: calc(100vh - 80px);
 }
 
-app-sidebar {
-  flex-shrink: 0;
-}
+[innerHTML] {
+  p {
+    margin: var(--spacing-md) 0;
+    line-height: 1.8;
+  }
 
-app-content {
-  flex-grow: 1;
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  ul,
+  ol {
+    margin: var(--spacing-md) 0;
+    padding-left: 2rem;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: var(--spacing-lg) 0 var(--spacing-md);
+    font-weight: 600;
+  }
 }

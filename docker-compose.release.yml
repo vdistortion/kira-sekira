@@ -11,9 +11,9 @@ services:
     networks:
       - internal
 
-  main:
-    container_name: kira-main-release
-    image: ghcr.io/vdistortion/kira-sekira-main:release
+  site:
+    container_name: kira-site-release
+    image: ghcr.io/vdistortion/kira-sekira-site:release
     env_file: .env.release
     restart: unless-stopped
     networks:

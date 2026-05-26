@@ -27,13 +27,13 @@ jobs:
           password: ${{ secrets.GHCR_PAT }}
 
       # Собираем и пушим каждый образ последовательно
-      - name: Build and push main
+      - name: Build and push site
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: apps/main/Dockerfile
+          file: apps/site/Dockerfile
           push: true
-          tags: ${{ env.IMAGE_PREFIX }}-main:release
+          tags: ${{ env.IMAGE_PREFIX }}-site:release
 
       - name: Build and push models
         uses: docker/build-push-action@v6
@@ -86,3 +86,17 @@ jobs:
             curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
               -d chat_id="${{ secrets.TELEGRAM_ADMIN_ID }}" \
               -d text="🚀 kira-sekira updated"
+
+  delete-old-images:
+    needs: [build-and-deploy]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ['kira-sekira-site', 'kira-sekira-models', 'kira-sekira-studio']
+    steps:
+      - name: Delete old untagged images
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: ${{ matrix.package }}
+          package-type: 'container'
+          delete-only-untagged-versions: 'true'

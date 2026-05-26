@@ -77,7 +77,7 @@ export const Models: CollectionConfig = {
         {
           name: 'url',
           type: 'text',
-          label: 'Ссылка на YouTube/Vimeo',
+          label: 'YouTube/Vimeo URL',
         },
       ],
     },

@@ -4,7 +4,7 @@ COPY package*.json ./
 COPY apps/models/package*.json ./apps/models/
 RUN npm ci --workspaces --include-workspace-root
 COPY . .
-RUN npm run build -w models -- --configuration production
+RUN npm run build -w @kira-sekira/models -- --configuration production
 
 FROM node:22-alpine
 WORKDIR /app

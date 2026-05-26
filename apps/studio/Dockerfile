@@ -16,8 +16,8 @@ COPY . .
 
 RUN mkdir -p apps/studio/public
 
-RUN npm run generate:types -w studio
-RUN npm run build -w studio
+RUN npm run generate:types -w @kira-sekira/studio
+RUN npm run build -w @kira-sekira/studio
 
 FROM base AS runner
 WORKDIR /app

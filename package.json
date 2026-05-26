@@ -9,8 +9,8 @@
     "db:up": "docker compose -f docker-compose.dev.yml up -d",
     "db:down": "docker compose -f docker-compose.dev.yml down",
     "db:logs": "docker compose -f docker-compose.dev.yml logs -f postgres",
-    "types": "npm run generate:types -w studio",
-    "start:all": "concurrently \"npm run start -w main\" \"npm run start -w models\" \"npm run dev -w studio\"",
+    "types": "npm run generate:types -w @kira-sekira/studio",
+    "start:all": "concurrently \"npm run start -w @kira-sekira/site\" \"npm run start -w @kira-sekira/models\" \"npm run dev -w @kira-sekira/studio\"",
     "backup": "sh scripts/backup.sh",
     "restore": "sh scripts/restore.sh",
     "format": "prettier . --write"
