@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject, effect, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
 import { Page } from '../../layout/page/page';
 import { PictureList } from '../../features/gallery/picture-list/picture-list';
 import { PayloadService } from '../../payload.service';
@@ -14,7 +12,7 @@ import type { TypeImage } from '@kira-sekira/shared';
   templateUrl: './project.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Project implements OnInit {
+export class Project {
   private titleService = inject(Title);
   private route = inject(ActivatedRoute);
   private payload = inject(PayloadService);
@@ -22,17 +20,18 @@ export class Project implements OnInit {
     title: string;
     images: TypeImage[];
   } | null>(null);
-  private pageId$ = this.route.paramMap.pipe(map((params) => params.get('id')));
-  public pageId = toSignal(this.pageId$);
 
-  async ngOnInit() {
-    const slug = this.pageId();
-    if (slug) {
-      const data = await this.payload.getGalleryBySlug(slug);
-      if (data) {
-        this.titleService.setTitle(`${data.title} — Kira Sekira`);
-        this.gallery.set(data);
+  constructor() {
+    effect(() => {
+      const slug = this.route.snapshot.paramMap.get('id');
+      if (slug) {
+        this.payload.getGalleryBySlug(slug).then((data) => {
+          if (data) {
+            this.titleService.setTitle(`${data.title} — Kira Sekira`);
+            this.gallery.set(data);
+          }
+        });
       }
-    }
+    });
   }
 }

@@ -6,7 +6,7 @@ import {
   ElementRef,
   Input,
   inject,
-  OnInit,
+  effect,
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -27,7 +27,7 @@ interface Contacts {
   styleUrl: './page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Page implements OnInit {
+export class Page {
   @Input() public title: string = '';
   @Input() public isHomePage: boolean = false;
   @ContentChild('projectsTarget') projectsElement!: ElementRef;
@@ -45,17 +45,19 @@ export class Page implements OnInit {
         });
       });
     });
-  }
 
-  async ngOnInit() {
-    try {
-      const global = await this.payload.getGlobal();
-      if (global.contacts) {
-        this.contacts.set(global.contacts);
-      }
-    } catch (err) {
-      console.error('Error loading contacts:', err);
-    }
+    effect(() => {
+      this.payload
+        .getGlobal()
+        .then((global) => {
+          if (global.contacts) {
+            this.contacts.set(global.contacts);
+          }
+        })
+        .catch((err) => {
+          console.error('Error loading contacts:', err);
+        });
+    });
   }
 
   animateScroll() {

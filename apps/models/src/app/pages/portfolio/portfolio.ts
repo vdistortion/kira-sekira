@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, effect, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ModelInfo } from '../../features/model-info/model-info';
 import { PayloadService } from '../../payload.service';
@@ -11,19 +11,21 @@ import { HostService } from '../../host.service';
   styleUrl: './portfolio.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Portfolio implements OnInit {
+export class Portfolio {
   private payload = inject(PayloadService);
   private hostService = inject(HostService);
   galleries = signal<any[]>([]);
   model = signal<any>(null);
 
-  async ngOnInit() {
-    const subdomain = this.hostService.getSubdomain();
-    const model = await this.payload.getModelBySubdomain(subdomain);
-    if (model) {
-      this.model.set(model);
-      const galleries = await this.payload.getGalleriesByModel(model.id);
-      this.galleries.set(galleries);
-    }
+  constructor() {
+    effect(async () => {
+      const subdomain = this.hostService.getSubdomain();
+      const modelData = await this.payload.getModelBySubdomain(subdomain);
+      if (modelData) {
+        this.model.set(modelData);
+        const galleriesData = await this.payload.getGalleriesByModel(modelData.id);
+        this.galleries.set(galleriesData);
+      }
+    });
   }
 }
