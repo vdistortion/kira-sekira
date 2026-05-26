@@ -68,12 +68,14 @@ jobs:
             git pull origin release
 
             # Генерация .env.release
-            echo "POSTGRES_USER=postgres" > .env.release
-            echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env.release
-            echo "POSTGRES_DB=studio" >> .env.release
-            echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env.release
-            echo "SERVER_URL=${{ secrets.SERVER_URL }}" >> .env.release
-            echo "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}" >> .env.release
+            cat > .env.release << 'ENVEOF'
+            POSTGRES_USER=postgres
+            POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+            POSTGRES_DB=studio
+            PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}
+            SERVER_URL=${{ secrets.SERVER_URL }}
+            ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}
+            ENVEOF
 
             # Авторизация в GHCR на сервере
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
