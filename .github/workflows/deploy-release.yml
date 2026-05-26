@@ -73,6 +73,7 @@ jobs:
             echo "POSTGRES_DB=studio" >> .env.release
             echo "PAYLOAD_SECRET=${{ secrets.PAYLOAD_SECRET }}" >> .env.release
             echo "SERVER_URL=${{ secrets.SERVER_URL }}" >> .env.release
+            echo "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}" >> .env.release
 
             # Авторизация в GHCR на сервере
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
