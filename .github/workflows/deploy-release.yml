@@ -96,6 +96,7 @@ jobs:
     steps:
       - name: Delete old untagged images
         uses: actions/delete-package-versions@v5
+        continue-on-error: true
         with:
           package-name: ${{ matrix.package }}
           package-type: 'container'
