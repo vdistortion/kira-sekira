@@ -8,7 +8,7 @@ RUN npm ci --workspaces --include-workspace-root
 # Копируем исходники
 COPY . .
 # Собираем только main с production-конфигурацией
-RUN npm run build -w site -- --configuration production
+RUN npm run build -w @kira-sekira/site -- --configuration production
 
 FROM node:22-alpine
 WORKDIR /app
