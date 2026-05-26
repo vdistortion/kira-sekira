@@ -23,10 +23,13 @@ const connectionString = `postgres://postgres:${PG_PASSWORD}@${PG_HOST}:${PG_POR
 
 const getAllowedOrigins = (): string[] => {
   const envOrigins = process.env.ALLOWED_ORIGINS || '';
-  return envOrigins
+  const origins = envOrigins
     .split(',')
     .map((o) => o.trim())
     .filter(Boolean);
+
+  console.log('[PAYLOAD] Allowed origins:', origins);
+  return origins;
 };
 
 export default buildConfig({
