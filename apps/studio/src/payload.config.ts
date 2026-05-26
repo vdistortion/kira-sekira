@@ -21,6 +21,14 @@ const PG_PORT = process.env.POSTGRES_PORT || '5432';
 
 const connectionString = `postgres://postgres:${PG_PASSWORD}@${PG_HOST}:${PG_PORT}/studio`;
 
+const getAllowedOrigins = (): string[] => {
+  const envOrigins = process.env.ALLOWED_ORIGINS || '';
+  return envOrigins
+    .split(',')
+    .map((o) => o.trim())
+    .filter(Boolean);
+};
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -51,12 +59,6 @@ export default buildConfig({
     fallbackLanguage: 'en',
   },
   cors: {
-    origins: [
-      'http://localhost:4200',
-      'http://model1.localhost:4201',
-      'http://model2.localhost:4201',
-      'https://kira-sekira.ru',
-      'https://*.kira-sekira.ru',
-    ],
+    origins: getAllowedOrigins(),
   },
 });

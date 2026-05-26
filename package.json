@@ -15,7 +15,11 @@
     "restore": "sh scripts/restore.sh",
     "format": "prettier . --write"
   },
+  "dependencies": {
+    "cors": "^2.8.6"
+  },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "concurrently": "^9.2.1",
     "prettier": "3.8.3"
   }
