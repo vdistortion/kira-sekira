@@ -15,7 +15,7 @@ WORKDIR /app
 # Копируем production-зависимости только для site
 COPY package*.json ./
 COPY apps/site/package*.json ./apps/site/
-RUN npm ci --workspace=site --omit=dev --ignore-scripts
+RUN npm ci --workspace=@kira-sekira/site --omit=dev --ignore-scripts
 # Копируем собранный сервер
 COPY --from=build /app/apps/site/dist ./dist
 ENV PORT=4000

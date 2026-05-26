@@ -10,7 +10,7 @@ FROM node:22-alpine
 WORKDIR /app
 COPY package*.json ./
 COPY apps/models/package*.json ./apps/models/
-RUN npm ci --workspace=models --omit=dev --ignore-scripts
+RUN npm ci --workspace=@kira-sekira/models --omit=dev --ignore-scripts
 COPY --from=build /app/apps/models/dist ./dist
 ENV PORT=4201
 EXPOSE 4201
