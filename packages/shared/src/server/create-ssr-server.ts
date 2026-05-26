@@ -5,7 +5,6 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
-import cors from 'cors';
 
 export interface SsrServerOptions {
   browserDistFolder: string;
@@ -18,31 +17,6 @@ export function createSsrServer(options: SsrServerOptions) {
 
   const app = express();
   const angularApp = new AngularNodeAppEngine();
-
-  app.use(
-    cors({
-      origin: (origin: string | undefined, callback: any) => {
-        const allowed =
-          process.env['ALLOWED_ORIGINS']
-            ?.split(',')
-            .map((o) => o.trim())
-            .filter(Boolean) || [];
-
-        if (!origin) {
-          callback(null, true);
-          return;
-        }
-
-        if (allowed.includes(origin)) {
-          callback(null, true);
-        } else {
-          console.warn(`[CORS] ❌ Blocked: ${origin}`);
-          callback(new Error('CORS policy'));
-        }
-      },
-      credentials: true,
-    }),
-  );
 
   app.use(
     express.static(browserDistFolder, {

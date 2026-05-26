@@ -4,42 +4,49 @@ services:
   db:
     container_name: kira-postgres-release
     image: postgres:16-alpine
-    env_file: .env.release
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: studio
     volumes:
       - postgres_data_release:/var/lib/postgresql/data
     restart: unless-stopped
     networks:
       - internal
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 3s
 
   site:
     container_name: kira-site-release
     image: ghcr.io/vdistortion/kira-sekira-site:release
-    env_file: .env.release
     restart: unless-stopped
     networks:
       - internal
-    depends_on:
-      - db
 
   models:
     container_name: kira-models-release
     image: ghcr.io/vdistortion/kira-sekira-models:release
-    env_file: .env.release
     restart: unless-stopped
     networks:
       - internal
-    depends_on:
-      - db
 
   studio:
     container_name: kira-studio-release
     image: ghcr.io/vdistortion/kira-sekira-studio:release
-    env_file: .env.release
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+      SERVER_URL: ${SERVER_URL}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
+      NODE_ENV: production
     restart: unless-stopped
     networks:
       - internal
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - studio_media_release:/app/media
 
