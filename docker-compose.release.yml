@@ -24,6 +24,10 @@ services:
     restart: unless-stopped
     networks:
       - internal
+      - caddy
+    labels:
+      caddy: test.kira-sekira.ru
+      caddy.reverse_proxy: "{{upstreams 4000}}"
 
   models:
     container_name: kira-models-release
@@ -31,6 +35,10 @@ services:
     restart: unless-stopped
     networks:
       - internal
+      - caddy
+    labels:
+      caddy: "yana.kira-sekira.ru kirochka.kira-sekira.ru"
+      caddy.reverse_proxy: "{{upstreams 4201}}"
 
   studio:
     container_name: kira-studio-release
@@ -46,29 +54,22 @@ services:
     restart: unless-stopped
     networks:
       - internal
+      - caddy
+    labels:
+      caddy: studio.kira-sekira.ru
+      caddy.reverse_proxy: "{{upstreams 3000}}"
+      caddy.request_body.max_size: 50MB
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - studio_media_release:/app/media
 
-  caddy:
-    container_name: kira-caddy-release
-    image: caddy:2-alpine
-    ports:
-      - '80:80'
-      - '443:443'
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data_release:/data
-    restart: unless-stopped
-    networks:
-      - internal
-
 volumes:
   postgres_data_release:
   studio_media_release:
-  caddy_data_release:
 
 networks:
   internal:
+  caddy:
+    external: true
