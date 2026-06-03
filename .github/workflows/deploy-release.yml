@@ -68,6 +68,10 @@ jobs:
             git pull origin release
 
             printf '%s\n' \
+              "POSTGRES_HOST=db" \
+              "POSTGRES_PORT=5432" \
+              "POSTGRES_USER=postgres" \
+              "POSTGRES_DB=studio" \
               "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" \
               "PAYLOAD_SECRET=${PAYLOAD_SECRET}" \
               "SERVER_URL=${SERVER_URL}" \
