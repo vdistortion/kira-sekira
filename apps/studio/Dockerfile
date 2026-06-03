@@ -14,6 +14,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+COPY .env ./apps/studio/.env
+
 RUN mkdir -p apps/studio/public
 
 RUN npm run generate:types -w @kira-sekira/studio
@@ -35,6 +37,8 @@ COPY --from=builder /app/tsconfig.root.json ./tsconfig.json
 
 COPY --from=builder /app/apps/studio/src/migrations ./migrations
 COPY --from=deps /app/node_modules ./node_modules
+
+COPY --from=builder /app/.env ./apps/studio/.env
 
 RUN mkdir -p /app/media && \
     chown -R nextjs:nodejs /app

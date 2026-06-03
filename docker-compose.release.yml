@@ -27,7 +27,7 @@ services:
       - caddy
     labels:
       caddy: test.kira-sekira.ru
-      caddy.reverse_proxy: "{{upstreams 4000}}"
+      caddy.reverse_proxy: '{{upstreams 4000}}'
 
   models:
     container_name: kira-models-release
@@ -37,8 +37,8 @@ services:
       - internal
       - caddy
     labels:
-      caddy: "yana.kira-sekira.ru kirochka.kira-sekira.ru"
-      caddy.reverse_proxy: "{{upstreams 4201}}"
+      caddy: 'yana.kira-sekira.ru kirochka.kira-sekira.ru'
+      caddy.reverse_proxy: '{{upstreams 4201}}'
 
   studio:
     container_name: kira-studio-release
@@ -57,7 +57,7 @@ services:
       - caddy
     labels:
       caddy: studio.kira-sekira.ru
-      caddy.reverse_proxy: "{{upstreams 3000}}"
+      caddy.reverse_proxy: '{{upstreams 3000}}'
       caddy.request_body.max_size: 50MB
     depends_on:
       db:
