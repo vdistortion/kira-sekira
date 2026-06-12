@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, effect, signal } from '@angular/core';
-import { PayloadService } from '../../payload.service';
+import { DirectusService } from '../../directus.service';
 
 @Component({
   selector: 'app-logo',
@@ -9,7 +9,7 @@ import { PayloadService } from '../../payload.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Logo {
-  private payload = inject(PayloadService);
+  private payload = inject(DirectusService);
   title = signal('Kira Sekira');
 
   constructor() {

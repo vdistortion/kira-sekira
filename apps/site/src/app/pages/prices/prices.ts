@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, effect, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Page } from '../../layout/page/page';
-import { PayloadService } from '../../payload.service';
+import { DirectusService } from '../../directus.service';
 import { lexicalToHtml } from '@kira-sekira/shared';
 
 interface PriceItem {
@@ -22,7 +22,7 @@ interface PriceItem {
 })
 export class Prices {
   private titleService = inject(Title);
-  private payload = inject(PayloadService);
+  private payload = inject(DirectusService);
   prices = signal<PriceItem[]>([]);
   loading = signal(true);
   error = signal<string | null>(null);

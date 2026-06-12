@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, effect, signal } from '@ang
 import { RouterLink } from '@angular/router';
 import { lexicalToHtml } from '@kira-sekira/shared';
 import { SafeResourcePipe } from '../../pipes/safe-resource.pipe';
-import { PayloadService } from '../../payload.service';
+import { DirectusService } from '../../directus.service';
 import { HostService } from '../../host.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { HostService } from '../../host.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
-  private payload = inject(PayloadService);
+  private payload = inject(DirectusService);
   private hostService = inject(HostService);
 
   model = signal<any>(null);

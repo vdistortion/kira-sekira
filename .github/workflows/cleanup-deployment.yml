@@ -20,7 +20,7 @@ jobs:
             if [ -d "$PROJECT_DIR" ]; then
               cd "$PROJECT_DIR"
               echo "🗑 Stopping and removing containers, volumes..."
-              docker compose -f docker-compose.release.yml down -v --rmi all 2>/dev/null || true
+              docker compose -f compose.release.yaml down -v --rmi all 2>/dev/null || true
               cd ~
               echo "🗑 Deleting project folder..."
               rm -rf "$PROJECT_DIR"
@@ -35,7 +35,7 @@ jobs:
           REPO_OWNER: ${{ github.repository_owner }}
         run: |
           set -e
-          PACKAGES=("kira-sekira-site" "kira-sekira-models" "kira-sekira-studio")
+          PACKAGES=("kira-sekira-site" "kira-sekira-models")
           for pkg in "${PACKAGES[@]}"; do
             echo "🗑 Deleting entire package: $pkg"
             gh api -X DELETE "/users/${REPO_OWNER}/packages/container/${pkg}" || echo "ℹ️ Package $pkg not found or already deleted"

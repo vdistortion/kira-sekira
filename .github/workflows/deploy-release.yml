@@ -42,15 +42,6 @@ jobs:
           push: true
           tags: ${{ env.IMAGE_PREFIX }}-models:release
 
-      - name: Build and push studio
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: apps/studio/Dockerfile
-          push: true
-          tags: ${{ env.IMAGE_PREFIX }}-studio:release
-          no-cache: true
-
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1
         with:
@@ -80,9 +71,8 @@ jobs:
 
             echo "$GHCR_PAT" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
 
-            docker compose -f docker-compose.release.yml pull
-            docker compose -f docker-compose.release.yml up -d
-            docker exec kira-studio-release npx payload migrate
+            docker compose -f compose.release.yaml pull
+            docker compose -f compose.release.yaml up -d
             docker system prune --force
         env:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
@@ -105,7 +95,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: ['kira-sekira-site', 'kira-sekira-models', 'kira-sekira-studio']
+        package: ['kira-sekira-site', 'kira-sekira-models']
     steps:
       - uses: actions/delete-package-versions@v5
         continue-on-error: true

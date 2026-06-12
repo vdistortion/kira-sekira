@@ -12,7 +12,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { Logo } from '../logo/logo';
 import { Header } from '../header/header';
-import { PayloadService } from '../../payload.service';
+import { DirectusService } from '../../directus.service';
 
 interface Contacts {
   phone?: string | null;
@@ -32,7 +32,7 @@ export class Page {
   @Input() public isHomePage: boolean = false;
   @ContentChild('projectsTarget') projectsElement!: ElementRef;
 
-  private payload = inject(PayloadService);
+  private payload = inject(DirectusService);
   public scroll: any;
   contacts = signal<Contacts>({});
 

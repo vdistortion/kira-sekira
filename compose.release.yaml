@@ -40,34 +40,8 @@ services:
       caddy: 'yana.kira-sekira.ru kirochka.kira-sekira.ru'
       caddy.reverse_proxy: '{{upstreams 4201}}'
 
-  studio:
-    container_name: kira-studio-release
-    image: ghcr.io/vdistortion/kira-sekira-studio:release
-    environment:
-      POSTGRES_HOST: db
-      POSTGRES_PORT: 5432
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      PAYLOAD_SECRET: ${PAYLOAD_SECRET}
-      SERVER_URL: ${SERVER_URL}
-      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
-      NODE_ENV: production
-    restart: unless-stopped
-    networks:
-      - internal
-      - caddy
-    labels:
-      caddy: studio.kira-sekira.ru
-      caddy.reverse_proxy: '{{upstreams 3000}}'
-      caddy.request_body.max_size: 50MB
-    depends_on:
-      db:
-        condition: service_healthy
-    volumes:
-      - studio_media_release:/app/media
-
 volumes:
   postgres_data_release:
-  studio_media_release:
 
 networks:
   internal:

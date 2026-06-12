@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, effect, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProjectCard } from '../project-card/project-card';
-import { PayloadService } from '../../../payload.service';
+import { DirectusService } from '../../../directus.service';
 
 @Component({
   selector: 'app-project-list',
@@ -11,7 +11,7 @@ import { PayloadService } from '../../../payload.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectList {
-  private payload = inject(PayloadService);
+  private payload = inject(DirectusService);
   galleries = signal<any[]>([]);
   loading = signal(true);
   error = signal<string | null>(null);

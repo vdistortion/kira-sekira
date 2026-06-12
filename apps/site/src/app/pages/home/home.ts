@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, effect, signal } from '@ang
 import { Title } from '@angular/platform-browser';
 import { Page } from '../../layout/page/page';
 import { ProjectList } from '../../features/projects/project-list/project-list';
-import { PayloadService } from '../../payload.service';
+import { DirectusService } from '../../directus.service';
 import { lexicalToHtml } from '@kira-sekira/shared';
 
 @Component({
@@ -14,7 +14,7 @@ import { lexicalToHtml } from '@kira-sekira/shared';
 })
 export class Home {
   private titleService = inject(Title);
-  private payload = inject(PayloadService);
+  private payload = inject(DirectusService);
   aboutImage = signal('');
   aboutText = signal('');
   projectsName = signal('Проекты');

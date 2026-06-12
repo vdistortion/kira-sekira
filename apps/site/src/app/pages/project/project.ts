@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from '../../layout/page/page';
 import { PictureList } from '../../features/gallery/picture-list/picture-list';
-import { PayloadService } from '../../payload.service';
+import { DirectusService } from '../../directus.service';
 import type { TypeImage } from '@kira-sekira/shared';
 
 @Component({
@@ -15,7 +15,7 @@ import type { TypeImage } from '@kira-sekira/shared';
 export class Project {
   private titleService = inject(Title);
   private route = inject(ActivatedRoute);
-  private payload = inject(PayloadService);
+  private payload = inject(DirectusService);
   gallery = signal<{
     title: string;
     images: TypeImage[];
