@@ -32,9 +32,6 @@
     },
     {
       "path": "./projects/shared/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/shared/tsconfig.spec.json"
     }
   ]
 }
