@@ -11,9 +11,10 @@
     "start": "concurrently \"npm run start:main\" \"npm run start:models\"",
     "start:main": "ng serve main",
     "start:models": "ng serve models --port 4201",
-    "build": "npm run build:main && npm run build:models",
+    "build": "npm run build:shared && npm run build:main && npm run build:models",
     "build:main": "ng build main",
     "build:models": "ng build models",
+    "build:shared": "ng build shared",
     "test": "ng test",
     "format": "prettier . --write"
   },
@@ -45,7 +46,10 @@
     "@types/node": "^20.17.19",
     "@types/smooth-scroll": "^16.1.4",
     "concurrently": "^10.0.3",
+    "jsdom": "^28.0.0",
+    "ng-packagr": "^22.0.0",
     "prettier": "^3.8.1",
-    "typescript": "~6.0.2"
+    "typescript": "~6.0.2",
+    "vitest": "^4.0.8"
   }
 }

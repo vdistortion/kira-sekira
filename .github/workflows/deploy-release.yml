@@ -48,7 +48,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: POSTGRES_PASSWORD,DIRECTUS_KEY,DIRECTUS_SECRET,GHCR_PAT,GHCR_USER,REPO_URL
+          envs: DB_PASSWORD,DIRECTUS_KEY,DIRECTUS_SECRET,CORS_ORIGIN,PUBLIC_URL,GHCR_PAT,GHCR_USER,REPO_URL
           script: |
             REPO_PATH=~/projects/kira-sekira
             if [ ! -d "$REPO_PATH" ]; then
@@ -59,13 +59,11 @@ jobs:
             git pull origin release
 
             printf '%s\n' \
-              "POSTGRES_HOST=db" \
-              "POSTGRES_PORT=5432" \
-              "POSTGRES_USER=postgres" \
-              "POSTGRES_DB=studio" \
-              "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" \
+              "DB_PASSWORD=${DB_PASSWORD}" \
               "DIRECTUS_KEY=${DIRECTUS_KEY}" \
               "DIRECTUS_SECRET=${DIRECTUS_SECRET}" \
+              "CORS_ORIGIN=${CORS_ORIGIN}" \
+              "PUBLIC_URL=${PUBLIC_URL}" \
               > .env
 
             echo "$GHCR_PAT" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
@@ -74,9 +72,11 @@ jobs:
             docker compose -f compose.release.yaml up -d
             docker system prune --force
         env:
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DIRECTUS_KEY: ${{ secrets.DIRECTUS_KEY }}
           DIRECTUS_SECRET: ${{ secrets.DIRECTUS_SECRET }}
+          CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
           GHCR_PAT: ${{ secrets.GHCR_PAT }}
           GHCR_USER: ${{ github.actor }}
           REPO_URL: https://github.com/${{ github.repository }}.git

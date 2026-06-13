@@ -4,7 +4,7 @@ services:
     container_name: kira-postgres-dev
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: studio
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -16,17 +16,17 @@ services:
     image: directus/directus:12
     container_name: kira-studio-dev
     environment:
-      KEY: replace-with-random-string
-      SECRET: replace-with-random-string
+      KEY: ${DIRECTUS_KEY}
+      SECRET: ${DIRECTUS_SECRET}
       DB_CLIENT: pg
       DB_HOST: db
       DB_PORT: 5432
       DB_DATABASE: studio
       DB_USER: postgres
-      DB_PASSWORD: postgres
-      CORS_ENABLED: 'true'
-      CORS_ORIGIN: 'http://localhost:4200,http://model1.localhost:4201,http://model2.localhost:4201'
-      PUBLIC_URL: 'http://studio.localhost:8055'
+      DB_PASSWORD: ${DB_PASSWORD}
+      CORS_ENABLED: true
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      PUBLIC_URL: ${PUBLIC_URL}
     ports:
       - '8055:8055'
     volumes:

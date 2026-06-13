@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Icon } from '../../ui/icon/icon';
+import { Icon } from 'shared';
 
 @Component({
   selector: 'app-header',
