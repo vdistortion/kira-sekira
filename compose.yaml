@@ -13,22 +13,20 @@ services:
       - net
 
   studio:
-    image: directus/directus:12.0.1
+    image: directus/directus:12
     container_name: kira-studio-dev
     environment:
-      - KEY=replace-with-random-string
-      - SECRET=replace-with-random-string
-      - ADMIN_EMAIL=admin@example.com
-      - ADMIN_PASSWORD=SuperSecret123!
-      - DB_CLIENT=pg
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_DATABASE=studio
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - CORS_ENABLED=true
-      - CORS_ORIGIN=http://localhost:4200,http://model1.localhost:4201,http://model2.localhost:4201
-      - PUBLIC_URL=http://studio.localhost:8055
+      KEY: replace-with-random-string
+      SECRET: replace-with-random-string
+      DB_CLIENT: pg
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: studio
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'http://localhost:4200,http://model1.localhost:4201,http://model2.localhost:4201'
+      PUBLIC_URL: 'http://studio.localhost:8055'
     ports:
       - '8055:8055'
     volumes:

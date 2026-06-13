@@ -18,9 +18,37 @@ services:
       interval: 5s
       timeout: 3s
 
-  site:
-    container_name: kira-site-release
-    image: ghcr.io/vdistortion/kira-sekira-site:release
+  studio:
+    container_name: kira-studio-release
+    image: directus/directus:12
+    environment:
+      KEY: ${DIRECTUS_KEY}
+      SECRET: ${DIRECTUS_SECRET}
+      DB_CLIENT: pg
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: studio
+      DB_USER: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'https://kira-sekira.ru,https://yana.kira-sekira.ru,https://kirochka.kira-sekira.ru'
+      PUBLIC_URL: 'https://studio.kira-sekira.ru'
+    volumes:
+      - directus_uploads_release:/directus/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - internal
+      - caddy
+    labels:
+      caddy: studio.kira-sekira.ru
+      caddy.reverse_proxy: '{{upstreams 8055}}'
+    restart: unless-stopped
+
+  main:
+    container_name: kira-main-release
+    image: ghcr.io/vdistortion/kira-sekira-main:release
     restart: unless-stopped
     networks:
       - internal
@@ -42,6 +70,7 @@ services:
 
 volumes:
   postgres_data_release:
+  directus_uploads_release:
 
 networks:
   internal:
