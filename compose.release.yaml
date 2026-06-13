@@ -51,22 +51,20 @@ services:
     image: ghcr.io/vdistortion/kira-sekira-main:release
     restart: unless-stopped
     networks:
-      - internal
       - caddy
     labels:
       caddy: test.kira-sekira.ru
-      caddy.reverse_proxy: '{{upstreams 4000}}'
+      caddy.reverse_proxy: '{{upstreams 80}}'
 
   models:
     container_name: kira-models-release
     image: ghcr.io/vdistortion/kira-sekira-models:release
     restart: unless-stopped
     networks:
-      - internal
       - caddy
     labels:
       caddy: 'yana.kira-sekira.ru kirochka.kira-sekira.ru'
-      caddy.reverse_proxy: '{{upstreams 4201}}'
+      caddy.reverse_proxy: '{{upstreams 80}}'
 
 volumes:
   postgres_data_release:

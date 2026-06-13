@@ -59,11 +59,11 @@ jobs:
             git pull origin release
 
             printf '%s\n' \
-              "DB_PASSWORD=${DB_PASSWORD}" \
-              "DIRECTUS_KEY=${DIRECTUS_KEY}" \
-              "DIRECTUS_SECRET=${DIRECTUS_SECRET}" \
-              "CORS_ORIGIN=${CORS_ORIGIN}" \
-              "PUBLIC_URL=${PUBLIC_URL}" \
+              "DB_PASSWORD='${DB_PASSWORD}'" \
+              "DIRECTUS_KEY='${DIRECTUS_KEY}'" \
+              "DIRECTUS_SECRET='${DIRECTUS_SECRET}'" \
+              "CORS_ORIGIN='${CORS_ORIGIN}'" \
+              "PUBLIC_URL='${PUBLIC_URL}'" \
               > .env
 
             echo "$GHCR_PAT" | docker login ghcr.io -u "$GHCR_USER" --password-stdin

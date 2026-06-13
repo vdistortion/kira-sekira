@@ -1,4 +1,4 @@
-FROM node:22-alpine AS build
+FROM node:24-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
@@ -6,11 +6,7 @@ COPY . .
 RUN npm run build:shared
 RUN npm run build:main
 
-FROM node:22-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --omit=dev
-COPY --from=build /app/dist/main ./dist/main
-ENV PORT=4000
-EXPOSE 4000
-CMD ["node", "dist/main/server/server.mjs"]
+FROM caddy:2-alpine
+COPY --from=build /app/dist/main/browser /srv
+COPY projects/main/Caddyfile /etc/caddy/Caddyfile
+EXPOSE 80
