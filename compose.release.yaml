@@ -1,0 +1,78 @@
+name: kira-sekira-release
+
+services:
+  db:
+    container_name: kira-postgres-release
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: studio
+    volumes:
+      - postgres_data_release:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - internal
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 3s
+
+  studio:
+    container_name: kira-studio-release
+    image: directus/directus:12
+    environment:
+      KEY: ${DIRECTUS_KEY}
+      SECRET: ${DIRECTUS_SECRET}
+      DB_CLIENT: pg
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: studio
+      DB_USER: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'https://kira-sekira.ru,https://yana.kira-sekira.ru,https://kirochka.kira-sekira.ru'
+      PUBLIC_URL: 'https://studio.kira-sekira.ru'
+    volumes:
+      - directus_uploads_release:/directus/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - internal
+      - caddy
+    labels:
+      caddy: studio.kira-sekira.ru
+      caddy.reverse_proxy: '{{upstreams 8055}}'
+    restart: unless-stopped
+
+  main:
+    container_name: kira-main-release
+    image: ghcr.io/vdistortion/kira-sekira-main:release
+    restart: unless-stopped
+    networks:
+      - internal
+      - caddy
+    labels:
+      caddy: test.kira-sekira.ru
+      caddy.reverse_proxy: '{{upstreams 4000}}'
+
+  models:
+    container_name: kira-models-release
+    image: ghcr.io/vdistortion/kira-sekira-models:release
+    restart: unless-stopped
+    networks:
+      - internal
+      - caddy
+    labels:
+      caddy: 'yana.kira-sekira.ru kirochka.kira-sekira.ru'
+      caddy.reverse_proxy: '{{upstreams 4201}}'
+
+volumes:
+  postgres_data_release:
+  directus_uploads_release:
+
+networks:
+  internal:
+  caddy:
+    external: true
