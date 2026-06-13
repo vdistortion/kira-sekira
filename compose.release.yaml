@@ -6,7 +6,7 @@ services:
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: studio
     volumes:
       - postgres_data_release:/var/lib/postgresql/data
@@ -29,10 +29,10 @@ services:
       DB_PORT: 5432
       DB_DATABASE: studio
       DB_USER: postgres
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
-      CORS_ENABLED: 'true'
-      CORS_ORIGIN: 'https://kira-sekira.ru,https://yana.kira-sekira.ru,https://kirochka.kira-sekira.ru'
-      PUBLIC_URL: 'https://studio.kira-sekira.ru'
+      DB_PASSWORD: ${DB_PASSWORD}
+      CORS_ENABLED: true
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      PUBLIC_URL: ${PUBLIC_URL}
     volumes:
       - directus_uploads_release:/directus/uploads
     depends_on:
