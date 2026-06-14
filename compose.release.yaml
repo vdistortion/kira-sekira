@@ -35,6 +35,7 @@ services:
       PUBLIC_URL: ${PUBLIC_URL}
     volumes:
       - directus_uploads_release:/directus/uploads
+      - ./directus:/directus/snapshots
     depends_on:
       db:
         condition: service_healthy
@@ -43,6 +44,7 @@ services:
       - caddy
     labels:
       caddy: studio.kira-sekira.ru
+      caddy.encode: zstd gzip
       caddy.reverse_proxy: '{{upstreams 8055}}'
     restart: unless-stopped
 
