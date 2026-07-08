@@ -9,17 +9,14 @@
         <div class="prices-page__item">
           <div class="prices-page__title">
             <div>{{ item.price }}</div>
-            <div>{{ item.title }}</div>
-            @if (item.image) {
-              <img [src]="item.image" [alt]="item.title" />
+            <div>{{ item.name }}</div>
+            @if (item.image_url) {
+              <img [src]="item.image_url" [alt]="item.name" />
             }
           </div>
           <div class="prices-page__text">
             @if (item.description) {
               <div [innerHTML]="item.description"></div>
-            }
-            @if (item.details) {
-              <div>{{ item.details }}</div>
             }
           </div>
         </div>

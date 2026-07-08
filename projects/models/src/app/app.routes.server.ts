@@ -8,8 +8,13 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
       const studio = inject(DirectusService);
-      const slugs = await studio.getAllModelsSlugs();
-      return slugs.map((slug) => ({ id: slug }));
+      try {
+        const slugs = await studio.getAllModelsSlugs();
+        return slugs.map((slug) => ({ id: slug }));
+      } catch (error) {
+        console.warn('Failed to fetch model slugs for prerender:', error);
+        return []; // fallback
+      }
     },
   },
   {
