@@ -1,5 +1,14 @@
-import { afterNextRender, Component, ContentChild, ElementRef, Input, signal } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ElementRef,
+  Input,
+  signal,
+  afterNextRender,
+  inject,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { DirectusService } from 'shared';
 import { Logo } from '../logo/logo';
 import { Header } from '../header/header';
 
@@ -20,10 +29,18 @@ export class Page {
   @Input() public isHomePage: boolean = false;
   @ContentChild('projectsTarget') projectsElement!: ElementRef;
 
+  private studio = inject(DirectusService);
+
   public scroll: any;
   contacts = signal<Contacts>({});
 
   constructor() {
+    // Загрузка контактов
+    this.studio
+      .getContacts()
+      .then((c) => this.contacts.set(c))
+      .catch((err) => console.error('Failed to load contacts', err));
+
     afterNextRender(() => {
       import('smooth-scroll').then((SmoothScroll) => {
         this.scroll = new SmoothScroll.default('a[href*="#"]', {

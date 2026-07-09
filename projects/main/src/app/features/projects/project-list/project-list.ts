@@ -1,7 +1,7 @@
 import { Component, inject, effect, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { DirectusService } from 'shared';
 import { ProjectCard } from '../project-card/project-card';
-import { DirectusService } from '../../../directus.service';
 
 @Component({
   selector: 'app-project-list',
@@ -21,7 +21,7 @@ export class ProjectList {
       this.error.set(null);
 
       this.studio
-        .getGalleriesList()
+        .getMainGalleries()
         .then((data) => {
           this.galleries.set(data);
         })

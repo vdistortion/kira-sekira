@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { RenderMode, ServerRoute } from '@angular/ssr';
-import { DirectusService } from './directus.service';
+import { DirectusService } from 'shared';
 
 export const serverRoutes: ServerRoute[] = [
   {
@@ -8,8 +8,13 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
       const studio = inject(DirectusService);
-      const slugs = await studio.getAllSlugs();
-      return slugs.map((slug) => ({ id: slug }));
+      try {
+        const slugs = await studio.getAllMainSlugs();
+        return slugs.map((slug) => ({ id: slug }));
+      } catch (error) {
+        console.warn('Failed to fetch main slugs for prerender:', error);
+        return []; // fallback
+      }
     },
   },
   {

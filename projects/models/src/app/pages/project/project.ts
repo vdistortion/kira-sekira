@@ -1,6 +1,6 @@
 import { Component, inject, effect, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { DirectusService } from '../../directus.service';
+import { DirectusService } from 'shared';
 
 @Component({
   selector: 'app-project',
