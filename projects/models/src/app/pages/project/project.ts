@@ -1,5 +1,6 @@
 import { Component, inject, effect, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { DirectusService } from 'shared';
 
 @Component({
@@ -11,6 +12,7 @@ import { DirectusService } from 'shared';
 export class Project {
   private route = inject(ActivatedRoute);
   private studio = inject(DirectusService);
+  private titleService = inject(Title);
 
   gallery = signal<any>(null);
   loading = signal(true);
@@ -22,6 +24,9 @@ export class Project {
         this.studio.getGalleryBySlug(slug).then((data) => {
           this.gallery.set(data);
           this.loading.set(false);
+          if (data?.title) {
+            this.titleService.setTitle(data.title);
+          }
         });
       }
     });
