@@ -1,12 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { marked } from 'marked';
-import { DirectusService, YoutubeEmbedPipe } from 'shared';
+import { DirectusService, MarkdownPipe, YoutubeEmbedPipe } from 'shared';
 import { HostService } from '../../host.service';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, YoutubeEmbedPipe],
+  imports: [MarkdownPipe, RouterLink, YoutubeEmbedPipe],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -16,7 +15,7 @@ export class Home {
 
   model = signal<any>(null);
   galleries = signal<any[]>([]);
-  aboutHtml = signal('');
+  aboutMarkdown = signal('');
 
   constructor() {
     const subdomain = this.host.getSubdomain();
@@ -25,11 +24,7 @@ export class Home {
       .then((data) => {
         this.model.set(data);
         this.galleries.set(data.galleries || []);
-        // Преобразуем markdown-описание в HTML
-        const html = data.description
-          ? (marked.parse(data.description, { async: false }) as string)
-          : '';
-        this.aboutHtml.set(html);
+        this.aboutMarkdown.set(data.description || '');
       })
       .catch((err) => console.error('Failed to load model', err));
   }

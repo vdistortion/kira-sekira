@@ -10,8 +10,10 @@
     <div class="hero__content">
       <h1 class="hero__name">{{ m.fullName }}</h1>
 
-      @if (aboutHtml()) {
-        <div class="hero__about" [innerHTML]="aboutHtml()"></div>
+      @if (aboutMarkdown()) {
+        <div class="hero__about">
+          <div [innerHTML]="aboutMarkdown() | markdown"></div>
+        </div>
       }
 
       @if (m.parameters) {

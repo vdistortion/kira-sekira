@@ -5,8 +5,8 @@
         <img [src]="aboutImage()" [alt]="projectsName()" />
       </div>
       <div class="home-page__content">
-        @if (aboutText()) {
-          <div [innerHTML]="aboutText()"></div>
+        @if (aboutMarkdown()) {
+          <div [innerHTML]="aboutMarkdown() | markdown"></div>
         }
       </div>
     </div>
