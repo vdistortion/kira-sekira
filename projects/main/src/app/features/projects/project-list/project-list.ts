@@ -1,6 +1,5 @@
-import { Component, inject, effect, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DirectusService } from 'shared';
 import { ProjectCard } from '../project-card/project-card';
 
 @Component({
@@ -10,28 +9,5 @@ import { ProjectCard } from '../project-card/project-card';
   styleUrl: './project-list.scss',
 })
 export class ProjectList {
-  private studio = inject(DirectusService);
-  galleries = signal<any[]>([]);
-  loading = signal(true);
-  error = signal<string | null>(null);
-
-  constructor() {
-    effect(() => {
-      this.loading.set(true);
-      this.error.set(null);
-
-      this.studio
-        .getMainGalleries()
-        .then((data) => {
-          this.galleries.set(data);
-        })
-        .catch((err) => {
-          console.error('Error loading galleries:', err);
-          this.error.set('Ошибка загрузки проектов');
-        })
-        .finally(() => {
-          this.loading.set(false);
-        });
-    });
-  }
+  galleries = input<any[]>([]);
 }

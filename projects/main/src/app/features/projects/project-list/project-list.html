@@ -1,19 +1,11 @@
 <div class="project-list">
-  @if (loading()) {
-    <p style="text-align: center; color: var(--default-color)">Загрузка проектов...</p>
-  } @else if (error()) {
-    <p style="text-align: center; color: red">{{ error() }}</p>
-  } @else if (galleries().length) {
-    @for (project of galleries(); track project.slug) {
-      <div class="project-list__item">
-        <app-project-card
-          [title]="project.title"
-          [image]="project.cover_url"
-          [routerLink]="project.slug"
-        ></app-project-card>
-      </div>
-    }
-  } @else {
-    <p style="text-align: center; color: var(--default-color)">Проектов не найдено</p>
+  @for (project of galleries(); track project.slug) {
+    <div class="project-list__item">
+      <app-project-card
+        [title]="project.title"
+        [image]="project.cover_url"
+        [routerLink]="project.slug"
+      ></app-project-card>
+    </div>
   }
 </div>

@@ -64,20 +64,6 @@ export class DirectusService {
     }));
   }
 
-  /** Получить галереи, привязанные к главному сайту */
-  async getMainGalleries(): Promise<Gallery[]> {
-    const main = (await this.client.request(
-      readSingleton('main_site', {
-        fields: ['galleries.*', 'galleries.cover.*'],
-      }),
-    )) as { galleries: Gallery[] };
-
-    return (main.galleries || []).map((g: Gallery) => ({
-      ...g,
-      cover_url: g.cover ? this.getFileUrl(g.cover) : '',
-    }));
-  }
-
   /** Получить модель по поддомену */
   async getModelBySubdomain(subdomain: string): Promise<Model> {
     const items = (await this.client.request(
