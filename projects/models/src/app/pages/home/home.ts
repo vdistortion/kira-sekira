@@ -16,6 +16,8 @@ export class Home {
   model = signal<any>(null);
   galleries = signal<any[]>([]);
   aboutMarkdown = signal('');
+  loading = signal(true);
+  error = signal<string | null>(null);
 
   constructor() {
     const subdomain = this.host.getSubdomain();
@@ -25,7 +27,12 @@ export class Home {
         this.model.set(data);
         this.galleries.set(data.galleries || []);
         this.aboutMarkdown.set(data.description || '');
+        this.loading.set(false);
       })
-      .catch((err) => console.error('Failed to load model', err));
+      .catch((err) => {
+        console.error('Failed to load model', err);
+        this.error.set('Ошибка загрузки данных модели');
+        this.loading.set(false);
+      });
   }
 }

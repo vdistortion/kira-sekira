@@ -16,7 +16,10 @@ export class Home {
 
   aboutImage = signal('');
   aboutMarkdown = signal('');
+  galleries = signal<any[]>([]);
   projectsName = signal('Проекты');
+  loading = signal(true);
+  error = signal<string | null>(null);
 
   constructor() {
     this.titleService.setTitle('Kira Sekira');
@@ -26,7 +29,13 @@ export class Home {
       .then((data) => {
         this.aboutImage.set(data.main_photo_url || '');
         this.aboutMarkdown.set(data.advantages_md || '');
+        this.galleries.set(data.galleries || []);
+        this.loading.set(false);
       })
-      .catch((err) => console.error('Failed to load main site', err));
+      .catch((err) => {
+        console.error('Failed to load main site', err);
+        this.error.set('Ошибка загрузки данных');
+        this.loading.set(false);
+      });
   }
 }

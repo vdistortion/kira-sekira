@@ -1,18 +1,24 @@
 <app-page [title]="'Проекты'" [isHomePage]="true">
-  <div class="home-page">
-    <div class="home-page__item">
-      <div class="home-page__image">
-        <img [src]="aboutImage()" [alt]="projectsName()" />
+  @if (loading()) {
+    <p style="text-align: center; color: var(--default-color)">Загрузка...</p>
+  } @else if (error()) {
+    <p style="text-align: center; color: red">{{ error() }}</p>
+  } @else {
+    <div class="home-page">
+      <div class="home-page__item">
+        <div class="home-page__image">
+          <img [src]="aboutImage()" [alt]="projectsName()" />
+        </div>
+        <div class="home-page__content">
+          @if (aboutMarkdown()) {
+            <div [innerHTML]="aboutMarkdown() | markdown"></div>
+          }
+        </div>
       </div>
-      <div class="home-page__content">
-        @if (aboutMarkdown()) {
-          <div [innerHTML]="aboutMarkdown() | markdown"></div>
-        }
+      <div #projectsTarget class="home-page__item">
+        <div class="home-page__title">{{ projectsName() }}</div>
       </div>
+      <app-project-list [galleries]="galleries()"></app-project-list>
     </div>
-    <div #projectsTarget class="home-page__item">
-      <div class="home-page__title">{{ projectsName() }}</div>
-    </div>
-    <app-project-list></app-project-list>
-  </div>
+  }
 </app-page>
