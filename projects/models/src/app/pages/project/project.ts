@@ -1,5 +1,5 @@
-import { Component, inject, effect, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, inject, signal, input, effect } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DirectusService } from 'shared';
 
@@ -10,7 +10,7 @@ import { DirectusService } from 'shared';
   styleUrl: './project.scss',
 })
 export class Project {
-  private route = inject(ActivatedRoute);
+  id = input.required<string>();
   private studio = inject(DirectusService);
   private titleService = inject(Title);
 
@@ -19,7 +19,7 @@ export class Project {
 
   constructor() {
     effect(() => {
-      const slug = this.route.snapshot.paramMap.get('id');
+      const slug = this.id();
       if (slug) {
         this.studio.getGalleryBySlug(slug).then((data) => {
           this.gallery.set(data);
