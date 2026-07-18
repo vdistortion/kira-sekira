@@ -95,9 +95,23 @@ jobs:
       matrix:
         package: ['kira-sekira-main', 'kira-sekira-models']
     steps:
-      - uses: actions/delete-package-versions@v5
+      - name: Delete untagged container versions for ${{ matrix.package }}
         continue-on-error: true
-        with:
-          package-name: ${{ matrix.package }}
-          package-type: 'container'
-          delete-only-untagged-versions: 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GHCR_PAT }}
+          PACKAGE: ${{ matrix.package }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          set -e
+          echo "Fetching untagged versions for package $PACKAGE..."
+          ids=$(gh api -H "Accept: application/vnd.github+json" \
+            "/users/${OWNER}/packages/container/${PACKAGE}/versions?per_page=100" \
+            --jq '.[] | select(.metadata.container.tags | length == 0) | .id')
+          if [ -z "$ids" ]; then
+            echo "No untagged versions found."
+            exit 0
+          fi
+          for id in $ids; do
+            echo "Deleting version $id..."
+            gh api -X DELETE "/users/${OWNER}/packages/container/${PACKAGE}/versions/$id" || echo "Failed to delete version $id"
+          done
