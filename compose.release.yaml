@@ -35,7 +35,7 @@ services:
       PUBLIC_URL: ${PUBLIC_URL}
     volumes:
       - directus_uploads_release:/directus/uploads
-      - ./directus:/directus/snapshots
+      - ./directus:/directus
     depends_on:
       db:
         condition: service_healthy
