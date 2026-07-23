@@ -1,0 +1,17 @@
+name: Apply Directus Schema
+
+on: workflow_dispatch
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stop, apply, and restart studio
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/projects/kira-sekira
+            make schema-release

@@ -8,6 +8,8 @@
     "dev:clean": "docker compose down -v --rmi all",
     "dev:logs:db": "docker compose logs -f db",
     "dev:logs:studio": "docker compose logs -f studio",
+    "schema:dev": "make schema-dev",
+    "schema:release": "make schema-release",
     "start": "concurrently \"npm run start:main\" \"npm run start:models\"",
     "start:main": "ng serve main",
     "start:models": "ng serve models --port 4201",
