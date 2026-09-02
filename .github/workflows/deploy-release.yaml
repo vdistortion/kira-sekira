@@ -13,6 +13,9 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
@@ -23,7 +26,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       # Собираем и пушим каждый образ последовательно
       - name: Build and push main
@@ -91,6 +94,8 @@ jobs:
   delete-old-images:
     needs: [build-and-deploy]
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     strategy:
       matrix:
         package: ['kira-sekira-main', 'kira-sekira-models']
@@ -98,7 +103,7 @@ jobs:
       - name: Delete untagged container versions for ${{ matrix.package }}
         continue-on-error: true
         env:
-          GH_TOKEN: ${{ secrets.GHCR_PAT }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PACKAGE: ${{ matrix.package }}
           OWNER: ${{ github.repository_owner }}
         run: |
