@@ -27,6 +27,8 @@ services:
       CORS_ENABLED: true
       CORS_ORIGIN: ${CORS_ORIGIN}
       PUBLIC_URL: ${PUBLIC_URL}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
     ports:
       - '8055:8055'
     volumes:
