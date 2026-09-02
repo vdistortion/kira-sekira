@@ -71,6 +71,21 @@ export class DirectusService {
     return data.site_name || '';
   }
 
+  /** Получить отзывы (выводятся на главном сайте) */
+  async getReviews(): Promise<any[]> {
+    const items = (await this.client.request(
+      readItems('reviews', {
+        fields: ['*', 'photo.*'],
+        sort: ['sort'],
+        limit: -1,
+      }),
+    )) as any[];
+    return (items || []).map((r) => ({
+      ...r,
+      image_url: r.photo ? this.getFileUrl(r.photo) : '',
+    }));
+  }
+
   /** Получить список услуг */
   async getPrices(): Promise<PriceItem[]> {
     const items = (await this.client.request(

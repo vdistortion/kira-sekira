@@ -1,17 +1,16 @@
 @use '../../../styles/variables';
 
 .logo {
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
   color: var(--title-color);
-  text-align: center;
-  font-size: 50px;
-  letter-spacing: 0.2em;
-  line-height: 1.6;
-  font-family: var(--font-second);
-  text-transform: uppercase;
+  font-family: 'Ouvality', var(--font-first), sans-serif;
+  font-size: 34px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: none;
+  white-space: nowrap;
 
   @media (max-width: 1400px) {
-    font-size: 30px;
+    font-size: 26px;
   }
 }

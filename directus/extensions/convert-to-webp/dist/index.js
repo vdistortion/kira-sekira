@@ -27,6 +27,8 @@ export default function registerHook({ action }, { services, getSchema, env, log
       const file = await items.readOne(id);
       if (!file || !file.type || !file.type.startsWith('image/')) return;
       if (file.type === 'image/webp') return;
+      // Logos are authored as SVG with an embedded font; keep them vector.
+      if (file.type === 'image/svg+xml') return;
 
       const srcDisk = file.filename_disk;
       const srcPath = join(UPLOAD_DIR, srcDisk);

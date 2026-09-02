@@ -15,9 +15,10 @@
         <div class="home-page__image">
           <img [src]="aboutImage()" [alt]="projectsName()" />
         </div>
-        <div class="home-page__content">
+        <div class="home-page__content about-block">
+          <h2 class="about-block__title">Обо мне</h2>
           @if (aboutMarkdown()) {
-            <div [innerHTML]="aboutMarkdown() | markdown"></div>
+            <div class="about-block__body" [innerHTML]="aboutMarkdown() | markdown"></div>
           }
         </div>
       </div>
@@ -25,6 +26,26 @@
         <div class="home-page__title">{{ projectsName() }}</div>
       </div>
       <app-project-list [galleries]="galleries()"></app-project-list>
+
+      @if (prices().length) {
+        <section class="home-section" id="prices">
+          <h2 class="section-title">Стоимость</h2>
+          <div class="home-prices">
+            @for (item of prices(); track item.id) {
+              <div class="home-prices__item">
+                @if (item.image_url) {
+                  <img class="home-prices__img" [src]="item.image_url" [alt]="item.name" />
+                }
+                <div class="home-prices__head">
+                  <div class="home-prices__name">{{ item.name }}</div>
+                  <div class="home-prices__price">{{ item.price }}</div>
+                </div>
+                <div class="home-prices__text">{{ item.description }}</div>
+              </div>
+            }
+          </div>
+        </section>
+      }
 
       @if (videos().length) {
         <section id="videos" class="home-page__videos">
@@ -40,6 +61,23 @@
                   allowfullscreen
                   loading="lazy"
                 ></iframe>
+              </div>
+            }
+          </div>
+        </section>
+      }
+
+      @if (reviews().length) {
+        <section id="reviews" class="home-section">
+          <h2 class="section-title">Отзывы</h2>
+          <div class="home-reviews">
+            @for (r of reviews(); track r.id) {
+              <div class="review-card">
+                @if (r.image_url) {
+                  <img class="review-card__photo" [src]="r.image_url" [alt]="r.author" />
+                }
+                <div class="review-card__author">{{ r.author }}</div>
+                <div class="review-card__text">{{ r.text }}</div>
               </div>
             }
           </div>

@@ -1,18 +1,12 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
-import { Prices } from './pages/prices/prices';
 import { Project } from './pages/project/project';
 
 export const routes: Routes = [
   {
     path: '',
-    title: 'home',
+    title: 'Kira Sekira — фотограф в Москве',
     component: Home,
-  },
-  {
-    path: 'prices',
-    title: 'prices',
-    component: Prices,
   },
   {
     path: ':id',

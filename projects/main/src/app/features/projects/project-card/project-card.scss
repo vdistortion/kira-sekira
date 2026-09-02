@@ -8,6 +8,15 @@
     flex-direction: column;
     box-sizing: border-box;
     height: 100%;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &:hover {
+      border-color: var(--accent);
+      box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15);
+    }
   }
 
   &__name {
@@ -29,9 +38,11 @@
   }
 
   &__cover {
+    position: relative;
     margin-top: auto;
     max-height: 650px;
     text-align: center;
+    overflow: hidden;
   }
 
   img {
@@ -39,5 +50,32 @@
     height: auto;
     max-width: 100%;
     max-height: 100%;
+    transition: transform 0.4s;
+  }
+
+  &__wrapper:hover img {
+    transform: scale(1.05);
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &__wrapper:hover &__overlay {
+    opacity: 1;
+  }
+
+  &__name {
+    color: var(--accent);
+    font-family: var(--font-first);
+    font-size: 24px;
+    letter-spacing: 0.08em;
   }
 }

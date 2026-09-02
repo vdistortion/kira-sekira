@@ -1,6 +1,7 @@
 import { Component, inject, signal, PLATFORM_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 import { DirectusService, MarkdownPipe, YoutubeEmbedPipe } from 'shared';
 import { HostService } from '../../host.service';
 import { ModelStore } from '../../model.store';
@@ -16,6 +17,8 @@ export class Home {
   private host = inject(HostService);
   private modelStore = inject(ModelStore);
   private platformId = inject(PLATFORM_ID);
+  private titleService = inject(Title);
+  private meta = inject(Meta);
 
   model = signal<any>(null);
   galleries = signal<any[]>([]);
@@ -64,6 +67,11 @@ export class Home {
             mainImage: g.cover_url || '',
           })),
         );
+        this.setSeo(
+          model.name ? `${model.name} — Kira Sekira` : 'Kira Sekira',
+          model.description || 'Фотомодель Kira Sekira.',
+          model.main_photo_url || '',
+        );
         this.loading.set(false);
       })
       .catch((err) => {
@@ -71,5 +79,18 @@ export class Home {
         this.error.set('Ошибка загрузки данных модели');
         this.loading.set(false);
       });
+  }
+
+  private setSeo(title: string, description: string, image?: string) {
+    this.titleService.setTitle(title);
+    this.meta.updateTag({ name: 'description', content: description });
+    this.meta.updateTag({ property: 'og:title', content: title });
+    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({ name: 'twitter:title', content: title });
+    this.meta.updateTag({ name: 'twitter:description', content: description });
+    if (image) {
+      this.meta.updateTag({ property: 'og:image', content: image });
+      this.meta.updateTag({ name: 'twitter:image', content: image });
+    }
   }
 }

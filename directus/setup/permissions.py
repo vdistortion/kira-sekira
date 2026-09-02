@@ -39,6 +39,7 @@ PUBLIC_READ = [
     "models_videos",
     "main_site_galleries",
     "models_galleries",
+    "reviews",
 ]
 
 

@@ -9,12 +9,14 @@ import { DirectusService } from 'shared';
 })
 export class Logo {
   private studio = inject(DirectusService);
-  title = signal('');
+  name = signal('');
 
   constructor() {
     this.studio
-      .getSiteName()
-      .then((name) => this.title.set(name))
-      .catch((err) => console.error('Failed to load site name', err));
+      .getMainSite()
+      .then((site) => {
+        this.name.set(site.site_name || '');
+      })
+      .catch((err) => console.error('Failed to load site identity', err));
   }
 }

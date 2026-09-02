@@ -94,7 +94,7 @@ def main():
     }
     for name, price, desc in [
         ("Стандарт", 5000,
-         "1 часовая съёмка, 2 образа, все кадры (30+) в цветокоррекции, детальная ретушь 12 фото, "
+         "1 часовая съёмка, 2 образа, все кадры в цветокоррекции (30+), детальная ретушь 12 фото, "
          "обработка 1-2 недели. Доп. ретушь — 300р/фото, срочность (2 дня) — 2000р. Студия оплачивается клиентом."),
         ("Премиум", 7000,
          "2 часовая съёмка, 4 образа, все кадры (60+) в цветокоррекции, детальная ретушь 25 фото, "
@@ -139,6 +139,18 @@ def main():
         if not linked["data"]:
             req("POST", "/items/main_site_videos", tok, {"main_site_id": msid, "videos_id": vid, "sort": i + 1})
         print(f"video '{title}' linked")
+
+    # Demo reviews (placeholder content — edit in admin)
+    for i, (author, text) in enumerate([
+        ("Анна", "Спасибо за потрясающую фотосессию! Чувствовала себя уверенно, результат превзошёл все ожидания."),
+        ("Мария", "Профессиональный подход и очень уютная атмосфера. Фото получились живыми и красивыми."),
+    ]):
+        existing = req("GET", "/items/reviews?filter[author][_eq]=" + urllib.parse.quote(author) + "&limit=1", tok)
+        if not existing["data"]:
+            req("POST", "/items/reviews", tok, {"author": author, "text": text, "sort": i + 1})
+            print(f"review '{author}' seeded")
+        else:
+            print(f"review '{author}' exists")
 
     print("DONE core content seeded")
 
