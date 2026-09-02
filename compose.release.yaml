@@ -24,6 +24,7 @@ services:
       context: ./directus
       dockerfile: Dockerfile
     image: kira-studio-release:12.0.2
+    pull_policy: build
     environment:
       KEY: ${DIRECTUS_KEY}
       SECRET: ${DIRECTUS_SECRET}
