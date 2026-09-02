@@ -1,5 +1,6 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, signal, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModelStore } from '../../model.store';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class Navbar {
   activeSection = signal<string>('hero');
+  modelStore = inject(ModelStore);
 
   constructor(private router: Router) {}
 

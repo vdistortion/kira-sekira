@@ -55,6 +55,30 @@
                   <span class="param__value">{{ m.parameters.hips }}</span>
                 </div>
               }
+              @if (m.parameters.clothingSize) {
+                <div class="param">
+                  <span class="param__label">Размер одежды</span>
+                  <span class="param__value">{{ m.parameters.clothingSize }}</span>
+                </div>
+              }
+              @if (m.parameters.shoeSize) {
+                <div class="param">
+                  <span class="param__label">Размер обуви</span>
+                  <span class="param__value">{{ m.parameters.shoeSize }}</span>
+                </div>
+              }
+              @if (m.parameters.hairColor) {
+                <div class="param">
+                  <span class="param__label">Цвет волос</span>
+                  <span class="param__value">{{ m.parameters.hairColor }}</span>
+                </div>
+              }
+              @if (m.parameters.eyeColor) {
+                <div class="param">
+                  <span class="param__label">Цвет глаз</span>
+                  <span class="param__value">{{ m.parameters.eyeColor }}</span>
+                </div>
+              }
             </div>
           </div>
         }

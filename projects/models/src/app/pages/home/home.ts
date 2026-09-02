@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { DirectusService, MarkdownPipe, YoutubeEmbedPipe } from 'shared';
 import { HostService } from '../../host.service';
+import { ModelStore } from '../../model.store';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { HostService } from '../../host.service';
 export class Home {
   private studio = inject(DirectusService);
   private host = inject(HostService);
+  private modelStore = inject(ModelStore);
   private platformId = inject(PLATFORM_ID);
 
   model = signal<any>(null);
@@ -36,6 +38,7 @@ export class Home {
       this.studio.getContacts(),
     ])
       .then(([model, contacts]) => {
+        this.modelStore.name.set(model.name || '');
         this.model.set({
           fullName: model.name,
           mainPhoto: model.main_photo_url ? { url: model.main_photo_url } : undefined,
@@ -45,6 +48,10 @@ export class Home {
             chest: model.bust,
             waist: model.waist,
             hips: model.hips,
+            clothingSize: model.clothing_size,
+            shoeSize: model.shoe_size,
+            hairColor: model.hair_color,
+            eyeColor: model.eye_color,
           },
           contacts,
           videos: model.videos || [],
