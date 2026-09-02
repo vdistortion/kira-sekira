@@ -29,7 +29,14 @@ export class DirectusService {
   async getMainSite(): Promise<MainSite> {
     const data = (await this.client.request(
       readSingleton('main_site', {
-        fields: ['*', 'main_photo.*', 'logo.*', 'galleries.*', 'galleries.cover.*'],
+        fields: [
+          '*',
+          'main_photo.*',
+          'logo.*',
+          'galleries.*',
+          'galleries.cover.*',
+          'videos.*',
+        ],
       }),
     )) as MainSite;
 
@@ -37,6 +44,10 @@ export class DirectusService {
       ...data,
       main_photo_url: data.main_photo ? this.getFileUrl(data.main_photo) : '',
       logo_url: data.logo ? this.getFileUrl(data.logo) : '',
+      videos: (data.videos || []).map((v: any) => ({
+        url: v.url,
+        title: v.title,
+      })),
       galleries: (data.galleries || []).map((g: Gallery) => ({
         ...g,
         cover_url: g.cover ? this.getFileUrl(g.cover) : '',
@@ -77,7 +88,13 @@ export class DirectusService {
     const items = (await this.client.request(
       readItems('models', {
         filter: { subdomain: { _eq: subdomain } },
-        fields: ['*', 'main_photo.*', 'galleries.*', 'galleries.cover.*'],
+        fields: [
+          '*',
+          'main_photo.*',
+          'galleries.*',
+          'galleries.cover.*',
+          'videos.*',
+        ],
       }),
     )) as Model[];
 
@@ -89,6 +106,10 @@ export class DirectusService {
     return {
       ...model,
       main_photo_url: model.main_photo ? this.getFileUrl(model.main_photo) : '',
+      videos: (model.videos || []).map((v: any) => ({
+        url: v.url,
+        title: v.title,
+      })),
       galleries: (model.galleries || []).map((g: Gallery) => ({
         ...g,
         cover_url: g.cover ? this.getFileUrl(g.cover) : '',

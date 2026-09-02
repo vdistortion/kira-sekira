@@ -90,6 +90,92 @@ collections:
       versioning: false
     schema:
       name: gallery_images
+  - collection: videos
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      autosave_revision_interval: null
+      collapse: open
+      collection: videos
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: video_library
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 3
+      sort_field: sort
+      status: active
+      translations:
+        - language: ru-RU
+          plural: Видео
+          singular: Видео
+          translation: Видео
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: videos
+  - collection: main_site_videos
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      autosave_revision_interval: null
+      collapse: open
+      collection: main_site_videos
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: null
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: sort
+      status: active
+      translations:
+        - language: ru-RU
+          translation: Видео главного сайта
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: main_site_videos
+  - collection: models_videos
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      autosave_revision_interval: null
+      collapse: open
+      collection: models_videos
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: null
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: sort
+      status: active
+      translations:
+        - language: ru-RU
+          translation: Видео модели
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: models_videos
   - collection: main_site
     meta:
       accountability: all
@@ -1227,7 +1313,7 @@ fields:
       foreign_key_column: null
   - collection: main_site
     field: videos
-    type: json
+    type: alias
     meta:
       collection: main_site
       conditions: null
@@ -1236,61 +1322,21 @@ fields:
       field: videos
       group: null
       hidden: false
-      interface: list
+      interface: list-m2m
       note: null
-      options:
-        editMode: drawer
-        fields:
-          - field: url
-            meta:
-              field: url
-              interface: input
-              required: true
-              translations:
-                - language: ru-RU
-                  translation: Ссылка на видео
-              type: string
-            name: url
-            type: string
-          - field: title
-            meta:
-              field: title
-              interface: input
-              translations:
-                - language: ru-RU
-                  translation: Название
-              type: string
-            name: title
-            type: string
+      options: null
       readonly: false
       required: false
       searchable: true
-      sort: 8
+      sort: 11
       special:
-        - cast-json
+        - m2m
       translations:
         - language: ru-RU
           translation: Видео
       validation: null
       validation_message: null
       width: full
-    schema:
-      name: videos
-      table: main_site
-      data_type: json
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
   - collection: main_site
     field: tagline
     type: string
@@ -2184,7 +2230,7 @@ fields:
       foreign_key_column: null
   - collection: models
     field: videos
-    type: json
+    type: alias
     meta:
       collection: models
       conditions: null
@@ -2193,58 +2239,21 @@ fields:
       field: videos
       group: null
       hidden: false
-      interface: list
+      interface: list-m2m
       note: null
-      options:
-        fields:
-          - field: url
-            meta:
-              field: url
-              interface: input
-              required: true
-              translations:
-                - language: ru-RU
-                  translation: Ссылка
-              type: string
-            name: url
-            type: string
-          - field: title
-            meta:
-              field: title
-              interface: input
-              translations:
-                - language: ru-RU
-                  translation: Название
-              type: string
-            name: title
-            type: string
+      options: null
       readonly: false
       required: false
       searchable: true
-      sort: 8
+      sort: 9
       special:
-        - cast-json
-      translations: null
+        - m2m
+      translations:
+        - language: ru-RU
+          translation: Видео
       validation: null
       validation_message: null
       width: full
-    schema:
-      name: videos
-      table: models
-      data_type: json
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
   - collection: models
     field: galleries
     type: alias
@@ -2643,6 +2652,411 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: videos
+    field: id
+    type: uuid
+    meta:
+      collection: videos
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: videos
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: videos
+    field: sort
+    type: integer
+    meta:
+      collection: videos
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: sort
+      table: videos
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: videos
+    field: title
+    type: string
+    meta:
+      collection: videos
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special: null
+      translations:
+        - language: ru-RU
+          translation: Название видео
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: videos
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: videos
+    field: url
+    type: string
+    meta:
+      collection: videos
+      conditions: null
+      display: null
+      display_options: null
+      field: url
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 4
+      special: null
+      translations:
+        - language: ru-RU
+          translation: Ссылка на видео
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: url
+      table: videos
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: main_site_videos
+    field: id
+    type: integer
+    meta:
+      collection: main_site_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: main_site_videos
+      data_type: integer
+      default_value: nextval('main_site_videos_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: main_site_videos
+    field: main_site_id
+    type: uuid
+    meta:
+      collection: main_site_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: main_site_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: main_site_id
+      table: main_site_videos
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: main_site
+      foreign_key_column: id
+  - collection: main_site_videos
+    field: videos_id
+    type: uuid
+    meta:
+      collection: main_site_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: videos_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: videos_id
+      table: main_site_videos
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: videos
+      foreign_key_column: id
+  - collection: models_videos
+    field: id
+    type: integer
+    meta:
+      collection: models_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: models_videos
+      data_type: integer
+      default_value: nextval('models_videos_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: models_videos
+    field: models_id
+    type: uuid
+    meta:
+      collection: models_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: models_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: models_id
+      table: models_videos
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: models
+      foreign_key_column: id
+  - collection: models_videos
+    field: videos_id
+    type: uuid
+    meta:
+      collection: models_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: videos_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: videos_id
+      table: models_videos
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: videos
+      foreign_key_column: id
 systemFields:
   - collection: directus_activity
     field: timestamp
@@ -2893,6 +3307,90 @@ relations:
       foreign_key_table: models
       foreign_key_column: id
       constraint_name: models_galleries_models_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: main_site_videos
+    field: videos_id
+    related_collection: videos
+    meta:
+      junction_field: main_site_id
+      many_collection: main_site_videos
+      many_field: videos_id
+      one_allowed_collections: null
+      one_collection: videos
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: main_site_videos
+      column: videos_id
+      foreign_key_table: videos
+      foreign_key_column: id
+      constraint_name: main_site_videos_videos_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: main_site_videos
+    field: main_site_id
+    related_collection: main_site
+    meta:
+      junction_field: videos_id
+      many_collection: main_site_videos
+      many_field: main_site_id
+      one_allowed_collections: null
+      one_collection: main_site
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: videos
+      sort_field: null
+    schema:
+      table: main_site_videos
+      column: main_site_id
+      foreign_key_table: main_site
+      foreign_key_column: id
+      constraint_name: main_site_videos_main_site_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: models_videos
+    field: videos_id
+    related_collection: videos
+    meta:
+      junction_field: models_id
+      many_collection: models_videos
+      many_field: videos_id
+      one_allowed_collections: null
+      one_collection: videos
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: models_videos
+      column: videos_id
+      foreign_key_table: videos
+      foreign_key_column: id
+      constraint_name: models_videos_videos_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: models_videos
+    field: models_id
+    related_collection: models
+    meta:
+      junction_field: videos_id
+      many_collection: models_videos
+      many_field: models_id
+      one_allowed_collections: null
+      one_collection: models
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: videos
+      sort_field: null
+    schema:
+      table: models_videos
+      column: models_id
+      foreign_key_table: models
+      foreign_key_column: id
+      constraint_name: models_videos_models_id_foreign
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: prices
