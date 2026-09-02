@@ -33,25 +33,28 @@ export class DirectusService {
           '*',
           'main_photo.*',
           'logo.*',
-          'galleries.*',
-          'galleries.cover.*',
-          'videos.*',
+          'galleries.galleries_id.*',
+          'galleries.galleries_id.cover.*',
+          'videos.videos_id.*',
         ],
       }),
-    )) as MainSite;
+    )) as any;
 
     return {
       ...data,
       main_photo_url: data.main_photo ? this.getFileUrl(data.main_photo) : '',
       logo_url: data.logo ? this.getFileUrl(data.logo) : '',
       videos: (data.videos || []).map((v: any) => ({
-        url: v.url,
-        title: v.title,
+        url: v.videos_id?.url,
+        title: v.videos_id?.title,
       })),
-      galleries: (data.galleries || []).map((g: Gallery) => ({
-        ...g,
-        cover_url: g.cover ? this.getFileUrl(g.cover) : '',
-      })),
+      galleries: (data.galleries || []).map((g: any) => {
+        const gal = g.galleries_id || {};
+        return {
+          ...gal,
+          cover_url: gal.cover ? this.getFileUrl(gal.cover) : '',
+        };
+      }),
     };
   }
 
@@ -91,9 +94,9 @@ export class DirectusService {
         fields: [
           '*',
           'main_photo.*',
-          'galleries.*',
-          'galleries.cover.*',
-          'videos.*',
+          'galleries.galleries_id.*',
+          'galleries.galleries_id.cover.*',
+          'videos.videos_id.*',
         ],
       }),
     )) as Model[];
@@ -107,13 +110,16 @@ export class DirectusService {
       ...model,
       main_photo_url: model.main_photo ? this.getFileUrl(model.main_photo) : '',
       videos: (model.videos || []).map((v: any) => ({
-        url: v.url,
-        title: v.title,
+        url: v.videos_id?.url,
+        title: v.videos_id?.title,
       })),
-      galleries: (model.galleries || []).map((g: Gallery) => ({
-        ...g,
-        cover_url: g.cover ? this.getFileUrl(g.cover) : '',
-      })),
+      galleries: (model.galleries || []).map((g: any) => {
+        const gal = g.galleries_id || {};
+        return {
+          ...gal,
+          cover_url: gal.cover ? this.getFileUrl(gal.cover) : '',
+        };
+      }),
     };
   }
 
@@ -122,7 +128,7 @@ export class DirectusService {
     const items = (await this.client.request(
       readItems('galleries', {
         filter: { slug: { _eq: slug } },
-        fields: ['*', 'images.*', 'images.image.*'],
+        fields: ['*', 'cover.*', 'images.*', 'images.image.*'],
       }),
     )) as any[];
 
@@ -142,24 +148,26 @@ export class DirectusService {
   async getAllMainSlugs(): Promise<string[]> {
     const main = (await this.client.request(
       readSingleton('main_site', {
-        fields: ['galleries.slug'],
+        fields: ['galleries.galleries_id.slug'],
       }),
-    )) as { galleries: Gallery[] };
-    return (main.galleries || []).map((g) => g.slug);
+    )) as { galleries: any[] };
+    return (main.galleries || [])
+      .map((g) => g.galleries_id?.slug)
+      .filter((s: string | undefined): s is string => !!s);
   }
 
   /** Все slug'и галерей всех моделей (SSG) */
   async getAllModelsSlugs(): Promise<string[]> {
     const models = (await this.client.request(
       readItems('models', {
-        fields: ['galleries.slug'],
+        fields: ['galleries.galleries_id.slug'],
       }),
-    )) as Model[];
+    )) as any[];
 
     const slugs: string[] = [];
     for (const m of models) {
       for (const g of m.galleries || []) {
-        slugs.push(g.slug);
+        if (g.galleries_id?.slug) slugs.push(g.galleries_id.slug);
       }
     }
     return slugs;
