@@ -3029,19 +3029,6 @@ relations:
       constraint_name: gallery_images_gallery_foreign
       on_update: NO ACTION
       on_delete: SET NULL
-  - collection: gallery_images
-    field: gallery
-    related_collection: galleries
-    meta:
-      junction_field: null
-      many_collection: gallery_images
-      many_field: gallery
-      one_allowed_collections: null
-      one_collection: galleries
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: images
-      sort_field: null
   - collection: main_site
     field: logo
     related_collection: directus_files
