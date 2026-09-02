@@ -2,2833 +2,3650 @@ version: 1
 directus: 12.0.2
 vendor: postgres
 collections:
-  - collection: contacts
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      autosave_revision_interval: null
-      collapse: open
-      collection: contacts
-      color: null
-      display_template: null
-      group: null
-      hidden: false
-      icon: import_contacts
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: true
-      sort: 4
-      sort_field: null
-      status: active
-      translations:
-        - language: ru-RU
-          plural: Контакты
-          singular: Контакт
-          translation: Контакты
-      unarchive_value: null
-      versioning: false
-    schema:
-      name: contacts
-  - collection: galleries
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      autosave_revision_interval: null
-      collapse: open
-      collection: galleries
-      color: null
-      display_template: null
-      group: null
-      hidden: false
-      icon: monochrome_photos
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: false
-      sort: 1
-      sort_field: sort
-      status: active
-      translations:
-        - language: ru-RU
-          plural: Галереи
-          singular: Галерея
-          translation: Галереи
-      unarchive_value: null
-      versioning: false
-    schema:
-      name: galleries
-  - collection: gallery_images
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      autosave_revision_interval: null
-      collapse: open
-      collection: gallery_images
-      color: null
-      display_template: null
-      group: null
-      hidden: true
-      icon: null
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: false
-      sort: null
-      sort_field: sort
-      status: active
-      translations:
-        - language: ru-RU
-          translation: Фотографии альбомов
-      unarchive_value: null
-      versioning: false
-    schema:
-      name: gallery_images
-  - collection: main_site
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      autosave_revision_interval: null
-      collapse: open
-      collection: main_site
-      color: null
-      display_template: null
-      group: null
-      hidden: false
-      icon: laptop_chromebook
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: true
-      sort: 5
-      sort_field: null
-      status: active
-      translations:
-        - language: ru-RU
-          translation: Главный сайт
-      unarchive_value: null
-      versioning: false
-    schema:
-      name: main_site
-  - collection: main_site_galleries
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      autosave_revision_interval: null
-      collapse: open
-      collection: main_site_galleries
-      color: null
-      display_template: null
-      group: null
-      hidden: true
-      icon: import_export
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: false
-      sort: null
-      sort_field: null
-      status: active
-      translations: null
-      unarchive_value: null
-      versioning: false
-    schema:
-      name: main_site_galleries
-  - collection: models
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      autosave_revision_interval: null
-      collapse: open
-      collection: models
-      color: null
-      display_template: null
-      group: null
-      hidden: false
-      icon: woman_2
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: false
-      sort: 2
-      sort_field: sort
-      status: active
-      translations:
-        - language: ru-RU
-          plural: Модели
-          singular: Модель
-          translation: Модели
-      unarchive_value: null
-      versioning: false
-    schema:
-      name: models
-  - collection: models_galleries
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      autosave_revision_interval: null
-      collapse: open
-      collection: models_galleries
-      color: null
-      display_template: null
-      group: null
-      hidden: true
-      icon: import_export
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: false
-      sort: null
-      sort_field: null
-      status: active
-      translations: null
-      unarchive_value: null
-      versioning: false
-    schema:
-      name: models_galleries
-  - collection: prices
-    meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
-      autosave_revision_interval: null
-      collapse: open
-      collection: prices
-      color: null
-      display_template: null
-      group: null
-      hidden: false
-      icon: currency_ruble
-      item_duplication_fields: null
-      note: null
-      preview_url: null
-      singleton: false
-      sort: 3
-      sort_field: sort
-      status: active
-      translations:
-        - language: ru-RU
-          plural: Цены
-          singular: Цена
-          translation: Цены
-      unarchive_value: null
-      versioning: false
-    schema:
-      name: prices
+- collection: contacts
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: contacts
+    color: null
+    display_template: null
+    group: null
+    hidden: false
+    icon: import_contacts
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: true
+    sort: 4
+    sort_field: null
+    status: active
+    translations:
+    - language: ru-RU
+      plural: Контакты
+      singular: Контакт
+      translation: Контакты
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: contacts
+- collection: galleries
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: galleries
+    color: null
+    display_template: null
+    group: null
+    hidden: false
+    icon: monochrome_photos
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: false
+    sort: 1
+    sort_field: sort
+    status: active
+    translations:
+    - language: ru-RU
+      plural: Галереи
+      singular: Галерея
+      translation: Галереи
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: galleries
+- collection: gallery_images
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: gallery_images
+    color: null
+    display_template: null
+    group: null
+    hidden: true
+    icon: null
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: false
+    sort: null
+    sort_field: sort
+    status: active
+    translations:
+    - language: ru-RU
+      translation: Фотографии альбомов
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: gallery_images
+- collection: videos
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: videos
+    color: null
+    display_template: null
+    group: null
+    hidden: false
+    icon: video_library
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: false
+    sort: 3
+    sort_field: sort
+    status: active
+    translations:
+    - language: ru-RU
+      plural: Видео
+      singular: Видео
+      translation: Видео
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: videos
+- collection: main_site_videos
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: main_site_videos
+    color: null
+    display_template: null
+    group: null
+    hidden: true
+    icon: null
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: false
+    sort: null
+    sort_field: sort
+    status: active
+    translations:
+    - language: ru-RU
+      translation: Видео главного сайта
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: main_site_videos
+- collection: models_videos
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: models_videos
+    color: null
+    display_template: null
+    group: null
+    hidden: true
+    icon: null
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: false
+    sort: null
+    sort_field: sort
+    status: active
+    translations:
+    - language: ru-RU
+      translation: Видео модели
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: models_videos
+- collection: main_site
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: main_site
+    color: null
+    display_template: null
+    group: null
+    hidden: false
+    icon: laptop_chromebook
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: true
+    sort: 5
+    sort_field: null
+    status: active
+    translations:
+    - language: ru-RU
+      translation: Главный сайт
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: main_site
+- collection: main_site_galleries
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: main_site_galleries
+    color: null
+    display_template: null
+    group: null
+    hidden: true
+    icon: import_export
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: false
+    sort: null
+    sort_field: null
+    status: active
+    translations: null
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: main_site_galleries
+- collection: models
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: models
+    color: null
+    display_template: null
+    group: null
+    hidden: false
+    icon: woman_2
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: false
+    sort: 2
+    sort_field: sort
+    status: active
+    translations:
+    - language: ru-RU
+      plural: Модели
+      singular: Модель
+      translation: Модели
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: models
+- collection: models_galleries
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: models_galleries
+    color: null
+    display_template: null
+    group: null
+    hidden: true
+    icon: import_export
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: false
+    sort: null
+    sort_field: null
+    status: active
+    translations: null
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: models_galleries
+- collection: prices
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: prices
+    color: null
+    display_template: null
+    group: null
+    hidden: false
+    icon: currency_ruble
+    item_duplication_fields: null
+    note: null
+    preview_url: null
+    singleton: false
+    sort: 3
+    sort_field: sort
+    status: active
+    translations:
+    - language: ru-RU
+      plural: Цены
+      singular: Цена
+      translation: Цены
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: prices
+- collection: reviews
+  meta:
+    accountability: all
+    archive_app_filter: true
+    archive_field: null
+    archive_value: null
+    autosave_revision_interval: null
+    collapse: open
+    collection: reviews
+    color: null
+    display_template: '{{author}}'
+    group: null
+    hidden: false
+    icon: reviews
+    item_duplication_fields: null
+    note: Отзывы клиентов (выводятся на главном сайте)
+    preview_url: null
+    singleton: false
+    sort: null
+    sort_field: sort
+    status: active
+    translations: null
+    unarchive_value: null
+    versioning: false
+  schema:
+    name: reviews
 fields:
-  - collection: contacts
+- collection: contacts
+  field: id
+  type: uuid
+  meta:
+    collection: contacts
+    conditions: null
+    display: null
+    display_options: null
     field: id
-    type: uuid
-    meta:
-      collection: contacts
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      searchable: true
-      sort: 1
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: contacts
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
-      is_indexed: false
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: contacts
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: true
+    required: false
+    searchable: true
+    sort: 1
+    special:
+    - uuid
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: contacts
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: contacts
+  field: telegram
+  type: string
+  meta:
+    collection: contacts
+    conditions: null
+    display: null
+    display_options: null
     field: telegram
-    type: string
-    meta:
-      collection: contacts
-      conditions: null
-      display: null
-      display_options: null
-      field: telegram
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options:
-        iconRight: telegram
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Telegram
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: telegram
-      table: contacts
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: contacts
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options:
+      iconRight: telegram
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Telegram
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: telegram
+    table: contacts
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: contacts
+  field: whatsapp
+  type: string
+  meta:
+    collection: contacts
+    conditions: null
+    display: null
+    display_options: null
     field: whatsapp
-    type: string
-    meta:
-      collection: contacts
-      conditions: null
-      display: null
-      display_options: null
-      field: whatsapp
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options:
-        iconRight: whatsapp
-      readonly: false
-      required: false
-      searchable: true
-      sort: 3
-      special: null
-      translations:
-        - language: ru-RU
-          translation: WhatsApp
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: whatsapp
-      table: contacts
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: contacts
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options:
+      iconRight: whatsapp
+    readonly: false
+    required: false
+    searchable: true
+    sort: 3
+    special: null
+    translations:
+    - language: ru-RU
+      translation: WhatsApp
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: whatsapp
+    table: contacts
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: contacts
+  field: phone
+  type: string
+  meta:
+    collection: contacts
+    conditions: null
+    display: null
+    display_options: null
     field: phone
-    type: string
-    meta:
-      collection: contacts
-      conditions: null
-      display: null
-      display_options: null
-      field: phone
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options:
-        iconRight: phone_iphone
-      readonly: false
-      required: false
-      searchable: true
-      sort: 4
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Телефон
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: phone
-      table: contacts
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: contacts
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options:
+      iconRight: phone_iphone
+    readonly: false
+    required: false
+    searchable: true
+    sort: 4
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Телефон
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: phone
+    table: contacts
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: contacts
+  field: email
+  type: string
+  meta:
+    collection: contacts
+    conditions: null
+    display: null
+    display_options: null
     field: email
-    type: string
-    meta:
-      collection: contacts
-      conditions: null
-      display: null
-      display_options: null
-      field: email
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options:
-        iconRight: mark_email_unread
-      readonly: false
-      required: false
-      searchable: true
-      sort: 5
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Email
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: email
-      table: contacts
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: galleries
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options:
+      iconRight: mark_email_unread
+    readonly: false
+    required: false
+    searchable: true
+    sort: 5
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Email
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: email
+    table: contacts
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: galleries
+  field: id
+  type: uuid
+  meta:
+    collection: galleries
+    conditions: null
+    display: null
+    display_options: null
     field: id
-    type: uuid
-    meta:
-      collection: galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      searchable: true
-      sort: 1
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: galleries
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
-      is_indexed: false
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: galleries
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: true
+    required: false
+    searchable: true
+    sort: 1
+    special:
+    - uuid
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: galleries
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: galleries
+  field: sort
+  type: integer
+  meta:
+    collection: galleries
+    conditions: null
+    display: null
+    display_options: null
     field: sort
-    type: integer
-    meta:
-      collection: galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: sort
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: sort
-      table: galleries
-      data_type: integer
-      default_value: null
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: galleries
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: sort
+    table: galleries
+    data_type: integer
+    default_value: null
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: galleries
+  field: title
+  type: string
+  meta:
+    collection: galleries
+    conditions: null
+    display: null
+    display_options: null
     field: title
-    type: string
-    meta:
-      collection: galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: title
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      searchable: true
-      sort: 3
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Название альбома
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: title
-      table: galleries
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: galleries
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: true
+    sort: 3
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Название альбома
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: title
+    table: galleries
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: galleries
+  field: cover
+  type: uuid
+  meta:
+    collection: galleries
+    conditions: null
+    display: null
+    display_options: null
     field: cover
-    type: uuid
-    meta:
-      collection: galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: cover
-      group: null
-      hidden: false
-      interface: file-image
-      note: null
-      options:
-        allowedMimeTypes:
-          - image/webp
-      readonly: false
-      required: false
-      searchable: true
-      sort: 4
-      special:
-        - file
-      translations:
-        - language: ru-RU
-          translation: Обложка альбома
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: cover
-      table: galleries
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: directus_files
-      foreign_key_column: id
-  - collection: galleries
-    field: images
-    type: alias
-    meta:
-      collection: galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: images
-      group: null
-      hidden: false
-      interface: list-o2m
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 5
-      special:
-        - o2m
-      translations:
-        - language: ru-RU
-          translation: Фотографии
-      validation: null
-      validation_message: null
-      width: full
-  - collection: galleries
-    field: slug
-    type: uuid
-    meta:
-      collection: galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: slug
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      searchable: true
-      sort: 3
-      special:
-        - uuid
-      translations:
-        - language: ru-RU
-          translation: URL
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: slug
-      table: galleries
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: true
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: galleries_translations
-    field: id
-    type: integer
-    meta:
-      collection: galleries_translations
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 1
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: galleries_translations
-      data_type: integer
-      default_value: nextval('galleries_translations_id_seq'::regclass)
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: false
-      is_unique: true
-      is_indexed: false
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: true
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: galleries_translations
-    field: galleries_id
-    type: uuid
-    meta:
-      collection: galleries_translations
-      conditions: null
-      display: null
-      display_options: null
-      field: galleries_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: galleries_id
-      table: galleries_translations
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: galleries_translations
-    field: languages_code
-    type: string
-    meta:
-      collection: galleries_translations
-      conditions: null
-      display: null
-      display_options: null
-      field: languages_code
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 3
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: languages_code
-      table: galleries_translations
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: gallery_images
-    field: id
-    type: uuid
-    meta:
-      collection: gallery_images
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      searchable: true
-      sort: 1
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: gallery_images
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
-      is_indexed: false
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: gallery_images
-    field: sort
-    type: integer
-    meta:
-      collection: gallery_images
-      conditions: null
-      display: null
-      display_options: null
-      field: sort
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: sort
-      table: gallery_images
-      data_type: integer
-      default_value: null
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: gallery_images
-    field: image
-    type: uuid
-    meta:
-      collection: gallery_images
-      conditions: null
-      display: null
-      display_options: null
-      field: image
-      group: null
-      hidden: false
-      interface: file-image
-      note: null
-      options:
-        allowedMimeTypes:
-          - image/webp
-      readonly: false
-      required: true
-      searchable: true
-      sort: 3
-      special:
-        - file
-      translations:
-        - language: ru-RU
-          translation: Изображение
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: image
-      table: gallery_images
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: directus_files
-      foreign_key_column: id
-  - collection: gallery_images
-    field: gallery
-    type: uuid
-    meta:
-      collection: gallery_images
-      conditions: null
-      display: null
-      display_options: null
-      field: gallery
-      group: null
-      hidden: false
-      interface: select-dropdown-m2o
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 4
-      special:
-        - m2o
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: gallery
-      table: gallery_images
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: galleries
-      foreign_key_column: id
-  - collection: main_site
-    field: id
-    type: uuid
-    meta:
-      collection: main_site
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      searchable: true
-      sort: 1
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: main_site
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
-      is_indexed: false
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: main_site
-    field: site_name
-    type: string
-    meta:
-      collection: main_site
-      conditions: null
-      display: null
-      display_options: null
-      field: site_name
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      searchable: false
-      sort: 2
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Название сайта
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: site_name
-      table: main_site
-      data_type: character varying
-      default_value: Kira Sekira
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: main_site
-    field: logo
-    type: uuid
-    meta:
-      collection: main_site
-      conditions: null
-      display: null
-      display_options: null
-      field: logo
-      group: null
-      hidden: false
-      interface: file-image
-      note: null
-      options:
-        allowedMimeTypes:
-          - image/webp
-      readonly: false
-      required: false
-      searchable: true
-      sort: 4
-      special:
-        - file
-      translations:
-        - language: ru-RU
-          translation: Логотип
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: logo
-      table: main_site
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: directus_files
-      foreign_key_column: id
-  - collection: main_site
-    field: main_photo
-    type: uuid
-    meta:
-      collection: main_site
-      conditions: null
-      display: null
-      display_options: null
-      field: main_photo
-      group: null
-      hidden: false
-      interface: file-image
-      note: null
-      options:
-        allowedMimeTypes:
-          - image/webp
-      readonly: false
-      required: true
-      searchable: true
-      sort: 3
-      special:
-        - file
-      translations:
-        - language: ru-RU
-          translation: Главное фото
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: main_photo
-      table: main_site
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: directus_files
-      foreign_key_column: id
-  - collection: main_site
+    group: null
+    hidden: false
+    interface: file-image
+    note: null
+    options:
+      allowedMimeTypes:
+      - image/webp
+    readonly: false
+    required: false
+    searchable: true
+    sort: 4
+    special:
+    - file
+    translations:
+    - language: ru-RU
+      translation: Обложка альбома
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: cover
+    table: galleries
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: contacts
+  field: working_hours
+  type: string
+  meta:
+    collection: contacts
+    conditions: null
+    display: null
+    display_options: null
     field: working_hours
-    type: string
-    meta:
-      collection: main_site
-      conditions: null
-      display: null
-      display_options: null
-      field: working_hours
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: false
-      sort: 5
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Время работы
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: working_hours
-      table: main_site
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: main_site
-    field: advantages_md
-    type: text
-    meta:
-      collection: main_site
-      conditions: null
-      display: null
-      display_options: null
-      field: advantages_md
-      group: null
-      hidden: false
-      interface: input-rich-text-md
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: false
-      sort: 6
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Преимущества
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: advantages_md
-      table: main_site
-      data_type: text
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: main_site
-    field: videos
-    type: json
-    meta:
-      collection: main_site
-      conditions: null
-      display: null
-      display_options: null
-      field: videos
-      group: null
-      hidden: false
-      interface: list
-      note: null
-      options:
-        editMode: drawer
-        fields:
-          - field: url
-            meta:
-              field: url
-              interface: input
-              required: true
-              translations:
-                - language: ru-RU
-                  translation: Ссылка на видео
-              type: string
-            name: url
-            type: string
-          - field: title
-            meta:
-              field: title
-              interface: input
-              translations:
-                - language: ru-RU
-                  translation: Название
-              type: string
-            name: title
-            type: string
-      readonly: false
-      required: false
-      searchable: true
-      sort: 8
-      special:
-        - cast-json
-      translations:
-        - language: ru-RU
-          translation: Видео
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: videos
-      table: main_site
-      data_type: json
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: main_site
-    field: galleries
-    type: alias
-    meta:
-      collection: main_site
-      conditions: null
-      display: null
-      display_options: null
-      field: galleries
-      group: null
-      hidden: false
-      interface: list-m2m
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 7
-      special:
-        - m2m
-      translations:
-        - language: ru-RU
-          translation: Галереи
-      validation: null
-      validation_message: null
-      width: full
-  - collection: main_site_galleries
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 6
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Часы работы
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: working_hours
+    table: contacts
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: galleries
+  field: images
+  type: alias
+  meta:
+    collection: galleries
+    conditions: null
+    display: null
+    display_options: null
+    field: images
+    group: null
+    hidden: false
+    interface: list-o2m
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 5
+    special:
+    - o2m
+    translations:
+    - language: ru-RU
+      translation: Фотографии
+    validation: null
+    validation_message: null
+    width: full
+- collection: galleries
+  field: slug
+  type: string
+  meta:
+    collection: galleries
+    conditions: null
+    display: null
+    display_options: null
+    field: slug
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: true
+    sort: 3
+    special: null
+    translations:
+    - language: ru-RU
+      translation: URL
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: slug
+    table: galleries
+    data_type: string
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: true
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: gallery_images
+  field: id
+  type: uuid
+  meta:
+    collection: gallery_images
+    conditions: null
+    display: null
+    display_options: null
     field: id
-    type: integer
-    meta:
-      collection: main_site_galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 1
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: main_site_galleries
-      data_type: integer
-      default_value: nextval('main_site_galleries_id_seq'::regclass)
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: false
-      is_unique: true
-      is_indexed: false
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: true
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: main_site_galleries
-    field: main_site_id
-    type: uuid
-    meta:
-      collection: main_site_galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: main_site_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: main_site_id
-      table: main_site_galleries
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: main_site
-      foreign_key_column: id
-  - collection: main_site_galleries
-    field: galleries_id
-    type: uuid
-    meta:
-      collection: main_site_galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: galleries_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 3
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: galleries_id
-      table: main_site_galleries
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: galleries
-      foreign_key_column: id
-  - collection: models
-    field: id
-    type: uuid
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      searchable: true
-      sort: 1
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: models
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
-      is_indexed: false
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: true
+    required: false
+    searchable: true
+    sort: 1
+    special:
+    - uuid
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: gallery_images
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: gallery_images
+  field: sort
+  type: integer
+  meta:
+    collection: gallery_images
+    conditions: null
+    display: null
+    display_options: null
     field: sort
-    type: integer
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: sort
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: sort
-      table: models
-      data_type: integer
-      default_value: null
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: subdomain
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: subdomain
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      searchable: true
-      sort: 3
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Поддомен
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: subdomain
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: true
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: name
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: name
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      searchable: true
-      sort: 4
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Имя
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: name
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: main_photo
-    type: uuid
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: main_photo
-      group: null
-      hidden: false
-      interface: file-image
-      note: null
-      options:
-        allowedMimeTypes:
-          - image/webp
-      readonly: false
-      required: true
-      searchable: true
-      sort: 5
-      special:
-        - file
-      translations:
-        - language: ru-RU
-          translation: Главное фото
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: main_photo
-      table: models
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: directus_files
-      foreign_key_column: id
-  - collection: models
-    field: description
-    type: text
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: description
-      group: null
-      hidden: false
-      interface: input-rich-text-md
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 6
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Описание
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: description
-      table: models
-      data_type: text
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: accordion-wbti_v
-    type: alias
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: accordion-wbti_v
-      group: null
-      hidden: false
-      interface: group-detail
-      note: null
-      options:
-        start: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 9
-      special:
-        - alias
-        - no-data
-        - group
-      translations:
-        - language: ru-RU
-          translation: Параметры
-        - language: en-US
-          translation: Parameters
-      validation: null
-      validation_message: null
-      width: full
-  - collection: models
-    field: bust
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: bust
-      group: accordion-wbti_v
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 1
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Грудь
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: bust
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: waist
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: waist
-      group: accordion-wbti_v
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Талия
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: waist
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: hips
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: hips
-      group: accordion-wbti_v
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 3
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Бёдра
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: hips
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: height
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: height
-      group: accordion-wbti_v
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 4
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Рост
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: height
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: weight
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: weight
-      group: accordion-wbti_v
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 5
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Вес
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: weight
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: clothing_size
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: clothing_size
-      group: accordion-wbti_v
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 6
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Размер одежды
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: clothing_size
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: shoe_size
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: shoe_size
-      group: accordion-wbti_v
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 7
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Размер обуви
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: shoe_size
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: hair_color
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: hair_color
-      group: accordion-wbti_v
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 8
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Цвет волос
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: hair_color
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: eye_color
-    type: string
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: eye_color
-      group: accordion-wbti_v
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 9
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Цвет глаз
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: eye_color
-      table: models
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: videos
-    type: json
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: videos
-      group: null
-      hidden: false
-      interface: list
-      note: null
-      options:
-        fields:
-          - field: url
-            meta:
-              field: url
-              interface: input
-              required: true
-              translations:
-                - language: ru-RU
-                  translation: Ссылка
-              type: string
-            name: url
-            type: string
-          - field: title
-            meta:
-              field: title
-              interface: input
-              translations:
-                - language: ru-RU
-                  translation: Название
-              type: string
-            name: title
-            type: string
-      readonly: false
-      required: false
-      searchable: true
-      sort: 8
-      special:
-        - cast-json
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: videos
-      table: models
-      data_type: json
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models
-    field: galleries
-    type: alias
-    meta:
-      collection: models
-      conditions: null
-      display: null
-      display_options: null
-      field: galleries
-      group: null
-      hidden: false
-      interface: list-m2m
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 7
-      special:
-        - m2m
-      translations:
-        - language: ru-RU
-          translation: Галереи
-      validation: null
-      validation_message: null
-      width: full
-  - collection: models_galleries
-    field: id
-    type: integer
-    meta:
-      collection: models_galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 1
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: models_galleries
-      data_type: integer
-      default_value: nextval('models_galleries_id_seq'::regclass)
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: false
-      is_unique: true
-      is_indexed: false
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: true
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: models_galleries
-    field: models_id
-    type: uuid
-    meta:
-      collection: models_galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: models_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: models_id
-      table: models_galleries
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: models
-      foreign_key_column: id
-  - collection: models_galleries
-    field: galleries_id
-    type: uuid
-    meta:
-      collection: models_galleries
-      conditions: null
-      display: null
-      display_options: null
-      field: galleries_id
-      group: null
-      hidden: true
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 3
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: galleries_id
-      table: models_galleries
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: galleries
-      foreign_key_column: id
-  - collection: prices
-    field: id
-    type: uuid
-    meta:
-      collection: prices
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: true
-      required: false
-      searchable: true
-      sort: 1
-      special:
-        - uuid
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: id
-      table: prices
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: false
-      is_unique: true
-      is_indexed: false
-      is_primary_key: true
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: prices
-    field: sort
-    type: integer
-    meta:
-      collection: prices
-      conditions: null
-      display: null
-      display_options: null
-      field: sort
-      group: null
-      hidden: true
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: true
-      sort: 2
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: sort
-      table: prices
-      data_type: integer
-      default_value: null
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: prices
-    field: name
-    type: string
-    meta:
-      collection: prices
-      conditions: null
-      display: null
-      display_options: null
-      field: name
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      searchable: false
-      sort: 3
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Название
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: name
-      table: prices
-      data_type: character varying
-      default_value: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: prices
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: sort
+    table: gallery_images
+    data_type: integer
+    default_value: null
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: gallery_images
+  field: image
+  type: uuid
+  meta:
+    collection: gallery_images
+    conditions: null
+    display: null
+    display_options: null
     field: image
-    type: uuid
-    meta:
-      collection: prices
-      conditions: null
-      display: null
-      display_options: null
-      field: image
-      group: null
-      hidden: false
-      interface: file-image
-      note: null
-      options:
-        allowedMimeTypes:
-          - image/webp
-      readonly: false
-      required: true
-      searchable: true
-      sort: 5
-      special:
-        - file
-      translations:
-        - language: ru-RU
-          translation: Обложка
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: image
-      table: prices
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: directus_files
-      foreign_key_column: id
-  - collection: prices
-    field: description
-    type: text
-    meta:
-      collection: prices
-      conditions: null
-      display: null
-      display_options: null
-      field: description
-      group: null
-      hidden: false
-      interface: input-rich-text-md
-      note: null
-      options: null
-      readonly: false
-      required: false
-      searchable: false
-      sort: 6
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Описание
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: description
-      table: prices
-      data_type: text
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: prices
-    field: price
-    type: integer
-    meta:
-      collection: prices
-      conditions: null
-      display: null
-      display_options: null
-      field: price
-      group: null
-      hidden: false
-      interface: input
-      note: null
-      options: null
-      readonly: false
-      required: true
-      searchable: true
-      sort: 4
-      special: null
-      translations:
-        - language: ru-RU
-          translation: Цена (₽)
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: price
-      table: prices
-      data_type: integer
-      default_value: null
-      max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-systemFields:
-  - collection: directus_activity
-    field: timestamp
-    schema:
-      is_indexed: true
-  - collection: directus_oauth_clients
-    field: date_created
-    schema:
-      is_indexed: true
-  - collection: directus_oauth_codes
-    field: expires_at
-    schema:
-      is_indexed: true
-  - collection: directus_oauth_codes
-    field: used_at
-    schema:
-      is_indexed: true
-  - collection: directus_oauth_consents
-    field: client
-    schema:
-      is_indexed: true
-  - collection: directus_oauth_tokens
-    field: code_hash
-    schema:
-      is_indexed: true
-  - collection: directus_oauth_tokens
-    field: expires_at
-    schema:
-      is_indexed: true
-  - collection: directus_oauth_tokens
-    field: previous_session
-    schema:
-      is_indexed: true
-  - collection: directus_oauth_tokens
-    field: session
-    schema:
-      is_indexed: true
-  - collection: directus_revisions
-    field: activity
-    schema:
-      is_indexed: true
-  - collection: directus_revisions
-    field: parent
-    schema:
-      is_indexed: true
-  - collection: directus_sessions
-    field: oauth_client
-    schema:
-      is_indexed: true
-relations:
-  - collection: galleries
-    field: cover
-    related_collection: directus_files
-    meta:
-      junction_field: null
-      many_collection: galleries
-      many_field: cover
-      one_allowed_collections: null
-      one_collection: directus_files
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-    schema:
-      table: galleries
-      column: cover
-      foreign_key_table: directus_files
-      foreign_key_column: id
-      constraint_name: galleries_cover_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: gallery_images
+    group: null
+    hidden: false
+    interface: file-image
+    note: null
+    options:
+      allowedMimeTypes:
+      - image/webp
+    readonly: false
+    required: true
+    searchable: true
+    sort: 3
+    special:
+    - file
+    translations:
+    - language: ru-RU
+      translation: Изображение
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: image
+    table: gallery_images
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: directus_files
+    foreign_key_column: id
+- collection: gallery_images
+  field: gallery
+  type: uuid
+  meta:
+    collection: gallery_images
+    conditions: null
+    display: null
+    display_options: null
     field: gallery
-    related_collection: galleries
-    meta:
-      junction_field: null
-      many_collection: gallery_images
-      many_field: gallery
-      one_allowed_collections: null
-      one_collection: galleries
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: images
-      sort_field: null
-    schema:
-      table: gallery_images
-      column: gallery
-      foreign_key_table: galleries
-      foreign_key_column: id
-      constraint_name: gallery_images_gallery_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: gallery_images
-    field: gallery
-    related_collection: galleries
-    meta:
-      junction_field: null
-      many_collection: gallery_images
-      many_field: gallery
-      one_allowed_collections: null
-      one_collection: galleries
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: images
-      sort_field: null
-  - collection: main_site
+    group: null
+    hidden: false
+    interface: select-dropdown-m2o
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 4
+    special:
+    - m2o
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: gallery
+    table: gallery_images
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: galleries
+    foreign_key_column: id
+- collection: main_site
+  field: id
+  type: uuid
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
+    field: id
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: true
+    required: false
+    searchable: true
+    sort: 1
+    special:
+    - uuid
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: main_site
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: main_site
+  field: site_name
+  type: string
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
+    field: site_name
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: false
+    sort: 2
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Название сайта
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: site_name
+    table: main_site
+    data_type: character varying
+    default_value: Kira Sekira
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: false
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: main_site
+  field: logo
+  type: uuid
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
     field: logo
-    related_collection: directus_files
-    meta:
-      junction_field: null
-      many_collection: main_site
-      many_field: logo
-      one_allowed_collections: null
-      one_collection: directus_files
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-    schema:
-      table: main_site
-      column: logo
-      foreign_key_table: directus_files
-      foreign_key_column: id
-      constraint_name: main_site_logo_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: main_site
+    group: null
+    hidden: false
+    interface: file-image
+    note: null
+    options:
+      allowedMimeTypes:
+      - image/webp
+    readonly: false
+    required: false
+    searchable: true
+    sort: 4
+    special:
+    - file
+    translations:
+    - language: ru-RU
+      translation: Логотип
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: logo
+    table: main_site
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: directus_files
+    foreign_key_column: id
+- collection: main_site
+  field: main_photo
+  type: uuid
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
     field: main_photo
-    related_collection: directus_files
-    meta:
-      junction_field: null
-      many_collection: main_site
-      many_field: main_photo
-      one_allowed_collections: null
-      one_collection: directus_files
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-    schema:
-      table: main_site
-      column: main_photo
-      foreign_key_table: directus_files
-      foreign_key_column: id
-      constraint_name: main_site_main_photo_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: main_site_galleries
-    field: galleries_id
-    related_collection: galleries
-    meta:
-      junction_field: main_site_id
-      many_collection: main_site_galleries
-      many_field: galleries_id
-      one_allowed_collections: null
-      one_collection: galleries
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-    schema:
-      table: main_site_galleries
-      column: galleries_id
-      foreign_key_table: galleries
-      foreign_key_column: id
-      constraint_name: main_site_galleries_galleries_id_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: main_site_galleries
+    group: null
+    hidden: false
+    interface: file-image
+    note: null
+    options:
+      allowedMimeTypes:
+      - image/webp
+    readonly: false
+    required: true
+    searchable: true
+    sort: 3
+    special:
+    - file
+    translations:
+    - language: ru-RU
+      translation: Главное фото
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: main_photo
+    table: main_site
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: directus_files
+    foreign_key_column: id
+- collection: main_site
+  field: working_hours
+  type: string
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
+    field: working_hours
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: false
+    sort: 5
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Время работы
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: working_hours
+    table: main_site
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: main_site
+  field: advantages_md
+  type: text
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
+    field: advantages_md
+    group: null
+    hidden: false
+    interface: input-rich-text-md
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: false
+    sort: 6
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Преимущества
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: advantages_md
+    table: main_site
+    data_type: text
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: main_site
+  field: videos
+  type: alias
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
+    field: videos
+    group: null
+    hidden: false
+    interface: list-m2m
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 11
+    special:
+    - m2m
+    translations:
+    - language: ru-RU
+      translation: Видео
+    validation: null
+    validation_message: null
+    width: full
+- collection: main_site
+  field: tagline
+  type: string
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
+    field: tagline
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: false
+    sort: 9
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Слоган / заголовок
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: tagline
+    table: main_site
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: main_site
+  field: experience_since
+  type: integer
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
+    field: experience_since
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: false
+    sort: 10
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Год начала работы (для расчёта опыта)
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: experience_since
+    table: main_site
+    data_type: integer
+    default_value: null
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: main_site
+  field: galleries
+  type: alias
+  meta:
+    collection: main_site
+    conditions: null
+    display: null
+    display_options: null
+    field: galleries
+    group: null
+    hidden: false
+    interface: list-m2m
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 7
+    special:
+    - m2m
+    translations:
+    - language: ru-RU
+      translation: Галереи
+    validation: null
+    validation_message: null
+    width: full
+- collection: main_site_galleries
+  field: id
+  type: integer
+  meta:
+    collection: main_site_galleries
+    conditions: null
+    display: null
+    display_options: null
+    field: id
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 1
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: main_site_galleries
+    data_type: integer
+    default_value: nextval('main_site_galleries_id_seq'::regclass)
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: true
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: main_site_galleries
+  field: main_site_id
+  type: uuid
+  meta:
+    collection: main_site_galleries
+    conditions: null
+    display: null
+    display_options: null
     field: main_site_id
-    related_collection: main_site
-    meta:
-      junction_field: galleries_id
-      many_collection: main_site_galleries
-      many_field: main_site_id
-      one_allowed_collections: null
-      one_collection: main_site
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: galleries
-      sort_field: null
-    schema:
-      table: main_site_galleries
-      column: main_site_id
-      foreign_key_table: main_site
-      foreign_key_column: id
-      constraint_name: main_site_galleries_main_site_id_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: models
-    field: main_photo
-    related_collection: directus_files
-    meta:
-      junction_field: null
-      many_collection: models
-      many_field: main_photo
-      one_allowed_collections: null
-      one_collection: directus_files
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-    schema:
-      table: models
-      column: main_photo
-      foreign_key_table: directus_files
-      foreign_key_column: id
-      constraint_name: models_main_photo_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: models_galleries
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: main_site_id
+    table: main_site_galleries
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: main_site
+    foreign_key_column: id
+- collection: main_site_galleries
+  field: galleries_id
+  type: uuid
+  meta:
+    collection: main_site_galleries
+    conditions: null
+    display: null
+    display_options: null
     field: galleries_id
-    related_collection: galleries
-    meta:
-      junction_field: models_id
-      many_collection: models_galleries
-      many_field: galleries_id
-      one_allowed_collections: null
-      one_collection: galleries
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-    schema:
-      table: models_galleries
-      column: galleries_id
-      foreign_key_table: galleries
-      foreign_key_column: id
-      constraint_name: models_galleries_galleries_id_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: models_galleries
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 3
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: galleries_id
+    table: main_site_galleries
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: galleries
+    foreign_key_column: id
+- collection: models
+  field: id
+  type: uuid
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: id
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: true
+    required: false
+    searchable: true
+    sort: 1
+    special:
+    - uuid
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: models
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: sort
+  type: integer
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: sort
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: sort
+    table: models
+    data_type: integer
+    default_value: null
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: subdomain
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: subdomain
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: true
+    sort: 3
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Поддомен
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: subdomain
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: true
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: name
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: name
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: true
+    sort: 4
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Имя
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: name
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: main_photo
+  type: uuid
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: main_photo
+    group: null
+    hidden: false
+    interface: file-image
+    note: null
+    options:
+      allowedMimeTypes:
+      - image/webp
+    readonly: false
+    required: true
+    searchable: true
+    sort: 5
+    special:
+    - file
+    translations:
+    - language: ru-RU
+      translation: Главное фото
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: main_photo
+    table: models
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: directus_files
+    foreign_key_column: id
+- collection: models
+  field: description
+  type: text
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: description
+    group: null
+    hidden: false
+    interface: input-rich-text-md
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 6
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Описание
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: description
+    table: models
+    data_type: text
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: accordion-wbti_v
+  type: alias
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: accordion-wbti_v
+    group: null
+    hidden: false
+    interface: group-detail
+    note: null
+    options:
+      start: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 9
+    special:
+    - alias
+    - no-data
+    - group
+    translations:
+    - language: ru-RU
+      translation: Параметры
+    - language: en-US
+      translation: Parameters
+    validation: null
+    validation_message: null
+    width: full
+- collection: models
+  field: bust
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: bust
+    group: accordion-wbti_v
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 1
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Грудь
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: bust
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: waist
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: waist
+    group: accordion-wbti_v
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Талия
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: waist
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: hips
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: hips
+    group: accordion-wbti_v
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 3
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Бёдра
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: hips
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: height
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: height
+    group: accordion-wbti_v
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 4
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Рост
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: height
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: weight
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: weight
+    group: accordion-wbti_v
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 5
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Вес
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: weight
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: clothing_size
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: clothing_size
+    group: accordion-wbti_v
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 6
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Размер одежды
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: clothing_size
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: shoe_size
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: shoe_size
+    group: accordion-wbti_v
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 7
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Размер обуви
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: shoe_size
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: hair_color
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: hair_color
+    group: accordion-wbti_v
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 8
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Цвет волос
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: hair_color
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: eye_color
+  type: string
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: eye_color
+    group: accordion-wbti_v
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 9
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Цвет глаз
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: eye_color
+    table: models
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models
+  field: videos
+  type: alias
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: videos
+    group: null
+    hidden: false
+    interface: list-m2m
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 9
+    special:
+    - m2m
+    translations:
+    - language: ru-RU
+      translation: Видео
+    validation: null
+    validation_message: null
+    width: full
+- collection: models
+  field: galleries
+  type: alias
+  meta:
+    collection: models
+    conditions: null
+    display: null
+    display_options: null
+    field: galleries
+    group: null
+    hidden: false
+    interface: list-m2m
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 7
+    special:
+    - m2m
+    translations:
+    - language: ru-RU
+      translation: Галереи
+    validation: null
+    validation_message: null
+    width: full
+- collection: models_galleries
+  field: id
+  type: integer
+  meta:
+    collection: models_galleries
+    conditions: null
+    display: null
+    display_options: null
+    field: id
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 1
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: models_galleries
+    data_type: integer
+    default_value: nextval('models_galleries_id_seq'::regclass)
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: true
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models_galleries
+  field: models_id
+  type: uuid
+  meta:
+    collection: models_galleries
+    conditions: null
+    display: null
+    display_options: null
     field: models_id
-    related_collection: models
-    meta:
-      junction_field: galleries_id
-      many_collection: models_galleries
-      many_field: models_id
-      one_allowed_collections: null
-      one_collection: models
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: galleries
-      sort_field: null
-    schema:
-      table: models_galleries
-      column: models_id
-      foreign_key_table: models
-      foreign_key_column: id
-      constraint_name: models_galleries_models_id_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-  - collection: prices
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: models_id
+    table: models_galleries
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: models
+    foreign_key_column: id
+- collection: models_galleries
+  field: galleries_id
+  type: uuid
+  meta:
+    collection: models_galleries
+    conditions: null
+    display: null
+    display_options: null
+    field: galleries_id
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 3
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: galleries_id
+    table: models_galleries
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: galleries
+    foreign_key_column: id
+- collection: prices
+  field: id
+  type: uuid
+  meta:
+    collection: prices
+    conditions: null
+    display: null
+    display_options: null
+    field: id
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: true
+    required: false
+    searchable: true
+    sort: 1
+    special:
+    - uuid
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: prices
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: prices
+  field: sort
+  type: integer
+  meta:
+    collection: prices
+    conditions: null
+    display: null
+    display_options: null
+    field: sort
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: sort
+    table: prices
+    data_type: integer
+    default_value: null
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: prices
+  field: name
+  type: string
+  meta:
+    collection: prices
+    conditions: null
+    display: null
+    display_options: null
+    field: name
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: false
+    sort: 3
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Название
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: name
+    table: prices
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: prices
+  field: image
+  type: uuid
+  meta:
+    collection: prices
+    conditions: null
+    display: null
+    display_options: null
     field: image
-    related_collection: directus_files
-    meta:
-      junction_field: null
-      many_collection: prices
-      many_field: image
-      one_allowed_collections: null
-      one_collection: directus_files
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-    schema:
-      table: prices
-      column: image
-      foreign_key_table: directus_files
-      foreign_key_column: id
-      constraint_name: prices_image_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
+    group: null
+    hidden: false
+    interface: file-image
+    note: null
+    options:
+      allowedMimeTypes:
+      - image/webp
+    readonly: false
+    required: true
+    searchable: true
+    sort: 5
+    special:
+    - file
+    translations:
+    - language: ru-RU
+      translation: Обложка
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: image
+    table: prices
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: directus_files
+    foreign_key_column: id
+- collection: prices
+  field: description
+  type: text
+  meta:
+    collection: prices
+    conditions: null
+    display: null
+    display_options: null
+    field: description
+    group: null
+    hidden: false
+    interface: input-rich-text-md
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: false
+    sort: 6
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Описание
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: description
+    table: prices
+    data_type: text
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: prices
+  field: price
+  type: integer
+  meta:
+    collection: prices
+    conditions: null
+    display: null
+    display_options: null
+    field: price
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: true
+    sort: 4
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Цена (₽)
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: price
+    table: prices
+    data_type: integer
+    default_value: null
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: videos
+  field: id
+  type: uuid
+  meta:
+    collection: videos
+    conditions: null
+    display: null
+    display_options: null
+    field: id
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: true
+    required: false
+    searchable: true
+    sort: 1
+    special:
+    - uuid
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: videos
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: videos
+  field: sort
+  type: integer
+  meta:
+    collection: videos
+    conditions: null
+    display: null
+    display_options: null
+    field: sort
+    group: null
+    hidden: true
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: sort
+    table: videos
+    data_type: integer
+    default_value: null
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: videos
+  field: title
+  type: string
+  meta:
+    collection: videos
+    conditions: null
+    display: null
+    display_options: null
+    field: title
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: true
+    sort: 3
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Название видео
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: title
+    table: videos
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: videos
+  field: url
+  type: string
+  meta:
+    collection: videos
+    conditions: null
+    display: null
+    display_options: null
+    field: url
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: true
+    sort: 4
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Ссылка на видео
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: url
+    table: videos
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: main_site_videos
+  field: id
+  type: integer
+  meta:
+    collection: main_site_videos
+    conditions: null
+    display: null
+    display_options: null
+    field: id
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 1
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: main_site_videos
+    data_type: integer
+    default_value: nextval('main_site_videos_id_seq'::regclass)
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: true
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: main_site_videos
+  field: main_site_id
+  type: uuid
+  meta:
+    collection: main_site_videos
+    conditions: null
+    display: null
+    display_options: null
+    field: main_site_id
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: main_site_id
+    table: main_site_videos
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: main_site
+    foreign_key_column: id
+- collection: main_site_videos
+  field: videos_id
+  type: uuid
+  meta:
+    collection: main_site_videos
+    conditions: null
+    display: null
+    display_options: null
+    field: videos_id
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 3
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: videos_id
+    table: main_site_videos
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: videos
+    foreign_key_column: id
+- collection: main_site_videos
+  field: sort
+  type: integer
+  meta:
+    collection: main_site_videos
+    conditions: null
+    display: null
+    display_options: null
+    field: sort
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: false
+    sort: 4
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: sort
+    table: main_site_videos
+    data_type: integer
+    default_value: null
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models_videos
+  field: id
+  type: integer
+  meta:
+    collection: models_videos
+    conditions: null
+    display: null
+    display_options: null
+    field: id
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 1
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: models_videos
+    data_type: integer
+    default_value: nextval('models_videos_id_seq'::regclass)
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: true
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: models_videos
+  field: models_id
+  type: uuid
+  meta:
+    collection: models_videos
+    conditions: null
+    display: null
+    display_options: null
+    field: models_id
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: models_id
+    table: models_videos
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: models
+    foreign_key_column: id
+- collection: models_videos
+  field: videos_id
+  type: uuid
+  meta:
+    collection: models_videos
+    conditions: null
+    display: null
+    display_options: null
+    field: videos_id
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: true
+    sort: 3
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: videos_id
+    table: models_videos
+    data_type: uuid
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: videos
+    foreign_key_column: id
+- collection: models_videos
+  field: sort
+  type: integer
+  meta:
+    collection: models_videos
+    conditions: null
+    display: null
+    display_options: null
+    field: sort
+    group: null
+    hidden: true
+    interface: null
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: false
+    sort: 4
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: sort
+    table: models_videos
+    data_type: integer
+    default_value: null
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    is_generated: false
+    generation_expression: null
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: reviews
+  field: id
+  type: integer
+  meta:
+    collection: reviews
+    conditions: null
+    display: null
+    display_options: null
+    field: id
+    group: null
+    hidden: true
+    interface: numeric
+    note: null
+    options: null
+    readonly: true
+    required: false
+    searchable: true
+    sort: 1
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: id
+    table: reviews
+    data_type: integer
+    default_value: nextval('reviews_id_seq'::regclass)
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_generated: false
+    is_nullable: false
+    is_unique: true
+    is_indexed: false
+    is_primary_key: true
+    has_auto_increment: true
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: reviews
+  field: sort
+  type: integer
+  meta:
+    collection: reviews
+    conditions: null
+    display: null
+    display_options: null
+    field: sort
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: false
+    searchable: false
+    sort: 2
+    special: null
+    translations: null
+    validation: null
+    validation_message: null
+    width: half
+  schema:
+    name: sort
+    table: reviews
+    data_type: integer
+    default_value: 1
+    max_length: null
+    numeric_precision: 32
+    numeric_scale: 0
+    is_generated: false
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: reviews
+  field: author
+  type: string
+  meta:
+    collection: reviews
+    conditions: null
+    display: null
+    display_options: null
+    field: author
+    group: null
+    hidden: false
+    interface: input
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: true
+    sort: 3
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Автор
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: author
+    table: reviews
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_generated: false
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: reviews
+  field: text
+  type: text
+  meta:
+    collection: reviews
+    conditions: null
+    display: null
+    display_options: null
+    field: text
+    group: null
+    hidden: false
+    interface: input-multiline
+    note: null
+    options: null
+    readonly: false
+    required: true
+    searchable: true
+    sort: 4
+    special: null
+    translations:
+    - language: ru-RU
+      translation: Текст отзыва
+    validation: null
+    validation_message: null
+    width: full
+  schema:
+    name: text
+    table: reviews
+    data_type: text
+    default_value: null
+    max_length: null
+    numeric_precision: null
+    numeric_scale: null
+    is_generated: false
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+- collection: reviews
+  field: photo
+  type: string
+  meta:
+    collection: reviews
+    conditions: null
+    display: null
+    display_options: null
+    field: photo
+    group: null
+    hidden: false
+    interface: file
+    note: Фото автора (опционально)
+    options: null
+    readonly: false
+    required: false
+    searchable: false
+    sort: 5
+    special:
+    - file
+    translations: null
+    validation: null
+    validation_message: null
+    width: half
+  schema:
+    name: photo
+    table: reviews
+    data_type: character varying
+    default_value: null
+    max_length: 255
+    numeric_precision: null
+    numeric_scale: null
+    is_generated: false
+    is_nullable: true
+    is_unique: false
+    is_indexed: false
+    is_primary_key: false
+    has_auto_increment: false
+    foreign_key_table: null
+    foreign_key_column: null
+systemFields:
+- collection: directus_activity
+  field: timestamp
+  schema:
+    is_indexed: true
+- collection: directus_oauth_clients
+  field: date_created
+  schema:
+    is_indexed: true
+- collection: directus_oauth_codes
+  field: expires_at
+  schema:
+    is_indexed: true
+- collection: directus_oauth_codes
+  field: used_at
+  schema:
+    is_indexed: true
+- collection: directus_oauth_consents
+  field: client
+  schema:
+    is_indexed: true
+- collection: directus_oauth_tokens
+  field: code_hash
+  schema:
+    is_indexed: true
+- collection: directus_oauth_tokens
+  field: expires_at
+  schema:
+    is_indexed: true
+- collection: directus_oauth_tokens
+  field: previous_session
+  schema:
+    is_indexed: true
+- collection: directus_oauth_tokens
+  field: session
+  schema:
+    is_indexed: true
+- collection: directus_revisions
+  field: activity
+  schema:
+    is_indexed: true
+- collection: directus_revisions
+  field: parent
+  schema:
+    is_indexed: true
+- collection: directus_sessions
+  field: oauth_client
+  schema:
+    is_indexed: true
+relations:
+- collection: galleries
+  field: cover
+  related_collection: directus_files
+  meta:
+    junction_field: null
+    many_collection: galleries
+    many_field: cover
+    one_allowed_collections: null
+    one_collection: directus_files
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: galleries
+    column: cover
+    foreign_key_table: directus_files
+    foreign_key_column: id
+    constraint_name: galleries_cover_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: gallery_images
+  field: gallery
+  related_collection: galleries
+  meta:
+    junction_field: null
+    many_collection: gallery_images
+    many_field: gallery
+    one_allowed_collections: null
+    one_collection: galleries
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: images
+    sort_field: null
+  schema:
+    table: gallery_images
+    column: gallery
+    foreign_key_table: galleries
+    foreign_key_column: id
+    constraint_name: gallery_images_gallery_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: gallery_images
+  field: image
+  related_collection: directus_files
+  meta:
+    junction_field: null
+    many_collection: gallery_images
+    many_field: image
+    one_allowed_collections: null
+    one_collection: directus_files
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: gallery_images
+    column: image
+    foreign_key_table: directus_files
+    foreign_key_column: id
+    constraint_name: gallery_images_image_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: main_site
+  field: logo
+  related_collection: directus_files
+  meta:
+    junction_field: null
+    many_collection: main_site
+    many_field: logo
+    one_allowed_collections: null
+    one_collection: directus_files
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: main_site
+    column: logo
+    foreign_key_table: directus_files
+    foreign_key_column: id
+    constraint_name: main_site_logo_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: main_site
+  field: main_photo
+  related_collection: directus_files
+  meta:
+    junction_field: null
+    many_collection: main_site
+    many_field: main_photo
+    one_allowed_collections: null
+    one_collection: directus_files
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: main_site
+    column: main_photo
+    foreign_key_table: directus_files
+    foreign_key_column: id
+    constraint_name: main_site_main_photo_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: main_site_galleries
+  field: galleries_id
+  related_collection: galleries
+  meta:
+    junction_field: main_site_id
+    many_collection: main_site_galleries
+    many_field: galleries_id
+    one_allowed_collections: null
+    one_collection: galleries
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: main_site_galleries
+    column: galleries_id
+    foreign_key_table: galleries
+    foreign_key_column: id
+    constraint_name: main_site_galleries_galleries_id_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: main_site_galleries
+  field: main_site_id
+  related_collection: main_site
+  meta:
+    junction_field: galleries_id
+    many_collection: main_site_galleries
+    many_field: main_site_id
+    one_allowed_collections: null
+    one_collection: main_site
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: galleries
+    sort_field: null
+  schema:
+    table: main_site_galleries
+    column: main_site_id
+    foreign_key_table: main_site
+    foreign_key_column: id
+    constraint_name: main_site_galleries_main_site_id_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: models
+  field: main_photo
+  related_collection: directus_files
+  meta:
+    junction_field: null
+    many_collection: models
+    many_field: main_photo
+    one_allowed_collections: null
+    one_collection: directus_files
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: models
+    column: main_photo
+    foreign_key_table: directus_files
+    foreign_key_column: id
+    constraint_name: models_main_photo_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: models_galleries
+  field: galleries_id
+  related_collection: galleries
+  meta:
+    junction_field: models_id
+    many_collection: models_galleries
+    many_field: galleries_id
+    one_allowed_collections: null
+    one_collection: galleries
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: models_galleries
+    column: galleries_id
+    foreign_key_table: galleries
+    foreign_key_column: id
+    constraint_name: models_galleries_galleries_id_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: models_galleries
+  field: models_id
+  related_collection: models
+  meta:
+    junction_field: galleries_id
+    many_collection: models_galleries
+    many_field: models_id
+    one_allowed_collections: null
+    one_collection: models
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: galleries
+    sort_field: null
+  schema:
+    table: models_galleries
+    column: models_id
+    foreign_key_table: models
+    foreign_key_column: id
+    constraint_name: models_galleries_models_id_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: main_site_videos
+  field: videos_id
+  related_collection: videos
+  meta:
+    junction_field: main_site_id
+    many_collection: main_site_videos
+    many_field: videos_id
+    one_allowed_collections: null
+    one_collection: videos
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: main_site_videos
+    column: videos_id
+    foreign_key_table: videos
+    foreign_key_column: id
+    constraint_name: main_site_videos_videos_id_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: main_site_videos
+  field: main_site_id
+  related_collection: main_site
+  meta:
+    junction_field: videos_id
+    many_collection: main_site_videos
+    many_field: main_site_id
+    one_allowed_collections: null
+    one_collection: main_site
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: videos
+    sort_field: sort
+  schema:
+    table: main_site_videos
+    column: main_site_id
+    foreign_key_table: main_site
+    foreign_key_column: id
+    constraint_name: main_site_videos_main_site_id_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: models_videos
+  field: videos_id
+  related_collection: videos
+  meta:
+    junction_field: models_id
+    many_collection: models_videos
+    many_field: videos_id
+    one_allowed_collections: null
+    one_collection: videos
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: models_videos
+    column: videos_id
+    foreign_key_table: videos
+    foreign_key_column: id
+    constraint_name: models_videos_videos_id_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: models_videos
+  field: models_id
+  related_collection: models
+  meta:
+    junction_field: videos_id
+    many_collection: models_videos
+    many_field: models_id
+    one_allowed_collections: null
+    one_collection: models
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: videos
+    sort_field: sort
+  schema:
+    table: models_videos
+    column: models_id
+    foreign_key_table: models
+    foreign_key_column: id
+    constraint_name: models_videos_models_id_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: prices
+  field: image
+  related_collection: directus_files
+  meta:
+    junction_field: null
+    many_collection: prices
+    many_field: image
+    one_allowed_collections: null
+    one_collection: directus_files
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: prices
+    column: image
+    foreign_key_table: directus_files
+    foreign_key_column: id
+    constraint_name: prices_image_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL

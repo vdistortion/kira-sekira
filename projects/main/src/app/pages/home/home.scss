@@ -5,10 +5,18 @@
   &__item {
     @include smartgrid.row-flex();
     font-family: var(--font-first);
-    color: var(--title-color);
-    font-size: 38px;
+    font-size: 56px;
     letter-spacing: 0.1em;
     line-height: 1.1;
+    background: linear-gradient(135deg, #d4af37 0%, #f0e6c8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    @media (max-width: 1000px) {
+      font-size: 36px;
+    }
   }
 
   &__title {
@@ -40,6 +48,16 @@
     max-height: 600px;
   }
 
+  &__image img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.1);
+  }
+
   &__content {
     @include smartgrid.col();
     @include smartgrid.col-size(9.6);
@@ -58,5 +76,200 @@
       padding-left: 0;
       font-size: 24px;
     }
+  }
+}
+
+.home-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+
+  .section-title {
+    text-align: center;
+    color: var(--title-color);
+    font-family: var(--font-first);
+    font-size: 42px;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+}
+
+.home-prices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__item {
+    flex: 1 1 320px;
+    max-width: 420px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 10px;
+    padding: 24px;
+    background: rgba(20, 20, 20, 0.8);
+    transition: all 0.3s;
+    overflow: hidden;
+
+    &:hover {
+      border-color: var(--accent);
+      box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15);
+      transform: translateY(-5px);
+    }
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  &__price {
+    font-size: 32px;
+    color: var(--title-color);
+    font-family: var(--font-first);
+  }
+
+  &__name {
+    font-size: 24px;
+    letter-spacing: 0.08em;
+    color: var(--title-color);
+  }
+
+  &__img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 0;
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--default-color);
+  }
+}
+
+.home-reviews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.review-card {
+  flex: 1 1 280px;
+  max-width: 360px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  background: rgba(20, 20, 20, 0.8);
+
+  &__photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+  }
+
+  &__author {
+    font-family: var(--font-first);
+    color: var(--title-color);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--default-color);
+  }
+}
+
+.logo__img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.about-block {
+  &__title {
+    font-size: 36px;
+    color: var(--title-color);
+    font-family: var(--font-first);
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+  }
+
+  &__body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #b0b0b0;
+
+    p {
+      color: var(--accent);
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+
+      &::before {
+        content: "▸";
+        color: var(--accent);
+        font-size: 20px;
+        flex-shrink: 0;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+.home-page__videos {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+
+  .section-title {
+    text-align: center;
+    color: var(--title-color);
+    font-family: var(--font-first);
+    font-size: 42px;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+}
+
+.videos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.video-card {
+  flex: 1 1 360px;
+  max-width: 560px;
+
+  &__iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 10px;
   }
 }

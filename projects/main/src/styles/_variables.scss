@@ -14,7 +14,8 @@
   --default-color: var(--color7); // цвет сетки
   --bg-color: var(--color1); // цвет фона
   --tag-color: var(--color6); // заголовок тегов и теги в карточке
-  --title-color: var(--color4); // цвет лого и заголовки
+  --accent: #d4af37; // золотой акцент (дизайн)
+  --title-color: var(--accent); // цвет лого и заголовки
   --hover-card: var(--color3); // активный проект
   --hover-card-opacity: var(--color3-opacity); // активный проект полупрозрачный
   --project-card: var(--color6); // проект

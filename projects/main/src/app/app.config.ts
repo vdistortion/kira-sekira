@@ -4,8 +4,10 @@ import {
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
 import { NgParticlesService } from '@tsparticles/angular';
 import { loadSlim } from '@tsparticles/slim';
 import { DIRECTUS_API_URL } from 'shared';
@@ -15,9 +17,19 @@ import { environment } from '../environments/environment';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withInMemoryScrolling({
+        anchorScrolling: 'enabled',
+        scrollPositionRestoration: 'enabled',
+      }),
+    ),
     provideClientHydration(withEventReplay()),
     provideAppInitializer(() => {
+      // Particles need a browser environment; skip on the server so SSR can
+      // reach app stability (and prerender real content) instead of hanging.
+      if (isPlatformServer(inject(PLATFORM_ID))) return;
       const particlesService = inject(NgParticlesService);
       return particlesService.init(loadSlim);
     }),

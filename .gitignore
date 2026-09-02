@@ -33,3 +33,10 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Migration backups
+/backups/
+
+# Python caches
+__pycache__/
+*.pyc

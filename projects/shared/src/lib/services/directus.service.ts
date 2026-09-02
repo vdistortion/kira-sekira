@@ -29,24 +29,61 @@ export class DirectusService {
   async getMainSite(): Promise<MainSite> {
     const data = (await this.client.request(
       readSingleton('main_site', {
-        fields: ['*', 'main_photo.*', 'logo.*', 'galleries.*', 'galleries.cover.*'],
+        fields: [
+          '*',
+          'main_photo.*',
+          'logo.*',
+          'galleries.galleries_id.*',
+          'galleries.galleries_id.cover.*',
+          'videos.videos_id.*',
+        ],
       }),
-    )) as MainSite;
+    )) as any;
 
     return {
       ...data,
       main_photo_url: data.main_photo ? this.getFileUrl(data.main_photo) : '',
       logo_url: data.logo ? this.getFileUrl(data.logo) : '',
-      galleries: (data.galleries || []).map((g: Gallery) => ({
-        ...g,
-        cover_url: g.cover ? this.getFileUrl(g.cover) : '',
+      videos: (data.videos || []).map((v: any) => ({
+        url: v.videos_id?.url,
+        title: v.videos_id?.title,
       })),
+      galleries: (data.galleries || []).map((g: any) => {
+        const gal = g.galleries_id || {};
+        return {
+          ...gal,
+          cover_url: gal.cover ? this.getFileUrl(gal.cover) : '',
+        };
+      }),
     };
   }
 
   /** Получить общие контакты */
   async getContacts(): Promise<Contacts> {
     return this.client.request(readSingleton('contacts')) as Promise<Contacts>;
+  }
+
+  /** Получить название сайта (для логотипа) */
+  async getSiteName(): Promise<string> {
+    const data = (await this.client.request(
+      readSingleton('main_site', { fields: ['site_name'] }),
+    )) as { site_name?: string };
+    return data.site_name || '';
+  }
+
+  /** Получить отзывы (выводятся на главном сайте) */
+  async getReviews(): Promise<any[]> {
+    const items = (await this.client.request(
+      readItems('reviews', {
+        fields: ['*', 'photo.*'],
+        sort: ['sort'],
+        limit: -1,
+      }),
+    )) as any[];
+    return (items || []).map((r) => ({
+      ...r,
+      image_url: r.photo ? this.getFileUrl(r.photo) : '',
+    }));
   }
 
   /** Получить список услуг */
@@ -69,7 +106,13 @@ export class DirectusService {
     const items = (await this.client.request(
       readItems('models', {
         filter: { subdomain: { _eq: subdomain } },
-        fields: ['*', 'main_photo.*', 'galleries.*', 'galleries.cover.*'],
+        fields: [
+          '*',
+          'main_photo.*',
+          'galleries.galleries_id.*',
+          'galleries.galleries_id.cover.*',
+          'videos.videos_id.*',
+        ],
       }),
     )) as Model[];
 
@@ -81,10 +124,17 @@ export class DirectusService {
     return {
       ...model,
       main_photo_url: model.main_photo ? this.getFileUrl(model.main_photo) : '',
-      galleries: (model.galleries || []).map((g: Gallery) => ({
-        ...g,
-        cover_url: g.cover ? this.getFileUrl(g.cover) : '',
+      videos: (model.videos || []).map((v: any) => ({
+        url: v.videos_id?.url,
+        title: v.videos_id?.title,
       })),
+      galleries: (model.galleries || []).map((g: any) => {
+        const gal = g.galleries_id || {};
+        return {
+          ...gal,
+          cover_url: gal.cover ? this.getFileUrl(gal.cover) : '',
+        };
+      }),
     };
   }
 
@@ -93,7 +143,7 @@ export class DirectusService {
     const items = (await this.client.request(
       readItems('galleries', {
         filter: { slug: { _eq: slug } },
-        fields: ['*', 'images.*', 'images.image.*'],
+        fields: ['*', 'cover.*', 'images.*', 'images.image.*'],
       }),
     )) as any[];
 
@@ -113,24 +163,26 @@ export class DirectusService {
   async getAllMainSlugs(): Promise<string[]> {
     const main = (await this.client.request(
       readSingleton('main_site', {
-        fields: ['galleries.slug'],
+        fields: ['galleries.galleries_id.slug'],
       }),
-    )) as { galleries: Gallery[] };
-    return (main.galleries || []).map((g) => g.slug);
+    )) as { galleries: any[] };
+    return (main.galleries || [])
+      .map((g) => g.galleries_id?.slug)
+      .filter((s: string | undefined): s is string => !!s);
   }
 
   /** Все slug'и галерей всех моделей (SSG) */
   async getAllModelsSlugs(): Promise<string[]> {
     const models = (await this.client.request(
       readItems('models', {
-        fields: ['galleries.slug'],
+        fields: ['galleries.galleries_id.slug'],
       }),
-    )) as Model[];
+    )) as any[];
 
     const slugs: string[] = [];
     for (const m of models) {
       for (const g of m.galleries || []) {
-        slugs.push(g.slug);
+        if (g.galleries_id?.slug) slugs.push(g.galleries_id.slug);
       }
     }
     return slugs;

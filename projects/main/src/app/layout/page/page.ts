@@ -56,4 +56,11 @@ export class Page {
       this.scroll.animateScroll(this.projectsElement.nativeElement);
     }
   }
+
+  scrollToSection(id: string) {
+    const el = typeof document !== 'undefined' ? document.getElementById(id) : null;
+    if (el && this.scroll) {
+      this.scroll.animateScroll(el);
+    }
+  }
 }

@@ -13,6 +13,8 @@ export interface MainSite {
   main_photo?: DirectusFile;
   working_hours?: string;
   advantages_md?: string;
+  tagline?: string;
+  experience_since?: number;
   videos?: Array<{ url: string; title: string }>;
   galleries?: Gallery[];
   // вспомогательные, формируемые сервисом
