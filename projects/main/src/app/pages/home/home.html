@@ -5,6 +5,12 @@
     <p style="text-align: center; color: red">{{ error() }}</p>
   } @else {
     <div class="home-page">
+      @if (tagline()) {
+        <h1 class="home-page__hero-title">{{ tagline() }}</h1>
+      }
+      @if (experienceText()) {
+        <p class="home-page__hero-experience">{{ experienceText() }}</p>
+      }
       <div class="home-page__item">
         <div class="home-page__image">
           <img [src]="aboutImage()" [alt]="projectsName()" />

@@ -49,6 +49,14 @@ export class DirectusService {
     return this.client.request(readSingleton('contacts')) as Promise<Contacts>;
   }
 
+  /** Получить название сайта (для логотипа) */
+  async getSiteName(): Promise<string> {
+    const data = (await this.client.request(
+      readSingleton('main_site', { fields: ['site_name'] }),
+    )) as { site_name?: string };
+    return data.site_name || '';
+  }
+
   /** Получить список услуг */
   async getPrices(): Promise<PriceItem[]> {
     const items = (await this.client.request(

@@ -1292,6 +1292,90 @@ fields:
       foreign_key_table: null
       foreign_key_column: null
   - collection: main_site
+    field: tagline
+    type: string
+    meta:
+      collection: main_site
+      conditions: null
+      display: null
+      display_options: null
+      field: tagline
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: false
+      sort: 9
+      special: null
+      translations:
+        - language: ru-RU
+          translation: Слоган / заголовок
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: tagline
+      table: main_site
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: main_site
+    field: experience_since
+    type: integer
+    meta:
+      collection: main_site
+      conditions: null
+      display: null
+      display_options: null
+      field: experience_since
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: false
+      sort: 10
+      special: null
+      translations:
+        - language: ru-RU
+          translation: Год начала работы (для расчёта опыта)
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: experience_since
+      table: main_site
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: main_site
     field: galleries
     type: alias
     meta:

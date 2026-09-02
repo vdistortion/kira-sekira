@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { DirectusService } from 'shared';
 
 @Component({
   selector: 'app-logo',
@@ -7,5 +8,13 @@ import { Component, signal } from '@angular/core';
   styleUrl: './logo.scss',
 })
 export class Logo {
-  title = signal('Kira Sekira');
+  private studio = inject(DirectusService);
+  title = signal('');
+
+  constructor() {
+    this.studio
+      .getSiteName()
+      .then((name) => this.title.set(name))
+      .catch((err) => console.error('Failed to load site name', err));
+  }
 }

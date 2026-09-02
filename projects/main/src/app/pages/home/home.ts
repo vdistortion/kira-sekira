@@ -16,6 +16,8 @@ export class Home {
 
   aboutImage = signal('');
   aboutMarkdown = signal('');
+  tagline = signal('');
+  experienceText = signal('');
   galleries = signal<any[]>([]);
   projectsName = signal('Проекты');
   loading = signal(true);
@@ -29,6 +31,11 @@ export class Home {
       .then((data) => {
         this.aboutImage.set(data.main_photo_url || '');
         this.aboutMarkdown.set(data.advantages_md || '');
+        this.tagline.set(data.tagline || '');
+        if (data.experience_since) {
+          const years = new Date().getFullYear() - data.experience_since;
+          this.experienceText.set(`Опыт работы ${years} лет`);
+        }
         this.galleries.set(data.galleries || []);
         this.loading.set(false);
       })
