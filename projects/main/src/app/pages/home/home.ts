@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { DirectusService, MarkdownPipe } from 'shared';
+import { DirectusService, MarkdownPipe, YoutubeEmbedPipe } from 'shared';
 import { Page } from '../../layout/page/page';
 import { ProjectList } from '../../features/projects/project-list/project-list';
 
 @Component({
   selector: 'app-home',
-  imports: [MarkdownPipe, Page, ProjectList],
+  imports: [MarkdownPipe, YoutubeEmbedPipe, Page, ProjectList],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -18,6 +18,7 @@ export class Home {
   aboutMarkdown = signal('');
   tagline = signal('');
   experienceText = signal('');
+  videos = signal<any[]>([]);
   galleries = signal<any[]>([]);
   projectsName = signal('Проекты');
   loading = signal(true);
@@ -36,6 +37,7 @@ export class Home {
           const years = new Date().getFullYear() - data.experience_since;
           this.experienceText.set(`Опыт работы ${years} лет`);
         }
+        this.videos.set(data.videos || []);
         this.galleries.set(data.galleries || []);
         this.loading.set(false);
       })
