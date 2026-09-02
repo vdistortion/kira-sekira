@@ -1,20 +1,13 @@
-import { createRequire } from 'node:module';
-import { readFile, writeFile, unlink } from 'node:fs/promises';
+import { stat, unlink } from 'node:fs/promises';
 import { join } from 'node:path';
-
-const require = createRequire(import.meta.url);
-let sharp = null;
-try {
-  sharp = require('sharp');
-} catch {
-  // sharp is optional; without it the extension is a no-op.
-}
+import { imageProcessing } from 'image-manifest/image-processing';
 
 /**
  * Directus hook: when a non-webp image is uploaded, convert it to webp and
- * replace the stored file (mirrors the image-manifest tool: sharp webp, default
- * quality, no resize). Non-image files and already-webp images pass through
- * untouched. Failures are logged but never block the upload.
+ * replace the stored file. Delegates the actual conversion to the project's own
+ * `image-manifest` library (installed into the container), mirroring how the
+ * static-site pipeline worked. Non-image files and already-webp images pass
+ * through untouched. Failures are logged but never block the upload.
  *
  * Storage is the local driver, so we read/write the file directly under the
  * uploads root (STORAGE_LOCAL_ROOT, default /directus/uploads).
@@ -24,7 +17,6 @@ export default function registerHook({ action }, { services, getSchema, env, log
   const UPLOAD_DIR = env.STORAGE_LOCAL_ROOT || '/directus/uploads';
 
   action('files.upload', async (meta, context) => {
-    if (!sharp) return;
     const database = context.database;
     const schema = await getSchema();
     try {
@@ -36,34 +28,29 @@ export default function registerHook({ action }, { services, getSchema, env, log
       if (!file || !file.type || !file.type.startsWith('image/')) return;
       if (file.type === 'image/webp') return;
 
-      const srcPath = join(UPLOAD_DIR, file.filename_disk);
-      let input;
+      const srcDisk = file.filename_disk;
+      const srcPath = join(UPLOAD_DIR, srcDisk);
+
+      // image-manifest writes <name>.webp next to the original.
+      await imageProcessing({ name: srcDisk, path: srcPath, dist: UPLOAD_DIR }, null, null, 'webp');
+
+      const newDisk = srcDisk.replace(/\.[^./\\]+$/, '.webp');
+      let size = file.filesize;
       try {
-        input = await readFile(srcPath);
+        size = (await stat(join(UPLOAD_DIR, newDisk))).size;
       } catch {
-        return;
+        /* keep previous size if stat fails */
       }
-
-      const webp = await sharp(input, { animated: true, limitInputPixels: false })
-        .webp({ quality: 82 })
-        .toBuffer();
-      const info = await sharp(webp).metadata();
-
-      const newDisk = file.filename_disk.replace(/\.[^./\\]+$/, '.webp');
-      const newPath = join(UPLOAD_DIR, newDisk);
-      await writeFile(newPath, webp);
-      if (newDisk !== file.filename_disk) {
+      if (newDisk !== srcDisk) {
         await unlink(srcPath).catch(() => {});
       }
-      const newDownload = (file.filename_download || file.filename_disk).replace(/\.[^./\\]+$/, '.webp');
+      const newDownload = (file.filename_download || srcDisk).replace(/\.[^./\\]+$/, '.webp');
 
       await items.updateOne(id, {
         filename_disk: newDisk,
         filename_download: newDownload,
         type: 'image/webp',
-        filesize: webp.length,
-        width: info.width ?? null,
-        height: info.height ?? null,
+        filesize: size,
       });
 
       logger?.info?.('[convert-to-webp] ' + id + ' -> ' + newDisk);

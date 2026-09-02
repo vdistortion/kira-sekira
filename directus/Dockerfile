@@ -1,9 +1,9 @@
 FROM directus/directus:12.0.2
 
-# Directus 12 is installed with pnpm, so `npm install` in /directus fails. Install
-# sharp globally and expose it via NODE_PATH so the convert-to-webp extension can
-# `require('sharp')` to re-encode uploaded images to webp on upload.
+# Install the project's own image-manifest library globally (it pulls sharp as a
+# dependency) and symlink it into /directus/node_modules so the convert-to-webp
+# extension can `import` it for on-upload webp conversion.
 USER root
-RUN npm install -g sharp
-ENV NODE_PATH=/usr/local/lib/node_modules
+RUN npm install -g image-manifest
+RUN ln -s /usr/local/lib/node_modules/image-manifest /directus/node_modules/image-manifest
 USER node
