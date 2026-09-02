@@ -193,13 +193,19 @@ def main():
     if os.path.exists(about):
         main_photo_id = upload_file(about, "about", "main_site__about.jpg", tok)["id"]
 
+    # Ensure the main_site singleton row exists so it gets a real (non-null) PK;
+    # an m2m junction pointing at a null PK cannot be expanded on read.
     ms = req("GET", "/items/main_site", tok)["data"]
+    if not ms or ms.get("id") is None:
+        ms = req("PATCH", "/items/main_site", tok, {"site_name": "Kira Sekira"})["data"]
     msid = ms["id"]
+    # Clear existing gallery links, then relink cleanly.
+    rows = req("GET", "/items/main_site_galleries?limit=-1&fields=id", tok)["data"]
+    for r in rows:
+        req("DELETE", f"/items/main_site_galleries/{r['id']}", tok)
     for i, gid in enumerate(gallery_ids):
-        existing = req("GET", f"/items/main_site_galleries?filter[main_site_id][_eq]={msid}&filter[galleries_id][_eq]={gid}&limit=1", tok)
-        if not existing["data"]:
-            req("POST", "/items/main_site_galleries", tok,
-                {"main_site_id": msid, "galleries_id": gid, "sort": i + 1})
+        req("POST", "/items/main_site_galleries", tok,
+            {"main_site_id": msid, "galleries_id": gid, "sort": i + 1})
     patch = {}
     if main_photo_id:
         patch["main_photo"] = main_photo_id
