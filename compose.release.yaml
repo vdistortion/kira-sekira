@@ -37,6 +37,8 @@ services:
       CORS_ENABLED: true
       CORS_ORIGIN: ${CORS_ORIGIN}
       PUBLIC_URL: ${PUBLIC_URL}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
     volumes:
       - directus_uploads_release:/directus/uploads
       - ./directus/snapshots:/directus/snapshots
