@@ -24,6 +24,7 @@ services:
       context: ./directus
       dockerfile: Dockerfile
     image: kira-studio-release:12.0.2
+    pull_policy: build
     environment:
       KEY: ${DIRECTUS_KEY}
       SECRET: ${DIRECTUS_SECRET}
@@ -36,6 +37,8 @@ services:
       CORS_ENABLED: true
       CORS_ORIGIN: ${CORS_ORIGIN}
       PUBLIC_URL: ${PUBLIC_URL}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
     volumes:
       - directus_uploads_release:/directus/uploads
       - ./directus/snapshots:/directus/snapshots
