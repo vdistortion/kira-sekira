@@ -8,6 +8,11 @@ export class HostService {
   /** Возвращает текущий поддомен или тестовую строку для localhost */
   getSubdomain(): string {
     if (isPlatformBrowser(this.platformId)) {
+      // Локальный предпросмотр конкретной модели: ?m=model2
+      const override = new URLSearchParams(window.location.search).get('m');
+      if (override) {
+        return override;
+      }
       const hostname = window.location.hostname;
       // Если localhost или IP, возвращаем тестовый поддомен
       if (

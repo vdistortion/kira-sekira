@@ -13,7 +13,10 @@ services:
       - net
 
   studio:
-    image: directus/directus:12.0.2
+    build:
+      context: ./directus
+      dockerfile: Dockerfile
+    image: kira-studio-dev:12.0.2
     container_name: kira-studio-dev
     environment:
       KEY: ${DIRECTUS_KEY}
@@ -34,6 +37,7 @@ services:
     volumes:
       - directus_uploads:/directus/uploads
       - ./directus/snapshots:/directus/snapshots
+      - ./directus/extensions:/directus/extensions
     depends_on:
       - db
     networks:

@@ -36,3 +36,7 @@ Thumbs.db
 
 # Migration backups
 /backups/
+
+# Python caches
+__pycache__/
+*.pyc

@@ -26,6 +26,16 @@
 Пререндер (SSG) при сборке в проде берёт данные из прод-API; `ng serve`
 (дев) — из локального API.
 
+### Обработка изображений (webp)
+
+Directus 12 не бандлит `sharp`, поэтому образ собирается кастомным
+`directus/Dockerfile` (поверх `directus:12.0.2`, ставит `sharp` глобально) и
+монтирует `directus/extensions`. Расширение `convert-to-webp`
+(`directus/extensions/convert-to-webp`) — это hook: при загрузке любой
+не-webp картинки она пережимается в webp и перезаписывает хранилище
+(аналогично утилите `image-manifest`). Оригинал не сохраняется. Файлы,
+загруженные до включения расширения, остаются как есть.
+
 ## Быстрый старт (локально)
 
 Требуется: Docker, Node.js 20+, Angular CLI (`npm i -g @angular/cli`).
@@ -71,10 +81,14 @@ npx ng serve models --port 4201    # сайт модели   -> http://localhost
 - `directus/setup/permissions.py` — создаёт/чинит политики доступа.
 - `directus/setup/seed.py` — загружает фото и создаёт галереи основного сайта.
 - `directus/setup/seed_core.py` — тексты главной, контакты, прайсы, видео.
-- `directus/setup/seed_models.py` — демо-модель (поддомен `model1`).
+- `directus/setup/seed_models.py` — демо-модели (поддомены `model1`, `model2`).
 
 Запуск сидов: `DIRECTUS_URL=... ADMIN_EMAIL=... ADMIN_PASSWORD=... python3
 directus/setup/seed.py` и т.д. Все идемпотентны.
+
+Локальный предпросмотр конкретной модели: `ng serve models` слушает один
+хост, поэтому поддомен можно переопределить через `?m=<subdomain>`
+(например, `http://localhost:4201/?m=model2`).
 
 ## Деплой
 
