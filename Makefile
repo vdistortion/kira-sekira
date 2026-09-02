@@ -1,4 +1,4 @@
-.PHONY: schema-dev schema-release \
+.PHONY: schema-dev schema-release permissions \
          db-dump-dev db-dump-prod db-restore-dev db-restore-prod \
          uploads-dump-dev uploads-dump-prod uploads-restore-dev uploads-restore-prod
 
@@ -9,10 +9,20 @@ BACKUP_DIR := backups
 schema-dev: COMPOSE = $(COMPOSE_DEV)
 schema-release: COMPOSE = $(COMPOSE_PROD)
 
+# Ensure the studio boots first so Directus bootstraps an admin user (when the
+# DB is fresh), apply the project schema, then restore access policies.
 schema-dev schema-release:
-	$(COMPOSE) stop studio
-	$(COMPOSE) run --rm studio node cli.js schema apply --yes /directus/snapshots/schema.yaml
-	$(COMPOSE) start studio
+	$(COMPOSE) up -d studio
+	@echo "Waiting for Directus to finish bootstrapping..."
+	@until curl -s -o /dev/null http://localhost:8055/server/health; do sleep 2; done
+	$(COMPOSE) exec -T studio node cli.js schema apply --yes /directus/snapshots/schema.yaml
+	$(COMPOSE) restart studio
+	@echo "Applying access policies..."
+	@set -a; . ./.env; set +a; python3 directus/setup/permissions.py
+
+# Re-apply access policies independently of schema (idempotent).
+permissions:
+	@set -a; . ./.env; set +a; python3 directus/setup/permissions.py
 
 # --- Data migration (DB + uploads) ---
 # Cross-machine flow: run db-dump-* on the source machine, copy the produced
