@@ -11,7 +11,7 @@ schema-release: COMPOSE = $(COMPOSE_PROD)
 
 schema-dev schema-release:
 	$(COMPOSE) stop studio
-	$(COMPOSE) run --rm studio directus schema apply /directus/snapshots/schema.yaml
+	$(COMPOSE) run --rm studio node cli.js schema apply --yes /directus/snapshots/schema.yaml
 	$(COMPOSE) start studio
 
 # --- Data migration (DB + uploads) ---

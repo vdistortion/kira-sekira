@@ -20,7 +20,7 @@ services:
 
   studio:
     container_name: kira-studio-release
-    image: directus/directus:12
+    image: directus/directus:12.0.2
     environment:
       KEY: ${DIRECTUS_KEY}
       SECRET: ${DIRECTUS_SECRET}
