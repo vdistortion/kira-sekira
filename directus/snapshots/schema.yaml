@@ -726,7 +726,7 @@ fields:
       width: full
   - collection: galleries
     field: slug
-    type: uuid
+    type: string
     meta:
       collection: galleries
       conditions: null
@@ -742,8 +742,7 @@ fields:
       required: true
       searchable: true
       sort: 3
-      special:
-        - uuid
+      special: null
       translations:
         - language: ru-RU
           translation: URL
@@ -753,7 +752,7 @@ fields:
     schema:
       name: slug
       table: galleries
-      data_type: uuid
+      data_type: string
       default_value: null
       max_length: null
       numeric_precision: null
