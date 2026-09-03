@@ -120,9 +120,13 @@ def fetch_bytes(url):
 
 
 def upload_placeholder(seed, title, tok):
-    try:
-        data = fetch_bytes("https://picsum.photos/seed/%s/900/1200" % seed)
-    except Exception:
+    data = None
+    if seed.isascii():
+        try:
+            data = fetch_bytes("https://picsum.photos/seed/%s/900/1200" % urllib.parse.quote(seed))
+        except Exception:
+            data = None
+    if not data:
         data = make_placeholder(seed)
     if data[:8] == b"\x89PNG\r\n\x1a\n":
         ext, ctype = ".png", "image/png"
@@ -144,26 +148,13 @@ def upload_placeholder(seed, title, tok):
     except Exception as e:
         print("  upload failed for %s: %s" % (seed, e), file=sys.stderr)
         return None
-    _mark_public(data, tok)
     return data
-
-
-def _mark_public(f, tok):
-    if not f or not f.get("id"):
-        return
-    try:
-        if not f.get("public"):
-            req("PATCH", "/items/files/" + f["id"], tok, {"public": True})
-    except Exception as e:
-        print("  could not mark %s public: %s" % (f.get("title"), e), file=sys.stderr)
 
 
 def ensure_file(seed, title, tok):
     existing = req("GET", "/files?filter[title][_eq]=" + urllib.parse.quote(title) + "&limit=1", tok)
     if existing and existing.get("data"):
-        f = existing["data"][0]
-        _mark_public(f, tok)
-        return f
+        return existing["data"][0]
     return upload_placeholder(seed, title, tok)
 
 
