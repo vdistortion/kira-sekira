@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Seed demo galleries (albums) and placeholder media into Directus.
 
-Downloads real placeholder photographs from picsum.photos, uploads them as
-Directus files (stored in the configured storage, e.g. R2), then builds a few
-galleries (cover + images), links them to the main site and the demo models,
-and sets hero/main photos + price covers. Idempotent by slug/title.
+Generates gradient placeholder images on the fly (pure stdlib PNG, no binaries
+in the repo, no external download) and uploads them as Directus files (stored
+in the configured storage, e.g. R2). Falls back to picsum.photos if reachable.
+Then builds a few galleries (cover + images), links them to the main site and
+the demo models, and sets hero/main photos + price covers. Idempotent by slug/title.
 
 Env: DIRECTUS_URL (default http://localhost:8055), ADMIN_EMAIL, ADMIN_PASSWORD
 """
@@ -12,6 +13,9 @@ import os
 import sys
 import json
 import time
+import math
+import zlib
+import struct
 import urllib.request
 import urllib.error
 import urllib.parse
@@ -71,6 +75,36 @@ def login():
     __import__("sys").exit(1)
 
 
+def _png(w, h, rows):
+    raw = b"".join(b"\x00" + row for row in rows)
+    comp = zlib.compress(raw, 9)
+
+    def chunk(t, d):
+        c = t + d
+        return struct.pack(">I", len(d)) + c + struct.pack(">I", zlib.crc32(c) & 0xFFFFFFFF)
+
+    sig = b"\x89PNG\r\n\x1a\n"
+    ihdr = struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0)
+    return sig + chunk(b"IHDR", ihdr) + chunk(b"IDAT", comp) + chunk(b"IEND", b"")
+
+
+def make_placeholder(seed):
+    """Generate a colored gradient PNG placeholder without external deps."""
+    w, h = 900, 1200
+    hue = float(abs(hash(seed))) % 6.2831853
+    rows = []
+    for y in range(h):
+        row = bytearray()
+        for x in range(w):
+            t = x / w * 0.6 + y / h * 0.4
+            r = 140 + 100 * math.sin(t * 6.283 + hue)
+            g = 140 + 100 * math.sin(t * 6.283 + hue + 2.094)
+            b = 140 + 100 * math.sin(t * 6.283 + hue + 4.188)
+            row += bytes((max(0, min(255, int(r))), max(0, min(255, int(g))), max(0, min(255, int(b)))))
+        rows.append(bytes(row))
+    return _png(w, h, rows)
+
+
 def fetch_bytes(url):
     last = None
     for _ in range(4):
@@ -81,20 +115,23 @@ def fetch_bytes(url):
         except Exception as e:
             last = e
             time.sleep(3)
-    print("  download failed after retries:", last, file=sys.stderr)
+    print("  picsum unavailable:", last, file=sys.stderr)
     raise last
 
 
 def upload_placeholder(seed, title, tok):
     try:
         data = fetch_bytes("https://picsum.photos/seed/%s/900/1200" % seed)
-    except Exception as e:
-        print("  placeholder download failed for %s: %s" % (seed, e), file=__import__("sys").stderr)
-        return None
+    except Exception:
+        data = make_placeholder(seed)
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        ext, ctype = ".png", "image/png"
+    else:
+        ext, ctype = ".jpg", "image/jpeg"
     body = b""
     body += b"--" + BOUND + b"\r\n"
-    body += b'Content-Disposition: form-data; name="file"; filename="' + seed.encode() + b'.jpg"\r\n'
-    body += b"Content-Type: image/jpeg\r\n\r\n" + data + b"\r\n"
+    body += b'Content-Disposition: form-data; name="file"; filename="' + seed.encode() + ext.encode() + b'"\r\n'
+    body += b"Content-Type: " + ctype.encode() + b"\r\n\r\n" + data + b"\r\n"
     body += b"--" + BOUND + b"\r\n"
     body += b'Content-Disposition: form-data; name="title"\r\n\r\n' + title.encode() + b"\r\n"
     body += b"--" + BOUND + b"--\r\n"
@@ -198,6 +235,10 @@ def main():
         if img:
             req("PATCH", "/items/prices/" + pid, tok, {"image": img["id"]})
 
+    # Summary: how many real gallery images ended up linked
+    gi = req("GET", "/items/gallery_images?limit=-1&fields=id", tok).get("data") or []
+    files = req("GET", "/files?limit=-1&fields=id", tok).get("data") or []
+    print("SUMMARY: %d files, %d gallery_images linked" % (len(files), len(gi)))
     print("DONE demo galleries/media seeded")
 
 
