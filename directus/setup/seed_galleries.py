@@ -103,16 +103,30 @@ def upload_placeholder(seed, title, tok):
     r.add_header("Authorization", "Bearer " + tok)
     try:
         with urllib.request.urlopen(r, timeout=120) as resp:
-            return json.loads(resp.read().decode())["data"]
+            data = json.loads(resp.read().decode())["data"]
     except Exception as e:
-        print("  upload failed for %s: %s" % (seed, e), file=__import__("sys").stderr)
+        print("  upload failed for %s: %s" % (seed, e), file=sys.stderr)
         return None
+    _mark_public(data, tok)
+    return data
+
+
+def _mark_public(f, tok):
+    if not f or not f.get("id"):
+        return
+    try:
+        if not f.get("public"):
+            req("PATCH", "/items/files/" + f["id"], tok, {"public": True})
+    except Exception as e:
+        print("  could not mark %s public: %s" % (f.get("title"), e), file=sys.stderr)
 
 
 def ensure_file(seed, title, tok):
     existing = req("GET", "/files?filter[title][_eq]=" + urllib.parse.quote(title) + "&limit=1", tok)
     if existing and existing.get("data"):
-        return existing["data"][0]
+        f = existing["data"][0]
+        _mark_public(f, tok)
+        return f
     return upload_placeholder(seed, title, tok)
 
 

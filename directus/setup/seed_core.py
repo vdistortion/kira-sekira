@@ -81,7 +81,13 @@ def upload_file(path, title, disk_name, tok):
     r.add_header("Content-Type", "multipart/form-data; boundary=" + BOUND.decode())
     r.add_header("Authorization", "Bearer " + tok)
     with urllib.request.urlopen(r, timeout=120) as resp:
-        return json.loads(resp.read().decode())["data"]
+        data = json.loads(resp.read().decode())["data"]
+    try:
+        if not data.get("public"):
+            req("PATCH", "/items/files/" + data["id"], tok, {"public": True})
+    except Exception as e:
+        print("  could not mark %s public: %s" % (disk_name, e), file=sys.stderr)
+    return data
 
 
 def main():
