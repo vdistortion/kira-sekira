@@ -9,6 +9,7 @@ price images and videos are skipped when already present.
 Env: DIRECTUS_URL (default http://localhost:8055), ADMIN_EMAIL, ADMIN_PASSWORD
 """
 import os
+import sys
 import json
 import urllib.request
 import urllib.error

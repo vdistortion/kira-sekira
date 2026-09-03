@@ -85,7 +85,8 @@ def main():
         admin_policy = next(a["policy"] for a in access if a["role"] is not None)
 
     admin_perms = [
-        {**empty_perm(), "action": a, "collection": "*", "fields": ["*"]}
+        {**empty_perm(), "action": a, "collection": "*",
+         "fields": ["*", "sort"] if a == "read" else ["*"]}
         for a in ("read", "create", "update", "delete")
     ]
     # System collections (e.g. directus_files) are NOT covered by `collection: "*"`
