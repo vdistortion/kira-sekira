@@ -22,19 +22,32 @@ PASSWORD = os.environ["ADMIN_PASSWORD"]
 BOUND = b"opencodeboundary12345"
 
 
-def req(method, path, token=None, body=None):
+def req(method, path, token=None, body=None, public_fallback=True):
     url = BASE + path
     data = json.dumps(body).encode() if body is not None else None
-    r = urllib.request.Request(url, data=data, method=method)
-    r.add_header("Content-Type", "application/json")
-    if token:
-        r.add_header("Authorization", "Bearer " + token)
+
+    def _do(tok):
+        r = urllib.request.Request(url, data=data, method=method)
+        r.add_header("Content-Type", "application/json")
+        if tok:
+            r.add_header("Authorization", "Bearer " + tok)
+        with urllib.request.urlopen(r, timeout=30) as resp:
+            raw = resp.read().decode()
+            return json.loads(raw) if raw else None
+
     for _ in range(3):
         try:
-            with urllib.request.urlopen(r, timeout=30) as resp:
-                raw = resp.read().decode()
-                return json.loads(raw) if raw else None
+            return _do(token)
         except urllib.error.HTTPError as e:
+            # Reads that the admin token is not permitted to perform can fall back
+            # to the public policy (reviews/files are publicly readable for demo).
+            if public_fallback and method == "GET" and token and e.code == 403:
+                print("  (read denied for admin, retrying without token)", file=sys.stderr)
+                try:
+                    return _do(None)
+                except urllib.error.HTTPError:
+                    pass
+                raise
             detail = ""
             try:
                 detail = e.read().decode()
