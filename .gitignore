@@ -37,6 +37,9 @@ Thumbs.db
 # Migration backups
 /backups/
 
+# Local environment (secrets) — keep .env.example as a tracked template
+.env
+
 # Python caches
 __pycache__/
 *.pyc

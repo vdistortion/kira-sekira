@@ -30,6 +30,13 @@ export default function registerHook({ action }, { services, getSchema, env, log
       // Logos are authored as SVG with an embedded font; keep them vector.
       if (file.type === 'image/svg+xml') return;
 
+      // Webp conversion reads/writes the local filesystem. For remote storage
+      // (r2/s3) the file isn't on disk, so skip to avoid breaking uploads.
+      if (file.storage && file.storage !== 'local') {
+        logger?.info?.('[convert-to-webp] skipping non-local storage: ' + file.storage);
+        return;
+      }
+
       const srcDisk = file.filename_disk;
       const srcPath = join(UPLOAD_DIR, srcDisk);
 
