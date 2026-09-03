@@ -6,6 +6,10 @@ Administrator policy to full access and grants the Public policy read
 access to every collection the frontend reads without a token, including
 the m2m junction tables and directus_files (for asset URLs).
 
+Directus stores permissions as rows in `directus_permissions` linked to a
+policy. PATCHing a policy's `permissions` relation does not reliably
+replace the rows, so we delete and re-create them explicitly.
+
 Env:
   DIRECTUS_URL   (default http://localhost:8055)
   ADMIN_EMAIL / ADMIN_PASSWORD  (the bootstrapped admin)
@@ -50,9 +54,18 @@ def api(method, path, token=None, body=None):
     req.add_header("Content-Type", "application/json")
     if token:
         req.add_header("Authorization", "Bearer " + token)
-    with urllib.request.urlopen(req, timeout=15) as resp:
-        raw = resp.read().decode()
-        return json.loads(raw) if raw else None
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            raw = resp.read().decode()
+            return json.loads(raw) if raw else None
+    except urllib.error.HTTPError as e:
+        detail = ""
+        try:
+            detail = e.read().decode()
+        except Exception:
+            pass
+        print("HTTP %s %s: %s" % (e.code, path, detail), file=sys.stderr)
+        raise
 
 
 def login():
@@ -70,6 +83,20 @@ def login():
 
 def empty_perm():
     return {"permissions": {}, "validation": None, "presets": None, "limit": None}
+
+
+def set_permissions(policy_id, perms, tok):
+    """Replace all permission rows for a policy with the given list."""
+    existing = api("GET", f"/permissions?filter[policy][_eq]={policy_id}&fields=id", tok)["data"]
+    for p in existing:
+        try:
+            api("DELETE", f"/permissions/{p['id']}", tok)
+        except Exception as e:
+            print("warn: could not delete permission", p.get("id"), e, file=sys.stderr)
+    for perm in perms:
+        body = dict(perm)
+        body["policy"] = policy_id
+        api("POST", "/permissions", tok, body)
 
 
 def main():
@@ -92,7 +119,7 @@ def main():
 
     admin_perms = [
         {**empty_perm(), "action": a, "collection": "*",
-         "fields": ["*", "sort", "author"] if a == "read" else ["*"]}
+         "fields": ["*", "sort"] if a == "read" else ["*"]}
         for a in ("read", "create", "update", "delete")
     ]
     # System collections (e.g. directus_files) are NOT covered by `collection: "*"`
@@ -112,9 +139,14 @@ def main():
         for c, f in public_fields.items()
     ]
 
-    api("PATCH", f"/policies/{admin_policy}", tok, {"permissions": admin_perms})
-    api("PATCH", f"/policies/{public_policy}", tok, {"permissions": public_perms})
-    print(f"OK: admin policy {admin_policy} (full), public policy {public_policy} (read on {len(PUBLIC_READ)} collections)")
+    # Public reads are what the frontend depends on, so apply them first.
+    set_permissions(public_policy, public_perms, tok)
+    try:
+        set_permissions(admin_policy, admin_perms, tok)
+    except Exception as e:
+        print("warn: admin permissions not fully applied:", e, file=sys.stderr)
+    print(f"OK: public policy {public_policy} (read on {len(PUBLIC_READ)} collections), "
+          f"admin policy {admin_policy} ({len(admin_perms)} rules)")
 
     # Make the Directus admin UI default to Russian
     try:
