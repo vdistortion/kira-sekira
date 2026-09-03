@@ -51,7 +51,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: DB_PASSWORD,DIRECTUS_KEY,DIRECTUS_SECRET,CORS_ORIGIN,PUBLIC_URL,GHCR_PAT,GHCR_USER,REPO_URL,ADMIN_EMAIL,ADMIN_PASSWORD
+          envs: DB_PASSWORD,DIRECTUS_KEY,DIRECTUS_SECRET,CORS_ORIGIN,PUBLIC_URL,GHCR_PAT,GHCR_USER,REPO_URL,ADMIN_EMAIL,ADMIN_PASSWORD,R2_ENDPOINT,R2_BUCKET,R2_ACCESS_KEY_ID,R2_SECRET_ACCESS_KEY
           script: |
             set -e
             REPO_PATH=~/projects/kira-sekira
@@ -70,6 +70,10 @@ jobs:
               "PUBLIC_URL='${PUBLIC_URL}'" \
               "ADMIN_EMAIL='${ADMIN_EMAIL}'" \
               "ADMIN_PASSWORD='${ADMIN_PASSWORD}'" \
+              "R2_ENDPOINT='${R2_ENDPOINT}'" \
+              "R2_BUCKET='${R2_BUCKET}'" \
+              "R2_ACCESS_KEY_ID='${R2_ACCESS_KEY_ID}'" \
+              "R2_SECRET_ACCESS_KEY='${R2_SECRET_ACCESS_KEY}'" \
               > .env
 
             echo "$GHCR_PAT" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
@@ -85,6 +89,10 @@ jobs:
           PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          R2_ENDPOINT: https://e39c455c55e0c1744b2be5578bb2d489.r2.cloudflarestorage.com
+          R2_BUCKET: kira-sekira-prod
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           GHCR_PAT: ${{ secrets.GHCR_PAT }}
           GHCR_USER: ${{ github.actor }}
           REPO_URL: https://${{ github.actor }}:${{ secrets.GHCR_PAT }}@github.com/${{ github.repository }}.git
