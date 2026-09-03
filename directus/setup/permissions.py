@@ -97,6 +97,13 @@ def main():
     api("PATCH", f"/policies/{public_policy}", tok, {"permissions": public_perms})
     print(f"OK: admin policy {admin_policy} (full), public policy {public_policy} (read on {len(PUBLIC_READ)} collections)")
 
+    # Make the Directus admin UI default to Russian
+    try:
+        api("PATCH", "/settings", tok, {"default_language": "ru-RU"})
+        print("OK: default admin language set to ru-RU")
+    except Exception as e:
+        print("warn: could not set default language:", e, file=sys.stderr)
+
 
 if __name__ == "__main__":
     main()
