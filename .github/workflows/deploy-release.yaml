@@ -60,11 +60,13 @@ jobs:
               git clone -b release "$REPO_URL" "$REPO_PATH"
             fi
             cd "$REPO_PATH"
-            # .env is generated locally on the VPS and must never be treated as a
-            # tracked change; unstage it so `git pull` (which drops .env from
-            # tracking) does not abort on a local-modified-file conflict.
+            # .env is generated locally on the VPS and is gitignored/untracked.
+            # Remove it (unstage if tracked, delete if untracked) so `git pull`
+            # (which drops .env from tracking) does not abort on a conflict.
             git rm --cached -f .env >/dev/null 2>&1 || true
-            git pull origin release
+            rm -f .env
+            git fetch origin release
+            git reset --hard origin/release
 
               printf '%s\n' \
                 "DB_PASSWORD='${DB_PASSWORD}'" \
