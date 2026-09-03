@@ -9,6 +9,7 @@ and sets hero/main photos + price covers. Idempotent by slug/title.
 Env: DIRECTUS_URL (default http://localhost:8055), ADMIN_EMAIL, ADMIN_PASSWORD
 """
 import os
+import sys
 import json
 import time
 import urllib.request
