@@ -92,7 +92,7 @@ def main():
 
     admin_perms = [
         {**empty_perm(), "action": a, "collection": "*",
-         "fields": ["*", "sort"] if a == "read" else ["*"]}
+         "fields": ["*", "sort", "author"] if a == "read" else ["*"]}
         for a in ("read", "create", "update", "delete")
     ]
     # System collections (e.g. directus_files) are NOT covered by `collection: "*"`

@@ -47,19 +47,29 @@ DEMO_MODELS = [
 ]
 
 
-def req(method, path, token=None, body=None):
+def req(method, path, token=None, body=None, public_fallback=True):
     url = BASE + path
     data = json.dumps(body).encode() if body is not None else None
-    r = urllib.request.Request(url, data=data, method=method)
-    r.add_header("Content-Type", "application/json")
-    if token:
-        r.add_header("Authorization", "Bearer " + token)
-    try:
+
+    def _do(tok):
+        r = urllib.request.Request(url, data=data, method=method)
+        r.add_header("Content-Type", "application/json")
+        if tok:
+            r.add_header("Authorization", "Bearer " + tok)
         with urllib.request.urlopen(r, timeout=30) as resp:
             raw = resp.read().decode()
             return json.loads(raw) if raw else None
+
+    try:
+        return _do(token)
     except urllib.error.HTTPError as e:
-        print("HTTP %s on %s %s" % (e.code, method, url), file=__import__("sys").stderr)
+        if public_fallback and method == "GET" and token and e.code == 403:
+            print("  (read denied for admin, retrying without token)", file=sys.stderr)
+            try:
+                return _do(None)
+            except urllib.error.HTTPError:
+                pass
+        print("HTTP %s on %s %s" % (e.code, method, url), file=sys.stderr)
         raise
 
 
