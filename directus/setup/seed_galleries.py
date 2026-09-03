@@ -158,7 +158,7 @@ def main():
     # Hero/main photo for the main site
     hero = ensure_file("main-hero", "Главное фото (демо)", tok)
     if hero and not ms.get("main_photo"):
-        req("PATCH", "/items/main_site/" + msid, tok, {"main_photo": hero["id"]})
+        req("PATCH", "/items/main_site", tok, {"main_photo": hero["id"]})
 
     # Main photo for each demo model
     for sub in ("yana", "kirochka"):
