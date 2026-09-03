@@ -97,6 +97,7 @@ jobs:
               # schema apply идемпотентен и безопасен при каждом деплое.
               docker compose -f compose.release.yaml exec -T studio sh -c 'until curl -sf http://localhost:8055/server/health >/dev/null; do sleep 3; done'
               docker compose -f compose.release.yaml exec -T studio directus schema apply /directus/snapshots/schema.yaml --yes
+              docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/permissions.py
               if [ "$SEED_DEMO" = "true" ]; then
                 docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_core.py || true
                 docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_galleries.py || true
