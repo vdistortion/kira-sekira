@@ -171,21 +171,28 @@ def main():
     created = []
     for g in GALLERIES:
         existing = req("GET", "/items/galleries?filter[slug][_eq]=" + urllib.parse.quote(g["slug"]) + "&limit=1", tok)
-        if existing and existing.get("data"):
-            print("gallery '%s' exists, skipping" % g["slug"])
-            created.append(existing["data"][0])
-            continue
-        cover = ensure_file(g["slug"] + "-cover", g["title"] + " (обложка)", tok)
-        payload = {"slug": g["slug"], "title": g["title"]}
-        if cover:
-            payload["cover"] = cover["id"]
-        gid = req("POST", "/items/galleries", tok, payload)["data"]["id"]
-        print("created gallery", g["slug"], gid)
-        for i in range(1, 4):
-            img = ensure_file("%s-%d" % (g["slug"], i), "%s %d" % (g["title"], i), tok)
-            if not img:
-                continue
-            req("POST", "/items/gallery_images", tok, {"galleries_id": gid, "image": img["id"], "sort": i})
+        current = (existing or {}).get("data") or []
+        if current:
+            gid = current[0]["id"]
+            print("gallery '%s' exists" % g["slug"])
+        else:
+            cover = ensure_file(g["slug"] + "-cover", g["title"] + " (обложка)", tok)
+            payload = {"slug": g["slug"], "title": g["title"]}
+            if cover:
+                payload["cover"] = cover["id"]
+            gid = req("POST", "/items/galleries", tok, payload)["data"]["id"]
+            print("created gallery", g["slug"], gid)
+
+        # Attach the 3 images unless the gallery already has some (idempotent, and
+        # repairs galleries that were seeded before the field name was corrected).
+        count = req("GET", "/items/gallery_images?filter[gallery][_eq]=%s&limit=1&fields=id" % gid, tok)
+        if not ((count or {}).get("data") or []):
+            for i in range(1, 4):
+                img = ensure_file("%s-%d" % (g["slug"], i), "%s %d" % (g["title"], i), tok)
+                if not img:
+                    continue
+                req("POST", "/items/gallery_images", tok, {"gallery": gid, "image": img["id"], "sort": i})
+            print("  attached images to gallery", g["slug"])
         created.append({"id": gid})
 
     # Link galleries to the main site
