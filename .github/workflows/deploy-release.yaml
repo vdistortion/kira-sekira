@@ -89,8 +89,8 @@ jobs:
           PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          R2_ENDPOINT: https://e39c455c55e0c1744b2be5578bb2d489.r2.cloudflarestorage.com
-          R2_BUCKET: kira-sekira-prod
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           GHCR_PAT: ${{ secrets.GHCR_PAT }}
