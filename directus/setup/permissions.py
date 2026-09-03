@@ -77,12 +77,18 @@ def main():
 
     access = api("GET", "/access?fields=id,role,policy", tok)["data"]
     public_policy = next(a["policy"] for a in access if a["role"] is None)
-    roles = api("GET", "/roles?fields=id,name", tok)["data"]
-    admin_role = next((r["id"] for r in roles if r["name"] == "Administrator"), None)
-    if admin_role:
-        admin_policy = next(a["policy"] for a in access if a["role"] == admin_role)
-    else:
-        admin_policy = next(a["policy"] for a in access if a["role"] is not None)
+    admin_role_id = next((a["role"] for a in access if a["role"] is not None), None)
+    admin_policy = next((a["policy"] for a in access if a["role"] == admin_role_id), None)
+
+    # The bootstrapped admin may lack the `admin: true` flag, so it is subject to
+    # field-level permissions. Promote it to a real super-admin so the seed scripts
+    # (and any admin token) get full access and bypass field restrictions.
+    if admin_role_id:
+        try:
+            api("PATCH", f"/roles/{admin_role_id}", tok, {"admin": True})
+            print(f"OK: role {admin_role_id} set as super-admin")
+        except Exception as e:
+            print("warn: could not set admin flag:", e, file=sys.stderr)
 
     admin_perms = [
         {**empty_perm(), "action": a, "collection": "*",
@@ -96,9 +102,11 @@ def main():
             admin_perms.append({**empty_perm(), "action": a, "collection": c, "fields": ["*"]})
 
     public_fields = {c: ["*"] for c in PUBLIC_READ}
-    # Collections sorted by the `sort` field need that field explicitly allowed.
+    # `sort` is the manual-order field and is NOT covered by `*`, so allow it
+    # explicitly. `reviews.author` also needs to be named explicitly.
     for c in ("reviews", "prices"):
         public_fields[c] = ["*", "sort"]
+    public_fields["reviews"] = ["*", "sort", "author"]
     public_perms = [
         {**empty_perm(), "action": "read", "collection": c, "fields": f}
         for c, f in public_fields.items()
