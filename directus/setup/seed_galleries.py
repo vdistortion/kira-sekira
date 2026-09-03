@@ -102,7 +102,7 @@ def upload_placeholder(seed, title, tok):
 
 
 def ensure_file(seed, title, tok):
-    existing = req("GET", "/items/files?filter[title][_eq]=" + urllib.parse.quote(title) + "&limit=1", tok)
+    existing = req("GET", "/files?filter[title][_eq]=" + urllib.parse.quote(title) + "&limit=1", tok)
     if existing and existing.get("data"):
         return existing["data"][0]
     return upload_placeholder(seed, title, tok)
