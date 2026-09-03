@@ -95,7 +95,8 @@ jobs:
                 sleep 3
               done
               docker compose -f compose.release.yaml exec -T studio node cli.js schema apply --yes /directus/snapshots/schema.yaml
-              docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/permissions.py
+              set -a; . ./.env; set +a
+              python3 directus/setup/permissions.py
 
               docker system prune --force
         env:
