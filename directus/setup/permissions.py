@@ -155,25 +155,6 @@ def main():
     except Exception as e:
         print("warn: could not set default language:", e, file=sys.stderr)
 
-    # --- diagnostics: confirm the field exists and the policy really has it ---
-    try:
-        rev_fields = api("GET", "/fields/reviews?fields=field", tok)["data"]
-        print("DIAG reviews fields:", [f["field"] for f in rev_fields], file=sys.stderr)
-    except Exception as e:
-        print("DIAG fields err:", e, file=sys.stderr)
-    try:
-        pol = api("GET",
-                  f"/policies/{public_policy}?fields=permissions.collection,permissions.action,permissions.fields",
-                  tok)["data"]
-        print("DIAG public permissions:", json.dumps(pol.get("permissions"), ensure_ascii=False), file=sys.stderr)
-    except Exception as e:
-        print("DIAG policy err:", e, file=sys.stderr)
-    try:
-        roles = api("GET", "/roles?fields=id,name,admin", tok)["data"]
-        print("DIAG roles:", json.dumps(roles, ensure_ascii=False), file=sys.stderr)
-    except Exception as e:
-        print("DIAG roles err:", e, file=sys.stderr)
-
 
 if __name__ == "__main__":
     main()
