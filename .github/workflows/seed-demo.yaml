@@ -7,6 +7,10 @@ on:
         description: "Не заливать демо-фото (галереи/обложки) из picsum, только тексты/цены/отзывы/видео"
         type: boolean
         default: false
+      reset_db:
+        description: "Сбросить БД и применить схему заново (гарантирует корректную схему; контент пересоздаётся)"
+        type: boolean
+        default: true
 
 jobs:
   seed:
@@ -23,10 +27,19 @@ jobs:
             cd ~/projects/kira-sekira
             git fetch origin release
             git reset --hard origin/release
+
+            if [ "${{ github.event.inputs.reset_db }}" = "true" ]; then
+              echo "== resetting database =="
+              docker compose -f compose.release.yaml stop studio
+              docker compose -f compose.release.yaml exec -T db psql -U postgres -d studio -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+              docker compose -f compose.release.yaml up -d studio
+            fi
+
             for i in $(seq 1 60); do
               docker compose -f compose.release.yaml exec -T studio node -e "require('http').get('http://localhost:8055/server/health',r=>process.exit(r.statusCode<500?0:1)).on('error',()=>process.exit(1))" >/dev/null 2>&1 && break
               sleep 3
             done
+
             docker compose -f compose.release.yaml exec -T studio node cli.js schema apply --yes /directus/snapshots/schema.yaml
             set -a; . ./.env; set +a
             python3 directus/setup/permissions.py
