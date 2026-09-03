@@ -72,9 +72,17 @@ def login():
 
 
 def fetch_bytes(url):
-    r = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(r, timeout=60) as resp:
-        return resp.read()
+    last = None
+    for _ in range(4):
+        try:
+            r = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(r, timeout=60) as resp:
+                return resp.read()
+        except Exception as e:
+            last = e
+            time.sleep(3)
+    print("  download failed after retries:", last, file=sys.stderr)
+    raise last
 
 
 def upload_placeholder(seed, title, tok):
