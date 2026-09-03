@@ -1,0 +1,32 @@
+name: Seed Demo Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_media:
+        description: "Не заливать демо-фото (галереи/обложки) из picsum, только тексты/цены/отзывы/видео"
+        type: boolean
+        default: false
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Seed demo content on VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -e
+            cd ~/projects/kira-sekira
+            docker compose -f compose.release.yaml exec -T studio sh -c 'until curl -sf http://localhost:8055/server/health >/dev/null; do sleep 3; done'
+            docker compose -f compose.release.yaml exec -T studio directus schema apply /directus/snapshots/schema.yaml --yes
+            docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/permissions.py
+            docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_core.py || true
+            if [ "${{ github.event.inputs.skip_media }}" != "true" ]; then
+              docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_galleries.py || true
+            fi
+            docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_models.py || true
+            echo "demo data seeded"
