@@ -59,8 +59,12 @@ jobs:
               mkdir -p ~/projects
               git clone -b release "$REPO_URL" "$REPO_PATH"
             fi
-            cd "$REPO_PATH"
-            git pull origin release
+          cd "$REPO_PATH"
+          # .env is generated locally on the VPS and must never be treated as a
+          # tracked change; unstage it so `git pull` (which drops .env from
+          # tracking) does not abort on a local-modified-file conflict.
+          git rm --cached -f .env >/dev/null 2>&1 || true
+          git pull origin release
 
             printf '%s\n' \
               "DB_PASSWORD='${DB_PASSWORD}'" \
