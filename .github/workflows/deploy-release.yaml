@@ -99,6 +99,7 @@ jobs:
               docker compose -f compose.release.yaml exec -T studio directus schema apply /directus/snapshots/schema.yaml --yes
               if [ "$SEED_DEMO" = "true" ]; then
                 docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_core.py || true
+                docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_models.py || true
               fi
 
               docker system prune --force
