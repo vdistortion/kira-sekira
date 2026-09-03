@@ -26,10 +26,11 @@ jobs:
               sleep 3
             done
             docker compose -f compose.release.yaml exec -T studio node cli.js schema apply --yes /directus/snapshots/schema.yaml
-            docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/permissions.py
-            docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_core.py || true
+            set -a; . ./.env; set +a
+            python3 directus/setup/permissions.py
+            python3 directus/setup/seed_core.py || true
             if [ "${{ github.event.inputs.skip_media }}" != "true" ]; then
-              docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_galleries.py || true
+              python3 directus/setup/seed_galleries.py || true
             fi
-            docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_models.py || true
+            python3 directus/setup/seed_models.py || true
             echo "demo data seeded"
