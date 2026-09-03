@@ -52,6 +52,7 @@ services:
       - directus_uploads_release:/directus/uploads
       - ./directus/snapshots:/directus/snapshots
       - ./directus/extensions:/directus/extensions
+      - ./directus/setup:/directus/setup:ro
     depends_on:
       db:
         condition: service_healthy

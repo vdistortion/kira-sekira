@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Seed demo model subdomain sites from existing shared content.
 
-Creates several model records (subdomains ``model1``, ``model2``, ...) that
+Creates model records for the demo subdomains ``yana`` and ``kirochka`` that
 reuse shared galleries and an existing image as the main photo, and link the
 placeholder videos. Idempotent by subdomain. This is demo/test data to
 exercise the model site UI; real models are managed in Directus.
@@ -17,14 +17,15 @@ BASE = os.environ.get("DIRECTUS_URL", "http://localhost:8055").rstrip("/")
 EMAIL = os.environ["ADMIN_EMAIL"]
 PASSWORD = os.environ["ADMIN_PASSWORD"]
 
-# Placeholder demo models. All content is test data until production launch.
+# Placeholder demo models mapped to the live subdomains yana/kirochka.
+# All content is test data until production launch.
 DEMO_MODELS = [
     {
-        "subdomain": "model1",
-        "name": "Алиса (демо)",
+        "subdomain": "yana",
+        "name": "Яна (демо)",
         "description": (
-            "Привет! Я демонстрационная модель на платформе Kira Sekira.\n\n"
-            "Здесь будут ваши параметры, биография и альбомы с фотосессиями. "
+            "Привет! Я Яна — модель на платформе Kira Sekira.\n\n"
+            "Здесь мои параметры, биография и альбомы с фотосессиями. "
             "Всё управляется из админки — ничего не захардкожено в коде."
         ),
         "bust": 90, "waist": 60, "hips": 90, "clothing_size": 42,
@@ -32,12 +33,12 @@ DEMO_MODELS = [
         "hair_color": "русые", "eye_color": "карие",
     },
     {
-        "subdomain": "model2",
-        "name": "Белла (демо)",
+        "subdomain": "kirochka",
+        "name": "Кира (демо)",
         "description": (
-            "Демо-модель №2. Здесь могут быть ваши параметры, короткая "
-            "биография и собственные альбомы с фотосессиями.\n\n"
-            "Контент полностью управляется из админки Directus."
+            "Привет! Я Кира — модель на платформе Kira Sekira.\n\n"
+            "Мои параметры, короткая биография и собственные альбомы "
+            "с фотосессиями управляются из админки Directus."
         ),
         "bust": 85, "waist": 58, "hips": 88, "clothing_size": 40,
         "height": 178, "weight": 52, "shoe_size": 39,
