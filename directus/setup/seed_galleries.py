@@ -34,9 +34,15 @@ def req(method, path, token=None, body=None):
                 raw = resp.read().decode()
                 return json.loads(raw) if raw else None
         except urllib.error.HTTPError as e:
+            detail = ""
+            try:
+                detail = e.read().decode()
+            except Exception:
+                pass
             if e.code == 429:
                 time.sleep(5)
                 continue
+            print("HTTP %s %s %s: %s" % (e.code, method, url, detail), file=sys.stderr)
             raise
 
 

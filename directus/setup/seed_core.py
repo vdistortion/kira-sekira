@@ -27,9 +27,18 @@ def req(method, path, token=None, body=None):
     r.add_header("Content-Type", "application/json")
     if token:
         r.add_header("Authorization", "Bearer " + token)
-    with urllib.request.urlopen(r, timeout=30) as resp:
-        raw = resp.read().decode()
-        return json.loads(raw) if raw else None
+    try:
+        with urllib.request.urlopen(r, timeout=30) as resp:
+            raw = resp.read().decode()
+            return json.loads(raw) if raw else None
+    except urllib.error.HTTPError as e:
+        detail = ""
+        try:
+            detail = e.read().decode()
+        except Exception:
+            pass
+        print("HTTP %s %s %s: %s" % (e.code, method, url, detail), file=sys.stderr)
+        raise
 
 
 def login():

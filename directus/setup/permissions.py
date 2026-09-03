@@ -88,9 +88,19 @@ def main():
         {**empty_perm(), "action": a, "collection": "*", "fields": ["*"]}
         for a in ("read", "create", "update", "delete")
     ]
+    # System collections (e.g. directus_files) are NOT covered by `collection: "*"`
+    # and must be granted explicitly, otherwise admin read/upload of files 403s.
+    for c in ("directus_files", "directus_folders"):
+        for a in ("read", "create", "update"):
+            admin_perms.append({**empty_perm(), "action": a, "collection": c, "fields": ["*"]})
+
+    public_fields = {c: ["*"] for c in PUBLIC_READ}
+    # Collections sorted by the `sort` field need that field explicitly allowed.
+    for c in ("reviews", "prices"):
+        public_fields[c] = ["*", "sort"]
     public_perms = [
-        {**empty_perm(), "action": "read", "collection": c, "fields": ["*"]}
-        for c in PUBLIC_READ
+        {**empty_perm(), "action": "read", "collection": c, "fields": f}
+        for c, f in public_fields.items()
     ]
 
     api("PATCH", f"/policies/{admin_policy}", tok, {"permissions": admin_perms})
