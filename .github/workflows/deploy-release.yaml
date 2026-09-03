@@ -5,11 +5,6 @@ on:
     branches:
       - release
   workflow_dispatch:
-    inputs:
-      seed_demo:
-        description: "Залить демо-контент (тексты, цены, отзывы, видео) в прод Directus"
-        type: boolean
-        default: false
 
 env:
   REGISTRY: ghcr.io
@@ -56,7 +51,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: DB_PASSWORD,DIRECTUS_KEY,DIRECTUS_SECRET,CORS_ORIGIN,PUBLIC_URL,GHCR_PAT,GHCR_USER,REPO_URL,ADMIN_EMAIL,ADMIN_PASSWORD,R2_ENDPOINT,R2_BUCKET,R2_ACCESS_KEY_ID,R2_SECRET_ACCESS_KEY,SEED_DEMO
+          envs: DB_PASSWORD,DIRECTUS_KEY,DIRECTUS_SECRET,CORS_ORIGIN,PUBLIC_URL,GHCR_PAT,GHCR_USER,REPO_URL,ADMIN_EMAIL,ADMIN_PASSWORD,R2_ENDPOINT,R2_BUCKET,R2_ACCESS_KEY_ID,R2_SECRET_ACCESS_KEY
           script: |
             set -e
             REPO_PATH=~/projects/kira-sekira
@@ -95,13 +90,12 @@ jobs:
 
               # Directus готов — накатываем схему (коллекции/поля) и опционально демо-контент.
               # schema apply идемпотентен и безопасен при каждом деплое.
-              docker compose -f compose.release.yaml exec -T studio sh -c 'until curl -sf http://localhost:8055/server/health >/dev/null; do sleep 3; done'
+              for i in $(seq 1 60); do
+                docker compose -f compose.release.yaml exec -T studio node -e "require('http').get('http://localhost:8055/server/health',r=>process.exit(r.statusCode<500?0:1)).on('error',()=>process.exit(1))" >/dev/null 2>&1 && break
+                sleep 3
+              done
               docker compose -f compose.release.yaml exec -T studio directus schema apply /directus/snapshots/schema.yaml --yes
-              if [ "$SEED_DEMO" = "true" ]; then
-                docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_core.py || true
-                docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_galleries.py || true
-                docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/seed_models.py || true
-              fi
+              docker compose -f compose.release.yaml exec -T studio python3 /directus/setup/permissions.py
 
               docker system prune --force
         env:
@@ -119,7 +113,6 @@ jobs:
           GHCR_PAT: ${{ secrets.GHCR_PAT }}
           GHCR_USER: ${{ github.actor }}
           REPO_URL: https://${{ github.actor }}:${{ secrets.GHCR_PAT }}@github.com/${{ github.repository }}.git
-          SEED_DEMO: ${{ github.event.inputs.seed_demo }}
 
       - name: Notify Telegram
         if: success()
