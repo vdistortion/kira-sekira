@@ -1,6 +1,8 @@
-.PHONY: schema-dev schema-release permissions \
+.PHONY: schema-dev schema-release permissions bootstrap seed seed-demo \
          db-dump-dev db-dump-prod db-restore-dev db-restore-prod \
-         uploads-dump-dev uploads-dump-prod uploads-restore-dev uploads-restore-prod
+         uploads-dump-dev uploads-dump-prod uploads-restore-dev uploads-restore-prod \
+         sync-setup check tunnel-up tunnel-down pull push \
+         db-pull db-push files-pull files-push
 
 COMPOSE_DEV := docker compose
 COMPOSE_PROD := docker compose -f compose.release.yaml
@@ -65,3 +67,40 @@ uploads-restore-dev:
 uploads-restore-prod:
 	@test -n "$(UP)" || (echo "Usage: make uploads-restore-prod UP=backups/uploads-XXX.tar.gz" && exit 1)
 	$(COMPOSE_PROD) exec -T studio tar xzf - -C /directus < $(UP)
+
+# --- Полное развёртывание с нуля и сиды ---
+# bootstrap: схема + права + реальный контент (тексты, прайс, галереи из фото).
+# seed:       только сиды контента (требует уже запущенный Directus).
+# seed-demo:  демо-модели yana/kirochka (для локальной проверки UI).
+
+seed:
+	@set -a; . ./.env; set +a; \
+	export IMAGES_ROOT="$${IMAGES_ROOT:-$$HOME/Desktop/KiraSekiraProject/kira-images}"; \
+	python3 directus/setup/seed_core.py && \
+	python3 directus/setup/seed_real_galleries.py
+
+seed-demo:
+	@set -a; . ./.env; set +a; python3 directus/setup/seed_models.py
+
+bootstrap: schema-dev seed
+
+# --- Синхронизация локальный стек <-> прод (VPS) ---
+# Подробности и требования — в scripts/sync.sh и README (раздел «Миграция»).
+
+sync-setup:
+	bash scripts/sync.sh setup
+
+check:
+	bash scripts/sync.sh check
+
+tunnel-up:
+	bash scripts/sync.sh tunnel-up
+
+tunnel-down:
+	bash scripts/sync.sh tunnel-down
+
+pull: files-pull db-pull
+push: files-push db-push
+
+db-pull db-push files-pull files-push:
+	bash scripts/sync.sh $@

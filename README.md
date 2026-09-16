@@ -47,12 +47,16 @@ Directus 12 не бандлит ни `sharp`, ни конвертер, поэт�
 
 ```bash
 cp .env.example .env            # при первом запуске
-make schema-dev                 # поднимает Directus, накатывает схему, права, контент
+make bootstrap                  # Directus + схема + права + контент (сиды)
 npm install
 npm run build:shared
 npx ng serve main --port 4200      # основной сайт  -> http://localhost:4200
 npx ng serve models --port 4201    # сайт модели   -> http://localhost:4201
 ```
+
+`make bootstrap` = `make schema-dev` (поднимает Directus, накатывает схему и
+права) + `make seed` (загружает реальный контент: тексты, прайс, галереи из
+фото). Для только схемы без сидов — `make schema-dev`.
 
 Админка локально: http://studio.localhost:8055 (логин/пароль из `.env`).
 
@@ -84,16 +88,65 @@ npx ng serve models --port 4201    # сайт модели   -> http://localhost
 
 - `directus/snapshots/schema.yaml` — схема БД (источник правды).
 - `directus/setup/permissions.py` — создаёт/чинит политики доступа.
-- `directus/setup/seed.py` — загружает фото и создаёт галереи основного сайта.
 - `directus/setup/seed_core.py` — тексты главной, контакты, прайсы, видео.
-- `directus/setup/seed_models.py` — демо-модели (поддомены `model1`, `model2`).
+- `directus/setup/seed_real_galleries.py` — загружает фото из
+  `IMAGES_ROOT/projects/<папка>/`, создаёт галереи основного сайта, ставит
+  обложку и `main_photo`.
+- `directus/setup/seed_models.py` — демо-модели (`yana`, `kirochka`) для
+  локальной проверки UI. Реальные модели заводятся в админке.
 
-Запуск сидов: `DIRECTUS_URL=... ADMIN_EMAIL=... ADMIN_PASSWORD=... python3
-directus/setup/seed.py` и т.д. Все идемпотентны.
+Запуск сидов одной командой: `make seed` (реальный контент) и
+`make seed-demo` (демо-модели). Вручную — с переменными окружения
+`DIRECTUS_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `IMAGES_ROOT`:
+
+```bash
+DIRECTUS_URL=http://localhost:8055 ADMIN_EMAIL=... ADMIN_PASSWORD=... \
+  IMAGES_ROOT=/home/v/Desktop/KiraSekiraProject/kira-images \
+  python3 directus/setup/seed_core.py
+```
+
+Все сиды идемпотентны.
+
+## Миграция и синхронизация (локал ↔ прод)
+
+Полный перенос данных между локальным стеком и продом на VPS — одной
+командой. Синхронизируются и БД, и файлы (Garage).
+
+**Подготовка (один раз):**
+
+1. В `.env` заполнить блок «Синхронизация»: `VPS_SSH_HOST` (алиас из
+   `~/.ssh/config`) и `GARAGE_BUCKET` / `GARAGE_ACCESS_KEY_ID` /
+   `GARAGE_SECRET_ACCESS_KEY` (те же значения, что в GitHub-секретах).
+2. `make sync-setup` — ставит rclone и прописывает remote «garage».
+
+**Команды:**
+
+| Команда | Что делает |
+|---|---|
+| `make bootstrap` | поднять локально с нуля: схема + права + сиды |
+| `make check` | диагностика готовности к синхронизации |
+| `make tunnel-up` / `make tunnel-down` | SSH-туннель до Garage (нужен для файлов) |
+| `make pull` | прод → локал: файлы + БД |
+| `make push` | локал → прод: файлы + БД |
+
+Отдельные части: `make db-pull`/`db-push` (только БД), `make
+files-pull`/`files-push` (только файлы).
+
+Нюансы:
+
+- Файлы на проде лежат в Garage, локально — в volume `directus_uploads`.
+  После `db-pull`/`db-push` скрипт переключает колонку
+  `directus_files.storage` на нужный драйвер (`local`/`garage`), поэтому
+  картинки не ломаются.
+- `make push` зеркалирует локальную БД на прод (в т.ч. удаления). Для
+  предпросмотра без записи: `DRY_RUN=1 make files-push` (и аналогично для
+  pull).
+- После `make pull` админ-логин локально становится продовским (данные БД
+  зеркалированы целиком).
 
 Локальный предпросмотр конкретной модели: `ng serve models` слушает один
 хост, поэтому поддомен можно переопределить через `?m=<subdomain>`
-(например, `http://localhost:4201/?m=model2`).
+(например, `http://localhost:4201/?m=kirochka`).
 
 ## Деплой
 
@@ -101,6 +154,9 @@ directus/setup/seed.py` и т.д. Все идемпотентны.
   (`compose.release.yaml`).
 - Сборка сайтов: `ng build main -c production` / `ng build models -c production`
   (SSG, пререндер маршрутов).
+- Автодеплой по пушам в `release` выполняет CI (`deploy-release.yaml`): он
+  накатывает схему и права. Контент на свежем проде заводится так:
+  `make bootstrap` локально → `make push` (файлы + БД).
 
 ## Соглашения
 
@@ -119,7 +175,9 @@ projects/main        основной сайт
 projects/models      сайты моделей на поддоменах
 directus/snapshots   схема БД
 directus/setup       скрипты прав доступа и сидов
+directus/extensions  hook-расширения (convert-to-webp)
+scripts/sync.sh      синхронизация локал <-> прод (БД + файлы)
 compose.yaml         локальный стек (Directus + Postgres)
 compose.release.yaml прод-стек
-Makefile             schema-dev / schema-release / permissions
+Makefile             bootstrap / schema-* / seed / pull / push
 ```
