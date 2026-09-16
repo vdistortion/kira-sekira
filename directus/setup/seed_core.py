@@ -17,7 +17,9 @@ import urllib.error
 BASE = os.environ.get("DIRECTUS_URL", "http://localhost:8055").rstrip("/")
 EMAIL = os.environ["ADMIN_EMAIL"]
 PASSWORD = os.environ["ADMIN_PASSWORD"]
-IMAGES_ROOT = os.environ.get("IMAGES_ROOT", "/home/v/Pictures/kira-images")
+IMAGES_ROOT = os.environ.get(
+    "IMAGES_ROOT", "/home/v/Desktop/KiraSekiraProject/kira-images"
+)
 BOUND = b"opencodeboundary12345"
 
 
