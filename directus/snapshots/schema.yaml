@@ -695,6 +695,11 @@ fields:
     options:
       allowedMimeTypes:
       - image/webp
+      - image/jpeg
+      - image/png
+      - image/gif
+      - image/tiff
+      - image/avif
     readonly: false
     required: false
     searchable: true
@@ -931,6 +936,11 @@ fields:
     options:
       allowedMimeTypes:
       - image/webp
+      - image/jpeg
+      - image/png
+      - image/gif
+      - image/tiff
+      - image/avif
     readonly: false
     required: true
     searchable: true
@@ -1100,6 +1110,11 @@ fields:
     options:
       allowedMimeTypes:
       - image/webp
+      - image/jpeg
+      - image/png
+      - image/gif
+      - image/tiff
+      - image/avif
     readonly: false
     required: false
     searchable: true
@@ -1145,6 +1160,11 @@ fields:
     options:
       allowedMimeTypes:
       - image/webp
+      - image/jpeg
+      - image/png
+      - image/gif
+      - image/tiff
+      - image/avif
     readonly: false
     required: true
     searchable: true
@@ -1695,6 +1715,11 @@ fields:
     options:
       allowedMimeTypes:
       - image/webp
+      - image/jpeg
+      - image/png
+      - image/gif
+      - image/tiff
+      - image/avif
     readonly: false
     required: true
     searchable: true
@@ -2486,6 +2511,11 @@ fields:
     options:
       allowedMimeTypes:
       - image/webp
+      - image/jpeg
+      - image/png
+      - image/gif
+      - image/tiff
+      - image/avif
     readonly: false
     required: true
     searchable: true

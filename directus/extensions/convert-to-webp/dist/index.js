@@ -1,16 +1,47 @@
-import { stat, unlink } from 'node:fs/promises';
+import { stat, unlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { imageProcessing } from 'image-manifest/image-processing';
+import sharp from 'sharp';
+import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+
+const MAX_IMAGE_SIDE = 1000;
+const WEBP_MIME_TYPE = 'image/webp';
+
+function toWebpFilename(filename) {
+  const stem = filename.replace(/\.[^./\\]+$/, '');
+  return `${stem}.webp`;
+}
+
+async function streamToBuffer(body) {
+  const chunks = [];
+  for await (const chunk of body) chunks.push(chunk);
+  return Buffer.concat(chunks);
+}
+
+function createGarageClient(env) {
+  return new S3Client({
+    endpoint: env.STORAGE_GARAGE_ENDPOINT,
+    region: env.STORAGE_GARAGE_REGION,
+    forcePathStyle: String(env.STORAGE_GARAGE_FORCE_PATH_STYLE) === 'true',
+    credentials: {
+      accessKeyId: env.STORAGE_GARAGE_KEY,
+      secretAccessKey: env.STORAGE_GARAGE_SECRET,
+    },
+  });
+}
+
+async function convertToWebp(input) {
+  const buffer = await sharp(input, { animated: true, limitInputPixels: false })
+    .resize(MAX_IMAGE_SIDE, MAX_IMAGE_SIDE, { fit: 'inside', withoutEnlargement: true })
+    .webp({ quality: 80 })
+    .toBuffer();
+  const metadata = await sharp(buffer).metadata();
+  return { buffer, width: metadata.width ?? null, height: metadata.height ?? null };
+}
 
 /**
- * Directus hook: when a non-webp image is uploaded, convert it to webp and
- * replace the stored file. Delegates the actual conversion to the project's own
- * `image-manifest` library (installed into the container), mirroring how the
- * static-site pipeline worked. Non-image files and already-webp images pass
- * through untouched. Failures are logged but never block the upload.
- *
- * Storage is the local driver, so we read/write the file directly under the
- * uploads root (STORAGE_LOCAL_ROOT, default /directus/uploads).
+ * Converts uploaded raster images to WebP with a maximum side of 1000px.
+ * WebP and SVG files are left unchanged. The source object is removed only
+ * after its WebP replacement is stored successfully.
  */
 export default function registerHook({ action }, { services, getSchema, env, logger }) {
   const { ItemsService } = services;
@@ -19,50 +50,80 @@ export default function registerHook({ action }, { services, getSchema, env, log
   action('files.upload', async (meta, context) => {
     const database = context.database;
     const schema = await getSchema();
+
     try {
       const id = meta?.key ?? meta?.payload?.id;
       if (!id) return;
 
       const items = new ItemsService('directus_files', { schema, knex: database, env });
       const file = await items.readOne(id);
-      if (!file || !file.type || !file.type.startsWith('image/')) return;
-      if (file.type === 'image/webp') return;
-      // Logos are authored as SVG with an embedded font; keep them vector.
-      if (file.type === 'image/svg+xml') return;
 
-      // Webp conversion reads/writes the local filesystem. For remote storage
-      // (r2/s3) the file isn't on disk, so skip to avoid breaking uploads.
-      if (file.storage && file.storage !== 'local') {
-        logger?.info?.('[convert-to-webp] skipping non-local storage: ' + file.storage);
+      if (!file?.type?.startsWith('image/')) return;
+      if (file.type === WEBP_MIME_TYPE) return;
+      if (!['image/jpeg', 'image/png', 'image/gif', 'image/tiff', 'image/avif'].includes(file.type)) {
+        logger?.warn?.(`[convert-to-webp] unsupported image type: ${file.type}`);
         return;
       }
 
       const srcDisk = file.filename_disk;
-      const srcPath = join(UPLOAD_DIR, srcDisk);
+      const newDisk = toWebpFilename(srcDisk);
+      const newDownload = toWebpFilename(file.filename_download || srcDisk);
+      let converted;
 
-      // image-manifest writes <name>.webp next to the original.
-      await imageProcessing({ name: srcDisk, path: srcPath, dist: UPLOAD_DIR }, null, null, 'webp');
+      if (file.storage === 'garage') {
+        const client = createGarageClient(env);
+        const bucket = env.STORAGE_GARAGE_BUCKET;
+        const source = await client.send(new GetObjectCommand({ Bucket: bucket, Key: srcDisk }));
 
-      const newDisk = srcDisk.replace(/\.[^./\\]+$/, '.webp');
-      let size = file.filesize;
-      try {
-        size = (await stat(join(UPLOAD_DIR, newDisk))).size;
-      } catch {
-        /* keep previous size if stat fails */
+        if (!source.Body) throw new Error(`Garage object ${srcDisk} has no body`);
+        converted = await convertToWebp(await streamToBuffer(source.Body));
+
+        await client.send(
+          new PutObjectCommand({
+            Bucket: bucket,
+            Key: newDisk,
+            Body: converted.buffer,
+            ContentType: WEBP_MIME_TYPE,
+          }),
+        );
+      } else if (!file.storage || file.storage === 'local') {
+        const srcPath = join(UPLOAD_DIR, srcDisk);
+        const newPath = join(UPLOAD_DIR, newDisk);
+        converted = await convertToWebp(srcPath);
+        await writeFile(newPath, converted.buffer);
+      } else {
+        logger?.warn?.(`[convert-to-webp] unsupported storage: ${file.storage}`);
+        return;
       }
-      if (newDisk !== srcDisk) {
-        await unlink(srcPath).catch(() => {});
+
+      let size = converted.buffer.length;
+      if (file.storage === 'local') {
+        try {
+          size = (await stat(join(UPLOAD_DIR, newDisk))).size;
+        } catch {
+          // The in-memory output size is already accurate.
+        }
       }
-      const newDownload = (file.filename_download || srcDisk).replace(/\.[^./\\]+$/, '.webp');
 
       await items.updateOne(id, {
         filename_disk: newDisk,
         filename_download: newDownload,
-        type: 'image/webp',
+        type: WEBP_MIME_TYPE,
         filesize: size,
+        width: converted.width,
+        height: converted.height,
       });
 
-      logger?.info?.('[convert-to-webp] ' + id + ' -> ' + newDisk);
+      if (newDisk !== srcDisk) {
+        if (file.storage === 'garage') {
+          const client = createGarageClient(env);
+          await client.send(new DeleteObjectCommand({ Bucket: env.STORAGE_GARAGE_BUCKET, Key: srcDisk }));
+        } else {
+          await unlink(join(UPLOAD_DIR, srcDisk)).catch(() => {});
+        }
+      }
+
+      logger?.info?.(`[convert-to-webp] ${id} -> ${newDisk} (${size} bytes)`);
     } catch (err) {
       logger?.error?.('[convert-to-webp] failed: ' + (err?.message || err));
     }
