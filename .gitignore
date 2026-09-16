@@ -39,6 +39,7 @@ Thumbs.db
 
 # Local environment (secrets) — keep .env.example as a tracked template
 .env
+.env.bak*
 
 # Python caches
 __pycache__/
