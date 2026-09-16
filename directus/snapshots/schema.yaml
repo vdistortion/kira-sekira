@@ -727,8 +727,8 @@ fields:
     is_generated: false
     generation_expression: null
     has_auto_increment: false
-    foreign_key_table: null
-    foreign_key_column: null
+    foreign_key_table: directus_files
+    foreign_key_column: id
 - collection: contacts
   field: working_hours
   type: string
@@ -825,9 +825,9 @@ fields:
   schema:
     name: slug
     table: galleries
-    data_type: string
+    data_type: character varying
     default_value: null
-    max_length: null
+    max_length: 255
     numeric_precision: null
     numeric_scale: null
     is_nullable: true
@@ -1095,56 +1095,6 @@ fields:
     foreign_key_table: null
     foreign_key_column: null
 - collection: main_site
-  field: logo
-  type: uuid
-  meta:
-    collection: main_site
-    conditions: null
-    display: null
-    display_options: null
-    field: logo
-    group: null
-    hidden: false
-    interface: file-image
-    note: null
-    options:
-      allowedMimeTypes:
-      - image/webp
-      - image/jpeg
-      - image/png
-      - image/gif
-      - image/tiff
-      - image/avif
-    readonly: false
-    required: false
-    searchable: true
-    sort: 4
-    special:
-    - file
-    translations:
-    - language: ru-RU
-      translation: Логотип
-    validation: null
-    validation_message: null
-    width: full
-  schema:
-    name: logo
-    table: main_site
-    data_type: uuid
-    default_value: null
-    max_length: null
-    numeric_precision: null
-    numeric_scale: null
-    is_nullable: true
-    is_unique: false
-    is_indexed: false
-    is_primary_key: false
-    is_generated: false
-    generation_expression: null
-    has_auto_increment: false
-    foreign_key_table: directus_files
-    foreign_key_column: id
-- collection: main_site
   field: main_photo
   type: uuid
   meta:
@@ -1378,7 +1328,7 @@ fields:
     default_value: null
     max_length: null
     numeric_precision: 32
-    numeric_scale: null
+    numeric_scale: 0
     is_nullable: true
     is_unique: false
     is_indexed: false
@@ -3146,6 +3096,7 @@ fields:
     numeric_precision: 32
     numeric_scale: 0
     is_generated: false
+    generation_expression: null
     is_nullable: false
     is_unique: true
     is_indexed: false
@@ -3185,6 +3136,7 @@ fields:
     numeric_precision: 32
     numeric_scale: 0
     is_generated: false
+    generation_expression: null
     is_nullable: true
     is_unique: false
     is_indexed: false
@@ -3226,6 +3178,7 @@ fields:
     numeric_precision: null
     numeric_scale: null
     is_generated: false
+    generation_expression: null
     is_nullable: true
     is_unique: false
     is_indexed: false
@@ -3267,6 +3220,7 @@ fields:
     numeric_precision: null
     numeric_scale: null
     is_generated: false
+    generation_expression: null
     is_nullable: true
     is_unique: false
     is_indexed: false
@@ -3276,7 +3230,7 @@ fields:
     foreign_key_column: null
 - collection: reviews
   field: photo
-  type: string
+  type: uuid
   meta:
     collection: reviews
     conditions: null
@@ -3301,19 +3255,20 @@ fields:
   schema:
     name: photo
     table: reviews
-    data_type: character varying
+    data_type: uuid
     default_value: null
-    max_length: 255
+    max_length: null
     numeric_precision: null
     numeric_scale: null
     is_generated: false
+    generation_expression: null
     is_nullable: true
     is_unique: false
     is_indexed: false
     is_primary_key: false
     has_auto_increment: false
-    foreign_key_table: null
-    foreign_key_column: null
+    foreign_key_table: directus_files
+    foreign_key_column: id
 systemFields:
 - collection: directus_activity
   field: timestamp
@@ -3425,27 +3380,6 @@ relations:
     foreign_key_table: directus_files
     foreign_key_column: id
     constraint_name: gallery_images_image_foreign
-    on_update: NO ACTION
-    on_delete: SET NULL
-- collection: main_site
-  field: logo
-  related_collection: directus_files
-  meta:
-    junction_field: null
-    many_collection: main_site
-    many_field: logo
-    one_allowed_collections: null
-    one_collection: directus_files
-    one_collection_field: null
-    one_deselect_action: nullify
-    one_field: null
-    sort_field: null
-  schema:
-    table: main_site
-    column: logo
-    foreign_key_table: directus_files
-    foreign_key_column: id
-    constraint_name: main_site_logo_foreign
     on_update: NO ACTION
     on_delete: SET NULL
 - collection: main_site
@@ -3677,5 +3611,26 @@ relations:
     foreign_key_table: directus_files
     foreign_key_column: id
     constraint_name: prices_image_foreign
+    on_update: NO ACTION
+    on_delete: SET NULL
+- collection: reviews
+  field: photo
+  related_collection: directus_files
+  meta:
+    junction_field: null
+    many_collection: reviews
+    many_field: photo
+    one_allowed_collections: null
+    one_collection: directus_files
+    one_collection_field: null
+    one_deselect_action: nullify
+    one_field: null
+    sort_field: null
+  schema:
+    table: reviews
+    column: photo
+    foreign_key_table: directus_files
+    foreign_key_column: id
+    constraint_name: reviews_photo_foreign
     on_update: NO ACTION
     on_delete: SET NULL

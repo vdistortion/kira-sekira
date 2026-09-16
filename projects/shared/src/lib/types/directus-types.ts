@@ -9,7 +9,6 @@ export interface DirectusFile {
 export interface MainSite {
   id: string;
   site_name: string;
-  logo?: DirectusFile;
   main_photo?: DirectusFile;
   working_hours?: string;
   advantages_md?: string;
@@ -19,7 +18,6 @@ export interface MainSite {
   galleries?: Gallery[];
   // вспомогательные, формируемые сервисом
   main_photo_url?: string;
-  logo_url?: string;
 }
 
 // --- contacts ---
