@@ -8,19 +8,19 @@ export class HostService {
   /** Возвращает текущий поддомен или тестовую строку для localhost */
   getSubdomain(): string {
     if (isPlatformBrowser(this.platformId)) {
-      // Локальный предпросмотр конкретной модели: ?m=model2
+      // Локальный предпросмотр конкретной модели: ?m=yana
       const override = new URLSearchParams(window.location.search).get('m');
       if (override) {
         return override;
       }
       const hostname = window.location.hostname;
-      // Если localhost или IP, возвращаем тестовый поддомен
+      // Если localhost или IP без ?m=, открываем демо-модель yana.
       if (
         hostname === 'localhost' ||
         hostname.startsWith('127.') ||
         hostname.startsWith('192.168.')
       ) {
-        return 'model1';
+        return 'yana';
       }
       // Иначе берём первую часть домена
       const parts = hostname.split('.');
@@ -28,6 +28,6 @@ export class HostService {
         return parts[0];
       }
     }
-    return 'model1';
+    return 'yana';
   }
 }
