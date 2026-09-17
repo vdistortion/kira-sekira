@@ -30,11 +30,7 @@ export class Home {
   constructor() {
     this.titleService.setTitle('Kira Sekira');
 
-    Promise.all([
-      this.studio.getMainSite(),
-      this.studio.getPrices(),
-      this.studio.getReviews(),
-    ])
+    Promise.all([this.studio.getMainSite(), this.studio.getPrices(), this.studio.getReviews()])
       .then(([data, prices, reviews]) => {
         this.aboutImage.set(data.main_photo_url || '');
         this.aboutMarkdown.set(data.advantages_md || '');

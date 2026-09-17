@@ -1,7 +1,12 @@
 import { stat, unlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { convertToWebp, DEFAULT_MAX_IMAGE_SIDE } from 'image-manifest/to-webp';
-import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import {
+  DeleteObjectCommand,
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from '@aws-sdk/client-s3';
 
 const MAX_IMAGE_SIDE = DEFAULT_MAX_IMAGE_SIDE;
 const WEBP_MIME_TYPE = 'image/webp';
@@ -55,7 +60,9 @@ export default function registerHook({ action }, { services, getSchema, env, log
 
       if (!file?.type?.startsWith('image/')) return;
       if (file.type === WEBP_MIME_TYPE) return;
-      if (!['image/jpeg', 'image/png', 'image/gif', 'image/tiff', 'image/avif'].includes(file.type)) {
+      if (
+        !['image/jpeg', 'image/png', 'image/gif', 'image/tiff', 'image/avif'].includes(file.type)
+      ) {
         logger?.warn?.(`[convert-to-webp] unsupported image type: ${file.type}`);
         return;
       }
@@ -112,7 +119,9 @@ export default function registerHook({ action }, { services, getSchema, env, log
       if (newDisk !== srcDisk) {
         if (file.storage === 'garage') {
           const client = createGarageClient(env);
-          await client.send(new DeleteObjectCommand({ Bucket: env.STORAGE_GARAGE_BUCKET, Key: srcDisk }));
+          await client.send(
+            new DeleteObjectCommand({ Bucket: env.STORAGE_GARAGE_BUCKET, Key: srcDisk }),
+          );
         } else {
           await unlink(join(UPLOAD_DIR, srcDisk)).catch(() => {});
         }

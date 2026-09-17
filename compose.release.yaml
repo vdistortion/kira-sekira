@@ -23,7 +23,7 @@ services:
     image: ghcr.io/vdistortion/kira-sekira-studio:release
     pull_policy: always
     ports:
-      - "127.0.0.1:8055:8055"
+      - '127.0.0.1:8055:8055'
     environment:
       KEY: ${DIRECTUS_KEY}
       SECRET: ${DIRECTUS_SECRET}

@@ -11,7 +11,7 @@ import { PictureList } from '../../features/gallery/picture-list/picture-list';
   styleUrl: './project.scss',
 })
 export class Project {
-  id = input.required<string>();
+  slug = input.required<string>();
   private studio = inject(DirectusService);
   private titleService = inject(Title);
   private meta = inject(Meta);
@@ -22,12 +22,12 @@ export class Project {
 
   constructor() {
     effect(() => {
-      const slug = this.id();
+      const slug = this.slug();
       if (slug) {
         this.loading.set(true);
-          this.studio
-            .getGalleryBySlug(slug)
-            .then((data: any) => {
+        this.studio
+          .getGalleryBySlug(slug)
+          .then((data: any) => {
             this.gallery.set(data);
             this.setSeo(
               data?.title ? `${data.title} — Kira Sekira` : 'Kira Sekira',
