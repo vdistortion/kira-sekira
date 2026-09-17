@@ -2,7 +2,8 @@
          db-dump-dev db-dump-prod db-restore-dev db-restore-prod \
          uploads-dump-dev uploads-dump-prod uploads-restore-dev uploads-restore-prod \
          sync-setup check tunnel-up tunnel-down pull push \
-         db-pull db-push files-pull files-push
+         db-pull db-push files-pull files-push \
+         backup-install backup-run backup-web
 
 COMPOSE_DEV := docker compose
 COMPOSE_PROD := docker compose -f compose.release.yaml
@@ -104,3 +105,14 @@ push: files-push db-push
 
 db-pull db-push files-pull files-push:
 	bash scripts/sync.sh $@
+
+# --- Production backups (run on VPS only) ---
+backup-install:
+	bash scripts/install-backup-timer.sh
+
+backup-run:
+	bash scripts/backup.sh
+
+backup-web:
+	@test -f .backup-htpasswd || (echo 'Создайте .backup-htpasswd перед запуском' && exit 1)
+	docker compose -f compose.release.yaml --profile backups up -d backup-web

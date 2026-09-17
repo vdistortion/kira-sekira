@@ -160,6 +160,47 @@ kirochka.localhost` и открывайте `http://yana.localhost:4201` или
 `?m=<subdomain>`: `http://localhost:4201/?m=kirochka`. Без параметра локальный
 адрес открывает демо-модель `yana`.
 
+## Автоматические бэкапы на VPS
+
+Локальные бэкапы не нужны: локальный стек можно пересоздать из схемы и
+сидов. На production VPS бэкапируются PostgreSQL и файлы Garage.
+
+Первоначально на VPS:
+
+```bash
+cd ~/projects/kira-sekira
+mkdir -p backups/db backups/files backups/state
+sudo apt-get install -y apache2-utils
+htpasswd -c .backup-htpasswd backup-admin
+# пароль сохранить в менеджере паролей, файл не коммитить
+make backup-install
+make backup-web
+```
+
+`make backup-install` устанавливает ежедневный systemd-timer. Перед сохранением
+нового PostgreSQL-дампа и зеркала Garage скрипт сравнивает их с предыдущим
+состоянием. Если данные не менялись, новые копии не создаются и файлы не
+пересинхронизируются. Дампы БД старше 14 дней удаляются. Файлы зеркала хранятся
+в `backups/files/`.
+
+Страница доступна через Caddy по адресу:
+
+```text
+https://backups.kira-sekira.ru
+```
+
+Она защищена HTTP Basic Auth. Поддомен должен указывать на IP VPS, как и
+остальные домены проекта. Это временная схема для удобной проверки и скачивания
+дампов: копии всё равно находятся на том же VPS и не заменяют off-site-бэкап.
+
+Проверка таймера и ручной запуск:
+
+```bash
+systemctl list-timers kira-sekira-backup.timer
+sudo systemctl start kira-sekira-backup.service
+journalctl -u kira-sekira-backup.service -n 100 --no-pager
+```
+
 ## Деплой
 
 - `make schema-release` — то же, что `schema-dev`, но поднимает прод-стек

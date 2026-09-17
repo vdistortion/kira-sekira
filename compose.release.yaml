@@ -65,6 +65,23 @@ services:
       caddy.reverse_proxy: '{{upstreams 8055}}'
     restart: unless-stopped
 
+  backup-web:
+    container_name: kira-backup-web-release
+    image: nginx:1.27-alpine
+    profiles: [backups]
+    restart: unless-stopped
+    volumes:
+      - ./backups:/usr/share/nginx/html:ro
+      - ./infra/backup-web/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./infra/backup-web/index.html:/usr/share/nginx/html/index.html:ro
+      - ./.backup-htpasswd:/etc/nginx/.htpasswd:ro
+    networks:
+      - caddy
+    labels:
+      caddy: backups.kira-sekira.ru
+      caddy.encode: zstd gzip
+      caddy.reverse_proxy: '{{upstreams 80}}'
+
   main:
     container_name: kira-main-release
     image: ghcr.io/vdistortion/kira-sekira-main:release

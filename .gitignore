@@ -36,6 +36,7 @@ Thumbs.db
 
 # Migration backups
 /backups/
+/.backup-htpasswd
 
 # Local environment (secrets) — keep .env.example as a tracked template
 .env
