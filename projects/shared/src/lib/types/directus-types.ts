@@ -47,6 +47,8 @@ export interface Model {
   name: string;
   main_photo?: DirectusFile;
   description?: string;
+  location?: string;
+  tattoos?: string;
   bust?: string;
   waist?: string;
   hips?: string;
@@ -66,6 +68,7 @@ export interface Gallery {
   id: string;
   slug: string;
   title: string;
+  description?: string;
   cover?: DirectusFile;
   images?: GalleryImage[];
   cover_url?: string; // добавляется сервисом

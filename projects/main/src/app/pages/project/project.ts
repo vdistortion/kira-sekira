@@ -1,12 +1,12 @@
 import { Component, inject, signal, input, effect } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { DirectusService } from 'shared';
+import { DirectusService, MarkdownPipe } from 'shared';
 import { Page } from '../../layout/page/page';
 import { PictureList } from '../../features/gallery/picture-list/picture-list';
 
 @Component({
   selector: 'app-project',
-  imports: [Page, PictureList],
+  imports: [Page, PictureList, MarkdownPipe],
   templateUrl: './project.html',
   styleUrl: './project.scss',
 })

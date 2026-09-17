@@ -1,5 +1,8 @@
 @if (gallery(); as gallery) {
   <app-page [title]="gallery.title">
+    @if (gallery.description) {
+      <div class="project-detail__description" [innerHTML]="gallery.description | markdown"></div>
+    }
     <div class="project-detail">
       <app-picture-list
         class="project-detail__item"

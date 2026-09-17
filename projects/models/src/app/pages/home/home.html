@@ -21,6 +21,17 @@
           </div>
         }
 
+        @if (m.location || m.tattoos) {
+          <div class="hero__details">
+            @if (m.location) {
+              <p><strong>Город:</strong> {{ m.location }}</p>
+            }
+            @if (m.tattoos) {
+              <p><strong>Татуировки:</strong> {{ m.tattoos }}</p>
+            }
+          </div>
+        }
+
         @if (m.parameters) {
           <div class="hero__params">
             <h3>Параметры</h3>

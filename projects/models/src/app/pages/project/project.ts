@@ -1,11 +1,11 @@
 import { Component, inject, signal, input, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
-import { DirectusService } from 'shared';
+import { DirectusService, MarkdownPipe } from 'shared';
 
 @Component({
   selector: 'app-project',
-  imports: [RouterLink],
+  imports: [RouterLink, MarkdownPipe],
   templateUrl: './project.html',
   styleUrl: './project.scss',
 })
