@@ -13,6 +13,7 @@ import { Logo } from '../logo/logo';
 import { Header } from '../header/header';
 
 interface Contacts {
+  working_hours?: string | null;
   phone?: string | null;
   telegram?: string | null;
   whatsapp?: string | null;

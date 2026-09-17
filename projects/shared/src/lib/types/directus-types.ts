@@ -10,7 +10,6 @@ export interface MainSite {
   id: string;
   site_name: string;
   main_photo?: DirectusFile;
-  working_hours?: string;
   advantages_md?: string;
   tagline?: string;
   experience_since?: number;
@@ -23,6 +22,7 @@ export interface MainSite {
 // --- contacts ---
 export interface Contacts {
   id: string;
+  working_hours?: string;
   telegram?: string;
   whatsapp?: string;
   phone?: string;

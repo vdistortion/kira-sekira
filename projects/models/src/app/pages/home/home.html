@@ -178,7 +178,9 @@
     <!-- CONTACTS SECTION -->
     <section id="contacts" class="contacts">
       <h2 class="section-title">Связаться</h2>
-      <p class="contacts__subtitle">Пн—Сб, 10:00—20:00</p>
+      @if (m.contacts?.working_hours) {
+        <p class="contacts__subtitle">{{ m.contacts.working_hours }}</p>
+      }
 
       @if (m.contacts) {
         <div class="contact-methods">

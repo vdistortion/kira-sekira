@@ -1145,48 +1145,6 @@ fields:
     foreign_key_table: directus_files
     foreign_key_column: id
 - collection: main_site
-  field: working_hours
-  type: string
-  meta:
-    collection: main_site
-    conditions: null
-    display: null
-    display_options: null
-    field: working_hours
-    group: null
-    hidden: false
-    interface: input
-    note: null
-    options: null
-    readonly: false
-    required: false
-    searchable: false
-    sort: 5
-    special: null
-    translations:
-    - language: ru-RU
-      translation: Время работы
-    validation: null
-    validation_message: null
-    width: full
-  schema:
-    name: working_hours
-    table: main_site
-    data_type: character varying
-    default_value: null
-    max_length: 255
-    numeric_precision: null
-    numeric_scale: null
-    is_nullable: true
-    is_unique: false
-    is_indexed: false
-    is_primary_key: false
-    is_generated: false
-    generation_expression: null
-    has_auto_increment: false
-    foreign_key_table: null
-    foreign_key_column: null
-- collection: main_site
   field: advantages_md
   type: text
   meta:
