@@ -91,20 +91,12 @@
                 <a [href]="'tel:' + m.contacts.phone" class="btn btn--primary"> ☎ Позвонить </a>
               }
               @if (m.contacts.telegram) {
-                <a
-                  [href]="'https://t.me/' + m.contacts.telegram"
-                  target="_blank"
-                  class="btn btn--secondary"
-                >
+                <a [href]="m.contacts.telegram" target="_blank" class="btn btn--secondary">
                   Telegram
                 </a>
               }
               @if (m.contacts.whatsapp) {
-                <a
-                  [href]="'https://wa.me/' + m.contacts.whatsapp"
-                  target="_blank"
-                  class="btn btn--secondary"
-                >
+                <a [href]="m.contacts.whatsapp" target="_blank" class="btn btn--secondary">
                   WhatsApp
                 </a>
               }
@@ -195,25 +187,13 @@
           @if (m.contacts.telegram) {
             <div class="contact-item">
               <h3>Telegram</h3>
-              <a
-                [href]="'https://t.me/' + m.contacts.telegram"
-                target="_blank"
-                class="contact-link"
-              >
-                Написать
-              </a>
+              <a [href]="m.contacts.telegram" target="_blank" class="contact-link"> Написать </a>
             </div>
           }
           @if (m.contacts.whatsapp) {
             <div class="contact-item">
               <h3>WhatsApp</h3>
-              <a
-                [href]="'https://wa.me/' + m.contacts.whatsapp"
-                target="_blank"
-                class="contact-link"
-              >
-                Написать
-              </a>
+              <a [href]="m.contacts.whatsapp" target="_blank" class="contact-link"> Написать </a>
             </div>
           }
           @if (m.contacts.email) {

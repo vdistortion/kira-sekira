@@ -10,4 +10,5 @@ import { PictureCard } from '../picture-card/picture-card';
 })
 export class PictureList {
   @Input() public images: { url: string }[] = [];
+  @Input() public altText = '';
 }

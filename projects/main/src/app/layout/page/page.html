@@ -8,10 +8,10 @@
             <a [href]="'tel:' + contacts().phone">{{ contacts().phone }}</a>
           }
           @if (contacts().telegram) {
-            <a [href]="'https://t.me/' + contacts().telegram" target="_blank">Telegram</a>
+            <a [href]="contacts().telegram" target="_blank">Telegram</a>
           }
           @if (contacts().whatsapp) {
-            <a [href]="'https://wa.me/' + contacts().whatsapp" target="_blank">WhatsApp</a>
+            <a [href]="contacts().whatsapp" target="_blank">WhatsApp</a>
           }
         </div>
         @if (contacts().working_hours) {

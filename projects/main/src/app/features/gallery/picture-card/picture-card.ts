@@ -8,5 +8,6 @@ import { Component, Input } from '@angular/core';
 })
 export class PictureCard {
   @Input({ required: true }) public image!: string;
-  @Input() public description: string = '';
+  @Input() public altText = '';
+  @Input() public description = '';
 }

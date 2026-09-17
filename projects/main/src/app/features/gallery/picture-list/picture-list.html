@@ -1,7 +1,7 @@
 <div class="picture-list" [photoGalleryGroup]="{ history: true }">
   @for (image of images; track image.url) {
     <div class="picture-list__item" [photoGallery]="image.url">
-      <app-picture-card [image]="image.url"></app-picture-card>
+      <app-picture-card [image]="image.url" [altText]="altText"></app-picture-card>
     </div>
   }
 </div>
