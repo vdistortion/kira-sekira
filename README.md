@@ -30,7 +30,8 @@
 
 Directus 12 не бандлит `sharp`, поэтому образ собирается кастомным
 `directus/Dockerfile` (поверх `directus:12.0.2`, явно устанавливает
-`sharp` и `@aws-sdk/client-s3`) и монтирует `directus/extensions`.
+`image-manifest`/`to-webp` — он тянет `sharp` как зависимость — и
+`@aws-sdk/client-s3`) и монтирует `directus/extensions`.
 Расширение `convert-to-webp`
 (`directus/extensions/convert-to-webp`) — это hook: уже загруженный WebP
 оно не меняет, а любую другую растровую картинку уменьшает с сохранением

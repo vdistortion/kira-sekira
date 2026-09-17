@@ -1,9 +1,9 @@
 import { stat, unlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import sharp from 'sharp';
+import { convertToWebp, DEFAULT_MAX_IMAGE_SIDE } from 'image-manifest/to-webp';
 import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 
-const MAX_IMAGE_SIDE = 1000;
+const MAX_IMAGE_SIDE = DEFAULT_MAX_IMAGE_SIDE;
 const WEBP_MIME_TYPE = 'image/webp';
 
 function toWebpFilename(filename) {
@@ -29,13 +29,8 @@ function createGarageClient(env) {
   });
 }
 
-async function convertToWebp(input) {
-  const buffer = await sharp(input, { animated: true, limitInputPixels: false })
-    .resize(MAX_IMAGE_SIDE, MAX_IMAGE_SIDE, { fit: 'inside', withoutEnlargement: true })
-    .webp({ quality: 80 })
-    .toBuffer();
-  const metadata = await sharp(buffer).metadata();
-  return { buffer, width: metadata.width ?? null, height: metadata.height ?? null };
+async function toWebp(input) {
+  return convertToWebp(input, MAX_IMAGE_SIDE);
 }
 
 /**
@@ -76,7 +71,7 @@ export default function registerHook({ action }, { services, getSchema, env, log
         const source = await client.send(new GetObjectCommand({ Bucket: bucket, Key: srcDisk }));
 
         if (!source.Body) throw new Error(`Garage object ${srcDisk} has no body`);
-        converted = await convertToWebp(await streamToBuffer(source.Body));
+        converted = await toWebp(await streamToBuffer(source.Body));
 
         await client.send(
           new PutObjectCommand({
@@ -89,7 +84,7 @@ export default function registerHook({ action }, { services, getSchema, env, log
       } else if (!file.storage || file.storage === 'local') {
         const srcPath = join(UPLOAD_DIR, srcDisk);
         const newPath = join(UPLOAD_DIR, newDisk);
-        converted = await convertToWebp(srcPath);
+        converted = await toWebp(srcPath);
         await writeFile(newPath, converted.buffer);
       } else {
         logger?.warn?.(`[convert-to-webp] unsupported storage: ${file.storage}`);
