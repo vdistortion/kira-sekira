@@ -36,10 +36,7 @@ export class Home {
   }
 
   private load(subdomain: string): void {
-    Promise.all([
-      this.studio.getModelBySubdomain(subdomain),
-      this.studio.getContacts(),
-    ])
+    Promise.all([this.studio.getModelBySubdomain(subdomain), this.studio.getContacts()])
       .then(([model, contacts]) => {
         this.modelStore.name.set(model.name || '');
         this.model.set({

@@ -1,7 +1,14 @@
 @if (gallery(); as gallery) {
   <app-page [title]="gallery.title">
+    @if (gallery.description) {
+      <div class="project-detail__description" [innerHTML]="gallery.description | markdown"></div>
+    }
     <div class="project-detail">
-      <app-picture-list class="project-detail__item" [images]="gallery.images"></app-picture-list>
+      <app-picture-list
+        class="project-detail__item"
+        [images]="gallery.images"
+        [altText]="gallery.title"
+      ></app-picture-list>
     </div>
   </app-page>
 }

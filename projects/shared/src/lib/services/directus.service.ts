@@ -32,7 +32,6 @@ export class DirectusService {
         fields: [
           '*',
           'main_photo.*',
-          'logo.*',
           'galleries.galleries_id.*',
           'galleries.galleries_id.cover.*',
           'videos.videos_id.*',
@@ -43,7 +42,6 @@ export class DirectusService {
     return {
       ...data,
       main_photo_url: data.main_photo ? this.getFileUrl(data.main_photo) : '',
-      logo_url: data.logo ? this.getFileUrl(data.logo) : '',
       videos: (data.videos || []).map((v: any) => ({
         url: v.videos_id?.url,
         title: v.videos_id?.title,

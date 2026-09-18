@@ -1,17 +1,17 @@
 import { Component, inject, signal, input, effect } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { DirectusService } from 'shared';
+import { DirectusService, MarkdownPipe } from 'shared';
 import { Page } from '../../layout/page/page';
 import { PictureList } from '../../features/gallery/picture-list/picture-list';
 
 @Component({
   selector: 'app-project',
-  imports: [Page, PictureList],
+  imports: [Page, PictureList, MarkdownPipe],
   templateUrl: './project.html',
   styleUrl: './project.scss',
 })
 export class Project {
-  id = input.required<string>();
+  slug = input.required<string>();
   private studio = inject(DirectusService);
   private titleService = inject(Title);
   private meta = inject(Meta);
@@ -22,12 +22,12 @@ export class Project {
 
   constructor() {
     effect(() => {
-      const slug = this.id();
+      const slug = this.slug();
       if (slug) {
         this.loading.set(true);
-          this.studio
-            .getGalleryBySlug(slug)
-            .then((data: any) => {
+        this.studio
+          .getGalleryBySlug(slug)
+          .then((data: any) => {
             this.gallery.set(data);
             this.setSeo(
               data?.title ? `${data.title} — Kira Sekira` : 'Kira Sekira',

@@ -3,7 +3,7 @@
 
 Generates gradient placeholder images on the fly (pure stdlib PNG, no binaries
 in the repo, no external download) and uploads them as Directus files (stored
-in the configured storage, e.g. R2). Falls back to picsum.photos if reachable.
+in the configured storage, e.g. Garage). Falls back to picsum.photos if reachable.
 Then builds a few galleries (cover + images), links them to the main site and
 the demo models, and sets hero/main photos + price covers. Idempotent by slug/title.
 

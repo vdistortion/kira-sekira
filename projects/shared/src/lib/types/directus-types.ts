@@ -9,9 +9,7 @@ export interface DirectusFile {
 export interface MainSite {
   id: string;
   site_name: string;
-  logo?: DirectusFile;
   main_photo?: DirectusFile;
-  working_hours?: string;
   advantages_md?: string;
   tagline?: string;
   experience_since?: number;
@@ -19,12 +17,12 @@ export interface MainSite {
   galleries?: Gallery[];
   // вспомогательные, формируемые сервисом
   main_photo_url?: string;
-  logo_url?: string;
 }
 
 // --- contacts ---
 export interface Contacts {
   id: string;
+  working_hours?: string;
   telegram?: string;
   whatsapp?: string;
   phone?: string;
@@ -49,6 +47,8 @@ export interface Model {
   name: string;
   main_photo?: DirectusFile;
   description?: string;
+  location?: string;
+  tattoos?: string;
   bust?: string;
   waist?: string;
   hips?: string;
@@ -68,6 +68,7 @@ export interface Gallery {
   id: string;
   slug: string;
   title: string;
+  description?: string;
   cover?: DirectusFile;
   images?: GalleryImage[];
   cover_url?: string; // добавляется сервисом
