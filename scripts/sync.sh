@@ -39,17 +39,23 @@ TUNNEL_SOCK="${TMPDIR:-/tmp}/kira-sekira-garage-tunnel.sock"
 
 die() { echo "ОШИБКА: $*" >&2; exit 1; }
 
-resolve_uploads() {
+# Хост-путь к uploads, доступный текущему пользователю, либо пусто.
+# Пусто означает, что docker-том недоступен напрямую (Docker Desktop/VM,
+# rootless, права на /var/lib/docker) — тогда файлы выгружаются/заливаются
+# через контейнер studio (tar), см. files_push / files_pull.
+# Принудительно задаётся переменной LOCAL_UPLOADS.
+uploads_real_dir() {
   if [ -n "${LOCAL_UPLOADS:-}" ]; then
     echo "$LOCAL_UPLOADS"
     return
   fi
-  local vol
+  local vol mp
   vol="$(docker volume ls --format '{{.Name}}' | grep 'directus_uploads$' | head -1 || true)"
   if [ -n "$vol" ]; then
-    docker volume inspect "$vol" --format '{{.Mountpoint}}'
-  else
-    echo "/var/lib/docker/volumes/kira-sekira_directus_uploads/_data"
+    mp="$(docker volume inspect "$vol" --format '{{.Mountpoint}}' 2>/dev/null || true)"
+  fi
+  if [ -n "$mp" ] && [ -d "$mp" ] && [ -r "$mp" ]; then
+    echo "$mp"
   fi
 }
 
@@ -195,23 +201,39 @@ db_push() {
 files_pull() {
   need_garage_env
   tunnel_ok || die "Garage недоступен. Подними туннель: make tunnel-up"
-  local dst
-  dst="$(resolve_uploads)"
-  mkdir -p "$dst"
-  echo "Garage -> локальные uploads ($dst) ..."
-  # shellcheck disable=SC2046
-  "$RCLONE" sync "garage:${GARAGE_BUCKET}/" "$dst/" $(rclone_flags) --progress
+  local dst tmp
+  dst="$(uploads_real_dir)"
+  if [ -n "$dst" ]; then
+    mkdir -p "$dst"
+    echo "Garage -> локальные uploads ($dst) ..."
+    # shellcheck disable=SC2046
+    "$RCLONE" sync "garage:${GARAGE_BUCKET}/" "$dst/" $(rclone_flags) --progress
+  else
+    echo "Хост-путь к uploads недоступен — синхронизирую через контейнер studio ..."
+    tmp="$(mktemp -d)"
+    "$RCLONE" sync "garage:${GARAGE_BUCKET}/" "$tmp/" $(rclone_flags) --progress
+    tar -C "$tmp" -cf - . | docker compose exec -T studio tar -C /directus/uploads -xf -
+    rm -rf "$tmp"
+  fi
   echo "Готово: прод -> локал (файлы)."
 }
 
 files_push() {
   need_garage_env
   tunnel_ok || die "Garage недоступен. Подними туннель: make tunnel-up"
-  local src
-  src="$(resolve_uploads)"
-  echo "Локальные uploads ($src) -> Garage ..."
-  # shellcheck disable=SC2046
-  "$RCLONE" sync "$src/" "garage:${GARAGE_BUCKET}/" $(rclone_flags) --progress
+  local src tmp
+  src="$(uploads_real_dir)"
+  if [ -n "$src" ]; then
+    echo "Локальные uploads ($src) -> Garage ..."
+    # shellcheck disable=SC2046
+    "$RCLONE" sync "$src/" "garage:${GARAGE_BUCKET}/" $(rclone_flags) --progress
+  else
+    echo "Хост-путь к uploads недоступен — выгружаю uploads из контейнера studio ..."
+    tmp="$(mktemp -d)"
+    docker compose exec -T studio tar -C /directus -cf - uploads | tar -C "$tmp" -xf -
+    "$RCLONE" sync "$tmp/uploads/" "garage:${GARAGE_BUCKET}/" $(rclone_flags) --progress
+    rm -rf "$tmp"
+  fi
   echo "Готово: локал -> прод (файлы)."
 }
 

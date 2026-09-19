@@ -130,6 +130,10 @@ files-pull`/`files-push` (только файлы).
   После `db-pull`/`db-push` скрипт переключает колонку
   `directus_files.storage` на нужный драйвер (`local`/`garage`), поэтому
   картинки не ломаются.
+- Если docker-том `directus_uploads` недоступен с хоста (Docker Desktop,
+  rootless-демон, права на `/var/lib/docker`), sync.sh автоматически
+  выгружает/заливает файлы через контейнер `studio` (tar). Путь можно
+  задать принудительно переменной `LOCAL_UPLOADS`.
 - `make push` зеркалирует локальную БД на прод (в т.ч. удаления). Для
   предпросмотра без записи: `DRY_RUN=1 make files-push` (и аналогично для
   pull).
