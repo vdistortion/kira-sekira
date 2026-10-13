@@ -81,9 +81,9 @@ npx ng serve models --port 4201    # сайт модели   -> http://localhost
 - `directus/snapshots/schema.yaml` — схема БД (источник правды).
 - `directus/setup/permissions.py` — создаёт/чинит политики доступа.
 - `directus/setup/seed_core.py` — тексты главной, контакты, прайсы, видео.
-- `directus/setup/seed_real_galleries.py` — загружает фото из
-  `IMAGES_ROOT/projects/<папка>/`, создаёт галереи основного сайта, ставит
-  обложку и `main_photo`.
+- `directus/setup/seed_real_galleries.py` — загружает фото только из пяти
+  выбранных папок в `/home/v/Desktop/garage_images/kira-sekira/` и создаёт
+  галереи основного сайта.
 - `directus/setup/seed_models.py` — демо-модели (`yana`, `kirochka`) для
   локальной проверки UI. Реальные модели заводятся в админке.
 
@@ -92,9 +92,7 @@ npx ng serve models --port 4201    # сайт модели   -> http://localhost
 `DIRECTUS_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `IMAGES_ROOT`:
 
 ```bash
-DIRECTUS_URL=http://localhost:8055 ADMIN_EMAIL=... ADMIN_PASSWORD=... \
-  IMAGES_ROOT=/home/v/Desktop/KiraSekiraProject/kira-images \
-  python3 directus/setup/seed_core.py
+IMAGES_ROOT=/home/v/Desktop/garage_images/kira-sekira make seed
 ```
 
 Все сиды идемпотентны.

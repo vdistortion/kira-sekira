@@ -17,12 +17,6 @@ import urllib.error
 BASE = os.environ.get("DIRECTUS_URL", "http://localhost:8055").rstrip("/")
 EMAIL = os.environ["ADMIN_EMAIL"]
 PASSWORD = os.environ["ADMIN_PASSWORD"]
-IMAGES_ROOT = os.environ.get(
-    "IMAGES_ROOT", "/home/v/Desktop/KiraSekiraProject/kira-images"
-)
-BOUND = b"opencodeboundary12345"
-
-
 def req(method, path, token=None, body=None, public_fallback=True):
     url = BASE + path
     data = json.dumps(body).encode() if body is not None else None
@@ -68,25 +62,6 @@ def login():
     __import__("sys").exit(1)
 
 
-def upload_file(path, title, disk_name, tok):
-    with open(path, "rb") as f:
-        data = f.read()
-    crlf = b"\r\n"
-    body = b""
-    body += b"--" + BOUND + crlf
-    body += b'Content-Disposition: form-data; name="file"; filename="' + disk_name.encode() + b'"' + crlf
-    body += b"Content-Type: application/octet-stream" + crlf + crlf + data + crlf
-    body += b"--" + BOUND + crlf
-    body += b'Content-Disposition: form-data; name="title"' + crlf + crlf + title.encode() + crlf
-    body += b"--" + BOUND + b"--" + crlf
-    r = urllib.request.Request(BASE + "/files", data=body, method="POST")
-    r.add_header("Content-Type", "multipart/form-data; boundary=" + BOUND.decode())
-    r.add_header("Authorization", "Bearer " + tok)
-    with urllib.request.urlopen(r, timeout=120) as resp:
-        data = json.loads(resp.read().decode())["data"]
-    return data
-
-
 def main():
     import urllib.parse
     tok = login()
@@ -112,11 +87,8 @@ def main():
     req("PATCH", "/items/contacts", tok, cbody)
     print("contacts updated")
 
-    # Prices + their cover images
-    price_images = {
-        "Стандарт": "prices-standart.jpg",
-        "Премиум": "prices-premium.jpg",
-    }
+    # Update package details only. Image files are managed in Directus; the
+    # external gallery folder is not a source for price or profile photos.
     for name, price, desc in [
         ("Стандарт", 5000,
          "1 часовая съёмка, 2 образа, все кадры в цветокоррекции (30+), детальная ретушь 12 фото, "
@@ -133,18 +105,6 @@ def main():
         else:
             pid = req("POST", "/items/prices", tok, {"name": name, "price": price, "description": desc})["data"]["id"]
 
-        img_file = price_images.get(name)
-        if img_file:
-            src = os.path.join(IMAGES_ROOT, img_file)
-            if os.path.exists(src):
-                fname = "price__" + img_file
-                existing_file = req("GET", "/items/prices/" + pid, tok)
-                if not (existing_file.get("data", {}).get("image")):
-                    fdata = upload_file(src, name, fname, tok)
-                    req("PATCH", f"/items/prices/{pid}", tok, {"image": fdata["id"]})
-                    print(f"price '{name}' image uploaded")
-                else:
-                    print(f"price '{name}' image already set")
         print(f"price '{name}' updated")
 
     # Placeholder videos linked to the main site

@@ -76,7 +76,7 @@ uploads-restore-prod:
 
 seed:
 	@set -a; . ./.env; set +a; \
-	export IMAGES_ROOT="$${IMAGES_ROOT:-$$HOME/Desktop/KiraSekiraProject/kira-images}"; \
+	export IMAGES_ROOT="$${IMAGES_ROOT:-$$HOME/Desktop/garage_images/kira-sekira}"; \
 	python3 directus/setup/seed_core.py && \
 	python3 directus/setup/seed_real_galleries.py
 
