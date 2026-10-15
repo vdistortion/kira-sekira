@@ -3,7 +3,7 @@
          uploads-dump-dev uploads-dump-prod uploads-restore-dev uploads-restore-prod \
          sync-setup check tunnel-up tunnel-down pull push \
          db-pull db-push files-pull files-push \
-         backup-install backup-run backup-web
+         backup-install backup-run backup-web content-audit content-clean
 
 COMPOSE_DEV := docker compose
 COMPOSE_PROD := docker compose -f compose.release.yaml
@@ -116,3 +116,16 @@ backup-run:
 backup-web:
 	@test -f .backup-htpasswd || (echo 'Создайте .backup-htpasswd перед запуском' && exit 1)
 	docker compose -f compose.release.yaml --profile backups up -d backup-web
+
+# --- Content cleanup (read-only by default) ---
+content-audit:
+	@set -a; . ./.env; set +a; \
+	export DIRECTUS_URL="$${DIRECTUS_URL:-http://127.0.0.1:8055}"; \
+	python3 scripts/cleanup-unused-files.py --older-than-days $(OLDER_THAN_DAYS) $(if $(REPORT),--report "$(REPORT)",)
+
+content-clean:
+	@set -a; . ./.env; set +a; \
+	export DIRECTUS_URL="$${DIRECTUS_URL:-http://127.0.0.1:8055}"; \
+	python3 scripts/cleanup-unused-files.py --older-than-days $(OLDER_THAN_DAYS) $(if $(REPORT),--report "$(REPORT)",) $(if $(filter 1,$(APPLY)),--apply,)
+
+OLDER_THAN_DAYS ?= 30

@@ -97,6 +97,30 @@ IMAGES_ROOT=/home/v/Desktop/garage_images/kira-sekira make seed
 
 Все сиды идемпотентны.
 
+### Очистка неиспользуемых файлов Directus
+
+Скрипт сверяет файлы с отношениями, объявленными в текущей схеме Directus;
+по умолчанию показывает только неиспользуемые файлы старше 30 дней и ничего
+не удаляет. Если ID файла вручную вставлен в Markdown/HTML как URL, это не
+является отношением Directus — такие ссылки нужно проверить по CSV/отчёту перед
+удалением.
+
+На VPS сначала сделайте свежие резервные копии БД, локального uploads и Garage
+(`make backup-run` сохраняет БД и Garage, `make uploads-dump-prod` — локальный
+volume Directus), затем запустите отчёт и отдельно подтвердите удаление:
+
+```bash
+ssh de 'cd ~/projects/kira-sekira && make backup-run uploads-dump-prod'
+ssh de 'cd ~/projects/kira-sekira && make content-audit REPORT=backups/orphan-files.csv'
+ssh -t de 'cd ~/projects/kira-sekira && make content-clean APPLY=1'
+```
+
+Подтверждение требует ввести точное число файлов. Возрастной порог можно
+изменить: `OLDER_THAN_DAYS=60 make content-audit`. Скрипт удаляет файлы через
+API Directus, чтобы вместе с метаданными удалялся бинарный объект из хранилища.
+Сиротские связи с пустыми/несуществующими объектами пока только планируются и
+этой командой не изменяются.
+
 ## Миграция и синхронизация (локал ↔ прод)
 
 Полный перенос данных между локальным стеком и продом на VPS — одной
