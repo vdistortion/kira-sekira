@@ -1,4 +1,4 @@
-<app-page [title]="'Проекты'" [isHomePage]="true">
+<app-page [title]="'Проекты'" [isHomePage]="true" [hasVideos]="videos().length > 0">
   @if (loading()) {
     <p style="text-align: center; color: var(--default-color)">Загрузка...</p>
   } @else if (error()) {

@@ -28,6 +28,7 @@ interface Contacts {
 export class Page {
   @Input() public title: string = '';
   @Input() public isHomePage: boolean = false;
+  @Input() public hasVideos: boolean = false;
   @ContentChild('projectsTarget') projectsElement!: ElementRef;
 
   private studio = inject(DirectusService);
