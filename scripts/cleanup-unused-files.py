@@ -120,7 +120,13 @@ def read_relation_rows(
         query = urllib.parse.urlencode({"fields": field})
         row = request_json(base, "GET", "/settings?" + query, token)
         return [row] if isinstance(row, dict) else []
-    return pages(base, token, endpoint_for_collection(collection), ["id", field])
+    fields = ["id", field]
+    if collection == "gallery_images" and field == "image":
+        # A file in a gallery_images row with no parent gallery is an orphaned
+        # junction, not an active content use. Leave that junction for the
+        # separate future relationship-cleanup task.
+        fields.append("gallery")
+    return pages(base, token, endpoint_for_collection(collection), fields)
 
 
 def relation_sources(base: str, token: str) -> list[tuple[str, str]]:
@@ -163,6 +169,8 @@ def collect_references(
     for collection, field in sources:
         rows = read_relation_rows(base, token, collection, field)
         for row in rows:
+            if collection == "gallery_images" and field == "image" and not row.get("gallery"):
+                continue
             location = f"{collection}.{field}"
             if row.get("id") is not None:
                 location += f" (item {row['id']})"
@@ -348,8 +356,8 @@ def main() -> int:
     parser.add_argument("--apply", action="store_true", help="permanently delete reviewed candidates")
     parser.add_argument("--report", help="also save candidate details as CSV")
     args = parser.parse_args()
-    if args.older_than_days < 1:
-        parser.error("--older-than-days must be at least 1")
+    if args.older_than_days < 0:
+        parser.error("--older-than-days must be 0 or greater")
 
     base = os.environ.get("DIRECTUS_URL", "http://127.0.0.1:8055").rstrip("/")
     try:

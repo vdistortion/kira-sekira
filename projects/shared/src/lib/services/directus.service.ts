@@ -42,10 +42,12 @@ export class DirectusService {
     return {
       ...data,
       main_photo_url: data.main_photo ? this.getFileUrl(data.main_photo) : '',
-      videos: (data.videos || []).map((v: any) => ({
-        url: v.videos_id?.url,
-        title: v.videos_id?.title,
-      })),
+      videos: (data.videos || [])
+        .map((v: any) => ({
+          url: v.videos_id?.url,
+          title: v.videos_id?.title,
+        }))
+        .filter((video: any) => typeof video.url === 'string' && video.url.trim()),
       galleries: (data.galleries || []).map((g: any) => {
         const gal = g.galleries_id || {};
         return {
@@ -122,10 +124,12 @@ export class DirectusService {
     return {
       ...model,
       main_photo_url: model.main_photo ? this.getFileUrl(model.main_photo) : '',
-      videos: (model.videos || []).map((v: any) => ({
-        url: v.videos_id?.url,
-        title: v.videos_id?.title,
-      })),
+      videos: (model.videos || [])
+        .map((v: any) => ({
+          url: v.videos_id?.url,
+          title: v.videos_id?.title,
+        }))
+        .filter((video: any) => typeof video.url === 'string' && video.url.trim()),
       galleries: (model.galleries || []).map((g: any) => {
         const gal = g.galleries_id || {};
         return {
