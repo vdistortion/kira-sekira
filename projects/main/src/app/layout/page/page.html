@@ -33,9 +33,11 @@
         <li class="menu__item">
           <a class="menu__link" routerLink="/" (click)="scrollToSection('prices')">Стоимость</a>
         </li>
-        <li class="menu__item">
-          <a class="menu__link" routerLink="/" (click)="scrollToSection('videos')">Видео</a>
-        </li>
+        @if (hasVideos) {
+          <li class="menu__item">
+            <a class="menu__link" routerLink="/" (click)="scrollToSection('videos')">Видео</a>
+          </li>
+        }
         <li class="menu__item">
           <a class="menu__link" routerLink="/" (click)="scrollToSection('reviews')">Отзывы</a>
         </li>
