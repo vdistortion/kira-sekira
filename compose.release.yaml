@@ -89,7 +89,7 @@ services:
     networks:
       - caddy
     labels:
-      caddy: test.kira-sekira.ru
+      caddy: events.kira-sekira.ru
       caddy.reverse_proxy: '{{upstreams 80}}'
 
   models:
