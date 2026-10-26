@@ -1,5 +1,5 @@
 <div class="picture-card">
-  <img class="picture-card__image" [src]="image" [alt]="altText || description" />
+  <img class="picture-card__image" [src]="image" [alt]="altText || description" [attr.width]="width || null" [attr.height]="height || null" loading="lazy" decoding="async" />
   @if (description) {
     <h2 class="picture-card__description">{{ description }}</h2>
   }

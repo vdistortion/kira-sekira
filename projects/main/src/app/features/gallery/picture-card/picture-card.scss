@@ -1,7 +1,17 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
 .picture-card {
+  height: 100%;
+
   &__image {
-    width: 100%;
+    display: block;
+    width: auto;
+    height: 100%;
     max-width: 100%;
+    object-fit: contain;
   }
 
   &__description {

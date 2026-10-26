@@ -145,7 +145,7 @@ export class DirectusService {
     const items = (await this.client.request(
       readItems('galleries', {
         filter: { slug: { _eq: slug } },
-        fields: ['*', 'cover.*', 'images.*', 'images.image.*'],
+        fields: ['*', 'cover.*', 'images.*', 'images.image.id', 'images.image.filename_download', 'images.image.width', 'images.image.height'],
       }),
     )) as any[];
 
@@ -157,6 +157,8 @@ export class DirectusService {
       images: (g.images || []).map((img: any) => ({
         ...img,
         url: img.image ? this.getFileUrl(img.image) : '',
+        width: img.image?.width,
+        height: img.image?.height,
       })),
     };
   }

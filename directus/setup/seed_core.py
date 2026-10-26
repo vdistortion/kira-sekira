@@ -82,7 +82,6 @@ def main():
         "telegram": "https://t.me/kirasekira",
         "whatsapp": "https://wa.me/79104769029",
         "email": "hello@kira-sekira.ru",
-        "working_hours": "Пн - Сб 10:00-20:00",
     }
     req("PATCH", "/items/contacts", tok, cbody)
     print("contacts updated")

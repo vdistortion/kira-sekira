@@ -2,6 +2,8 @@
 export interface DirectusFile {
   id: string;
   filename_download: string;
+  width?: number;
+  height?: number;
   [key: string]: any;
 }
 
@@ -22,7 +24,6 @@ export interface MainSite {
 // --- contacts ---
 export interface Contacts {
   id: string;
-  working_hours?: string;
   telegram?: string;
   whatsapp?: string;
   phone?: string;
@@ -79,4 +80,6 @@ export interface GalleryImage {
   id: string;
   image?: DirectusFile;
   url?: string; // добавляется сервисом
+  width?: number;
+  height?: number;
 }

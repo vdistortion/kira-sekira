@@ -1,17 +1,16 @@
 .picture-list {
-  column-count: 3;
-  grid-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
-  @media (max-width: 1100px) {
-    column-count: 2;
-  }
-
-  @media (max-width: 600px) {
-    column-count: 1;
+  &__row {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-start;
   }
 
   &__item {
-    display: inline-block;
-    width: 100%;
+    min-width: 0;
+    overflow: hidden;
   }
 }
