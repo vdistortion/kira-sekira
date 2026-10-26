@@ -22,7 +22,6 @@ export interface MainSite {
 // --- contacts ---
 export interface Contacts {
   id: string;
-  working_hours?: string;
   telegram?: string;
   whatsapp?: string;
   phone?: string;

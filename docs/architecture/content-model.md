@@ -19,8 +19,7 @@
 - `phone`;
 - `telegram` — готовый URL;
 - `whatsapp` — готовый URL;
-- `email`;
-- `working_hours` — необязательное поле.
+- `email`.
 
 Frontend использует URL напрямую, не добавляя к нему домен мессенджера.
 
