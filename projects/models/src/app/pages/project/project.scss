@@ -30,18 +30,16 @@
   }
 
   &__gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-md);
-    }
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
   }
 
   &__figure {
     margin: 0;
+    height: clamp(140px, 22vw, 260px);
     overflow: hidden;
     border-radius: var(--radius);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
@@ -54,9 +52,11 @@
     }
 
     img {
-      width: 100%;
-      height: auto;
+      width: auto;
+      height: 100%;
+      max-width: 100%;
       display: block;
+      object-fit: contain;
       transition: transform var(--transition);
     }
 

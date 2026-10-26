@@ -10,4 +10,6 @@ export class PictureCard {
   @Input({ required: true }) public image!: string;
   @Input() public altText = '';
   @Input() public description = '';
+  @Input() public width?: number;
+  @Input() public height?: number;
 }

@@ -15,8 +15,8 @@
 
     <div class="project-page__gallery">
       @for (img of g.images; track img.url) {
-        <figure class="project-page__figure">
-          <img [src]="img.url" [alt]="g.title" loading="lazy" />
+        <figure class="project-page__figure" [style.aspect-ratio]="img.width && img.height ? img.width + ' / ' + img.height : '4 / 3'">
+          <img [src]="img.url" [alt]="g.title" [attr.width]="img.width || null" [attr.height]="img.height || null" loading="lazy" decoding="async" />
         </figure>
       }
     </div>
