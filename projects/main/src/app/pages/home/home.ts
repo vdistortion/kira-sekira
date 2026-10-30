@@ -11,7 +11,7 @@ export class Home {
   private host: ElementRef<HTMLElement> = inject(ElementRef);
   readonly about=!!inject(ActivatedRoute).snapshot.data['about'];
   copy=signal<any>(null); galleries=signal<any[]>([]); contacts=signal<Contacts|null>(null);
-  aboutHtml=signal(''); failed=signal(false); step=signal(0); answers=signal<string[]>([]); date='';
+  aboutHtml=signal(''); homeIntroHtml=signal(''); failed=signal(false); step=signal(0); answers=signal<string[]>([]); date='';
   constructor(){inject(PendingTasks).run(()=>this.load());afterNextRender(()=>this.decorateHero());}
   async load(){
     try{
@@ -21,6 +21,10 @@ export class Home {
       this.copy.set(c);this.galleries.set(site.galleries||[]);this.contacts.set(contacts);
       const portrait=(site.main_photo_url||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
       this.aboutHtml.set(c.aboutHtml.replace('/assets/kira-sekira-portrait.jpg',portrait));
+      this.homeIntroHtml.set(portrait ? c.introHtml.replace(
+        /(<section class="dark"><div class="split">)(<small>.*?<\/small>)/,
+        `$1<div class="approach-portrait">$2<img src="${portrait}" alt="Кира Секира с камерой" width="2048" height="2048" loading="lazy"></div>`,
+      ) : c.introHtml);
       this.title.setTitle(this.about?'Обо мне — Кира Секира':c.seoTitle);
       this.meta.updateTag({name:'description',content:c.seoDescription});
       this.meta.updateTag({property:'og:title',content:c.seoTitle});

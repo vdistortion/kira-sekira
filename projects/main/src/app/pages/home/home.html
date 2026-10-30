@@ -2,7 +2,7 @@
 @if(copy(); as c){
 <div [innerHTML]="c.headerHtml"></div>
 @if(about){<div [innerHTML]="aboutHtml()"></div>}@else{
-<div [innerHTML]="c.introHtml"></div>
+<div [innerHTML]="homeIntroHtml()"></div>
 <section id="work"><small>{{c.portfolioEyebrow}}</small><h2>{{c.portfolioTitle}}</h2><div class="events-gallery">
 @for(gallery of galleries();track gallery.slug){<a [routerLink]="['/portfolio',gallery.slug]">@if(gallery.cover_url){<img [src]="gallery.cover_url" [alt]="gallery.title" loading="lazy"/>}<h3>{{gallery.title}}</h3><p>{{c.galleryLink}}</p></a>}@empty{<p>{{c.portfolioEmpty}}</p>}
 </div></section>
