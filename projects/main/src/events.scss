@@ -32,3 +32,5 @@ html { scroll-behavior: smooth; }
 .events-site .hero-emotion{font-family:Georgia,serif;font-size:calc(.39em - 1px)}@media(max-width:700px){.events-site .hero-emotion{font-size:20px}}
 
 .events-site{.hero-collage{position:relative;isolation:isolate;background:none!important;height:510px;min-height:0;padding:40px;overflow:hidden}.hero-triptych{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));z-index:-2}.hero-triptych img{display:block;width:100%;height:100%;min-height:0;object-fit:cover;object-position:center}.hero-collage:before{display:none}.hero-collage:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,#17213b99);z-index:-1}@media(max-width:700px){.hero-collage{height:350px;min-height:0;padding:24px}.hero-collage span{font-size:clamp(28px,6.4vw,45px)}}}
+
+.events-site .hero-triptych img:nth-child(2){height:calc(100% + 180px);transform:translateY(-180px);object-position:center bottom}
