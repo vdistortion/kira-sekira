@@ -2,18 +2,14 @@
 """Initialize approved events copy once; preserve all later CMS edits."""
 import json
 import sys
-import urllib.error
 from pathlib import Path
 from seed_core import login, req
 
 def main():
     token=login()
     if '--ensure-field' in sys.argv:
-        try:
-            req('GET', '/fields/main_site/events_content', token)
-        except urllib.error.HTTPError as error:
-            if error.code != 404:
-                raise
+        fields = req('GET', '/fields/main_site', token, public_fallback=False)['data']
+        if not any(field.get('field') == 'events_content' for field in fields):
             req('POST', '/fields/main_site', token, {
                 'field': 'events_content', 'type': 'json',
                 'schema': {'is_nullable': True},
