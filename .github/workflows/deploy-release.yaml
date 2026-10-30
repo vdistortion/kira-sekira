@@ -31,6 +31,28 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      # Add the optional content field before prerendering the first events build.
+      # Existing CMS values are preserved. No frontend or gallery records change here.
+      - name: Prepare events content for prerender
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -eu
+            cd ~/projects/kira-sekira
+            git remote set-url origin "https://github.com/${{ github.repository }}.git"
+            git fetch origin release
+            events_tmp=$(mktemp -d)
+            trap 'rm -rf "$events_tmp"' EXIT
+            mkdir -p "$events_tmp/content"
+            git show origin/release:directus/setup/seed_core.py > "$events_tmp/seed_core.py"
+            git show origin/release:directus/setup/seed_events.py > "$events_tmp/seed_events.py"
+            git show origin/release:directus/setup/content/events-site.json > "$events_tmp/content/events-site.json"
+            set -a; . ./.env; set +a
+            python3 "$events_tmp/seed_events.py" --ensure-field
+
       # Собираем и пушим каждый образ последовательно
       - name: Build and push main
         uses: docker/build-push-action@v6
@@ -74,7 +96,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: DB_PASSWORD,DIRECTUS_KEY,DIRECTUS_SECRET,CORS_ORIGIN,PUBLIC_URL,GHCR_PAT,GHCR_USER,REPO_URL,ADMIN_EMAIL,ADMIN_PASSWORD,GARAGE_BUCKET,GARAGE_ACCESS_KEY_ID,GARAGE_SECRET_ACCESS_KEY
+          envs: DB_PASSWORD,DIRECTUS_KEY,DIRECTUS_SECRET,CORS_ORIGIN,PUBLIC_URL,GHCR_PAT,GHCR_USER,REPO_URL,IMAGE_PREFIX,ADMIN_EMAIL,ADMIN_PASSWORD,GARAGE_BUCKET,GARAGE_ACCESS_KEY_ID,GARAGE_SECRET_ACCESS_KEY
           script: |
             set -e
             REPO_PATH=~/projects/kira-sekira
@@ -88,10 +110,12 @@ jobs:
             # (which drops .env from tracking) does not abort on a conflict.
             git rm --cached -f .env >/dev/null 2>&1 || true
             rm -f .env
+            git remote set-url origin "$REPO_URL"
             git fetch origin release
             git reset --hard origin/release
 
               printf '%s\n' \
+                "IMAGE_PREFIX='${IMAGE_PREFIX}'" \
                 "DB_PASSWORD='${DB_PASSWORD}'" \
                 "DIRECTUS_KEY='${DIRECTUS_KEY}'" \
                 "DIRECTUS_SECRET='${DIRECTUS_SECRET}'" \
@@ -120,6 +144,7 @@ jobs:
               docker compose -f compose.release.yaml exec -T studio node cli.js schema apply --yes /directus/snapshots/schema.yaml
               set -a; . ./.env; set +a
               python3 directus/setup/permissions.py
+              python3 directus/setup/seed_events.py
 
               docker system prune --force
         env:
@@ -133,9 +158,9 @@ jobs:
           GARAGE_BUCKET: ${{ secrets.GARAGE_BUCKET }}
           GARAGE_ACCESS_KEY_ID: ${{ secrets.GARAGE_ACCESS_KEY_ID }}
           GARAGE_SECRET_ACCESS_KEY: ${{ secrets.GARAGE_SECRET_ACCESS_KEY }}
-          GHCR_PAT: ${{ secrets.GHCR_PAT }}
+          GHCR_PAT: ${{ secrets.GITHUB_TOKEN }}
           GHCR_USER: ${{ github.actor }}
-          REPO_URL: https://${{ github.actor }}:${{ secrets.GHCR_PAT }}@github.com/${{ github.repository }}.git
+          REPO_URL: https://github.com/${{ github.repository }}.git
 
       - name: Notify Telegram
         if: success()

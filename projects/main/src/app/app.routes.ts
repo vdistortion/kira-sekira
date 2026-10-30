@@ -5,9 +5,10 @@ import { Project } from './pages/project/project';
 export const routes: Routes = [
   {
     path: '',
-    title: 'Kira Sekira — фотограф в Москве',
+    title: 'Фотограф на корпоратив — Кира Секира',
     component: Home,
   },
+  { path: 'about', title: 'Обо мне — Кира Секира', component: Home, data: { about: true } },
   {
     path: 'portfolio/:slug',
     title: 'project',

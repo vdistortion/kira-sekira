@@ -1,72 +1,48 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, afterNextRender, ElementRef, PendingTasks } from '@angular/core';
+import { RouterLink, ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { Title, Meta } from '@angular/platform-browser';
-import { DirectusService, MarkdownPipe, YoutubeEmbedPipe } from 'shared';
-import { Page } from '../../layout/page/page';
-import { ProjectList } from '../../features/projects/project-list/project-list';
-
-@Component({
-  selector: 'app-home',
-  imports: [MarkdownPipe, YoutubeEmbedPipe, Page, ProjectList],
-  templateUrl: './home.html',
-  styleUrl: './home.scss',
-})
+import { DirectusService, Contacts } from 'shared';
+@Component({selector:'app-home',imports:[RouterLink,FormsModule],templateUrl:'./home.html',styleUrl:'./home.scss'})
 export class Home {
-  private titleService = inject(Title);
-  private meta = inject(Meta);
-  private studio = inject(DirectusService);
-
-  aboutImage = signal('');
-  aboutMarkdown = signal('');
-  tagline = signal('');
-  experienceText = signal('');
-  videos = signal<any[]>([]);
-  galleries = signal<any[]>([]);
-  prices = signal<any[]>([]);
-  reviews = signal<any[]>([]);
-  projectsName = signal('Проекты');
-  loading = signal(true);
-  error = signal<string | null>(null);
-
-  constructor() {
-    this.titleService.setTitle('Kira Sekira');
-
-    Promise.all([this.studio.getMainSite(), this.studio.getPrices(), this.studio.getReviews()])
-      .then(([data, prices, reviews]) => {
-        this.aboutImage.set(data.main_photo_url || '');
-        this.aboutMarkdown.set(data.advantages_md || '');
-        this.tagline.set(data.tagline || '');
-        if (data.experience_since) {
-          const years = new Date().getFullYear() - data.experience_since;
-          this.experienceText.set(`Опыт работы ${years} лет`);
-        }
-        this.videos.set(data.videos || []);
-        this.galleries.set(data.galleries || []);
-        this.prices.set(prices || []);
-        this.reviews.set(reviews || []);
-        this.setSeo(
-          'Kira Sekira — фотограф в Москве',
-          'Фотосъёмки в Москве: индивидуальные, семейные, детские фотосессии, лав стори, репортажная съёмка мероприятий и концертов. Фотограф Kira Sekira.',
-          data.main_photo_url || '',
-        );
-        this.loading.set(false);
-      })
-      .catch((err) => {
-        console.error('Failed to load main site', err);
-        this.error.set('Ошибка загрузки данных');
-        this.loading.set(false);
-      });
+  private studio=inject(DirectusService);
+  private title=inject(Title);
+  private meta=inject(Meta);
+  private host: ElementRef<HTMLElement> = inject(ElementRef);
+  readonly about=!!inject(ActivatedRoute).snapshot.data['about'];
+  copy=signal<any>(null); galleries=signal<any[]>([]); contacts=signal<Contacts|null>(null);
+  aboutHtml=signal(''); failed=signal(false); step=signal(0); answers=signal<string[]>([]); date='';
+  constructor(){inject(PendingTasks).run(()=>this.load());afterNextRender(()=>this.decorateHero());}
+  async load(){
+    try{
+      const [site,contacts]=await Promise.all([this.studio.getMainSite(),this.studio.getContacts()]);
+      const c=site.events_content;
+      if(!c||!Array.isArray(c.quizQuestions)||c.quizQuestions.length!==4)throw new Error('Events content not initialized');
+      this.copy.set(c);this.galleries.set(site.galleries||[]);this.contacts.set(contacts);
+      const portrait=(site.main_photo_url||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      this.aboutHtml.set(c.aboutHtml.replace('/assets/kira-sekira-portrait.jpg',portrait));
+      this.title.setTitle(this.about?'Обо мне — Кира Секира':c.seoTitle);
+      this.meta.updateTag({name:'description',content:c.seoDescription});
+      this.meta.updateTag({property:'og:title',content:c.seoTitle});
+      this.meta.updateTag({property:'og:description',content:c.seoDescription});
+      if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(()=>this.decorateHero());
+    }catch(error){console.error('Events page load failed',error);this.failed.set(true);}
   }
-
-  private setSeo(title: string, description: string, image?: string) {
-    this.titleService.setTitle(title);
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ property: 'og:title', content: title });
-    this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ name: 'twitter:title', content: title });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
-    if (image) {
-      this.meta.updateTag({ property: 'og:image', content: image });
-      this.meta.updateTag({ name: 'twitter:image', content: image });
-    }
+  private decorateHero(){
+    const hero=this.host.nativeElement.querySelector<HTMLElement>('.events-hero-photo');
+    const cover=this.galleries().find(g=>g.cover_url)?.cover_url;
+    if(hero&&cover)hero.style.backgroundImage=`url("${encodeURI(cover).replace(/"/g,'%22')}")`;
   }
+  choose(value:string){const next=this.answers().slice();next[this.step()]=value;this.answers.set(next);this.step.update(v=>v+1);}
+  chooseDate(){if(this.date)this.choose(this.date);}
+  back(){this.step.update(v=>Math.max(0,v-1));}
+  restart(){this.step.set(0);}
+  estimate():number|null{const i=this.copy().quizQuestions[1].options.indexOf(this.answers()[1]);return i<0||i>4?null:i===0?this.copy().singleHourPrice:(i+1)*this.copy().ratePerHour;}
+  formattedEstimate(){const v=this.estimate();return v===null?this.copy().customPriceLabel:`${v.toLocaleString('ru-RU')} ₽`;}
+  private message(){const c=this.copy();return c.messageIntro+'\n'+this.answers().map((a,i)=>`${c.messageQuestions[i]}: ${a}`).join('\n');}
+  messenger(kind:'telegram'|'whatsapp'):string|null{
+    const value=this.contacts()?.[kind];if(!value)return null;
+    try{const u=new URL(value.startsWith('http')?value:`https://${value}`);const allowed=kind==='telegram'?['t.me','telegram.me']:['wa.me','api.whatsapp.com'];if(!allowed.includes(u.hostname)||u.protocol!=='https:')return null;u.searchParams.set('text',this.message());return u.toString();}catch{return null;}
+  }
+  phoneHref(){return 'tel:'+(this.contacts()?.phone||'').replace(/[^+\d]/g,'');}
 }

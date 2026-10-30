@@ -20,7 +20,7 @@ services:
 
   studio:
     container_name: kira-studio-release
-    image: ghcr.io/vdistortion/kira-sekira-studio:release
+    image: ${IMAGE_PREFIX:-ghcr.io/kirasekira-art/kira-sekira}-studio:release
     pull_policy: always
     ports:
       - '127.0.0.1:8055:8055'
@@ -84,7 +84,7 @@ services:
 
   main:
     container_name: kira-main-release
-    image: ghcr.io/vdistortion/kira-sekira-main:release
+    image: ${IMAGE_PREFIX:-ghcr.io/kirasekira-art/kira-sekira}-main:release
     restart: unless-stopped
     networks:
       - caddy
@@ -94,7 +94,7 @@ services:
 
   models:
     container_name: kira-models-release
-    image: ghcr.io/vdistortion/kira-sekira-models:release
+    image: ${IMAGE_PREFIX:-ghcr.io/kirasekira-art/kira-sekira}-models:release
     restart: unless-stopped
     networks:
       - caddy

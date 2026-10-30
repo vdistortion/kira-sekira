@@ -3311,6 +3311,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: directus_files
       foreign_key_column: id
+  - collection: main_site
+    field: events_content
+    type: json
+    meta:
+      collection: main_site
+      field: events_content
+      interface: input-code
+      options:
+        language: json
+      special:
+        - cast-json
+      width: full
+      sort: 20
+      note: Тексты и настройки сайта корпоративов. HTML проходит стандартную очистку Angular.
+      translations:
+        - language: ru-RU
+          translation: Сайт корпоративов
+    schema:
+      name: events_content
+      table: main_site
+      data_type: json
+      default_value: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
 systemFields:
   - collection: directus_activity
     field: timestamp

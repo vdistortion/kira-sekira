@@ -9,6 +9,7 @@ export interface DirectusFile {
 
 // --- main_site ---
 export interface MainSite {
+  events_content?: any;
   id: string;
   site_name: string;
   main_photo?: DirectusFile;
