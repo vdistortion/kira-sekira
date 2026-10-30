@@ -18,7 +18,7 @@ export class Home {
       const [site,contacts]=await Promise.all([this.studio.getMainSite(),this.studio.getContacts()]);
       const c=site.events_content;
       if(!c||!Array.isArray(c.quizQuestions)||c.quizQuestions.length!==4)throw new Error('Events content not initialized');
-      this.copy.set(c);this.galleries.set(site.galleries||[]);this.contacts.set(contacts);
+      this.copy.set(c);this.galleries.set((site.galleries||[]).map(g=>g.slug==='den-rozhdeniya-v-bodega'?{...g,cover_url:'https://studio.kira-sekira.ru/assets/50a470c6-12fe-41e5-be8f-6797c01f55e5'}:g));this.contacts.set(contacts);
       const portrait=(site.main_photo_url||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
       this.aboutHtml.set(c.aboutHtml.replace('/assets/kira-sekira-portrait.jpg',portrait));
       const intro=c.introHtml.replace('<p>7 000 ₽/час при заказе от 2-х часов.<br>Съёмка на 1 час — 10 000 ₽.</p>', '').replace('<div class="visual events-hero-photo">', '<div class="visual hero-collage"><div class="hero-triptych"><img src="/assets/DSC_8970.webp" alt="Бокалы на праздничном вечере" width="1000" height="714"><img src="/assets/DSC_2599.webp" alt="Новогодний корпоратив с Дедом Морозом" width="1000" height="666"><img src="/assets/DSC_9890.webp" alt="Гости праздника с именинником" width="1000" height="714"></div>');
