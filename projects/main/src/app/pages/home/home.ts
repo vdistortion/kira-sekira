@@ -21,7 +21,7 @@ export class Home {
       this.copy.set(c);this.galleries.set(site.galleries||[]);this.contacts.set(contacts);
       const portrait=(site.main_photo_url||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
       this.aboutHtml.set(c.aboutHtml.replace('/assets/kira-sekira-portrait.jpg',portrait));
-      const intro=c.introHtml.replace('<div class="visual events-hero-photo">', '<div class="visual hero-collage"><div class="hero-triptych"><img src="/assets/DSC_8970.webp" alt="Бокалы на праздничном вечере" width="1000" height="714"><img src="/assets/DSC_9890.webp" alt="Гости праздника с именинником" width="1000" height="714"><img src="/assets/DSC_9507.webp" alt="Выступление на сцене — чёрно-белый кадр" width="1000" height="714"></div>');
+      const intro=c.introHtml.replace('<p>7 000 ₽/час при заказе от 2-х часов.<br>Съёмка на 1 час — 10 000 ₽.</p>', '').replace('<div class="visual events-hero-photo">', '<div class="visual hero-collage"><div class="hero-triptych"><img src="/assets/DSC_8970.webp" alt="Бокалы на праздничном вечере" width="1000" height="714"><img src="/assets/DSC_9890.webp" alt="Гости праздника с именинником" width="1000" height="714"><img src="/assets/DSC_9507.webp" alt="Выступление на сцене — чёрно-белый кадр" width="1000" height="714"></div>');
       this.homeIntroHtml.set(portrait ? intro.replace(
         /(<section class="dark"><div class="split">)(<small>.*?<\/small>)/,
         `$1<div class="approach-portrait">$2<img src="${portrait}" alt="Кира Секира с камерой" width="2048" height="2048" loading="lazy"></div>`,
