@@ -46,3 +46,5 @@ html { scroll-behavior: smooth; }
 .events-site .split:has(>.approach-portrait)>.approach-portrait{order:2}.events-site .split:has(>.approach-portrait)>div:not(.approach-portrait){order:1}
 
 .events-site .quiz-messengers{display:flex;flex-wrap:wrap;gap:16px;margin:24px 0}.events-site .quiz-messengers a{margin:0;display:inline-flex;align-items:center;justify-content:center;text-align:center;flex:1 1 220px}
+
+.events-site section>small,.events-site section .split>div>small,.events-site footer>small,.events-site .eyebrow{display:block;text-align:left}.events-site section>small{margin-bottom:32px}.events-site .approach-portrait img{margin-top:0}
