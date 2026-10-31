@@ -6,7 +6,7 @@ html { scroll-behavior: smooth; }
 .events-site { min-height:100vh; background:#f0f3fa; color:#17213b; font-family:Arial,sans-serif; }
 .events-site .events-gallery {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 30px;align-items:start}
 .events-site .events-gallery a{display:block;min-width:0}.events-site .events-gallery a:nth-child(even){margin-top:0}
-.events-site .events-gallery img {display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center}
+.events-site .events-gallery img {display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center}
 .events-site .events-gallery h3 {font-size:21px;font-weight:normal;margin-bottom:10px}
 .events-site .events-gallery p {font-size:14px}
 .events-site .events-hero-photo {background-size:cover;background-position:center;min-height:510px;isolation:isolate}
@@ -18,7 +18,7 @@ html { scroll-behavior: smooth; }
 .events-site .quiz-date input {margin:12px 0;background:#f0f3fa}
 .events-site .quiz-back {margin-top:16px;border:0;background:transparent;cursor:pointer;font-size:15px}
 .events-site .quiz-result a {margin:10px 0;max-width:100%}
-@media(max-width:700px){.events-site .events-gallery{grid-template-columns:1fr}.events-site .events-gallery a:nth-child(even){margin-top:0}.events-site .events-gallery img{height:auto;max-height:none;aspect-ratio:3/2}.events-site .events-hero-photo{min-height:350px}.events-site .price{gap:16px}.events-site .price strong{font-size:26px;white-space:nowrap}}
+@media(max-width:700px){.events-site .events-gallery{grid-template-columns:1fr}.events-site .events-gallery a:nth-child(even){margin-top:0}.events-site .events-gallery img{height:auto;max-height:none;aspect-ratio:16/9}.events-site .events-hero-photo{min-height:350px}.events-site .price{gap:16px}.events-site .price strong{font-size:26px;white-space:nowrap}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .events-site .about-portrait.about-photo{min-height:0;padding:0;background:transparent;display:block}.events-site .about-photo img{display:block;width:100%;height:auto}.events-site button:disabled{opacity:.45;cursor:not-allowed}
