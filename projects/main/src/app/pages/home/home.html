@@ -6,7 +6,7 @@
 <section id="work"><small>{{c.portfolioEyebrow}}</small><h2>{{c.portfolioTitle}}</h2><div class="events-gallery">
 @for(gallery of galleries();track gallery.slug){<a [routerLink]="['/portfolio',gallery.slug]">@if(gallery.cover_url){<img [src]="gallery.cover_url" [alt]="gallery.title" loading="lazy"/>}<h3>{{gallery.title}}</h3><p>{{c.galleryLink}}</p></a>}@empty{<p>{{c.portfolioEmpty}}</p>}
 </div></section>
-<div [innerHTML]="c.detailsHtml.replace('От 2 часов', 'От 2х часов')"></div>
+<div [innerHTML]="c.detailsHtml.replace('От 2 часов', 'От 2х часов').replace('От первого сообщения<br>до готовых фотографий.', 'От первого сообщения до готовых фотографий')"></div>
 <section id="quiz"><div class="split"><div><small>{{c.quizEyebrow}}</small><h2>{{c.quizTitle}}</h2><p>{{c.quizDescription}}</p></div><div class="quiz" aria-live="polite">
 @if(step()<c.quizQuestions.length){<small>{{c.questionLabel}} {{step()+1}} {{c.ofLabel}} {{c.quizQuestions.length}}</small><h3>{{c.quizQuestions[step()].title}}</h3>
 @if(c.quizQuestions[step()].type==='date'){<label class="quiz-date">{{c.quizQuestions[step()].title}}<input type="date" [(ngModel)]="date"/></label><button class="button" [disabled]="!date" (click)="chooseDate()">{{c.nextLabel}}</button>}

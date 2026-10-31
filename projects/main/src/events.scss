@@ -48,3 +48,5 @@ html { scroll-behavior: smooth; }
 .events-site .quiz-messengers{display:flex;flex-wrap:wrap;gap:16px;margin:24px 0}.events-site .quiz-messengers a{margin:0;display:inline-flex;align-items:center;justify-content:center;text-align:center;flex:1 1 220px}
 
 .events-site section>small,.events-site section .split>div>small,.events-site footer>small,.events-site .eyebrow{display:block;text-align:left}.events-site section>small{margin-bottom:32px}.events-site .approach-portrait img{margin-top:0}
+
+.events-site .dark:has(.number)>h2{font-size:clamp(12px,3.4vw,64px);white-space:nowrap}
