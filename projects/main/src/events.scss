@@ -42,3 +42,5 @@ html { scroll-behavior: smooth; }
 .events-site h2 i,.events-site h2 em{font-family:Georgia,serif;font-weight:400;font-style:italic}
 
 .events-site .options button,.events-site input,.events-site select,.events-site .quiz-date,.events-site footer>a{font-size:24px}
+
+.events-site .split:has(>.approach-portrait)>.approach-portrait{order:2}.events-site .split:has(>.approach-portrait)>div:not(.approach-portrait){order:1}
