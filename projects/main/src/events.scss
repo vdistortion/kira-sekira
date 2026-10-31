@@ -44,3 +44,5 @@ html { scroll-behavior: smooth; }
 .events-site .options button,.events-site input,.events-site select,.events-site .quiz-date,.events-site footer>a{font-size:24px}
 
 .events-site .split:has(>.approach-portrait)>.approach-portrait{order:2}.events-site .split:has(>.approach-portrait)>div:not(.approach-portrait){order:1}
+
+.events-site .quiz-messengers{display:flex;flex-wrap:wrap;gap:16px;margin:24px 0}.events-site .quiz-messengers a{margin:0;display:inline-flex;align-items:center;justify-content:center;text-align:center;flex:1 1 220px}

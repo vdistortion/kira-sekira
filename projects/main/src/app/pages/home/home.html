@@ -12,15 +12,15 @@
 @if(c.quizQuestions[step()].type==='date'){<label class="quiz-date">{{c.quizQuestions[step()].title}}<input type="date" [(ngModel)]="date"/></label><button class="button" [disabled]="!date" (click)="chooseDate()">{{c.nextLabel}}</button>}
 <div class="options">@for(option of c.quizQuestions[step()].options;track option){<button (click)="choose(option)">{{option}}</button>}</div>
 @if(step()>0){<button class="quiz-back" (click)="back()">{{c.backLabel}}</button>}
-}@else{<div class="quiz-result"><small>{{c.resultTitle}}</small><h3>{{formattedEstimate()}}</h3>@for(answer of answers();track $index){<p>{{c.messageQuestions[$index]}}: {{answer}}</p>}<p>{{c.resultDescription}}</p>
+}@else{<div class="quiz-result"><small>{{c.resultTitle}}</small><h3>{{formattedEstimate()}}</h3>@for(answer of answers();track $index){<p>{{c.messageQuestions[$index]}}: {{answer}}</p>}<p>Напишите мне в удобном мессенджере — я проверю дату и подготовлю КП. В Telegram ответы подставятся в сообщение; в MAX укажите детали съёмки из расчёта выше.</p><div class="quiz-messengers">
 @if(messenger('telegram');as link){<a class="button" [href]="link" target="_blank" rel="noopener">{{c.telegramLabel}}</a>}
-@if(messenger('whatsapp');as link){<a class="button" [href]="link" target="_blank" rel="noopener">{{c.whatsappLabel}}</a>}
+<a class="button" href="https://max.ru/u/f9LHodD0cOLA6PRQa4VQp4iAUwcugnMPAgsx2ATVspaxZ_j9mE8zC10FM6s" target="_blank" rel="noopener">Получить КП в MAX ↗</a></div>
 @if(contacts()?.phone){<p><a [href]="phoneHref()">{{c.phoneLabel}}: {{contacts()?.phone}}</a></p>}
 <button class="quiz-back" (click)="restart()">{{c.restartLabel}}</button></div>}
 </div></div></section>
 <div [innerHTML]="c.faqHtml"></div>
 }
 <div [innerHTML]="c.footerHtml"></div>
-@if(contacts();as contacts){<div class="events-contact"><span>{{c.contactsTitle}}</span>@if(contacts.phone){<a [href]="phoneHref()">{{contacts.phone}}</a>}@if(contacts.telegram){<a [href]="contacts.telegram" rel="noopener">Telegram</a>}@if(contacts.whatsapp){<a [href]="contacts.whatsapp" rel="noopener">WhatsApp</a>}</div>}
+@if(contacts();as contacts){<div class="events-contact"><span>{{c.contactsTitle}}</span>@if(contacts.phone){<a [href]="phoneHref()">{{contacts.phone}}</a>}@if(contacts.telegram){<a [href]="contacts.telegram" rel="noopener">Telegram</a>}<a href="https://max.ru/u/f9LHodD0cOLA6PRQa4VQp4iAUwcugnMPAgsx2ATVspaxZ_j9mE8zC10FM6s" rel="noopener">MAX</a></div>}
 }@else{<section><h1>Kira Sekira</h1><p role="status">{{failed()?'Не удалось загрузить страницу. Пожалуйста, обновите её.':'Загрузка…'}}</p></section>}
 </div>
