@@ -57,4 +57,4 @@ html { scroll-behavior: smooth; }
 
 .events-site .events-gallery a[href$="/korporativ-beaver-group-2024"] img{object-fit:contain;object-position:center;background:#0b0b0b}
 
-.events-site #price .split>div>p:first-child{margin-top:0}.events-site #price .split>div>.price:first-child{padding-top:0;border-top:0}.events-site .price-cta{margin-top:32px;text-align:left}
+.events-site section:has(>.price-cta) .split>div>p:first-child{margin-top:0}.events-site section:has(>.price-cta) .split>div>.price:first-child{padding-top:0;border-top:0}.events-site .price-cta{margin-top:32px;text-align:left}
