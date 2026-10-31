@@ -16,7 +16,10 @@ export class Home {
   async load(){
     try{
       const [site,contacts]=await Promise.all([this.studio.getMainSite(),this.studio.getContacts()]);
-      const c=site.events_content;
+      const raw=site.events_content;
+      const strip=(html:string)=>html.replace(/(<h[1-6]\b[^>]*>)([\s\S]*?)(<\/h[1-6]>)/gi,(_m:string,open:string,text:string,close:string)=>open+text.replace(/\.(?=(?:<\/(?:i|em|span|strong|b)>)*\s*$)/i,'').replace(/\.(?=<span class="hero-emotion">)/g,'')+close);
+      const c=raw?{...raw}:raw;
+      if(c){for(const key of ['headerHtml','introHtml','aboutHtml','detailsHtml','faqHtml','footerHtml'])if(typeof c[key]==='string')c[key]=strip(c[key]);for(const key of ['portfolioTitle','quizTitle','resultTitle'])if(typeof c[key]==='string')c[key]=c[key].replace(/\.$/,'');c.footerHtml=c.footerHtml?.replace('Увидимся на празднике.','Увидимся на празднике');}
       if(!c||!Array.isArray(c.quizQuestions)||c.quizQuestions.length!==4)throw new Error('Events content not initialized');
       this.copy.set(c);this.galleries.set((site.galleries||[]).map(g=>g.slug==='den-rozhdeniya-v-bodega'?{...g,cover_url:'https://studio.kira-sekira.ru/assets/50a470c6-12fe-41e5-be8f-6797c01f55e5'}:g));this.contacts.set(contacts);
       const portrait=(site.main_photo_url||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
